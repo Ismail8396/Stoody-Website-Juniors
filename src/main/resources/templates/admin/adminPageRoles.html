@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=th:src=""/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,8 +54,8 @@
             <th scope="row" th:text="${iStat.index + 1}">1</th>
             <td th:text="${role.name}">Larry</td>
 
-            <td><a href="" th:href="@{/admin/roles/delete/{id}(id=${role.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a href="" th:href="@{/admin/roles/update/{id}(id=${role.id})}" class="btn btn-warning">Update</a></td>
+            <td><a href=th:src="" th:href="@{/admin/roles/delete/{id}(id=${role.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href=th:src="" th:href="@{/admin/roles/update/{id}(id=${role.id})}" class="btn btn-warning">Update</a></td>
 
         </tr>
         </tbody>

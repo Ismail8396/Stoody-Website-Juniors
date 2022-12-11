@@ -37,18 +37,23 @@ public class LoginController {
 
     @PostMapping("/register")
     public String registerPost(@ModelAttribute("user") User user, HttpServletRequest request) throws ServletException {
+        if(userRepository.findUserByUsername(user.getUsername()).isPresent()){
+            return "redirect:/register?error=true";
+        } else if(userRepository.findUserByEmail(user.getEmail()).isPresent()){
+            return "redirect:/register?error=true";
+        }
+
         String password = user.getPassword();
         user.setPassword(bCryptPasswordEncoder.encode(password));
 
-        System.out.println(roleRepository.findAll());
         List<Role> roles = new ArrayList<>();
-        roles.add(roleRepository.findById(2).get());
+        roles.add(roleRepository.findById(2).get());// Simple User Role
         user.setRoles(roles);
 
         System.out.println(user);
         userRepository.save(user);
 
-        request.login(user.getEmail(), password);
+        request.login(user.getEmail(), password); // TODO: OrkhanGG should we use user name instead of email?
 
         return "redirect:/";
     }

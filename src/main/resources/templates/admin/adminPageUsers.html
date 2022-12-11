@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=th:src=""/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,6 +45,7 @@
             <th scope="col">SN</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
+            <th scope="col">Username</th>
             <th scope="col">Email</th>
             <th scope="col">Password</th>
             <th scope="col">Role</th>
@@ -56,12 +57,13 @@
             <th scope="row" th:text="${iStat.index + 1}">1</th>
             <td th:text="${user.firstName}">Larry</td>
             <td th:text="${user.lastName}">Larry</td>
+            <td th:text="${user.username}">Larry</td>
             <td th:text="${user.email}">Larry</td>
             <td th:text="${user.password}">Larry</td>
             <td th:text="${user.roles}">Larry</td>
 
-            <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
+            <td><a href=th:src="" th:href="@{/admin/course/delete/{id}(id=${course.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a href=th:src="" th:href="@{/admin/course/update/{id}(id=${course.id})}" class="btn btn-warning">Update</a></td>
 
         </tr>
         </tbody>

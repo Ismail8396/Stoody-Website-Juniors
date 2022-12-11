@@ -10,27 +10,38 @@ import java.util.List;
 
 public class CustomUserDetail extends User implements UserDetails {
 
-    public CustomUserDetail(User user){
+    public CustomUserDetail(User user) {
         super(user);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         List<GrantedAuthority> authorities = new ArrayList<>();
-        super.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        });
+
+        if (super.getRoles() != null)
+            super.getRoles().forEach(role -> {
+                authorities.add(new SimpleGrantedAuthority(role.getName()));
+            });
+        else
+            System.err.println("super.getRoles() == null at "+ Thread.currentThread().getStackTrace()[1]);
+
         return authorities;
     }
 
     @Override
     public String getUsername() {
+        return super.getUsername();
+    }
+
+    @Override
+    public String getEmail() {
         return super.getEmail();
     }
 
     @Override//?
     public String getPassword() {
-        return super.getEmail();
+        return super.getPassword();
     }
 
     @Override

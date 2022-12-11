@@ -41,10 +41,10 @@ title %0
 @if "%MAVEN_BATCH_ECHO%" == "on"  echo %MAVEN_BATCH_ECHO%
 
 @REM set %HOME% to equivalent of $HOME
-if "%HOME%" == "" (set "HOME=%HOMEDRIVE%%HOMEPATH%")
+if "%HOME%" == th:src="" (set "HOME=%HOMEDRIVE%%HOMEPATH%")
 
 @REM Execute a user defined script before this one
-if not "%MAVEN_SKIP_RC%" == "" goto skipRcPre
+if not "%MAVEN_SKIP_RC%" == th:src="" goto skipRcPre
 @REM check for pre script, once with legacy .bat ending and once with .cmd ending
 if exist "%HOME%\mavenrc_pre.bat" call "%HOME%\mavenrc_pre.bat"
 if exist "%HOME%\mavenrc_pre.cmd" call "%HOME%\mavenrc_pre.cmd"
@@ -58,7 +58,7 @@ set ERROR_CODE=0
 @setlocal
 
 @REM ==== START VALIDATION ====
-if not "%JAVA_HOME%" == "" goto OkJHome
+if not "%JAVA_HOME%" == th:src="" goto OkJHome
 
 echo.
 echo Error: JAVA_HOME not found in your environment. >&2
@@ -86,7 +86,7 @@ goto error
 @REM Fallback to current working directory if not found.
 
 set MAVEN_PROJECTBASEDIR=%MAVEN_BASEDIR%
-IF NOT "%MAVEN_PROJECTBASEDIR%"=="" goto endDetectBaseDir
+IF NOT "%MAVEN_PROJECTBASEDIR%"==th:src="" goto endDetectBaseDir
 
 set EXEC_DIR=%CD%
 set WDIR=%EXEC_DIR%
@@ -133,7 +133,7 @@ if exist %WRAPPER_JAR% (
         echo Found %WRAPPER_JAR%
     )
 ) else (
-    if not "%MVNW_REPOURL%" == "" (
+    if not "%MVNW_REPOURL%" == th:src="" (
         SET DOWNLOAD_URL="%MVNW_REPOURL%/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar"
     )
     if "%MVNW_VERBOSE%" == "true" (
@@ -168,7 +168,7 @@ set ERROR_CODE=1
 :end
 @endlocal & set ERROR_CODE=%ERROR_CODE%
 
-if not "%MAVEN_SKIP_RC%" == "" goto skipRcPost
+if not "%MAVEN_SKIP_RC%" == th:src="" goto skipRcPost
 @REM check for post script, once with legacy .bat ending and once with .cmd ending
 if exist "%HOME%\mavenrc_post.bat" call "%HOME%\mavenrc_post.bat"
 if exist "%HOME%\mavenrc_post.cmd" call "%HOME%\mavenrc_post.cmd"

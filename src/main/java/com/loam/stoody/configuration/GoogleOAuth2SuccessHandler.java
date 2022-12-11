@@ -40,6 +40,7 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             user.setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
             user.setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
             user.setEmail(email);
+            user.setUsername(email); // TODO: OrkhanGG check validity
             List<Role> roles = new ArrayList<>();
             roles.add(roleRepository.findById(2).get());
             user.setRoles(roles);

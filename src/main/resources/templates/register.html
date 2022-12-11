@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=th:src=""/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,6 +55,10 @@
                 <input type="text" name="lastName" id="lastName" required placeholder="Your Lastname" class="form-control form-control-lg">
             </div>
             <div class="form-group">
+                <label for="username">Last Name</label>
+                <input type="text" name="username" id="username" required placeholder="Your Username" class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email" name="email" id="email"
                        aria-describedby="emailHelp">
@@ -65,6 +69,9 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control form-control-lg" required placeholder="Password" name="password"
                        id="password">
+            </div>
+            <div th:if="${param.error}" class="alert alert-error text-danger">
+                Email or username is already in use. Please, try another or take a look at <a href="#">How to register?</a> page.
             </div>
 
             <input type="submit" value="Register" class="btn btn-light btn-block">

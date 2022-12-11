@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>StoodyOrkhanGG14</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/themes/odometer-theme-minimal.css">
+</head>
+
+<body class="common_background_color">
+    <div id="contextMenu" class="context-menu" style="display:none;">
+        <ul class="menu common_div_highlighted_color">
+            <li id="context-menu-toggle-theme" class="share d-flex justify-content-start align-items-center filter_button_color"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-thermometer-sun ms-2" aria-hidden="true">
+                    <path d="M5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585A1.5 1.5 0 0 1 5 12.5z"></path>
+                    <path d="M1 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM3.5 1A1.5 1.5 0 0 0 2 2.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0L5 10.486V2.5A1.5 1.5 0 0 0 3.5 1zm5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm4.243 1.757a.5.5 0 0 1 0 .707l-.707.708a.5.5 0 1 1-.708-.708l.708-.707a.5.5 0 0 1 .707 0zM8 5.5a.5.5 0 0 1 .5-.5 3 3 0 1 1 0 6 .5.5 0 0 1 0-1 2 2 0 0 0 0-4 .5.5 0 0 1-.5-.5zM12.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 1 1 0 1h-1a.5.5 0 0 1-.5-.5zm-1.172 2.828a.5.5 0 0 1 .708 0l.707.708a.5.5 0 0 1-.707.707l-.708-.707a.5.5 0 0 1 0-.708zM8.5 12a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5z"></path>
+                </svg><br><span class="small ms-1 me-3">Switch Theme</span></li>
+            <li id="context-menu-toggle-audio" class="d-flex justify-content-start align-items-center filter_button_color"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-volume-mute-fill ms-2" aria-hidden="true">
+                    <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"></path>
+                </svg><br><span class="small ms-1 me-3">Switch Audio</span></li>
+        </ul>
+    </div>
+    <div class="common_div_color">
+        <div class="d-flex justify-content-center align-items-center modalDialog hidden" id="uploadVideoDialog">
+            <div class="d-flex flex-column align-items-center modalDialog_firstStep common_div_color common_text_color">
+                <div class="d-flex align-items-center uploadWindow_top common_bottom_border_color">
+                    <h2 class="uploadWindow_header common_text_color">Upload video</h2><button class="uploadWindow_closeBtn" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg uploadWindow_close common_text_color" onclick="javascript:closeUploadDialog.call(this)">
+                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"></path>
+                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"></path>
+                        </svg></button>
+                </div>
+                <div id="uploadVideoDialogPage" class="hidden">
+                    <div class="drag-image">
+                        <div class="icon"><i class="far fa-file-video uploadVideoIcon"></i></div>
+                        <h6 class="d-none d-lg-block common_text_color">Drag &amp; Drop Video File Here</h6><span class="d-none d-lg-block common_text_color">OR</span><button class="uploadVideoButton my-3 my-lg-0 common_button_color">Browse File</button><input type="file" accept="video/mp4" hidden="">
+                    </div><span class="uploadWindow_span common_text_color_secondary_no_hover">By submitting a video, you agree to the Terms of Use, Community Guidelines. You also agree to respect the copyrights and privacy of other users' data.</span>
+                </div>
+                <div id="videoDetailsDialogPage" class="videoDetailsDialogPage">
+                    <div class="row videoDetailsDialogPage-wrapper">
+                        <div class="col-12 col-xl-8 d-flex flex-column uploadSettings">
+                            <h4 class="uploadSettings_heading common_text_color_no_hover">Details</h4>
+                            <form class="uploadSettings_form"><input class="form-control uploadSettings_input1 common_text_input_color common_border_radius" type="text" id="videoTitleText" placeholder="Video Title" autocomplete="off"><textarea class="form-control uploadSettings_input2 common_text_input_color common_border_radius" id="videoDescriptionText" placeholder="Video Description" rows="5" autocomplete="off" spellcheck="true"></textarea></form>
+                        </div>
+                        <div class="col-12 col-xl-4 d-flex flex-column order-first order-xl-last videoDetailsDialogPage_rightbar"><label class="form-label form-label common_text_color_no_hover" for="formFile">Video Preview</label><video id="uploadVideoPreview" class="uploadSettings_video common_border_radius common_bottom_border_color" controls=""></video>
+                            <div class="progress uploadSettings_progressBar hidden" id="videoUploadPB">
+                                <div class="progress-bar progress-bar-animated" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">25%</div>
+                            </div>
+                            <div class="d-flex flex-column align-items-center mb-3 thumbnailSection" id="thumbnailSection"><label class="form-label form-label videoDetailsDialogPage_rightbar-label common_text_color_no_hover" for="formFile">Thumbnail Preview</label><img id="videoThumbnailImagePreview" class="common_bottom_border_color common_border_radius"><input type="file" id="thumbnailFileInput" class="common_text_color_no_hover" accept="image/*"></div>
+                        </div>
+                        <div class="col-12 order-last">
+                            <div>
+                                <div>
+                                    <div class="upload">
+                                        <div class="text"><strong><span>Uploading</span> 3 files</strong>
+                                            <div><small>%</small>
+                                                <div><small><span data-seconds="null">0</span> seconds left </small><small>Paused</small></div>
+                                            </div>
+                                        </div>
+                                        <nav>
+                                            <ul>
+                                                <li><a class="btn play" role="button" href="null"><svg viewbox="0 0 16 16" fill="currentColor"><path d="M4.09437962,6 L13,6 C14,5.89116285 14.5,5.39116285 14.5,4.5 C14.5,3.60883715 14,3.10883715 13,3 L12,3 L4.09437962,3 L3,3 C2,3.10728568 1.5,3.60728568 1.5,4.5 C1.5,5.39271432 2,5.89271432 3,6 L4.09437962,6 Z"></path></svg><svg viewbox="0 0 16 16" fill="currentColor"><path d="M4.09437962,6 L13,6 C14,5.89116285 14.5,5.39116285 14.5,4.5 C14.5,3.60883715 14,3.10883715 13,3 L12,3 L4.09437962,3 L3,3 C2,3.10728568 1.5,3.60728568 1.5,4.5 C1.5,5.39271432 2,5.89271432 3,6 L4.09437962,6 Z"></path></svg></a></li>
+                                                <li><a class="btn cancel" role="button" href="null"></a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><svg viewbox="0 0 16 16" fill="currentColor"></svg></li>
+                                                <li><a href="null" class="dots"><svg viewbox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="2"></circle><circle cx="2" cy="8" r="2"></circle><circle cx="14" cy="8" r="2"></circle></svg></a></li>
+                                            </ul>
+                                        </nav>
+                                        <div class="percent"><span></span>
+                                            <div><svg viewBox="0 0 600 12">
+                <path d="M0,1 L200,1 C300,1 300,11 400,11 L600,11" stroke="currentColor" fill="none"></path>
+            </svg></div>
+                                        </div>
+                                    </div><a href="" class="restart"><svg viewbox="0 0 16 16" fill="currentColor"><path d="M4.5,4.5c1.9-1.9,5.1-1.9,7,0c0.7,0.7,1.2,1.7,1.4,2.7l2-0.3C14.7,5.4,14,4.1,13,3.1c-2.7-2.7-7.1-2.7-9.9,0 L0.9,0.9L0.2,7.3l6.4-0.7L4.5,4.5z"></path><path d="M15.8,8.7L9.4,9.4l2.1,2.1c-1.9,1.9-5.1,1.9-7,0c-0.7-0.7-1.2-1.7-1.4-2.7l-2,0.3 C1.3,10.6,2,11.9,3,12.9c1.4,1.4,3.1,2,4.9,2c1.8,0,3.6-0.7,4.9-2l2.2,2.2L15.8,8.7z"></path></svg> Restart</a><a class="dribbble" href="https://dribbble.com/shots/6730780-Upload-play-pause-animation" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt="null"></a>
+                                </div><button class="btn btn-primary d-block uploadSettings_saveBtn common_border_radius" id="uploadVideoButton" type="button">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="uploadVideoSpinner" class="stoodySpinnerWrapper hidden"><span class="spinner-border spinner-border-sm stoodySpinner" role="status"></span></div>
+            </div>
+            <div class="modalDialog_bg"></div>
+        </div>
+        <header class="d-flex justify-content-center align-items-center uploadHeader">
+            <div class="container">
+                <div class="d-flex align-items-center flex-wrap uploadHeader_wrapper"><a class="uploadHeader_link common_text_color mx-lg-0" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-chevron-left">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
+                        </svg>&nbsp;Back to courses</a><span class="uploadHeader_courseName common_text_color_no_hover">Name of the course</span><button class="btn btn-primary uploadHeader_saveBtn" type="button">Save</button><span class="uploadHeader_courseName uploadHeader_courseName-mobile">Name of the course</span></div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="alert alert-danger bg-danger text-white border-0 hidden" role="alert" id="newSectionWarning"><span id="newSectionWarningText"><strong>Alert</strong> text.</span></div>
+            <div class="row">
+                <div class="col-12 col-lg-3 d-flex d-lg-flex flex-row justify-content-between align-items-center flex-wrap order-last flex-lg-column justify-content-lg-start align-items-lg-stretch order-lg-first my-5 my-lg-0 coursePlan" id="pageList">
+                    <div class="coursePlan_wrapper">
+                        <h3 class="coursePlan_heading common_text_color_no_hover">Plan your course</h3>
+                        <div class="d-flex align-items-center coursePlan_item-active coursePlan_item common_text_color" id="coursePageButton1"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Intended learners</span></div>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton2"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Course structure</span></div>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton3"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Setup &amp; test video</span></div>
+                    </div>
+                    <div class="coursePlan_wrapper">
+                        <h3 class="coursePlan_heading common_text_color_no_hover">Create your own content</h3>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton4"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Film &amp; edit</span></div>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton5"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Course content</span></div>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton6"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Captions</span></div>
+                    </div>
+                    <div class="coursePlan_wrapper">
+                        <h3 class="coursePlan_heading common_text_color_no_hover">Publish your course</h3>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton7"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Course landing page</span></div>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton8"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Pricing</span></div>
+                        <div class="d-flex align-items-center coursePlan_item common_text_color" id="coursePageButton9"><span class="d-flex justify-content-center align-items-center coursePlan_item-checkbox"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-check coursePlan_item-checkbox_icon checkbox_hide">
+                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"></path>
+                                </svg></span><span class="coursePlan_item-span">Course messages</span></div>
+                    </div>
+                    <div class="d-flex justify-content-center coursePlan_submitButton-wrapper"><button class="button coursePlan_submitButton" type="button">Submit</button></div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage1">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Intended learners</h3>
+                        <div><span>The following descriptions will be publicly visible on your&nbsp;Course Landing Page&nbsp;and will have a direct impact on your course performance. These descriptions will help learners decide if your course is right for them.</span></div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage2">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Course structure</h3>
+                        <div class="d-flex flex-column align-items-center flex-lg-row coursePlan_tips">
+                            <div class="coursePlan_tips-leftBar mb-3 mb-lg-0">
+                                <h4 class="leftBar-heading common_text_color_no_hover">There's a course in you. Plan it out.</h4><span class="common_text_color_no_hover">Planning your course carefully will create a clear learning path for students and help you once you film. Think down to the details of each lecture including the skill you’ll teach, estimated video length, practical activities to include, and how you’ll create introductions and summaries.</span>
+                            </div>
+                            <div class="d-flex flex-column align-items-center mx-lg-2 coursePlan_tips-rightBar common_div_highlighted_color common_border_color"><img class="rightBar_image" src="assets/img/tips.jpg">
+                                <h5 class="rightBar_heading common_text_color_no_hover">Our library of resources</h5><span class="rightBar_span common_text_color_no_hover">Tips and guides to structuring a course students love</span><a class="btn btn-primary d-flex justify-content-center align-items-center rightBar_link" role="button" href="#">Button</a>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Tips</h4>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper common_text_color_no_hover">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                        </div>
+                        <div class="common_text_color_no_hover">
+                            <h4 class="tips_header common_text_color_no_hover">Requirements</h4>
+                            <div class="tips_item-wrapper">
+                                <ul class="tips_requirement">
+                                    <li class="tips_requirement-item">Item 1</li>
+                                    <li class="tips_requirement-item">Item 2</li>
+                                    <li class="tips_requirement-item">Item 3</li>
+                                    <li class="tips_requirement-item">Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Resources</h4>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage3">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Course structure</h3>
+                        <div class="d-flex flex-column align-items-center flex-lg-row coursePlan_tips">
+                            <div class="coursePlan_tips-leftBar mb-3 mb-lg-0">
+                                <h4 class="leftBar-heading common_text_color_no_hover">There's a course in you. Plan it out.</h4><span class="common_text_color_no_hover">Planning your course carefully will create a clear learning path for students and help you once you film. Think down to the details of each lecture including the skill you’ll teach, estimated video length, practical activities to include, and how you’ll create introductions and summaries.</span>
+                            </div>
+                            <div class="d-flex flex-column align-items-center mx-lg-2 coursePlan_tips-rightBar common_div_highlighted_color common_border_color"><img class="rightBar_image" src="assets/img/tips.jpg">
+                                <h5 class="rightBar_heading common_text_color_no_hover">Our library of resources</h5><span class="rightBar_span common_text_color_no_hover">Tips and guides to structuring a course students love</span><a class="btn btn-primary d-flex justify-content-center align-items-center rightBar_link" role="button" href="#">Button</a>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Tips</h4>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper common_text_color_no_hover">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                        </div>
+                        <div class="common_text_color_no_hover">
+                            <h4 class="tips_header common_text_color_no_hover">Requirements</h4>
+                            <div class="tips_item-wrapper">
+                                <ul class="tips_requirement">
+                                    <li class="tips_requirement-item">Item 1</li>
+                                    <li class="tips_requirement-item">Item 2</li>
+                                    <li class="tips_requirement-item">Item 3</li>
+                                    <li class="tips_requirement-item">Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Resources</h4>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage4">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Course structure</h3>
+                        <div class="d-flex flex-column align-items-center flex-lg-row coursePlan_tips">
+                            <div class="coursePlan_tips-leftBar mb-3 mb-lg-0">
+                                <h4 class="leftBar-heading common_text_color_no_hover">There's a course in you. Plan it out.</h4><span class="common_text_color_no_hover">Planning your course carefully will create a clear learning path for students and help you once you film. Think down to the details of each lecture including the skill you’ll teach, estimated video length, practical activities to include, and how you’ll create introductions and summaries.</span>
+                            </div>
+                            <div class="d-flex flex-column align-items-center mx-lg-2 coursePlan_tips-rightBar common_div_highlighted_color common_border_color"><img class="rightBar_image" src="assets/img/tips.jpg">
+                                <h5 class="rightBar_heading common_text_color_no_hover">Our library of resources</h5><span class="rightBar_span common_text_color_no_hover">Tips and guides to structuring a course students love</span><a class="btn btn-primary d-flex justify-content-center align-items-center rightBar_link" role="button" href="#">Button</a>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Tips</h4>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper common_text_color_no_hover">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                        </div>
+                        <div class="common_text_color_no_hover">
+                            <h4 class="tips_header common_text_color_no_hover">Requirements</h4>
+                            <div class="tips_item-wrapper">
+                                <ul class="tips_requirement">
+                                    <li class="tips_requirement-item">Item 1</li>
+                                    <li class="tips_requirement-item">Item 2</li>
+                                    <li class="tips_requirement-item">Item 3</li>
+                                    <li class="tips_requirement-item">Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Resources</h4>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage5">
+                    <div class="mb-5 course_content-wrapper common_div_color common_border_color common_border_radius">
+                        <h3 class="course_content-heading common_text_color_no_hover common_bottom_border_color">Course content</h3>
+                        <div class="curriculum"><span class="curriculum_heading common_text_color_no_hover">Start putting together your course by creating sections, lectures and practice (quizzes, coding exercises and assignments).If you’re intending to offer your course for free, the total length of video content must be less than 2 hours.</span>
+                            <div class="curriculum_wrapper"><button id="addContentButton" class="curriculum_addBtn common_text_color" type="button">Add content<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-square curriculum_addIcon">
+                                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                                    </svg></button>
+                                <div id="contents" class="curriculum_item common_border_color common_border_radius">
+                                    <div id="content" class="curriculum_item-shown common_border_color_pasted common_border_radius">
+                                        <div class="d-flex flex-column align-items-center flex-lg-row"><span id="sectionRownNumber" class="shownSection_number common_text_color_no_hover">Section 1:</span><span id="sectionTitleText" class="my-3 my-lg-0 common_text_color_no_hover">Lesson 1</span>
+                                            <div class="d-flex sectionControls">
+                                                <div class="dropdown" id="addDropdown"><button class="btn btn-primary dropdown-toggle addContent_dropdown" aria-expanded="false" data-bs-toggle="dropdown" type="button">Add</button>
+                                                    <div class="dropdown-menu common_dropdown_popup_color"><a class="dropdown-item filter_button_color" id="addDropdownVideo">Video</a><a class="dropdown-item filter_button_color" href="#">Quiz</a><a class="dropdown-item filter_button_color" href="#">Exercise</a></div>
+                                                </div><button class="btn btn-primary sectionStoodyButton mx-2" id="modifySectionButton" type="button">Modify</button><button class="btn btn-primary" id="deleteSectionButton" type="button">Delete</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-start align-items-center flex-lg-row addContent_video" id="contentAddedVideos">
+                                            <div class="contentVideo-wrapper"><video id="contentVideoPlayer" class="contentVideo common_border_color_pasted" width="192" height="108" controls=""></video></div>
+                                            <div class="card addContent_description">
+                                                <div class="card-body addContent_description">
+                                                    <h4 class="card-title common_text_color_no_hover contentVideoPlayerVideoTitle" id="contentVideoPlayerVideoTitle">Video Title</h4>
+                                                    <p class="card-text common_text_color_no_hover contentVideoPlayerVideoDescription" id="contentVideoPlayerVideoDescription">This is the video that you'll learn variables easily understand.&nbsp;you'll learn variables easily understand.&nbsp;you'll learn variables easily understand.&nbsp;<br></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="addContentPane" class="curriculum_newItem hidden">
+                                    <div class="d-flex flex-column align-items-center flex-md-row curriculum_newItem-wrapper"><span class="text-nowrap curriculum_newItem-heading common_text_color_no_hover">Section name:</span><input type="text" id="newSectionTitle" class="curriculum_newItem-input common_text_input_color common_border_radius common_border_color" placeholder="Enter a title" required=""></div>
+                                    <div class="d-flex justify-content-between justify-content-md-end"><button class="btn btn-primary" id="cancelSectionButton" type="button">Cancel</button><button class="btn btn-primary" id="addSectionButton" type="button">Save</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage6">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Course structure</h3>
+                        <div class="d-flex flex-column align-items-center flex-lg-row coursePlan_tips">
+                            <div class="coursePlan_tips-leftBar mb-3 mb-lg-0">
+                                <h4 class="leftBar-heading common_text_color_no_hover">There's a course in you. Plan it out.</h4><span class="common_text_color_no_hover">Planning your course carefully will create a clear learning path for students and help you once you film. Think down to the details of each lecture including the skill you’ll teach, estimated video length, practical activities to include, and how you’ll create introductions and summaries.</span>
+                            </div>
+                            <div class="d-flex flex-column align-items-center mx-lg-2 coursePlan_tips-rightBar common_div_highlighted_color common_border_color"><img class="rightBar_image" src="assets/img/tips.jpg">
+                                <h5 class="rightBar_heading common_text_color_no_hover">Our library of resources</h5><span class="rightBar_span common_text_color_no_hover">Tips and guides to structuring a course students love</span><a class="btn btn-primary d-flex justify-content-center align-items-center rightBar_link" role="button" href="#">Button</a>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Tips</h4>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span common_text_color_no_hover">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                            <div class="tips_item-wrapper common_text_color_no_hover">
+                                <h5 class="tips_item-heading common_text_color_no_hover">Start with your goals.</h5><span class="tips_item-span">Setting goals for what learners will accomplish in your course (also known as&nbsp;learning objectives) at the beginning will help you determine what content to include in your course and how you will teach the content to help your learners achieve the goals.</span>
+                            </div>
+                        </div>
+                        <div class="common_text_color_no_hover">
+                            <h4 class="tips_header common_text_color_no_hover">Requirements</h4>
+                            <div class="tips_item-wrapper">
+                                <ul class="tips_requirement">
+                                    <li class="tips_requirement-item">Item 1</li>
+                                    <li class="tips_requirement-item">Item 2</li>
+                                    <li class="tips_requirement-item">Item 3</li>
+                                    <li class="tips_requirement-item">Item 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="tips_header common_text_color_no_hover">Resources</h4>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                            <div class="d-flex flex-column tips_item-wrapper resources-wrapper"><a class="resources-link common_text_color" href="#">Link</a><span class="common_text_color">Text</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage7">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Course landing page</h3>
+                        <form class="product_content_responseForm">
+                            <div class="product_content_response">
+                                <h6 class="common_text_color_no_hover">Course title</h6><input class="form-control product_content_responseForm-item common_text_input_color" type="text" placeholder="İnsert yout course title">
+                            </div>
+                            <div class="product_content_response">
+                                <h6 class="common_text_color_no_hover">Course subtitle</h6><input class="form-control product_content_responseForm-item common_text_input_color" type="text" placeholder="İnsert yout course subtitle">
+                            </div>
+                            <div class="product_content_response">
+                                <h6 class="common_text_color_no_hover">Course description</h6><input class="form-control product_content_responseForm-item common_text_input_color" type="text" placeholder="İnsert yout course description">
+                            </div>
+                            <div class="product_content_response">
+                                <h6 class="common_text_color_no_hover">Basic info</h6>
+                                <div class="d-flex flex-column justify-content-between flex-wrap flex-md-row coursePlan_landing-basicInfo_buttons">
+                                    <div class="dropdown coursePlan_landing-basicInfo_dropdown mt-3"><button class="btn btn-primary dropdown-toggle filter_button_color" aria-expanded="false" data-bs-toggle="dropdown" type="button">Language</button>
+                                        <div class="dropdown-menu dropdown-menu-show common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">Azərbaycan dili</a><a class="dropdown-item filter_button_color" href="#">Русский</a><a class="dropdown-item filter_button_color" href="#">English</a></div>
+                                    </div>
+                                    <div class="dropdown coursePlan_landing-basicInfo_dropdown mt-3"><button class="btn btn-primary dropdown-toggle filter_button_color" aria-expanded="false" data-bs-toggle="dropdown" type="button">Level</button>
+                                        <div class="dropdown-menu dropdown-menu-show common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">Level 1</a><a class="dropdown-item filter_button_color" href="#">Level 2</a><a class="dropdown-item filter_button_color" href="#">Level 3</a></div>
+                                    </div>
+                                    <div class="dropdown coursePlan_landing-basicInfo_dropdown mt-3"><button class="btn btn-primary dropdown-toggle filter_button_color" aria-expanded="false" data-bs-toggle="dropdown" type="button">Category</button>
+                                        <div class="dropdown-menu dropdown-menu-show common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">Category 1</a><a class="dropdown-item filter_button_color" href="#">Category 2</a><a class="dropdown-item filter_button_color" href="#">Category 3</a></div>
+                                    </div>
+                                    <div class="dropdown coursePlan_landing-basicInfo_dropdown mt-3"><button class="btn btn-primary dropdown-toggle filter_button_color" aria-expanded="false" data-bs-toggle="dropdown" type="button">Subcategory</button>
+                                        <div class="dropdown-menu dropdown-menu-show common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">Subcategory 1</a><a class="dropdown-item filter_button_color" href="#">Subcategory 2</a><a class="dropdown-item filter_button_color" href="#">Subcategory 3</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h6 class="common_text_color_no_hover">Course image</h6>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-3 mb-lg-0"><img class="product_content_landing-image" src="assets/img/SM-placeholder.png"></div>
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex flex-column align-items-center mx-lg-3"><span class="courseUpload_imageRequirement common_text_color_no_hover">Upload your course image here. It must meet our&nbsp;course image quality standards&nbsp;to be accepted. Important guidelines: 750x422 pixels; .jpg, .jpeg,. gif, or .png. no text on the image.</span><input type="file" class="product_content_landing-imageUpload common_text_color_no_hover"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h6 class="common_text_color_no_hover">Promo video</h6>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-3 mb-lg-0"><img class="product_content_landing-image" src="assets/img/video-placeholder.jpg"></div>
+                            <div class="col-12 col-lg-6">
+                                <div class="d-flex flex-column align-items-center mx-lg-3"><span class="courseUpload_imageRequirement common_text_color_no_hover">Students who watch a well-made promo video are&nbsp;5X more likely to enroll&nbsp;in your course. We've seen that statistic go up to 10X for exceptionally awesome videos.</span><input type="file" class="product_content_landing-imageUpload common_text_color_no_hover"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 course_content hidden" id="coursePage8">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Pricing</h3>
+                        <div class="pricing_wrapper">
+                            <h5 class="pricing_intro-heading common_text_color_no_hover">Course Price Tier</h5><span class="pricing_intro-span common_text_color_no_hover">Please select the price tier for your course below and click 'Save'. The list price that students will see in other currencies is determined using the price tier matrix</span><span class="common_text_color_no_hover">If you intend to offer your course for free, the total length of video content must be less than 2 hours.</span>
+                            <div class="d-flex flex-column align-items-center flex-md-row pricing_intro-buttonsWrapper">
+                                <div class="dropdown pricing_currency"><button class="btn btn-primary dropdown-toggle pricing_price-button filter_button_color" aria-expanded="false" data-bs-toggle="dropdown" type="button">Currency</button>
+                                    <div class="dropdown-menu pricing_price-menu common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">AZN</a><a class="dropdown-item filter_button_color" href="#">RUB</a><a class="dropdown-item filter_button_color" href="#">USD</a></div>
+                                </div>
+                                <div class="dropdown pricing_currency price mx-lg-4"><button class="btn btn-primary dropdown-toggle pricing_price-button filter_button_color" aria-expanded="false" data-bs-toggle="dropdown" type="button">Price</button>
+                                    <div class="dropdown-menu pricing_price-menu common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">9.99</a><a class="dropdown-item filter_button_color" href="#">19.99</a><a class="dropdown-item filter_button_color" href="#">29.99</a></div>
+                                </div><button class="btn btn-primary pricing_save filter_button_color" type="button">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 hidden course_content" id="coursePage9">
+                    <div class="course_content-wrapper">
+                        <h3 class="course_content-heading common_text_color_no_hover">Course messages</h3>
+                        <div class="pricing_wrapper"><span class="pricing_intro-span common_text_color_no_hover">Write messages to your students (optional) that will be sent automatically when they join or complete your course to encourage students to engage with course content. If you do not wish to send a welcome or congratulations message, leave the text box blank.</span>
+                            <div class="d-flex flex-column courseMessage_welcome">
+                                <h5 class="courseMessage_welcome-heading common_text_color_no_hover">Welcome message</h5><textarea class="courseMessage_welcome-input common_text_input_color"></textarea>
+                            </div>
+                            <div class="d-flex flex-column courseMessage_welcome">
+                                <h5 class="courseMessage_welcome-heading common_text_color_no_hover">Congratulations message</h5><textarea class="courseMessage_welcome-input common_text_input_color"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer common_div_color">
+            <div class="container text-dark py-4 py-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
+                        <h3 class="fs-6 fw-bold footer_list-heading common_text_color_no_hover">Services</h3>
+                        <ul class="list-unstyled footer_list">
+                            <li><a class="common_text_color" href="#">Web design</a></li>
+                            <li><a class="common_text_color">Development</a></li>
+                            <li><a class="common_text_color" href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
+                        <h3 class="fs-6 fw-bold footer_list-heading common_text_color_no_hover">MENU</h3>
+                        <ul class="list-unstyled footer_list">
+                            <li><a class="footer_list-link common_text_color" href="#">About</a></li>
+                            <li><a class="footer_list-link common_text_color" href="#">Contact us</a></li>
+                            <li><a class="footer_list-link common_text_color" href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
+                        <h3 class="fs-6 fw-bold footer_list-heading common_text_color_no_hover">Legal</h3>
+                        <ul class="list-unstyled footer_list">
+                            <li><a class="footer_list-link common_text_color" href="#">Terms of Use</a></li>
+                            <li><a class="footer_list-link common_text_color" href="#">Privacy Policy</a></li>
+                            <li><a class="footer_list-link common_text_color" href="#">Legal Notice</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 text-center text-lg-start d-flex flex-column justify-content-center align-items-center order-first align-items-lg-start order-lg-last mb-lg-0">
+                        <div class="fw-bold d-flex flex-column align-items-center mb-4 mb-lg-0 mx-auto">
+                            <ul class="list-inline footer_list">
+                                <li class="list-inline-item"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-facebook footer_social-icon common_text_color">
+                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                                    </svg></li>
+                                <li class="list-inline-item"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-twitter footer_social-icon common_text_color">
+                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" class="footer_social-icon"></path>
+                                    </svg></li>
+                                <li class="list-inline-item"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-instagram footer_social-icon common_text_color">
+                                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" class="footer_social-icon"></path>
+                                    </svg></li>
+                            </ul>
+                            <div class="footer_mode">
+                                <div class="d-flex justify-content-between align-items-center footer_modeWrapper"><span class="d-flex justify-content-between align-items-center footer_mode-span common_text_color_no_hover">Dark</span>
+                                    <div class="form-check form-switch"><input type="checkbox" id="flexSwitchCheckDefault" class="form-check-input shadow-none theme-switch dark-mode-checkbox common_text_color_no_hover common_border_color_pasted common_div_highlighted_color"></div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center footer_modeWrapper"><span class="d-flex justify-content-between align-items-center footer_mode-span common_text_color_no_hover">Lang</span>
+                                    <div class="form-check form-switch">
+                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">EN</button>
+                                            <div class="dropdown-menu common_dropdown_popup_color"><a class="dropdown-item filter_button_color" href="#">English</a><a class="dropdown-item filter_button_color" href="#">Azerbaijan</a><a class="dropdown-item filter_button_color" href="#">Russian</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/odometer.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+    <script src="assets/js/addContent.min.js"></script>
+    <script src="assets/js/uploadProgress.min.js"></script>
+</body>
+
+</html>

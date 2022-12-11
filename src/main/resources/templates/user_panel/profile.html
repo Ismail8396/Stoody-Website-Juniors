@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" th:href="@{/user_control_assets/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap}">
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.12.0/css/all.css}">
+    <link rel="stylesheet" th:href="@{/user_control_assets/css/styles.min.css}">
+
+    <!-- JQuery-->
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js}"></script>
+
+    <!-- Cropper Js CDN-->
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css}">
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+         style="background: linear-gradient(#357e74, #115549 23%), #196c53;">
+        <div th:replace="user_panel/fragments/sidebar_fragment.html :: sidebarfragment"></div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <div th:replace="user_panel/fragments/navigation_fragment.html :: navigation_fragment" >NAVIGATION</div>
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4">Profile</h3>
+                <div class="row mb-3">
+                    <div class="col-lg-4">
+                        <div class="card mb-3">
+                            <div class="card-body text-center shadow">
+                                <!-- If there's an image-->
+                                <img class="rounded-circle mb-3 mt-4" th:if="${userInfo.profilePictureURL != null}" th:src="${userInfo.profilePictureURL}" width="160" height="160">
+
+                                <!-- If there's no valid image -->
+                                <!-- TODO: Deusrazen, fix the ratio (make perfect circle)-->
+                                <div class="p-3 w-100 d-flex justify-content-center align-items-center" th:if="${userInfo.profilePictureURL == null}">
+                                    <div class="p-3 rounded-circle mb-3 mt-4 bg-gradient-danger text-white text-uppercase font-weight-bold">
+                                        <span style="font-size: 24px;" th:text="${#strings.substring(#authentication.getPrincipal().getUsername(),0,1)}"></span>
+                                    </div>
+                                </div>
+
+                                <div th:id="imageCropperWrapper">
+                                    <p>
+<!--                                        <input type="file" id="fileInput"  />-->
+                                        <button th:id="btnCrop" class="btn btn-primary btn-sm" type="button">Change Photo</button>
+                                        <button th:id="btnRestore" class="btn btn-primary btn-sm" type="button">Change Photo</button>
+                                    </p>
+                                    <div>
+                                        <!-- TODO: Deusrazen remove inline styles -->
+                                        <canvas th:id="imageCropperCanvas"
+                                                style="height: 100%; width: 100%;background-color: #ffffff;cursor: default;border: 1px dashed darkgray;">
+                                            Your browser does not support the HTML5 canvas element.
+                                        </canvas>
+                                    </div>
+
+                                    <div id="result"></div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <button th:id="profileImageBrowserButton" class="btn btn-primary btn-sm" type="button">Change Photo</button>
+                                    <input style="display:none;" th:id="profileImageBrowser" type="file" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="text-primary fw-bold m-0">Badges</h6>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <h4 class="small fw-bold">Scholar<span class="float-end">20%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="visually-hidden">20%</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="small fw-bold">Student<span class="float-end">40%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="visually-hidden">40%</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="small fw-bold">Explainer<span class="float-end">60%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="visually-hidden">60%</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="small fw-bold">Promoter<span class="float-end">80%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="visually-hidden">80%</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="small fw-bold">Guru<span class="float-end">Complete!</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="visually-hidden">100%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row mb-3 d-none">
+                            <div class="col">
+                                <div class="card text-white bg-primary shadow">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <p class="m-0">Peformance</p>
+                                                <p class="m-0"><strong>65.2%</strong></p>
+                                            </div>
+                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                        </div>
+                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-white bg-success shadow">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <p class="m-0">Peformance</p>
+                                                <p class="m-0"><strong>65.2%</strong></p>
+                                            </div>
+                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                        </div>
+                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">User Settings</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" th:action="@{/control-panel/profile/save-main}" th:object="${userInfo}">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label>
+                                                        <input class="form-control" type="text" id="username" th:field="${userInfo.username}" th:value="${userInfo.username}" placeholder="user.name" name="username">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label>
+                                                        <input class="form-control" type="email" id="email" th:field="${userInfo.email}" placeholder="user@example.com" name="email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label>
+                                                        <input class="form-control" type="text" id="first_name" th:field="${userInfo.firstName}" placeholder="John" name="first_name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label>
+                                                        <input class="form-control" type="text" id="last_name" th:field="${userInfo.lastName}" placeholder="Doe" name="last_name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col"><label class="form-label" for="aboutMe">Label</label>
+                                                    <textarea class="form-control mb-3" id="aboutMe" th:field="${userInfo.aboutUser}" rows="4" placeholder="Tell people about yourself"></textarea>
+                                                </div>
+                                            </div>
+                                            <div th:if="${error_message}" th:text="${error_message}" class="alert alert-error text-danger">
+                                                This error message will be shown according to redirectAttribute response.
+                                            </div>
+                                            <div th:if="${success_message}" th:text="${success_message}" class="alert alert-success text-success">
+                                                This success message will be shown according to redirectAttribute response.
+                                            </div>
+                                            <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">Password Setting</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="password"><strong>Password</strong></label>
+                                                        <input class="form-control" type="password" id="password" name="password" placeholder="Your password"></div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Set&nbsp;Password</button></div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">Contact Settings</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" th:action="@{/control-panel/profile/save-additionals}" th:object="${userInfo}">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialFacebook"><strong>Facebook</strong></label>
+                                                        <input class="form-control" type="text" id="socialFacebook" th:field="${userInfo.socialFacebook}" name="city" placeholder="https://www.facebook.com/example"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialInstagram"><strong>Instagram</strong></label>
+                                                        <input class="form-control" type="text" id="socialInstagram" th:field="${userInfo.socialInstagram}" placeholder="https://www.instagram.com/example" name="country"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialYoutube"><strong>Youtube</strong></label>
+                                                        <input class="form-control" type="text" id="socialYoutube" th:field="${userInfo.socialYoutube}" placeholder="https://www.youtube.com/channel/example" name="country"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialGithub"><strong>Github</strong></label>
+                                                        <input class="form-control" type="text" id="socialGithub" th:field="${userInfo.socialGithub}" placeholder="https://github.com/example" name="city"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialLinkedIn"><strong>LinkedIn</strong></label>
+                                                        <input class="form-control" type="text" id="socialLinkedIn" th:field="${userInfo.socialLinkedIn}" placeholder="https://linkedin.com/in/example" name="city"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialTwitter"><strong>Twitter</strong></label>
+                                                        <input class="form-control" type="text" id="socialTwitter" th:field="${userInfo.socialTwitter}" placeholder="https://twitter.com/example" name="country"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialCity"><strong>City</strong></label>
+                                                        <input class="form-control" type="text" id="socialCity" th:field="${userInfo.city}" placeholder="Los Angeles" name="city"></div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3"><label class="form-label" for="socialCountry"><strong>Country</strong>
+                                                    </label><input class="form-control" type="text" id="socialCountry" th:field="${userInfo.country}" placeholder="USA" name="country"></div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2022</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" th:href="@{/#page-top}"><i class="fas fa-angle-up"></i></a>
+</div>
+<!-- Bootstrap 5.2.2 Bundle-->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Cropper Js -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js}"></script>
+
+<!-- Global Project Scripts -->
+<script th:src="@{/user_control_assets/js/script.min.js}"></script>
+
+<!-- Project File Specific Scripts -->
+<script th:src="@{/user_control_assets/js/profile.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Table - Brand</title>
+    <link rel="stylesheet" th:href="@{/user_control_assets/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap}">
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.12.0/css/all.css}">
+    <link rel="stylesheet" th:href="@{/user_control_assets/css/styles.min.css}">
+    <!-- JQuery-->
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js}"></script>
+</head>
+<body id="page-top">
+<div th:fragment="sidebarfragment" class="container-fluid d-flex flex-column p-0 position-sticky top-0">
+    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+        <div><img th:src="@{/user_control_assets/img/StoodyBoomerangPen.png}" style="width: 34px;"></div>
+        <div class="sidebar-brand-text mx-3"><span style="font-size: 12px;" data-th-text="#{global.control_panel}">Control Panel</span>
+        </div>
+    </a>
+    <hr class="sidebar-divider my-0">
+    <ul class="navbar-nav text-light" id="accordionSidebar">
+        <li class="nav-item"><a class="nav-link" th:href="dashboard.html"><i class="fas fa-chart-line me-2"></i><span
+                data-th-text="#{global.dashboard}">Dashboard</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="courses.html"><i class="fas fa-photo-video me-2"></i><span
+                data-th-text="#{global.courses}">Your courses</span></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/control-panel/profile}"><i class="fas fa-user me-2"></i><span
+                data-th-text="#{global.profile}">Profile</span></a></li>
+        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link" href="staff.html"><i
+                class="fas fa-people-carry me-2"></i><span data-th-text="#{global.staff}">Staff</span></a></li>
+        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link" href="teachers.html"><i
+                class="fas fa-chalkboard-teacher me-2"></i><span data-th-text="#{global.teachers}">Teachers</span></a>
+        </li>
+        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link" href="students.html"><i
+                class="far fa-user me-2"></i><span data-th-text="#{global.students}">Students</span></a></li>
+        <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link active"
+                                                                      th:href="@{/admin/languages}"><i
+                class="far fa-user me-2"></i><span
+                data-th-text="#{global.language_manager}">S-Language Manager</span></a></li>
+    </ul>
+    <div class="text-center d-none d-md-inline">
+        <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+    </div>
+</div>
+</body>
+</html>

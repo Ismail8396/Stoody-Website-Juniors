@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Table - Brand</title>
+    <link rel="stylesheet" th:href="@{/user_control_assets/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap}">
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.12.0/css/all.css}">
+    <link rel="stylesheet" th:href="@{/user_control_assets/css/styles.min.css}">
+</head>
+<body id="page-top">
+<table class="table my-0" id="dataTable" th:fragment="languages_list_element">
+    <thead>
+    <tr>
+        <th data-th-text="#{global.id}">ID</th>
+        <th data-th-text="#{global.language_locale}">Language Locale</th>
+        <th data-th-text="#{global.message_key}">Message Key</th>
+        <th data-th-text="#{global.message_content}">Message Content</th>
+        <th class="d-flex justify-content-center" data-th-text="#{global.action}">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:id="dataTable-rows" th:each="languageModel, iStat : ${languageModels}">
+        <td th:text="${languageModel.id}">0</td>
+        <td th:text="${languageModel.locale}">en</td>
+        <td th:text="${languageModel.key}">home.welcome</td>
+        <td th:text="${languageModel.content}">Welcome!</td>
+        <td class="d-flex justify-content-center align-items-center">
+                <button class="btn btn-danger removeLanguageModel"
+                        th:attr="data-id=${languageModel.id}, data-locale=${languageModel.locale},
+                        data-key=${languageModel.key}, data-content=${languageModel.content}"
+                        type="submit">
+                    Delete
+                </button>
+        </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td><strong data-th-text="#{global.id}">ID</strong></td>
+        <td><strong data-th-text="#{global.language_locale}">Language Locale</strong></td>
+        <td><strong data-th-text="#{global.message_key}">Message Key</strong></td>
+        <td><strong data-th-text="#{global.message_content}">Message Content</strong></td>
+        <td><strong class="d-flex justify-content-center" data-th-text="#{global.action}">Action</strong></td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
