@@ -23,6 +23,11 @@ public class UserService {
     }
 
     public List<User> getAllStaff(){
+        userRepository.findAll().stream().map(user -> user.getRoles())
+                .forEach(roles -> {
+
+                });
+
         List<User> staffList = new ArrayList<>();
         for(User user : userRepository.findAll()){
             for(Role role : user.getRoles()){
@@ -35,31 +40,31 @@ public class UserService {
         return staffList;
     }
 
-    public List<User> getAllTeachers(){
-        List<User> teacherList = new ArrayList<>();
-        for(User user : userRepository.findAll()){
-            for(Role role : user.getRoles()){
-                if(role.getName().equals("ROLE_TEACHER")){
-                    teacherList.add(user);
-                    break;
-                }
-            }
-        }
-        return teacherList;
-    }
-
-    public List<User> getAllStudents(){
-        List<User> studentList = new ArrayList<>();
-        for(User user : userRepository.findAll()){
-            for(Role role : user.getRoles()){
-                if(role.getName().equals("ROLE_STUDENT")){
-                    studentList.add(user);
-                    break;
-                }
-            }
-        }
-        return studentList;
-    }
+//    public List<User> getAllTeachers(){
+//        List<User> teacherList = new ArrayList<>();
+//        for(User user : userRepository.findAll()){
+//            for(Role role : user.getRoles()){
+//                if(role.getName().equals("ROLE_TEACHER")){
+//                    teacherList.add(user);
+//                    break;
+//                }
+//            }
+//        }
+//        return teacherList;
+//    }
+//
+//    public List<User> getAllStudents(){
+//        List<User> studentList = new ArrayList<>();
+//        for(User user : userRepository.findAll()){
+//            for(Role role : user.getRoles()){
+//                if(role.getName().equals("ROLE_STUDENT")){
+//                    studentList.add(user);
+//                    break;
+//                }
+//            }
+//        }
+//        return studentList;
+//    }
 
     public Optional<User> _findUserByUsername(String username){
         return userRepository.findUserByUsername(username);
@@ -73,7 +78,7 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
-    public Optional<User> _findUserById(int id){
+    public Optional<User> _findUserById(long id){
         return userRepository.findById(id);
     }
 
