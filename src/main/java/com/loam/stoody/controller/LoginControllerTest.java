@@ -51,7 +51,7 @@ public class LoginControllerTest {
         user.setRoles(roles);
 
         System.out.println("User registered: "+ user);
-        userRepository.save(user);
+        userRepository.save(user);//
 
         request.login(user.getUsername(), password);
 
