@@ -16,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +42,10 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             user.setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
             user.setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
             user.setEmail(email);
-            user.setUsername(email); // TODO: OrkhanGG check validity
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
+            user.setUsername("User-"+ LocalDateTime.now().format(formatter)); // TODO: OrkhanGG check validity
             List<Role> roles = new ArrayList<>();
-            roles.add(roleRepository.findById(2).get());
+            roles.add(roleRepository.findBySearchKey("USER").get(0));
             user.setRoles(roles);
             userRepository.save(user);
         }

@@ -1,26 +1,33 @@
 package com.loam.stoody.service.aws;
 
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.event.ProgressListener;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.transfer.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-// TODO: Decide whether all files should be in a bucket or not and make corrections to FileService according to that decision.
-class S3BucketDetails{
-    final static String S3BucketNameStoodyTeacherCourseVideo = "stoody-standard-teacher-course-video";
-}
-
 @Service
 @RequiredArgsConstructor
 public class S3Service {
+    private static final long multipartUploadThreshold = 20 * 1024 * 1025;// 20 MB
+
     // Amazon S3 Client
     private final AmazonS3Client awsS3Client;
 
@@ -48,6 +55,38 @@ public class S3Service {
         return generateUrl(fileName, HttpMethod.PUT);
     }
     // END OF PRE-SIGNED URL METHOD-------------------------------------------------------------------------------------
+
+    // Uploads a (multipart)file to Amazon S3 Bucket and returns URL
+    public String putObject(String bucketName, MultipartFile file) throws AmazonS3Exception, SdkClientException,
+            AmazonServiceException, InterruptedException, IOException {
+
+        // Prepare a key
+        String filenameExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+        String key = UUID.randomUUID() + "." + filenameExtension;
+
+        // Build Transfer Manager
+        TransferManager transferManager = TransferManagerBuilder.standard().withS3Client(awsS3Client)
+                .withMultipartUploadThreshold(multipartUploadThreshold).
+                withMinimumUploadPartSize(multipartUploadThreshold).build();
+
+        // Create Object Metadata
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(file.getSize());
+        metadata.setContentType(file.getContentType());
+
+        // Create a request
+        PutObjectRequest request = new PutObjectRequest(bucketName, key, file.getInputStream(),metadata);
+
+        // Send upload request and wait for completion (or an answer)
+        transferManager.upload(request).waitForCompletion();
+
+        // Make S3 Object Public
+        awsS3Client.setObjectAcl(bucketName, key,
+                CannedAccessControlList.PublicRead);
+
+        // Return Uploaded Object's URL
+        return awsS3Client.getResourceUrl(bucketName, key);
+    }
 }
 
 
