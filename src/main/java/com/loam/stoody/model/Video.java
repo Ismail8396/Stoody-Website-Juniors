@@ -19,11 +19,10 @@ public class Video {
     private Integer id;
     private String title;
     private String description;
-
     private String videoUrl;
     private String thumbnailUrl;
     private String subtitlesURL;
-
+    private Long durationInMinutes;
     @ManyToOne (fetch = FetchType.LAZY)
     private Course course;
 }
