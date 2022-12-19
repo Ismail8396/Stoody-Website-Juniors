@@ -66,14 +66,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
+                // For Visitors
                 .antMatchers("/", "/register", "/h2-console/**", "/api/**").permitAll()
-//                .antMatchers("/**/*.js", "/**/*.css").permitAll()
-
+                // Only for authorized users
                 .antMatchers("/profile/*").access("hasRole('USER') or hasRole('TEACHER') or hasRole('ADMIN')")
-
+                // Only for Admins
                 .antMatchers("/admin-control-panel/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
+                // Login Configuration
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -82,16 +83,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .usernameParameter("username")
                 .passwordParameter("password")
+                // OAuth2 Login/Register Configuration
                 .and()
                 .oauth2Login()
                 .loginPage("/login")
                 .successHandler(googleOAuth2SuccessHandler)
+                // Logout Configuration
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
+                // Misc
                 .and()
                 .exceptionHandling()
                 .and()
@@ -115,7 +119,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/resources/**", "/resources/static/assets/**", "/resources/static/assets/css/**", "/resources/static/assets/js/**",
-//                "/resources/static/assets/images/**", "/resources/static/assets/fonts/**", "/resources/static/assets/libs/**");
+        web.ignoring().antMatchers(
+                "/resources/**",
+                "/assets/**",
+                "/assets/css/**",
+                "/assets/js/**",
+                "/assets/js/vendors/**",
+                "/assets/images/**",
+                "/assets/fonts/**",
+                "/assets/fonts/feather/**",
+                "/assets/fonts/feather/fonts/**",
+                "/assets/libs/**");
     }
 }

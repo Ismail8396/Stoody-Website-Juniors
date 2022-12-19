@@ -25,19 +25,19 @@ public class LoginControllerTest {
     @Autowired
     private RoleRepository roleRepository;
 
-    @GetMapping("/")
-    public String test(){
-        return "index";
+    @GetMapping("/forget-password")
+    public String getForgetPassword(){
+        return "pages/forget-password";
     }
 
     @GetMapping("/login")
     public String getLogin(){
-        return "index";
+        return "pages/sign-in";
     }
 
     @GetMapping("/register")
     public String getRegister(){
-        return "index";
+        return "pages/sign-up";
     }
 
     @PostMapping("/register")
