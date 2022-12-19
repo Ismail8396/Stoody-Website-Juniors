@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x: hidden;">
+
+<head> <!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Stoody">
+
+
+
+<!-- Favicon icon-->
+<link rel="shortcut icon" type="image/x-icon" href="../../../static/assets/images/favicon/favicon.ico">
+
+
+<!-- Libs CSS -->
+<link href="../../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link href="../../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="../../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link href="../../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+
+
+
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="../../../static/assets/css/theme.min.css">
+
+    <title>SASS | Stoody - Learn and Share </title>
+</head>
+
+<body class="bg-white overflow-hidden">
+
+    <!-- Navbar -->
+    <!-- navbar login -->
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-default shadow-none ">
+    <div class="container px-0">
+        <a class="navbar-brand" href="../../index.html"><img src="../../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
+
+        <!-- Button -->
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icon-bar top-bar mt-0"></span>
+			<span class="icon-bar middle-bar"></span>
+			<span class="icon-bar bottom-bar"></span>
+		</button>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbar-default">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarLanding" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Landings
+					</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarLanding">
+                        <li>
+                            <h4 class="dropdown-header">Landings</h4>
+                        </li>
+                        <li>
+                            <a href="../../pages/landings/home-academy.html" class="dropdown-item d-flex justify-content-between">
+						Home Academy <span class="badge bg-primary ms-1"> New </span>
+							</a>
+                        </li>
+                        <li>
+                            <a href="../../pages/landings/landing-courses.html" class="dropdown-item">
+								Courses
+							</a>
+                        </li>
+                        <li>
+                            <a href="../../pages/landings/course-lead.html" class="dropdown-item">
+								Lead Course
+							</a>
+                        </li>
+                        <li>
+                            <a href="../../pages/landings/request-access.html" class="dropdown-item">
+								Request Access
+							</a>
+                        </li>
+                        <li>
+                            <a href="../../pages/landings/landing-sass.html" class="dropdown-item">
+						  SaaS
+							</a>
+                        </li>
+
+
+                        <li>
+                            <a href="../../pages/landings/landing-job.html" class="dropdown-item d-flex justify-content-between">
+						 Job Listing
+							</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Pages
+					</a>
+                    <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarPages">
+                        <li class="dropdown-submenu dropend">
+                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+							Courses
+						</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/course-single.html">
+									Course Single
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/course-single-v2.html">
+									Course Single v2
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/course-resume.html">
+									Course Resume
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/course-category.html">
+									Course Category
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/course-checkout.html">
+									Course Checkout
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/course-filter-list.html">
+									Course List/Grid
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/add-course.html">
+									Add New Course
+								</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu dropend">
+                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+							Paths
+						</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../../pages/course-path.html" class="dropdown-item">
+									Browse Path
+								</a>
+                                </li>
+                                <li>
+                                    <a href="../../pages/course-path-single.html" class="dropdown-item">
+									Path Single
+								</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu dropend">
+                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+							Blog
+						</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/blog.html">
+									Listing</a
+								>
+							</li>
+							<li>
+								<a
+									class="dropdown-item"
+									href="../../pages/blog-single.html"
+								>
+									Article
+								</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="../../pages/blog-category.html">
+									Category</a
+								>
+							</li>
+							<li>
+								<a
+									class="dropdown-item"
+									href="../../pages/blog-sidebar.html"
+								>
+									Sidebar</a
+								>
+							</li>
+						</ul>
+					</li>
+
+					<li class="dropdown-submenu dropend">
+						<a
+							class="dropdown-item dropdown-list-group-item dropdown-toggle"
+							href="#"
+						>
+							Career
+						</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="../../pages/career.html">
+									 Overview</a
+								>
+							</li>
+							<li>
+								<a
+									class="dropdown-item"
+									href="../../pages/career-list.html"
+								>
+									Listing
+								</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="../../pages/career-single.html">
+									Opening</a
+								>
+							</li>
+
+						</ul>
+					</li>
+					<li class="dropdown-submenu dropend">
+						<a
+							class="dropdown-item dropdown-list-group-item dropdown-toggle"
+							href="#"
+						>
+							Portfolio
+						</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/portfolio.html">
+									 List</a
+								>
+							</li>
+							<li>
+								<a
+									class="dropdown-item"
+									href="../../pages/portfolio-single.html"
+								>
+									Single
+								</a>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropend">
+                                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+							Job
+						</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/landings/landing-job.html">
+									 Home</a
+								>
+							</li>
+							<li>
+								<a
+									class="dropdown-item"
+									href="../../pages/jobs/job-listing.html"
+								>
+									List
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/jobs/job-grid.html">
+									Grid
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/jobs/job-single.html">
+									Single
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/jobs/company-list.html">
+									Company List
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/jobs/company-about.html">
+									Company Single
+								</a>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropend">
+                                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+							Specialty
+						</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/coming-soon.html">
+									Coming Soon
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/404-error.html">
+									Error 404
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/maintenance-mode.html">
+									Maintenance Mode
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/terms-condition-page.html">
+									Terms & Conditions
+								</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <hr class="mx-3">
+                                        </li>
+
+
+                                        <li>
+                                            <a class="dropdown-item" href="../../pages/about.html">
+							About
+						</a>
+                                        </li>
+                                        <li class="dropdown-submenu dropend">
+                                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+						Help Center
+						</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/help-center.html">
+									Help Center
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/help-center-faq.html">
+									FAQ's
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/help-center-guide.html">
+									Guide
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/help-center-guide-single.html">
+								Guide Single
+								</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/help-center-support.html">
+								Support
+								</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="../../pages/pricing.html">
+							Pricing
+						</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="../../pages/compare-plan.html">
+							Compare Plan
+						</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item" href="../../pages/contact.html">
+							Contact
+						</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarAccount" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Accounts
+					</a>
+                                    <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarAccount">
+                                        <li>
+                                            <h4 class="dropdown-header">Accounts</h4>
+                                        </li>
+                                        <li class="dropdown-submenu dropend">
+                                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+								Instructor
+							</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="text-wrap">
+                                                    <h5 class="dropdown-header text-dark">Instructor</h5>
+                                                    <p class="dropdown-text mb-0">
+                                                        Instructor dashboard for manage courses and earning.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <hr class="mx-3">
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/dashboard-instructor.html">
+										Dashboard</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/instructor-profile.html"
+									>
+										Profile</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/instructor-courses.html"
+									>
+										My Courses
+									</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="../../pages/instructor-order.html">
+										Orders</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/instructor-reviews.html"
+									>
+										Reviews</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/instructor-students.html"
+									>
+										Students</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/instructor-payouts.html"
+									>
+										Payouts</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/instructor-earning.html"
+									>
+										Earning</a
+									>
+								</li>
+								<li class="dropdown-submenu dropend">
+									<a
+										class="dropdown-item dropdown-list-group-item dropdown-toggle"
+										href="#"
+									>
+										Quiz 
+ <span class="badge bg-primary ms-1"> New </span>
+									</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="../../pages/instructor-quiz.html">
+												Quiz</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../../pages/instructor-quiz-details.html"
+											>
+											 Single</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../../pages/instructor-quiz-result.html"
+											>
+											 Result</a
+											>
+										</li>
+										</ul>
+										</li>
+								
+							</ul>
+						</li>
+						<li class="dropdown-submenu dropend">
+							<a
+								class="dropdown-item dropdown-list-group-item dropdown-toggle"
+								href="#"
+							>
+								Students
+							</a>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="text-wrap">
+                                                                    <h5 class="dropdown-header text-dark">Students</h5>
+                                                                    <p class="dropdown-text mb-0">
+                                                                        Students dashboard to manage your courses and subscriptions.
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <hr class="mx-3">
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="../../pages/dashboard-student.html">
+										Dashboard</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/student-subscriptions.html"
+									>
+										Subscriptions
+									</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="../../pages/payment-method.html">
+										Payments</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/billing-info.html"
+									>
+										Billing Info</a
+									>
+								</li>
+								<li>
+									<a class="dropdown-item" href="../../pages/invoice.html">
+										Invoice</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/invoice-details.html"
+									>
+										Invoice Details</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/dashboard-student.html"
+									>
+										Bookmarked</a
+									>
+								</li>
+								<li>
+									<a
+										class="dropdown-item"
+										href="../../pages/dashboard-student.html"
+									>
+										My Path</a
+									>
+								</li>
+								<li class="dropdown-submenu dropend">
+									<a
+										class="dropdown-item dropdown-list-group-item dropdown-toggle"
+										href="#"
+									>
+										Quiz 
+ <span class="badge bg-primary ms-1"> New </span>
+									</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li>
+                                                                            <a class="dropdown-item" href="../../pages/student-quiz.html">
+												Quiz</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../../pages/student-quiz-attempt.html"
+											>
+											 Attempt</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../../pages/student-quiz-start.html"
+											>
+											 Start</a
+											>
+										</li>
+										<li>
+											<a
+												class="dropdown-item"
+												href="../../pages/student-quiz-result.html"
+											>
+											 Result</a
+											>
+										</li>
+										</ul>
+										</li>
+							</ul>
+						</li>
+						<li class="dropdown-submenu dropend">
+							<a
+								class="dropdown-item dropdown-list-group-item dropdown-toggle"
+								href="#"
+							>
+								Admin
+							</a>
+                                                                            <ul class="dropdown-menu">
+                                                                                <li class="text-wrap">
+                                                                                    <h5 class="dropdown-header text-dark">Master Admin</h5>
+                                                                                    <p class="dropdown-text mb-0">
+                                                                                        Master admin dashboard to manage courses, user, site setting , and work with amazing apps.
+                                                                                    </p>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <hr class="mx-3">
+                                                                                </li>
+                                                                                <li class="px-3 d-grid">
+                                                                                    <a href="../../pages/dashboard/admin-dashboard.html" class="btn btn-sm btn-primary">Go to Dashboard</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<hr class="mx-3" >
+						</li>
+						<li>
+							<a class="dropdown-item" href="../../pages/sign-in.html">
+								Sign In
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/sign-up.html">
+								Sign Up
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/forget-password.html">
+								Forgot Password
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/profile-edit.html">
+								Edit Profile
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/security.html">
+								Security
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/social-profile.html">
+								Social Profiles
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/notifications.html">
+								Notifications
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/profile-privacy.html">
+								Privacy Settings
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/delete-profile.html">
+								Delete Profile
+							</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <a class="dropdown-item" href="../../pages/linked-accounts.html">
+								Linked Accounts
+							</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                        <li class="nav-item dropdown">
+                                                                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                <i class="fe fe-more-horizontal fs-3"></i>
+                                                                            </a>
+                                                                            <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDropdown">
+                                                                                <div class="list-group">
+                                                                                    <a class="list-group-item list-group-item-action border-0" href="../../docs/index.html">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <i class="fe fe-file-text fs-3 text-primary"></i>
+                                                                                            <div class="ms-3">
+                                                                                                <h5 class="mb-0">Documentations</h5>
+                                                                                                <p class="mb-0 fs-6">
+                                                                                                    Browse the all documentation
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                    <a class="list-group-item list-group-item-action border-0" href="../../docs/changelog.html">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <i class="fe fe-layers fs-3 text-primary"></i>
+                                                                                            <div class="ms-3">
+                                                                                                <h5 class="mb-0">
+                                                                                                    Changelog<span class="text-primary ms-1">v3.0.0</span>
+                                                                                                </h5>
+                                                                                                <p class="mb-0 fs-6">See what's new</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                    <a class="list-group-item list-group-item-action border-0" href="http://stoody.org/" target="_blank">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <i class="fe fe-toggle-right fs-3 text-primary"></i>
+                                                                                            <div class="ms-3">
+                                                                                                <h5 class="mb-0">RTL demo</h5>
+                                                                                                <p class="mb-0 fs-6">
+                                                                                                    RTL Pages
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+
+                                                                    <div class="ms-auto mt-3 mt-lg-0">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle me-2 ">
+                                                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                                                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+
+                                                                            </a>
+
+                                                                            <a href="http://stoody.org/" class="btn btn-primary ">Buy Now</a>
+                                                                        </div>
+                                                                    </div>
+        </div>
+    </div>
+</nav>
+    <main>
+        <!-- Page Content -->
+        <section class="py-lg-14 py-10 position-relative bg-cover" style="background-image:
+      url(../../assets/images/background/gradient-bg.png);">
+            <!-- Image -->
+            <div class="container">
+                <div class="row align-items-center mb-6">
+                    <div class="col-12 col-lg-7 order-md-2">
+                        <div class="mb-2 mb-md-0">
+                            <img src="../../../static/assets/images/background/graphics.svg" alt="" class="img-fluid mw-md-130">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5 order-md-1">
+                        <!-- Heading -->
+                        <h1 class="display-2 mb-5 fw-bold">
+                            Modern web apps shipped faster
+                        </h1>
+                        <!-- list -->
+                        <ul class="list-unstyled fs-3 text-dark
+               mb-6 fw-medium">
+                            <li class="mb-1 d-flex"><i class="mdi mdi-check-circle text-success
+                  me-2"></i>Simple to use, beautiful UI design</li>
+                            <li class="mb-1 d-flex"><i class="mdi mdi-check-circle text-success
+                  me-2"></i>Complete complex project with ease</li>
+                            <li class="mb-1 d-flex"><i class="mdi mdi-check-circle text-success
+                  me-2"></i>An intuitive admin app for developers</li>
+                        </ul>
+                        <!-- Buttons -->
+                        <div class="mb-8 mb-lg-0">
+                            <a href="#" class="btn btn-primary me-3 mb-2 mb-lg-0">
+                Get started for Free
+              </a>
+
+                            <a href="#" class="text-nowrap btn-link">
+                Questions? Talk to an expert
+              </a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Hero Section -->
+                <!-- row -->
+                <div class="row mt-10">
+                    <div class="offset-xl-1 col-xl-10 col-md-12 col-12">
+                        <!-- Heading -->
+                        <div class="text-center mb-6 px-md-8">
+                            <span class="ls-md">TRUSTED BY MILLIONS OF DEVELOPERS
+            & THOUSANDS OF ENTERPRISE TEAMS</span>
+                        </div>
+                        <!-- row -->
+                        <div class="row text-center">
+                            <!-- col -->
+                            <div class="col">
+                                <div class="mb-4 mb-lg-0">
+                                    <img src="../../../static/assets/images/brand/gray-logo-airbnb.svg" alt="" class="">
+                                </div>
+                            </div>
+                            <!-- col -->
+                            <div class="col">
+                                <div class="mb-4 mb-lg-0">
+                                    <img src="../../../static/assets/images/brand/gray-logo-discord.svg" alt="" class="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-4 mb-lg-0">
+                                    <img src="../../../static/assets/images/brand/gray-logo-intercom.svg" alt="" class="">
+                                </div>
+                            </div>
+                            <!-- col -->
+                            <div class="col">
+                                <div class="mb-4 mb-lg-0">
+                                    <img src="../../../static/assets/images/brand/gray-logo-stripe.svg" alt="" class="">
+                                </div>
+                            </div>
+                            <!-- col -->
+                            <div class="col">
+                                <div class="mb-4 mb-lg-0">
+                                    <img src="../../../static/assets/images/brand/gray-logo-netflix.svg" alt="" class="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Client logo -->
+        <section class="py-lg-20 py-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 col-12">
+                        <!-- featues -->
+                        <div class="mb-6 mb-lg-0 fs-4">
+                            <!-- icon -->
+                            <div class="icon-shape icon-lg bg-primary text-light-primary rounded-circle
+                text-center mb-4"><i class="mdi mdi-flash mdi-24px lh-1"></i></div>
+                            <h3 class="fw-bold">Easy Setup Process</h3>
+                            <p>Vivamus sit amet eros facilisis, suscipit libero eget, elementum diam. Praesent quam.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-12">
+                        <!-- features -->
+                        <div class="mb-6 mb-lg-0 fs-4">
+                            <!-- icon -->
+                            <div class="icon-shape icon-lg bg-primary text-light-primary rounded-circle
+                text-center mb-4"><i class="mdi mdi-layers mdi-24px lh-1"></i></div>
+                            <h3 class="fw-bold">Quality First</h3>
+                            <p>Quality first. All projects are backed by our fanatic support & 100% satisfaction guarantee.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-12">
+                        <!-- features -->
+                        <div class="mb-6 mb-lg-0 fs-4">
+                            <!-- icon -->
+                            <div class="icon-shape icon-lg bg-primary text-light-primary rounded-circle
+                text-center mb-4"><i class="mdi mdi-cellphone mdi-24px
+                  lh-1"></i></div>
+                            <h3 class="fw-bold">Customizable</h3>
+                            <p>Mauris interdum leo vel eleifend fringilla, nibh elit interdum nisi nec porttitor nunc egestas.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 col-12">
+                        <!-- features -->
+                        <div class="mb-6 mb-lg-0 fs-4">
+                            <!-- icon -->
+                            <div class="icon-shape icon-lg bg-primary text-light-primary rounded-circle
+                text-center mb-4"><i class="mdi mdi-infinity mdi-24px lh-1"></i></div>
+                            <h3 class="fw-bold">Unlimited</h3>
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in anim id est laborum velit esse cillum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- image section -->
+        <section class="pb-lg-16 pb-8">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <!-- image -->
+                        <div class="mb-4 mb-lg-0 bg-gray-200 rounded-4 ">
+                            <img src="../../../static/assets/images/svg/featured-img-1.svg" alt="..." class="img-fluid w-100">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12 mt-4 mt-lg-0">
+                        <!-- content -->
+                        <div class="ps-lg-7">
+                            <span class=" text-primary ls-md text-uppercase
+                fw-semi-bold">Build fast, launch faster</span>
+                            <h2 class="display-4 mt-4 mb-3 fw-bold">Build the sites you want with Stoody UI you love</h2>
+                            <h3>Mauris interdum leo vel eleifend fringilla nibh elit interdc nunc elementum nisi. </h3>
+                            <div class="mt-5 row">
+                                <!-- list -->
+                                <div class="col">
+                                    <ul class="list-unstyled fs-4
+                    fw-medium">
+                                        <li class="mb-2 d-flex"><i class="mdi mdi-check-circle
+                        text-success me-2"></i>Earnings </li>
+                                        <li class="mb-2 d-flex"><i class="mdi mdi-check-circle
+                        text-success me-2"></i>Conversion Rates</li>
+                                        <li class="mb-2 d-flex"><i class="mdi mdi-check-circle
+                        text-success me-2"></i>Top security</li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <!-- list -->
+                                    <ul class="list-unstyled fs-4
+                    fw-medium">
+                                        <li class="mb-2 d-flex"><i class="mdi mdi-check-circle
+                        text-success me-2"></i>High converting </li>
+                                        <li class="mb-2 d-flex"><i class="mdi mdi-check-circle
+                        text-success me-2"></i>Easy to use</li>
+                                        <li class="mb-2 d-flex"><i class="mdi mdi-check-circle
+                        text-success me-2"></i>200+ Integrations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- divider -->
+                <hr class="my-lg-12 my-8">
+                <div class="row align-items-center">
+                    <!-- col -->
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <!-- content -->
+                        <div class="pe-lg-6 ps-lg-6">
+                            <span class="text-primary ls-md text-uppercase
+                fw-semi-bold">Bullet point Features
+              </span>
+                            <h2 class="display-4 mt-4 mb-3 fw-bold">The most powerful design for web projects</h2>
+                            <h3>Donec eget enim volutpat punar turpis at elementum neque.</h3>
+                            <div class="mt-6">
+                                <!-- icon with para -->
+                                <div class="d-flex mb-4">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star-fill text-primary mt-1" viewBox="0 0 16 16">
+                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                                    </div>
+                                    <div class="ms-3">
+                                        <!-- content -->
+                                        <h3 class="mb-2">5-Star Rating </h3>
+                                        <p class="mb-0 fs-4">Pellentesque ipsum nulla cursus sodales enim non interdum dignissim quam.
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- icon with para -->
+                                <div class="d-flex mb-4">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-life-preserver mt-1 text-primary" viewBox="0 0 16 16">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm6.43-5.228a7.025 7.025 0 0 1-3.658 3.658l-1.115-2.788a4.015 4.015 0 0 0 1.985-1.985l2.788 1.115zM5.228 14.43a7.025 7.025 0 0 1-3.658-3.658l2.788-1.115a4.015 4.015 0 0 0 1.985 1.985L5.228 14.43zm9.202-9.202-2.788 1.115a4.015 4.015 0 0 0-1.985-1.985l1.115-2.788a7.025 7.025 0 0 1 3.658 3.658zm-8.087-.87a4.015 4.015 0 0 0-1.985 1.985L1.57 5.228A7.025 7.025 0 0 1 5.228 1.57l1.115 2.788zM8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>
+                                    </div>
+                                    <!-- content -->
+                                    <div class="ms-3">
+                                        <h3 class="mb-2">Dedicated Support</h3>
+                                        <p class="mb-0 fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quas lorem ipsum dolor sit maet cumque!
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- icon with para -->
+                                <div class="d-flex ">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-text-fill text-primary mt-1" viewBox="0 0 16 16">
+                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1h-4z"/>
+                    </svg>
+                                    </div>
+                                    <!-- content -->
+                                    <div class="ms-3">
+                                        <h3 class="mb-2 lh-1">Quality Documentation <span class="badge bg-warning-soft fs-6 ms-1">coming soon</span></h3>
+                                        <p class="mb-0 fs-4">Amet consectetur adipisicing elit. Excepturi hic atque dolorem tempore! augue pharetra.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <!-- image -->
+                        <div class="mt-4 mt-lg-0 bg-gray-200 rounded-4">
+                            <img src="../../../static/assets/images/svg/featured-img-2.svg" alt="..." class="img-fluid w-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- app integration -->
+        <section class="py-lg-14 py-8 bg-gray-200">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-12 col-12">
+                        <!-- heading -->
+                        <div class="text-center mb-8">
+                            <span class="text-warning ls-md text-uppercase
+                fw-semi-bold">App Integration sections
+
+              </span>
+                            <h2 class="display-3 mt-4 mb-3 fw-bold">Integrate with the Apps</h2>
+                            <p class="lead  px-8">Build on your workflow with apps that integrate with Stoody UI.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-xl-2 col-md-4 col-6 mb-3 mb-xl-0">
+                        <!-- card card-borderd  -->
+                        <div class="card  h-100">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <img src="../../../static/assets/images/brand/dropbox-logo.svg" alt="" class="icon-lg mb-3">
+                                <h3 class="">Dropbox</h3>
+                                <p class="mb-0 ">Bring your files and cloud content together.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6 mb-3 mb-xl-0">
+                        <!-- card card-borderd  -->
+                        <div class="card
+              h-100">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <img src="../../../static/assets/images/brand/hubspot.svg" alt="" class="icon-lg mb-3">
+                                <h3 class="">HubSpot</h3>
+                                <p class="mb-0 ">Full platform of marketing, sales, other service.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6 mb-3 mb-xl-0">
+                        <!-- card card-borderd  -->
+                        <div class="card
+              h-100">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <img src="../../../static/assets/images/brand/google-drive.svg" alt="" class="icon-lg mb-3">
+                                <h3 class="">Drive</h3>
+                                <p class="mb-0 ">Integrates seamlessly with Docs, Sheets...</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6 mb-3 mb-xl-0">
+                        <!-- card card-borderd  -->
+                        <div class="card
+              h-100">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <img src="../../../static/assets/images/brand/slack-logo.svg" alt="" class="icon-lg mb-3">
+                                <h3 class="">Slack</h3>
+                                <p class="mb-0 ">New way to communicate with your team</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6 mb-3 mb-xl-0">
+                        <!-- card card-borderd  -->
+                        <div class="card
+              h-100">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <img src="../../../static/assets/images/brand/zapier.svg" alt="" class="icon-lg mb-3">
+                                <h3 class="">Zapier</h3>
+                                <p class="mb-0 ">Streamline work with automation today.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-6 mb-3 mb-xl-0">
+                        <!-- card card-borderd  -->
+                        <div class="card
+              h-100">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <img src="../../../static/assets/images/brand/dropbox-logo.svg" alt="" class="icon-lg mb-3">
+                                <h3 class="">HubSpot</h3>
+                                <p class="mb-0 ">Full platform of marketing,sales, other service.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- button  -->
+                    <div class="col-12 text-center mt-8">
+                        <a href="#" class="btn btn-primary">View All Apps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- testimonials  -->
+        <section class="pt-lg-16 pb-lg-14 pt-8 pb-8">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-1 col-lg-5 col-md-6 col-12">
+                        <div class="mb-10 mb-md-0">
+                            <!-- image  -->
+                            <div class="mb-4">
+                                <img src="../../../static/assets/images/svg/hubspot-logo.svg" alt="">
+
+                            </div>
+                            <!-- para  -->
+                            <p class="fs-3 mb-5">"I am very satisfied with my purchase. Your team helped me a lot with the new release for RLT version. I hope you are always successful. Thank you for your services and support."</p>
+                            <h4 class="mb-0">Ali</h4>
+
+                            <p>Stoody UI Customer </p>
+
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-5 col-md-6 col-12">
+                        <div class="mb-10 mb-md-0">
+                            <!-- image  -->
+                            <div class="mb-5">
+                                <img src="../../../static/assets/images/svg/slack-logo.svg" alt="">
+
+                            </div>
+                            <!-- para  -->
+                            <p class="fs-3 mb-5">"This item has everything you need for creating a modern learning-platform. Really delighted by many details and the overall architecture. Support was superfast and helpful as well."</p>
+                            <h4 class="mb-0">Bernhar</h4>
+
+                            <p>Stoody UI Customer </p>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- divider  -->
+                <hr class="my-lg-12 my-8">
+                <div class="row">
+                    <div class="offset-xl-2 col-xl-8 offset-lg-1 col-lg-10 col-md-12 col-12">
+                        <!-- pricing -->
+                        <div class="mb-8 text-center">
+                            <h2 class="display-4 mb-3 fw-bold">Simple plans for everyone</h2>
+                            <p class="lead mb-4">Everything you need to design like a professional. Boost you and your team s creativity and supercharge your productivity with Stoody UI Pro.</p>
+                            <!-- Switch Toggle -->
+                            <div id="pricing-switch-second" class="d-flex justify-content-center align-items-center">
+                                <span class="fs-4 fw-semi-bold me-2">Pay
+                  Monthly</span>
+                                <span class="form-check form-switch form-switch-price">
+                  <input type="checkbox" class="form-check-input" id="customSwitch1" checked />
+                  <label class="form-check-label" for="customSwitch1"></label>
+                </span>
+                                <span class="fs-4 fw-semi-bold ms-2"> Pay Yearly</span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <!-- col  -->
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <!-- Card -->
+                                <div class="card shadow-none border mb-3">
+                                    <!-- Card body -->
+                                    <div class="p-5">
+                                        <div class="mb-5">
+                                            <h4 class="fw-bold text-uppercase ls-md mb-4">Free</h4>
+                                            <div class="d-flex mb-4">
+                                                <span class="h3 mb-0 fw-bold">$</span>
+                                                <div class="price-card--price-number
+                          toggle-price-content-second odometer fs-1" data-price-monthly="0" data-price-yearly="0">
+                                                    0
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- button  -->
+                                        <a href="#" class="btn btn-outline-primary btn-block">Start
+                      designing</a>
+                                        <div class="px-2 mt-6">
+                                            <!-- List -->
+                                            <ul class="list-unstyled mb-0
+                       ">
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>20+ high quality design </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>Instant access to 2 icon library </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>24+ Free initial components </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-x   me-2"></i>
+                                                    <span>300+ beautiful design pages </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-x   me-2"></i>
+                                                    <span>Admin dashboard pages </span>
+                                                </li>
+                                                <li class="d-flex align-items-center">
+                                                    <i class="fe fe-x   me-2"></i>
+                                                    <span>Support 24/7 hours </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <!-- Card -->
+                                <div class="card shadow-none border mb-3">
+                                    <!-- Card body -->
+                                    <div class="p-5">
+                                        <div class="mb-5">
+                                            <h4 class="fw-bold text-uppercase ls-md mb-4">Pro</h4>
+                                            <div class="d-flex mb-4">
+                                                <span class="h3 mb-0 fw-bold">$</span>
+                                                <div class="price-card--price-number
+                          toggle-price-content-second odometer fs-1" data-price-monthly="39" data-price-yearly="49">
+                                                    49
+
+                                                </div>
+                                                <span class="align-self-end mb-1 ms-2
+                          toggle-price-content-second" data-price-monthly="/mo" data-price-yearly="/y">/mo</span>
+                                            </div>
+                                        </div>
+                                        <!-- button  -->
+                                        <a href="#" class="btn btn-primary btn-block">Try free for
+                      30 days</a>
+                                        <div class="px-2 mt-6">
+                                            <!-- List -->
+                                            <ul class="list-unstyled mb-0
+                       ">
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>120+ high quality designs </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>Instant access to 2 icon library </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>24+ Free initial components </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>300+ beautiful design pages </span>
+                                                </li>
+                                                <li class="mb-3 d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>Admin dashboard pages </span>
+                                                </li>
+                                                <li class="d-flex align-items-center">
+                                                    <i class="fe fe-check  text-success me-2"></i>
+                                                    <span>Support 24/7 hours </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- small cta  -->
+                <div class="row text-center mt-8">
+                    <div class="offset-lg-3 col-lg-6 col-md-12 col-12">
+                        <h2>Need a custom plan for your company?</h2>
+                        <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper scelerisque morbi lobortis <a href="https://geeksui.codescandy.com/geeks/" target="_blank">contact us</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- cta with bg color  -->
+        <section class="py-14 bg-gray-200">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-md-12 col-12 text-center">
+                        <span class="fs-4 text-warning ls-md text-uppercase
+              fw-semi-bold">get things done
+
+            </span>
+                        <!-- heading  -->
+                        <h2 class="display-3 mt-4 mb-3 fw-bold">Just try it out! You’ll fall in love</h2>
+                        <!-- para  -->
+                        <p class="lead px-lg- 8 mb-6">Designed for modern companies looking to launch a simple, premium and modern website and apps.</p>
+                        <a href="#" class="btn btn-primary">Try For Free</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <!-- footer -->
+<footer class="pt-lg-10 pt-5 footer bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <!-- about company -->
+                <div class="mb-4">
+                    <img src="../../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <div class="mt-4">
+                        <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
+                        <!-- social media -->
+                        <div class="fs-4 mt-4">
+                            <a href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
+                            <a href="#" class="mdi mdi-twitter text-muted me-2"></a>
+                            <a href="#" class="mdi mdi-instagram text-muted "></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
+                <div class="mb-4">
+                    <!-- list -->
+                    <h3 class="fw-bold mb-3">Company</h3>
+                    <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
+                        <li><a href="#" class="nav-link">About</a></li>
+                        <li><a href="#" class="nav-link">Pricing</a></li>
+                        <li><a href="#" class="nav-link">Blog</a></li>
+                        <li><a href="#" class="nav-link">Careers</a></li>
+                        <li><a href="#" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-6">
+                <div class="mb-4">
+                    <!-- list -->
+                    <h3 class="fw-bold mb-3">Support</h3>
+                    <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
+                        <li><a href="#" class="nav-link">Help and Support</a></li>
+                        <li><a href="#" class="nav-link">Become Instructor</a></li>
+                        <li><a href="#" class="nav-link">Get the app</a></li>
+                        <li><a href="#" class="nav-link">FAQ’s</a></li>
+                        <li><a href="#" class="nav-link">Tutorial</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12">
+                <!-- contact info -->
+                <div class="mb-4">
+                    <h3 class="fw-bold mb-3">Get in touch</h3>
+                    <p>Azerbaijan, Baku, Ajami ms. 16a</p>
+                    <p class="mb-1">Email: <a href="#">support@stoody.com</a></p>
+                    <p>Phone: <span class="text-dark fw-semi-bold">(+994) 50 477 26 22</span></p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center g-0 border-top py-2 mt-6">
+            <!-- Desc -->
+            <div class="col-lg-4 col-md-5 col-12">
+                <span>© 2022 Stoody, Inc. All Rights Reserved</span>
+            </div>
+
+            <!-- Links -->
+            <div class="col-12 col-md-7 col-lg-8 d-md-flex justify-content-end">
+                <nav class="nav nav-footer">
+                    <a class="nav-link ps-0" href="#">Privacy Policy</a>
+                    <a class="nav-link px-2 px-md-3" href="#">Cookie Notice  </a>
+                    <a class="nav-link d-none d-lg-block" href="#">Do Not Sell My Personal Information </a>
+                    <a class="nav-link" href="#">Terms of Use</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Scripts -->
+
+    <!-- Libs JS -->
+<script src="../../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+
+
+<!-- Theme JS -->
+<script src="../../../static/assets/js/theme.min.js"></script>
+
+
+
+
+    <script src="../../../static/assets/libs/odometer/odometer.min.js"></script>
+    <script src="../../../static/assets/js/vendors/pricing.js"></script>
+
+
+</body>
+
+</html>

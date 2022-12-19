@@ -15,9 +15,6 @@ public class Category {
     private int id;
     private String name;
 
-    @Column(name="icon_class_name")
-    private String iconClassName;
-
     @OneToOne
     @JoinColumn(name = "parent_category_id")
     private Category parent;

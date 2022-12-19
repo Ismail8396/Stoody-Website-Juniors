@@ -25,6 +25,11 @@ public class LoginControllerTest {
     @Autowired
     private RoleRepository roleRepository;
 
+    @GetMapping("/")
+    public String test(){
+        return "index";
+    }
+
     @GetMapping("/login")
     public String getLogin(){
         return "index";

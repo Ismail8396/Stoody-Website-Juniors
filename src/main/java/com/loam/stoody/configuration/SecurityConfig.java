@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/register", "/h2-console/**", "/api/**").permitAll()
+//                .antMatchers("/**/*.js", "/**/*.css").permitAll()
 
                 .antMatchers("/profile/*").access("hasRole('USER') or hasRole('TEACHER') or hasRole('ADMIN')")
 
@@ -114,8 +115,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**","/static/**",
-                "/static/assets/css/**","/static/assets/css/**",
-                "/static/assets/js/**");
+//        web.ignoring().antMatchers("/resources/**", "/resources/static/assets/**", "/resources/static/assets/css/**", "/resources/static/assets/js/**",
+//                "/resources/static/assets/images/**", "/resources/static/assets/fonts/**", "/resources/static/assets/libs/**");
     }
 }
