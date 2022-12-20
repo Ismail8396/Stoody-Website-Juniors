@@ -1,7 +1,19 @@
+/*
+@fileName:  DBMessageSource
+
+@aka:       Database Message Source
+
+@purpose:   Resolves the language code to get the appropriate text content according to current locale.
+
+@author:    OrkhanGG
+
+@created:   05.12.2022
+*/
+
 package com.loam.stoody.global;
 
-import com.loam.stoody.model.LanguageModel;
-import com.loam.stoody.repository.LanguageRepository;
+import com.loam.stoody.model.i18n_models.LanguageModel;
+import com.loam.stoody.repository.i18n_repo.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.stereotype.Component;
@@ -11,8 +23,13 @@ import java.util.Locale;
 
 @Component("messageSource")
 public class DBMessageSource extends AbstractMessageSource {
+    private final LanguageRepository languageRepository;
+
     @Autowired
-    private LanguageRepository languageRepository;
+    public DBMessageSource(LanguageRepository languageRepository){
+        this.languageRepository = languageRepository;
+    }
+
     private static final String DEFAULT_LOCALE_CODE = "en";
     @Override
     protected MessageFormat resolveCode(String key, Locale locale) {

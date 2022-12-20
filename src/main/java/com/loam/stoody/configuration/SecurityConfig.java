@@ -1,6 +1,7 @@
 package com.loam.stoody.configuration;
 
-import com.loam.stoody.service.CustomUserDetailService;
+import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.service.user_service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Principal;
 
 // In Spring Security, sometimes it is necessary to check if an authenticated user has a specific role.
 // This can be useful to enable or disable particular features in our applications:
@@ -34,23 +34,26 @@ import java.security.Principal;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
-    @Autowired
-    private CustomUserDetailService customUserDetailService;
+    private final GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
+    private final CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    public SecurityConfig(GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler, CustomUserDetailsService customUserDetailsService){
+        this.googleOAuth2SuccessHandler = googleOAuth2SuccessHandler;
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
-    class LoginPageFilter extends GenericFilterBean {
+    static class LoginPageFilter extends GenericFilterBean {
 
         @Override
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
             if (SecurityContextHolder.getContext().getAuthentication() != null
                     && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
-                    && ( ((HttpServletRequest)request).getRequestURI().equals("/login") ||
-                         ((HttpServletRequest)request).getRequestURI().equals("/register"))
+                    && ( ((HttpServletRequest)request).getRequestURI().equals(PRL.signInURL) ||
+                         ((HttpServletRequest)request).getRequestURI().equals(PRL.signUpURL))
             ) {
-                System.out.println("User is authenticated but trying to access login/register page, redirecting to /");
-                ((HttpServletResponse)response).sendRedirect("/");
+                System.out.println("User is authenticated but trying to access signIn/signUp page, redirecting to home");
+                ((HttpServletResponse)response).sendRedirect(PRL.homeURL);
             }
             chain.doFilter(request, response);
         }
@@ -67,32 +70,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 // For Visitors
-                .antMatchers("/", "/register", "/h2-console/**", "/api/**").permitAll()
+                .antMatchers(PRL.homeURL, PRL.signUpURL).permitAll()
                 // Only for authorized users
-                .antMatchers("/profile/*").access("hasRole('USER') or hasRole('TEACHER') or hasRole('ADMIN')")
+                .antMatchers(/* PAGES SPECIAL FOR AUTHENTICATED USERS */).access("hasRole('USER') or hasRole('TEACHER') or hasRole('ADMIN')")
                 // Only for Admins
-                .antMatchers("/admin-control-panel/**").hasRole("ADMIN")
+                .antMatchers(/* PAGES SPECIAL FOR ADMIN */).hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 // Login Configuration
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage(PRL.signInURL)
                 .permitAll()
-                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/")
+                .failureUrl(PRL.signInURL + "?error=true")
+                .defaultSuccessUrl(PRL.homeURL)
                 .usernameParameter("username")
                 .passwordParameter("password")
-                // OAuth2 Login/Register Configuration
+                // OAuth2 SignIn/SignUp Configuration
                 .and()
                 .oauth2Login()
-                .loginPage("/login")
+                .loginPage(PRL.signInURL)
                 .successHandler(googleOAuth2SuccessHandler)
                 // Logout Configuration
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutRequestMatcher(new AntPathRequestMatcher(PRL.logoutURL))
+                .logoutSuccessUrl(PRL.signInURL)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 // Misc
@@ -111,7 +114,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailService);
+        auth.userDetailsService(customUserDetailsService);
         auth.eraseCredentials(false);
 //        auth.inMemoryAuthentication()
 //                .withUser("root").password(passwordEncoder().encode("root")).roles("USER");

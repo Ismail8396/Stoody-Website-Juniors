@@ -1,9 +1,9 @@
 package com.loam.stoody.configuration;
 
-import com.loam.stoody.model.Role;
-import com.loam.stoody.model.User;
-import com.loam.stoody.repository.RoleRepository;
-import com.loam.stoody.repository.UserRepository;
+import com.loam.stoody.model.user_models.Role;
+import com.loam.stoody.model.user_models.User;
+import com.loam.stoody.repository.user_repo.RoleRepository;
+import com.loam.stoody.repository.user_repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -23,10 +23,14 @@ import java.util.List;
 
 @Component
 public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler {
+    private final RoleRepository roleRepository;
+    private final UserRepository userRepository;
+
     @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    UserRepository userRepository;
+    public GoogleOAuth2SuccessHandler(RoleRepository roleRepository, UserRepository userRepository){
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
+    }
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

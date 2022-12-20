@@ -1,5 +1,9 @@
+/*
+@Deprecated
+ */
 package com.loam.stoody.exception;
 
+@Deprecated
 public class ResponseMessage {
     private String message;
 

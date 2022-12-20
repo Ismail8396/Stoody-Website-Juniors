@@ -1,3 +1,16 @@
+/*
+@fileName:  Stoody
+
+@aka:       Stoody Web Application Entry Point
+
+@purpose:   This class automatically creates the ApplicationContext from the classpath,
+ 			scan the configuration classes and launch the application.
+
+@author:    Spring Initializer
+
+@created:   01.12.2022
+*/
+
 package com.loam.stoody;
 
 import org.springframework.boot.SpringApplication;
