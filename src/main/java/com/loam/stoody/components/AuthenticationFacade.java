@@ -1,3 +1,15 @@
+/*
+@fileName:  AuthenticationFacade
+
+@aka:       Authentication Facade
+
+@purpose:   An API to get authentication of the current user.
+
+@author:    OrkhanGG
+
+@createdAt: 20.12.2022
+*/
+
 package com.loam.stoody.components;
 
 import org.springframework.security.core.Authentication;
