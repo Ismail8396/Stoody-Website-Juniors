@@ -19,7 +19,7 @@ import com.loam.stoody.model.communication_models.video.Video;
 import com.loam.stoody.model.user_models.User;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 

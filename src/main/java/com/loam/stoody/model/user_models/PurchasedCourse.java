@@ -19,7 +19,7 @@ import com.loam.stoody.model.user_models.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
 @NoArgsConstructor

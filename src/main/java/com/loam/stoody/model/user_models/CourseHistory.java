@@ -18,7 +18,7 @@ import com.loam.stoody.model.product_models.course_models.Course;
 import com.loam.stoody.model.user_models.User;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
 @Entity

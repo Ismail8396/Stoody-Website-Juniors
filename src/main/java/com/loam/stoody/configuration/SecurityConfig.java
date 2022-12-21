@@ -2,26 +2,22 @@ package com.loam.stoody.configuration;
 
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.user_service.CustomUserDetailsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.GenericFilterBean;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // In Spring Security, sometimes it is necessary to check if an authenticated user has a specific role.
@@ -33,48 +29,43 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
     private final GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
-    private final CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     public SecurityConfig(GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler, CustomUserDetailsService customUserDetailsService){
         this.googleOAuth2SuccessHandler = googleOAuth2SuccessHandler;
-        this.customUserDetailsService = customUserDetailsService;
     }
 
     static class LoginPageFilter extends GenericFilterBean {
-
         @Override
-        public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        public void doFilter(jakarta.servlet.ServletRequest servletRequest, jakarta.servlet.ServletResponse servletResponse, jakarta.servlet.FilterChain filterChain) throws IOException, jakarta.servlet.ServletException {
             if (SecurityContextHolder.getContext().getAuthentication() != null
                     && SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
-                    && ( ((HttpServletRequest)request).getRequestURI().equals(PRL.signInURL) ||
-                         ((HttpServletRequest)request).getRequestURI().equals(PRL.signUpURL))
+                    && ( ((HttpServletRequest)servletRequest).getRequestURI().equals(PRL.signInURL) ||
+                    ((HttpServletRequest)servletRequest).getRequestURI().equals(PRL.signUpURL))
             ) {
                 System.out.println("User is authenticated but trying to access signIn/signUp page, redirecting to home");
-                ((HttpServletResponse)response).sendRedirect(PRL.homeURL);
+                ((HttpServletResponse)servletResponse).sendRedirect(PRL.homeURL);
             }
-            chain.doFilter(request, response);
+            filterChain.doFilter(servletRequest, servletResponse);
         }
-
     }
 
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.addFilterBefore(
                 new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
 
         http
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 // For Visitors
-                .antMatchers(PRL.homeURL, PRL.signUpURL).permitAll()
+                .requestMatchers(PRL.homeURL, PRL.signUpURL).permitAll()
                 // Only for authorized users
-                .antMatchers(/* PAGES SPECIAL FOR AUTHENTICATED USERS */).access("hasRole('USER') or hasRole('TEACHER') or hasRole('ADMIN')")
+                .requestMatchers(""/* PAGES SPECIAL FOR AUTHENTICATED USERS */)
+                .hasRole("USER")
                 // Only for Admins
-                .antMatchers(/* PAGES SPECIAL FOR ADMIN */).hasRole("ADMIN")
+                .requestMatchers(""/* PAGES SPECIAL FOR ADMIN */).hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 // Login Configuration
@@ -105,6 +96,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable();
         http.headers().frameOptions().disable();
+
+        return http.build();
     }
 
     @Bean
@@ -112,17 +105,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService);
-        auth.eraseCredentials(false);
-//        auth.inMemoryAuthentication()
-//                .withUser("root").password(passwordEncoder().encode("root")).roles("USER");
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(
                 "/resources/**",
                 "/assets/**",
                 "/assets/css/**",

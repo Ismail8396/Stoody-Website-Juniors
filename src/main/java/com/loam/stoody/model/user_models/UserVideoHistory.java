@@ -14,7 +14,7 @@ package com.loam.stoody.model.user_models;
 
 import com.loam.stoody.model.communication_models.video.Video;
 import lombok.Data;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
 @Entity

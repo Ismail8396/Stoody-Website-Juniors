@@ -2,10 +2,7 @@ package com.loam.stoody.service.communication_service;
 
 import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.model.communication_models.video.Video;
-//import com.loam.stoody.repository.VideoRepository;
 import com.loam.stoody.repository.communication_repo.VideoRepository;
-import com.loam.stoody.service.utils.aws.S3Service;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

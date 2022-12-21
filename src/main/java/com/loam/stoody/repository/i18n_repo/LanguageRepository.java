@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface LanguageRepository extends JpaRepository<LanguageModel, Integer> {
-    LanguageModel findByKeyAndLocale(String key, String locale);
-
-    @Query(value = "select * from languages lang where lang.locale like %:filter% or lang.messagekey like %:filter% or lang.messagecontent like %:filter%", nativeQuery = true)
-    List<LanguageModel> findBySearchKey(@Param("filter") String filter);
-
-}
+//@Repository
+//public interface LanguageRepository extends JpaRepository<LanguageModel, Integer> {
+//    LanguageModel findByKeyAndLocale(String key, String locale);
+//
+//    @Query(value = "select * from languages lang where lang.locale like %:filter% or lang.messagekey like %:filter% or lang.messagecontent like %:filter%", nativeQuery = true)
+//    List<LanguageModel> findBySearchKey(@Param("filter") String filter);
+//
+//}

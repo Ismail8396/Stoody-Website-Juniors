@@ -24,9 +24,4 @@ public class ErrorControllerCustom implements ErrorController {
     public String handleError() {
         return PRL.error404Page;
     }
-
-    @Override
-    public String getErrorPath() {
-        return null;
-    }
 }
