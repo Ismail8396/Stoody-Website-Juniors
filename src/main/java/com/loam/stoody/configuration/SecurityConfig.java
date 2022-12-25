@@ -1,11 +1,13 @@
 package com.loam.stoody.configuration;
 
 import com.loam.stoody.global.constants.PRL;
-import com.loam.stoody.service.user_service.CustomUserDetailsService;
+import com.loam.stoody.service.user.CustomUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -31,7 +33,6 @@ import java.io.IOException;
 @EnableWebSecurity
 public class SecurityConfig {
     private final GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
-
     @Autowired
     public SecurityConfig(GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler, CustomUserDetailsService customUserDetailsService){
         this.googleOAuth2SuccessHandler = googleOAuth2SuccessHandler;
@@ -54,50 +55,66 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(
-                new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
+        http.addFilterBefore(new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
 
-        http
-                .authorizeHttpRequests()
-                // For Visitors
-                .requestMatchers(PRL.homeURL, PRL.signUpURL).permitAll()
-                // Only for authorized users
-                .requestMatchers(""/* PAGES SPECIAL FOR AUTHENTICATED USERS */)
-                .hasRole("USER")
-                // Only for Admins
-                .requestMatchers(""/* PAGES SPECIAL FOR ADMIN */).hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                // Login Configuration
-                .and()
-                .formLogin()
-                .loginPage(PRL.signInURL)
-                .permitAll()
-                .failureUrl(PRL.signInURL + "?error=true")
-                .defaultSuccessUrl(PRL.homeURL)
-                .usernameParameter("username")
-                .passwordParameter("password")
-                // OAuth2 SignIn/SignUp Configuration
-                .and()
-                .oauth2Login()
-                .loginPage(PRL.signInURL)
-                .successHandler(googleOAuth2SuccessHandler)
-                // Logout Configuration
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher(PRL.logoutURL))
-                .logoutSuccessUrl(PRL.signInURL)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                // Misc
-                .and()
-                .exceptionHandling()
-                .and()
-                .csrf()
-                .disable();
+        // Debugging & Testing
+        http.csrf().disable();
+        http.authorizeHttpRequests().requestMatchers("/**").permitAll();
+
+//        http
+//                .authorizeHttpRequests()
+//
+//                // For Visitors
+//                .requestMatchers(PRL.homeURL, PRL.signUpURL).permitAll()
+//
+//                // Only for authorized users
+//                .requestMatchers(""/* PAGES SPECIAL FOR AUTHENTICATED USERS */)
+//                .hasRole("USER")
+//
+//                // Only for Admins
+//                .requestMatchers(""/* PAGES SPECIAL FOR ADMIN */).hasRole("ADMIN")
+//                .anyRequest()
+//                .authenticated()
+//
+//                // Login Configuration
+//                .and()
+//                .formLogin()
+//                .loginPage(PRL.signInURL)
+//                .permitAll()
+//                .failureUrl(PRL.signInURL + "?error=true")
+//                .defaultSuccessUrl(PRL.homeURL)
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//
+//                // OAuth2 SignIn/SignUp Configuration
+//                .and()
+//                .oauth2Login()
+//                .loginPage(PRL.signInURL)
+//                .successHandler(googleOAuth2SuccessHandler)
+//
+//                // Logout Configuration
+//                .and()
+//                .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher(PRL.logoutURL))
+//                .logoutSuccessUrl(PRL.signInURL)
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+//
+//                // Misc
+//                .and()
+//                .exceptionHandling()
+//                .and()
+//                .csrf()
+//                .disable();
+
         http.headers().frameOptions().disable();
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean

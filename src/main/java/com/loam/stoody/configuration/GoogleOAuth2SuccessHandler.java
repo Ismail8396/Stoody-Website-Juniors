@@ -1,9 +1,9 @@
 package com.loam.stoody.configuration;
 
-import com.loam.stoody.model.user_models.Role;
-import com.loam.stoody.model.user_models.User;
-import com.loam.stoody.repository.user_repo.RoleRepository;
-import com.loam.stoody.repository.user_repo.UserRepository;
+import com.loam.stoody.model.user.Role;
+import com.loam.stoody.model.user.User;
+import com.loam.stoody.repository.user.RoleRepository;
+import com.loam.stoody.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;

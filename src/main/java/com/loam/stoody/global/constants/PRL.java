@@ -24,6 +24,11 @@ public class PRL {
     public static final String forgetPasswordURL = "/forget-password";
     public static final String error404URL = "/error";
 
+        // API (Rest Controller)
+            // Prefixes
+    public static final String apiPrefix = "/"+About.AppNameLC+"/api/"+About.AppVersion;
+    public static final String apiRegistrationPrefixURL = apiPrefix+"/registration";
+
     // HTML NAMES ------------------------------------------------------------------------------------------------------
         // Public Pages
     public static final String visitorHomePage = "pages/landings/home-academy";
