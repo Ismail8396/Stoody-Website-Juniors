@@ -20,7 +20,7 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
-    @GetMapping("/user/register/request")
+    @PostMapping("/user/register/request")
     @ResponseBody
     public String register(@RequestBody RegistrationRequestDTO registrationRequest,
                            HttpServletRequest httpServletRequest){

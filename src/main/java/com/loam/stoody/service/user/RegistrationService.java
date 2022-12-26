@@ -10,8 +10,10 @@ import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.communication.email.EmailSenderService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -112,7 +114,7 @@ public class RegistrationService {
             return false;
 
         User newUser = new User();
-
+        // BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11, new SecureRandom());
         newUser.setUsername(request.getUsername());
         newUser.setPassword(request.getPassword());
         newUser.setEmail(request.getEmail());

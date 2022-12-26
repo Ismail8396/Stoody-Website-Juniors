@@ -33,15 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class LoginController {
+public class UserViewController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
     @Autowired
-    public LoginController(BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository,
-                           RoleRepository roleRepository)
-    {
+    public UserViewController(BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository,
+                              RoleRepository roleRepository) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
