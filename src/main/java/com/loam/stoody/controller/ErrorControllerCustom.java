@@ -10,7 +10,7 @@
 @createdAt: 18.12.2022
 */
 
-package com.loam.stoody.controller.standard;
+package com.loam.stoody.controller;
 
 import com.loam.stoody.global.constants.PRL;
 import org.springframework.boot.web.servlet.error.ErrorController;

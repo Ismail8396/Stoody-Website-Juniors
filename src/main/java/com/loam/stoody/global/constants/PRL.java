@@ -23,12 +23,14 @@ public class PRL {
     public static final String logoutURL = "/logout";
     public static final String forgetPasswordURL = "/forget-password";
     public static final String error404URL = "/error";
+    public static final String redirectPageURL = "/redirect-page";
 
     // API (Rest Controller)
     // Prefixes
     public static final String apiPrefix = "/" + About.AppNameLC + "/api/" + About.AppVersion;
     public static final String apiRegistrationPrefixURL = apiPrefix + "/registration";
     public static final String apiLoginPrefixURL = apiPrefix + "/user";
+    public static final String apiVerifySuffixURL = "/verify";
 
     // HTML NAMES ------------------------------------------------------------------------------------------------------
     // Public Pages
@@ -38,6 +40,7 @@ public class PRL {
     public static final String forgetPasswordPage = "pages/forget-password";
     public static final String error404Page = "pages/404-error";
     public static final String contactPage = "pages/contact";
+    public static final String redirectPage = "pages/redirect-page";
 
         // Only for any authorized one
     public static final String userHomePage = "index";

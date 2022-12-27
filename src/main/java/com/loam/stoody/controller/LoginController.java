@@ -1,4 +1,4 @@
-package com.loam.stoody.controller.rest.user;
+package com.loam.stoody.controller;
 
 import com.loam.stoody.global.constants.IndoorResponses;
 import com.loam.stoody.service.communication.sms.SmsSenderService;

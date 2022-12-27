@@ -1,4 +1,4 @@
-package com.loam.stoody.controller.rest.i18n;
+package com.loam.stoody.controller;
 
 import com.loam.stoody.dto.api.response.LanguageAPIResponse;
 import com.loam.stoody.model.i18n.LanguageModel;

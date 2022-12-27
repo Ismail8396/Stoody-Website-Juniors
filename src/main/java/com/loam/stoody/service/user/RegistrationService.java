@@ -1,6 +1,10 @@
 package com.loam.stoody.service.user;
 
 import com.loam.stoody.dto.api.request.RegistrationRequestDTO;
+import com.loam.stoody.global.annotations.UnderDevelopment;
+import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.global.logger.ConsoleColors;
+import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
 import com.loam.stoody.global.constants.IndoorResponses;
@@ -8,27 +12,28 @@ import com.loam.stoody.repository.user.PendingRegistrationRequests;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.communication.email.EmailSenderService;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@UnderDevelopment
 @Service
 @AllArgsConstructor
 public class RegistrationService {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private final CustomUserDetailsService customUserDetailsService;
     private final RoleRepository roleRepository;
     private final EmailSenderService emailSenderService;
     private final PendingRegistrationRequests pendingRegistrationRequests;
-    private final UserRepository userRepository;
-
 
     private IndoorResponses isUserPending(String username, String email){
         IndoorResponses response = IndoorResponses.SUCCESS;
@@ -58,7 +63,7 @@ public class RegistrationService {
         return customUserDetailsService.doesUserExist(username,email);
     }
 
-    public IndoorResponses register(RegistrationRequestDTO registrationRequest, HttpServletRequest httpServletRequest){
+    public IndoorResponses sendTokenToEmail(RegistrationRequestDTO registrationRequest, HttpServletRequest httpServletRequest){
         IndoorResponses response = doesUserExist(registrationRequest.getUsername(),registrationRequest.getEmail());
 
         if(response == IndoorResponses.SUCCESS) {
@@ -86,7 +91,7 @@ public class RegistrationService {
                     "Stoody Account Verification",
                     "Hi! Someone with the username "+registrationRequest.getUsername()+
                             " wanted to register on Stoody.org. If it was you, please click the link below to activate your account:\n\n"
-                            + "http://"+httpServletRequest.getHeader("host")+"/stoody/api/v1/registration/user/register/verify/"+newRequest.getKey()
+                            + "http://"+httpServletRequest.getHeader("host")+PRL.signUpURL+PRL.apiVerifySuffixURL+"/"+newRequest.getKey()
                             +
                             "\n\nIf this request was not fulfilled by you, you can skip this e-mail. " +
                             "\n\nLink expires at:\t"+newRequest.getExpiresAt().format(formatter));
@@ -109,15 +114,17 @@ public class RegistrationService {
         pendingRegistrationRequests.deleteAll(requestsToDelete);
     }
 
-    public boolean createUserByRegistrationRequest(RegistrationRequest request){
+    // Creates a user in the database according to the information received with the request.
+    public boolean createUserByRegistrationRequest(RegistrationRequest request,
+                                                   HttpServletRequest servletRequest){
         if(request == null)
             return false;
 
         User newUser = new User();
-        // BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11, new SecureRandom());
+
         newUser.setUsername(request.getUsername());
-        newUser.setPassword(request.getPassword());
         newUser.setEmail(request.getEmail());
+        newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         newUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
 
         newUser.setAccountEnabled(true);
@@ -127,10 +134,18 @@ public class RegistrationService {
 
         // Try to save user
         // If we get anything other than success, it'll return false
-        return customUserDetailsService.createUser(newUser) == IndoorResponses.SUCCESS;
+        boolean response = customUserDetailsService.createUser(newUser) == IndoorResponses.SUCCESS;
+        if(response)
+            try {
+                servletRequest.login(newUser.getEmail(), newUser.getPassword());
+            } catch (ServletException e) {
+                StoodyLogger.DebugLog(ConsoleColors.YELLOW,"Servlet exception is thrown while auto login! Message: "+e.getMessage());
+            }
+
+        return response;
     }
 
-    public IndoorResponses verifyAccount(String token) {
+    public IndoorResponses verifyAccount(String token, HttpServletRequest servletRequest) {
         RegistrationRequest request = null;
         for(var i : pendingRegistrationRequests.findAll())
             if(i.getKey().equals(token)){
@@ -144,7 +159,7 @@ public class RegistrationService {
                 return IndoorResponses.TOKEN_EXPIRED;
             }
 
-            if(createUserByRegistrationRequest(request)) {
+            if(createUserByRegistrationRequest(request, servletRequest)) {
                 cleanExpiredRegisterRequests();
                 return IndoorResponses.SUCCESS;
             }
