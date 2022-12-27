@@ -1,4 +1,4 @@
-package com.loam.stoody.controller;
+package com.loam.stoody.controller.rest.user;
 
 import com.loam.stoody.service.communication.sms.SmsSenderService;
 import com.loam.stoody.service.user.LoginServiceProxy;

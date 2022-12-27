@@ -1,8 +1,10 @@
 package com.loam.stoody.configuration;
 
+import com.loam.stoody.configuration.jwt.JWTFilter;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +13,11 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.GenericFilterBean;
@@ -21,6 +25,11 @@ import org.springframework.web.filter.GenericFilterBean;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.loam.stoody.global.constants.PRL.apiLoginPrefixURL;
+import static com.loam.stoody.global.constants.PRL.apiRegistrationPrefixURL;
 
 // In Spring Security, sometimes it is necessary to check if an authenticated user has a specific role.
 // This can be useful to enable or disable particular features in our applications:
@@ -31,13 +40,12 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SecurityConfig {
     private final GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler;
-    @Autowired
-    public SecurityConfig(GoogleOAuth2SuccessHandler googleOAuth2SuccessHandler){
-        this.googleOAuth2SuccessHandler = googleOAuth2SuccessHandler;
-    }
-
+    private final JWTFilter jwtFilter;
+    //@todo will add all url which does not need authentication
+    private List<String> whiteListRequests = Arrays.asList(PRL.homeURL, PRL.signUpURL, PRL.signInPage, PRL.apiLoginPrefixURL);
     static class LoginPageFilter extends GenericFilterBean {
         @Override
         public void doFilter(jakarta.servlet.ServletRequest servletRequest, jakarta.servlet.ServletResponse servletResponse, jakarta.servlet.FilterChain filterChain) throws IOException, jakarta.servlet.ServletException {
@@ -55,12 +63,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterBefore(new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
 
         http
                 .authorizeHttpRequests()
-
-                // For Visitors
+                .requestMatchers(apiRegistrationPrefixURL+"/**", apiLoginPrefixURL+"/**").permitAll()
+                .requestMatchers(apiRegistrationPrefixURL+"/*", apiLoginPrefixURL+"/*").permitAll()
                 .requestMatchers(PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**").permitAll()
 
                 // Only for authorized users
