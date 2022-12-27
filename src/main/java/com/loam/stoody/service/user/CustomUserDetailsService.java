@@ -18,16 +18,14 @@
 
 package com.loam.stoody.service.user;
 
-import com.amazonaws.util.StringUtils;
 import com.loam.stoody.global.constants.IndoorResponses;
-import com.loam.stoody.model.user.CustomUserDetails;
 import com.loam.stoody.model.user.Role;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.LoginRequest;
 import com.loam.stoody.repository.user.LoginRequestRepository;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.communication.sms.SmsSenderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,39 +35,34 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private LoginRequestRepository loginRequestRepository;
-    @Autowired
-    private SmsSenderService smsSenderService;
+    private final UserRepository userRepository;
+    private final LoginRequestRepository loginRequestRepository;
+    private final SmsSenderService smsSenderService;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findUserByUsername(username);
         user.orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
-        return user.map(CustomUserDetails::new).get();
+        /**
+         * Add Roles for Grant  Permissions
+         */
+        List<GrantedAuthority> grantList = Optional.ofNullable(user.get().getRoles()).orElse(Collections.emptyList())
+                .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), grantList);
     }
 
-    public User loadUserByUsername(String username, String password) throws UsernameNotFoundException {
+    public User getUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> userOptional = userRepository.findUserByUsername(username);
         userOptional.orElseThrow(() -> new UsernameNotFoundException("User not found!"));
         User user = userOptional.get();
-        if (password.equals(user.getPassword()))
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11, new SecureRandom());
-//        if (!passwordEncoder.encode(password).equals(userOptional.get().getPassword()))
-//            throw new AuthenticationCredentialsNotFoundException("Username or Password not matched");
-            if (StringUtils.isNullOrEmpty(user.getPhoneNumber()))
-                throw new RuntimeException("Mobile number not exist for OTP");
-        smsSenderService.sendOTP(username, user.getPhoneNumber());
         return user;
     }
 

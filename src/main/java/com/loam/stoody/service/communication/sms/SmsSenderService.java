@@ -1,6 +1,5 @@
 package com.loam.stoody.service.communication.sms;
 
-import com.amazonaws.util.StringUtils;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
