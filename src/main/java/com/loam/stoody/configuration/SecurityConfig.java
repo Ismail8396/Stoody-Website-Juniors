@@ -70,8 +70,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(apiRegistrationPrefixURL+"/**", apiLoginPrefixURL+"/**").permitAll()
                 .requestMatchers(apiRegistrationPrefixURL+"/*", apiLoginPrefixURL+"/*").permitAll()
-
-                // For Visitors
                 .requestMatchers(PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**").permitAll()
 
                 // Only for authorized users

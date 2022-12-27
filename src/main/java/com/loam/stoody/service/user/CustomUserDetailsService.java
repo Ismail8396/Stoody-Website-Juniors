@@ -54,8 +54,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         /**
          * Add Roles for Grant  Permissions
          */
-        List<GrantedAuthority> grantList = Optional.ofNullable(user.get().getRoles()).orElse(Collections.emptyList())
-                .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        //@todo implement late
+//        List<GrantedAuthority> grantList = Optional.ofNullable(user.get().getRoles()).orElse(Collections.emptyList())
+//                .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
+        grantList.add(grantedAuthority);
         return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), grantList);
     }
 
