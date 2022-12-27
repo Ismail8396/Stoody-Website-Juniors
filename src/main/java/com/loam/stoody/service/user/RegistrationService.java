@@ -70,7 +70,8 @@ public class RegistrationService {
             // Set user info
             newRequest.setUsername(registrationRequest.getUsername());
             newRequest.setEmail(registrationRequest.getEmail());
-            newRequest.setPassword(registrationRequest.getPassword());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11, new SecureRandom());
+            newRequest.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             // Create Unique Key
             newRequest.setKey(createUniqueRegisterKey());
             // Set createdAt time
@@ -114,7 +115,6 @@ public class RegistrationService {
             return false;
 
         User newUser = new User();
-        // BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11, new SecureRandom());
         newUser.setUsername(request.getUsername());
         newUser.setPassword(request.getPassword());
         newUser.setEmail(request.getEmail());
