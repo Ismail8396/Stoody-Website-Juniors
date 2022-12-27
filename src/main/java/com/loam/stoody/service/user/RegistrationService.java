@@ -1,10 +1,6 @@
 package com.loam.stoody.service.user;
 
 import com.loam.stoody.dto.api.request.RegistrationRequestDTO;
-import com.loam.stoody.global.annotations.UnderDevelopment;
-import com.loam.stoody.global.constants.PRL;
-import com.loam.stoody.global.logger.ConsoleColors;
-import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
 import com.loam.stoody.global.constants.IndoorResponses;
@@ -29,12 +25,12 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class RegistrationService {
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
     private final CustomUserDetailsService customUserDetailsService;
     private final RoleRepository roleRepository;
     private final EmailSenderService emailSenderService;
     private final PendingRegistrationRequests pendingRegistrationRequests;
+    private final UserRepository userRepository;
+
 
     private IndoorResponses isUserPending(String username, String email){
         IndoorResponses response = IndoorResponses.SUCCESS;
@@ -125,8 +121,8 @@ public class RegistrationService {
         User newUser = new User();
 
         newUser.setUsername(request.getUsername());
+        newUser.setPassword(request.getPassword());
         newUser.setEmail(request.getEmail());
-        newUser.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
         newUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
 
         newUser.setAccountEnabled(true);
