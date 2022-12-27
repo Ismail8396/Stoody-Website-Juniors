@@ -36,15 +36,8 @@ public class LoginServiceProxy {
             //send otp with register number
             if(StringUtils.isNullOrEmpty(user.getPhoneNumber()))
                 throw new RuntimeException(String.format("Mobile number is null with registered user: %s", username));
-//            smsSenderService.sendOTP(username, user.getPhoneNumber());
-//            return ResponseEntity.ok(new LoginResponse(userDetails.getUsername(),"Login Successfully, OTP sent to register number please verify"));
-
-            return ResponseEntity.ok(new JwtResponse(JWTUtility.generateToken(username),
-                    null,
-                    username,
-                    null,
-                    null));
-
+            smsSenderService.sendOTP(username, user.getPhoneNumber());
+            return ResponseEntity.ok(new LoginResponse(userDetails.getUsername(),"Login Successfully, OTP sent to register number please verify"));
         } catch (Exception ex) {
             throw new RuntimeException("Invalid Username or Password");
         }
