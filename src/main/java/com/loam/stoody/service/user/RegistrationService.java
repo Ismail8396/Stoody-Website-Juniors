@@ -1,6 +1,10 @@
 package com.loam.stoody.service.user;
 
 import com.loam.stoody.dto.api.request.RegistrationRequestDTO;
+import com.loam.stoody.global.annotations.UnderDevelopment;
+import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.global.logger.ConsoleColors;
+import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
 import com.loam.stoody.global.constants.IndoorResponses;
@@ -89,7 +93,7 @@ public class RegistrationService {
                     "Stoody Account Verification",
                     "Hi! Someone with the username "+registrationRequest.getUsername()+
                             " wanted to register on Stoody.org. If it was you, please click the link below to activate your account:\n\n"
-                            + "http://"+httpServletRequest.getHeader("host")+PRL.signUpURL+PRL.apiVerifySuffixURL+"/"+newRequest.getKey()
+                            + "http://"+httpServletRequest.getHeader("host")+ PRL.signUpURL+PRL.apiVerifySuffixURL+"/"+newRequest.getKey()
                             +
                             "\n\nIf this request was not fulfilled by you, you can skip this e-mail. " +
                             "\n\nLink expires at:\t"+newRequest.getExpiresAt().format(formatter));
