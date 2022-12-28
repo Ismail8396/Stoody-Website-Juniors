@@ -40,14 +40,14 @@ public class JWTFilter extends OncePerRequestFilter {
 //            }
 //        }
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Stoody ")) {
             token = authorizationHeader.substring(7);
             username = jwtUtility.extractUsername(token);
         }
         //if username is not and security authentication is null
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             log.info("login with username:{}", username);
-            //get userdetail based on username from db
+            //get userDetail based on username from db
             UserDetails userDetails = userService.loadUserByUsername(username);
 
             //if received token is valid /not-expired then add token with security context
