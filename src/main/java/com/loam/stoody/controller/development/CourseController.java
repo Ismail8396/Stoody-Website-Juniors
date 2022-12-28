@@ -1,4 +1,4 @@
-package com.loam.stoody.controller.rest.course;
+package com.loam.stoody.controller.development;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -28,7 +28,7 @@ public class SmsSenderService {
     @Value("${twilio.trial_number}")
     private String TWILIO_NUMBER;
 
-    private static LoadingCache otpCache;
+    private static final LoadingCache otpCache;
 
     private static final long EXPIRE_MINS = 5l;
 

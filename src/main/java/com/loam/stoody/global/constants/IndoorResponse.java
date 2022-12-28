@@ -1,6 +1,6 @@
 package com.loam.stoody.global.constants;
 
-public enum IndoorResponses{
+public enum IndoorResponse {
     INIT,
     SUCCESS,
     FAIL,
@@ -8,5 +8,6 @@ public enum IndoorResponses{
     TOKEN_ABSENT,
     USERNAME_EXIST,
     EMAIL_EXIST,
-    USERNAME_EMAIL_EXIST
+    USERNAME_EMAIL_EXIST,
+    OTP_REQUIRED_AND_SENT
 }

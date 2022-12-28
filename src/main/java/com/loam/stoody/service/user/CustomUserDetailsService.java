@@ -18,13 +18,15 @@
 
 package com.loam.stoody.service.user;
 
-import com.loam.stoody.global.constants.IndoorResponses;
+import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.model.user.Role;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.LoginRequest;
 import com.loam.stoody.repository.user.LoginRequestRepository;
+import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.communication.sms.SmsSenderService;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,14 +38,31 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final LoginRequestRepository loginRequestRepository;
-    private final SmsSenderService smsSenderService;
+    //private final SmsSenderService smsSenderService;
+
+    public User getDefaultUser() {
+        User defaultUser = new User();
+
+        defaultUser.setUsername(null);
+        defaultUser.setPassword(null);
+        defaultUser.setEmail(null);
+        defaultUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
+
+        defaultUser.setAccountEnabled(true);
+        defaultUser.setAccountExpired(false);
+        defaultUser.setAccountLocked(false);
+        defaultUser.setCredentialsExpired(false);
+        defaultUser.setMultiFactorAuth(false);
+
+        return defaultUser;
+    }
 
 
     @Override
@@ -94,26 +113,26 @@ public class CustomUserDetailsService implements UserDetailsService {
         return true;
     }
 
-    public IndoorResponses doesUserExist(String username, String email) {
-        IndoorResponses response = IndoorResponses.SUCCESS;
+    public IndoorResponse doesUserExist(String username, String email) {
+        IndoorResponse response = IndoorResponse.SUCCESS;
 
         if (userRepository.findUserByEmail(email).isPresent())
-            response = IndoorResponses.EMAIL_EXIST;
+            response = IndoorResponse.EMAIL_EXIST;
 
         if (userRepository.findUserByUsername(username).isPresent())
-            response = (response == IndoorResponses.EMAIL_EXIST) ? IndoorResponses.USERNAME_EMAIL_EXIST : IndoorResponses.USERNAME_EXIST;
+            response = (response == IndoorResponse.EMAIL_EXIST) ? IndoorResponse.USERNAME_EMAIL_EXIST : IndoorResponse.USERNAME_EXIST;
 
         return response;
     }
 
-    public IndoorResponses createUser(User user) {
+    public IndoorResponse createUser(User user) {
         try {
             userRepository.save(user);
         } catch (Exception ignored) {
-            return IndoorResponses.FAIL;
+            return IndoorResponse.FAIL;
         }
 
-        return IndoorResponses.SUCCESS;
+        return IndoorResponse.SUCCESS;
     }
 
 }

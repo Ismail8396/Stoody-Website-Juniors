@@ -3,11 +3,9 @@ package com.loam.stoody.controller;
 import com.loam.stoody.dto.api.request.RegistrationRequestDTO;
 import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.model.user.User;
-import com.loam.stoody.model.user.requests.RegistrationRequest;
-import com.loam.stoody.global.constants.IndoorResponses;
+import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.user.RegistrationService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,18 +53,18 @@ public class RegistrationController {
         registrationRequest.setEmail(user.getEmail());
         registrationRequest.setPassword(user.getPassword());
 
-        IndoorResponses response = registrationService.sendTokenToEmail(registrationRequest, httpServletRequest);
+        IndoorResponse response = registrationService.sendTokenToEmail(registrationRequest, httpServletRequest);
 
-        if(response == IndoorResponses.SUCCESS){
+        if(response == IndoorResponse.SUCCESS){
             headerMessage = "Success!";
             messageContent = "We've sent an email to you with a link. Please, click on that link within 15 minutes so your account can get approved!";
-        }else if(response == IndoorResponses.USERNAME_EXIST){
+        }else if(response == IndoorResponse.USERNAME_EXIST){
             headerMessage = "Registration Failed!";
             messageContent = "It seems the username is already in use. Be sure that you have not made any registration requests recently.";
-        }else if(response == IndoorResponses.EMAIL_EXIST){
+        }else if(response == IndoorResponse.EMAIL_EXIST){
             headerMessage = "Registration Failed!";
             messageContent = "It seems the email is already in use. Be sure that you have not made any registration requests recently.";
-        } else if(response == IndoorResponses.USERNAME_EMAIL_EXIST){
+        } else if(response == IndoorResponse.USERNAME_EMAIL_EXIST){
             headerMessage = "Registration Failed!";
             messageContent = "It seems the email and username is already in use. Be sure that you have not made any registration requests recently.";
         }
@@ -90,14 +88,14 @@ public class RegistrationController {
         String messageContent;
 
         // TODO: Replace hard-coded string literals
-        IndoorResponses response = registrationService.verifyAccount(token, servletRequest);
-        if(response == IndoorResponses.SUCCESS){
+        IndoorResponse response = registrationService.verifyAccount(token, servletRequest);
+        if(response == IndoorResponse.SUCCESS){
             headerMessage = "Success!";
             messageContent = "Your account has been verified and you're now signed in to go on as a part of our family!";
-        }else if(response == IndoorResponses.TOKEN_EXPIRED){
+        }else if(response == IndoorResponse.TOKEN_EXPIRED){
             headerMessage = "Token Expired!";
             messageContent = "It seems that the token you used is expired. Request a new one, please.";
-        }else if(response == IndoorResponses.TOKEN_ABSENT){
+        }else if(response == IndoorResponse.TOKEN_ABSENT){
             headerMessage = "Invalid token!";
             messageContent = "It seems that the link you used is not correct. Please, be sure that you've not opened an old link.";
         }

@@ -7,7 +7,7 @@ import com.loam.stoody.global.logger.ConsoleColors;
 import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
-import com.loam.stoody.global.constants.IndoorResponses;
+import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.repository.user.PendingRegistrationRequests;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
@@ -36,19 +36,19 @@ public class RegistrationService {
     private final UserRepository userRepository;
 
 
-    private IndoorResponses isUserPending(String username, String email){
-        IndoorResponses response = IndoorResponses.SUCCESS;
+    private IndoorResponse isUserPending(String username, String email){
+        IndoorResponse response = IndoorResponse.SUCCESS;
 
         for(var i : pendingRegistrationRequests.findAll()){
             if (i.getUsername().equals(username)) {
-                response = IndoorResponses.USERNAME_EXIST;
+                response = IndoorResponse.USERNAME_EXIST;
                 break;
             }
         }
 
         for(var i : pendingRegistrationRequests.findAll()){
             if (i.getEmail().equals(email)) {
-                response = response == IndoorResponses.SUCCESS ? IndoorResponses.EMAIL_EXIST : IndoorResponses.USERNAME_EMAIL_EXIST;
+                response = response == IndoorResponse.SUCCESS ? IndoorResponse.EMAIL_EXIST : IndoorResponse.USERNAME_EMAIL_EXIST;
                 break;
             }
         }
@@ -56,18 +56,18 @@ public class RegistrationService {
         return response;
     }
 
-    public IndoorResponses doesUserExist(String username, String email){
-        IndoorResponses response = isUserPending(username, email);
-        if(response != IndoorResponses.SUCCESS)
+    public IndoorResponse doesUserExist(String username, String email){
+        IndoorResponse response = isUserPending(username, email);
+        if(response != IndoorResponse.SUCCESS)
             return response;
 
         return customUserDetailsService.doesUserExist(username,email);
     }
 
-    public IndoorResponses sendTokenToEmail(RegistrationRequestDTO registrationRequest, HttpServletRequest httpServletRequest){
-        IndoorResponses response = doesUserExist(registrationRequest.getUsername(),registrationRequest.getEmail());
+    public IndoorResponse sendTokenToEmail(RegistrationRequestDTO registrationRequest, HttpServletRequest httpServletRequest){
+        IndoorResponse response = doesUserExist(registrationRequest.getUsername(),registrationRequest.getEmail());
 
-        if(response == IndoorResponses.SUCCESS) {
+        if(response == IndoorResponse.SUCCESS) {
             // Clean Expired Requests
             cleanExpiredRegisterRequests();
 
@@ -122,21 +122,22 @@ public class RegistrationService {
         if(request == null)
             return false;
 
-        User newUser = new User();
-
+        User newUser = customUserDetailsService.getDefaultUser();
         newUser.setUsername(request.getUsername());
         newUser.setPassword(request.getPassword());
         newUser.setEmail(request.getEmail());
-        newUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
 
-        newUser.setAccountEnabled(true);
-        newUser.setAccountExpired(false);
-        newUser.setAccountLocked(false);
-        newUser.setCredentialsExpired(false);
+        //--------------------------------------
+        // Remove these later!
+        newUser.setMultiFactorAuth(true);
+        newUser.setPhoneNumber("+994513441321");
+        //--------------------------------------
+
 
         // Try to save user
         // If we get anything other than success, it'll return false
-        boolean response = customUserDetailsService.createUser(newUser) == IndoorResponses.SUCCESS;
+        // TODO: Auto-login does not work! (Returns ServletException with Bad Credentials)
+        boolean response = customUserDetailsService.createUser(newUser) == IndoorResponse.SUCCESS;
         if(response)
             try {
                 servletRequest.login(newUser.getEmail(), newUser.getPassword());
@@ -147,7 +148,7 @@ public class RegistrationService {
         return response;
     }
 
-    public IndoorResponses verifyAccount(String token, HttpServletRequest servletRequest) {
+    public IndoorResponse verifyAccount(String token, HttpServletRequest servletRequest) {
         RegistrationRequest request = null;
         for(var i : pendingRegistrationRequests.findAll())
             if(i.getKey().equals(token)){
@@ -158,20 +159,20 @@ public class RegistrationService {
         if(request != null){
             if(request.getExpiresAt().isBefore(LocalDateTime.now())) {
                 cleanExpiredRegisterRequests();
-                return IndoorResponses.TOKEN_EXPIRED;
+                return IndoorResponse.TOKEN_EXPIRED;
             }
 
             if(createUserByRegistrationRequest(request, servletRequest)) {
                 cleanExpiredRegisterRequests();
-                return IndoorResponses.SUCCESS;
+                return IndoorResponse.SUCCESS;
             }
             else {
                 cleanExpiredRegisterRequests();
-                return IndoorResponses.FAIL;
+                return IndoorResponse.FAIL;
             }
         }
 
         cleanExpiredRegisterRequests();
-        return IndoorResponses.TOKEN_ABSENT;
+        return IndoorResponse.TOKEN_ABSENT;
     }
 }

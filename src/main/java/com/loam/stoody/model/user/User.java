@@ -35,14 +35,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private boolean isAccountExpired;
-    private boolean isAccountLocked;
-    private boolean isCredentialsExpired;
-    private boolean isAccountEnabled;
-
-    @Column()
     private String firstName;
-    @Column()
     private String lastName;
     @Column(nullable = false, unique = true)
     @Email(message = "{errors.invalid_email}")
@@ -52,7 +45,13 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    private boolean isAccountExpired;
+    private boolean isAccountLocked;
+    private boolean isCredentialsExpired;
+    private boolean isAccountEnabled;
     private String phoneNumber;
+    @Column(name = "multi_factor_auth")
+    private boolean multiFactorAuth;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
