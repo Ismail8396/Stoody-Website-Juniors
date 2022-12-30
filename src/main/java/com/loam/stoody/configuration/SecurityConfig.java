@@ -67,9 +67,12 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests()
-                .requestMatchers(apiRegistrationPrefixURL+"/**", apiLoginPrefixURL+"/**").permitAll()
-                .requestMatchers(apiRegistrationPrefixURL+"/*", apiLoginPrefixURL+"/*").permitAll()
-                .requestMatchers(PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**").permitAll()
+                .requestMatchers(
+                        apiRegistrationPrefixURL+"/**", apiLoginPrefixURL+"/**",
+                        apiRegistrationPrefixURL+"/*", apiLoginPrefixURL+"/*",
+                        PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**",
+                        PRL.verifyPasswordPageURL+"/**",
+                        PRL.error404URL).permitAll()
 
                 // Only for authorized users
                 .requestMatchers(""/* PAGES SPECIAL FOR AUTHENTICATED USERS */)

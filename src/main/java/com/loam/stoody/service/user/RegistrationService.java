@@ -140,7 +140,7 @@ public class RegistrationService {
         boolean response = customUserDetailsService.createUser(newUser) == IndoorResponse.SUCCESS;
         if(response)
             try {
-                servletRequest.login(newUser.getEmail(), newUser.getPassword());
+                servletRequest.login(newUser.getUsername(), newUser.getPassword());
             } catch (ServletException e) {
                 StoodyLogger.DebugLog(ConsoleColors.YELLOW,"Servlet exception is thrown while auto login! Message: "+e.getMessage());
             }

@@ -1,7 +1,10 @@
 package com.loam.stoody.dto.api.response;
 
 import com.loam.stoody.global.constants.IndoorResponse;
+import lombok.Data;
+import lombok.Getter;
 
+@Data
 public class OutdoorResponse<T> {
     String responseStatus;
     T response;

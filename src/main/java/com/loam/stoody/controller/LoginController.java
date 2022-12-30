@@ -24,14 +24,18 @@ public class LoginController {
     }
 
     @SneakyThrows
+    @ResponseBody
     @PostMapping(PRL.apiLoginPrefixURL+PRL.signInURL)
     public OutdoorResponse<?> login(@RequestParam(name = "username") String username,
                                  @RequestParam(name = "password") String password, HttpServletRequest request) {
         return loginServiceProxy.login(username, password, request);
     }
 
-    @GetMapping(PRL.apiLoginPrefixURL+PRL.signInURL+PRL.apiVerifySuffixURL)
-    public  OutdoorResponse<?> validateOTP(@RequestParam(name = "token") String token, @RequestParam(name = "username") String username) {
+    @PostMapping(PRL.apiLoginPrefixURL+PRL.signInURL+PRL.apiVerifySuffixURL)
+    @ResponseBody
+    public  OutdoorResponse<?> validateOTP(@RequestParam(name = "token") String token,
+                                           @RequestParam(name = "username") String username
+                                           ,HttpServletRequest request) {
         return loginServiceProxy.verifyOTP(token, username);
     }
 

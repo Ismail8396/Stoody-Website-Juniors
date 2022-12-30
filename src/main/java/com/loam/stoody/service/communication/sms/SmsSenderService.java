@@ -6,6 +6,9 @@ import com.google.common.cache.LoadingCache;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.loam.stoody.global.constants.ProjectConfigurationVariables;
+import com.loam.stoody.global.logger.ConsoleColors;
+import com.loam.stoody.global.logger.StoodyLogger;
 import com.twilio.Twilio;
 import com.twilio.base.ResourceSet;
 import com.twilio.rest.api.v2010.account.Message;
@@ -48,20 +51,30 @@ public class SmsSenderService {
         int otp = 100000 + random.nextInt(900000);
         otpCache.put(username, otp);
 
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(
-                        new PhoneNumber(toNumber),
-                        new PhoneNumber(TWILIO_NUMBER),
-                        "Your Stoody OTP is:" + otp)
-                .create();
+        // If you want OTP to be sent to User's number, you have to change stoodyEnvironment value!
+        if(ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)){
+            StoodyLogger.DebugLog(ConsoleColors.CYAN, "Use this OTP to sign in:"+String.valueOf(otp));
+        }else {
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                            new PhoneNumber(toNumber),
+                            new PhoneNumber(TWILIO_NUMBER),
+                            "Your Stoody OTP is:" + otp)
+                    .create();
+        }
     }
 
     public boolean validateOTP(String token, String username) {
-        String savedToken = otpCache.getIfPresent(username).toString();
-        if (null != savedToken && savedToken.equals(token)) return true;
-        return false;
+        var _loadingCache = otpCache.getIfPresent(username);
+        if(_loadingCache == null) return false;
+
+        String savedToken = _loadingCache.toString();
+        if (savedToken == null) return false;
+
+        return savedToken.equals(token);
     }
 
+    // TODO: aleemkhowaja, this is not used.
     public void isSmsDelivered() {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         ListenableFuture<ResourceSet<Message>> future = Message.reader().readAsync();

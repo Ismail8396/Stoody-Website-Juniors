@@ -48,7 +48,6 @@ public class RegistrationController {
         RegistrationRequestDTO registrationRequest = new RegistrationRequestDTO();
 
         // implement if user is null case
-
         registrationRequest.setUsername(user.getUsername());
         registrationRequest.setEmail(user.getEmail());
         registrationRequest.setPassword(user.getPassword());
@@ -73,8 +72,9 @@ public class RegistrationController {
             messageContent = "I think you're lost. Definitely, this is not the page you're looking for...";
         }
 
-        redirectAttributes.addFlashAttribute("header", headerMessage);
-        redirectAttributes.addFlashAttribute("message", messageContent);
+        redirectAttributes.addAttribute("header", headerMessage);
+        redirectAttributes.addAttribute("message", messageContent);
+        redirectAttributes.addAttribute("openCode", PRL.openCode);
 
         return "redirect:"+PRL.redirectPageURL;
     }
@@ -104,8 +104,9 @@ public class RegistrationController {
             messageContent = "I think you're lost. Definitely, this is not the page you're looking for...";
         }
 
-        redirectAttributes.addFlashAttribute("header", headerMessage);
-        redirectAttributes.addFlashAttribute("message", messageContent);
+        redirectAttributes.addAttribute("header", headerMessage);
+        redirectAttributes.addAttribute("message", messageContent);
+        redirectAttributes.addAttribute("openCode", PRL.openCode);
 
         return "redirect:"+PRL.redirectPageURL;
     }
