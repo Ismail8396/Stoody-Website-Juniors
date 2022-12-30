@@ -15,6 +15,8 @@ package com.loam.stoody.global.constants;
 
 
 public class PRL {
+    public static final int openCode = 65565;
+
     // URLs ------------------------------------------------------------------------------------------------------------
     // Controller
     public static final String homeURL = "/";
@@ -24,6 +26,7 @@ public class PRL {
     public static final String forgetPasswordURL = "/forget-password";
     public static final String error404URL = "/error";
     public static final String redirectPageURL = "/redirect-page";
+    public static final String verifyPasswordPageURL = "/verify-password";
 
     // API (Rest Controller)
     // Prefixes
@@ -41,6 +44,7 @@ public class PRL {
     public static final String error404Page = "pages/404-error";
     public static final String contactPage = "pages/contact";
     public static final String redirectPage = "pages/redirect-page";
+    public static final String verifyPasswordPage = "pages/verify-password";
 
         // Only for any authorized one
     public static final String userHomePage = "index";
