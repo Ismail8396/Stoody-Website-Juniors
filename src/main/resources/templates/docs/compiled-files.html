@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head> <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -11,20 +11,27 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
     <link href="../../static/assets/libs/prismjs/themes/prism-okaidia.min.css" rel="stylesheet">
     <title>Compiled Files | Stoody</title>
 </head>
@@ -528,17 +535,22 @@
 
 
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
-
-
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
     <script src="../../static/assets/js/sidebarMenu.js"></script>
     <script src="../../static/assets/libs/prismjs/prism.js"></script>
     <script src="../../static/assets/libs/prismjs/components/prism-scss.min.js"></script>

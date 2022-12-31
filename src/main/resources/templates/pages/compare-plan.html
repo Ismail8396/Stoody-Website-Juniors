@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-  <head>    <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,26 +11,33 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
 
     <title>Compare Plan | Stoody </title>
 
-  </head>
+</head>
 
-  <body class="bg-white">
+<body class="bg-white">
     <!-- Navbar -->
     <!-- navbar login -->
 <nav class="navbar navbar-expand-lg navbar-default">
@@ -761,480 +768,467 @@
     </div>
 </nav>
     <!-- Page Content -->
-<main>
-    <section class="py-14">
-      <div class="container ">
-        <!-- row -->
-        <div class="row ">
-          <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-12">
-            <!-- heading -->
-            <div class=" text-center mb-8">
-              <h1 class="display-3 mb-3 fw-bold">A plan for every projects</h1>
-              <p class="lead px-md-14">Lorem Ipsum, giving information on its origins, as well as a random lipsum
-                generator.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-12">
-            <!-- Card -->
-            <div class="card mb-3 border shadow-none border-top-0">
-              <div class="border-top border-4 rounded-3 border-dark-warning">
-              <!-- Card body -->
-              <div class="p-5">
-                <div class="mb-5">
-                  <h3 class="fw-bold">Free
-                  </h3>
-                  <p class="mb-0">
-                    To start your learning to day you will get only
-                    <span class="text-dark fw-medium">free Course</span> access.
-                  </p>
-                  <h1 class="mb-3 fw-bold mt-5">It's Free</h1>
-                  <a href="#" class="btn btn-outline-dark-warning">Get Started for Free</a>
+    <main>
+        <section class="py-14">
+            <div class="container ">
+                <!-- row -->
+                <div class="row ">
+                    <div class="offset-xl-2 col-xl-8 offset-lg-2 col-lg-8 col-12">
+                        <!-- heading -->
+                        <div class=" text-center mb-8">
+                            <h1 class="display-3 mb-3 fw-bold">A plan for every projects</h1>
+                            <p class="lead px-md-14">Lorem Ipsum, giving information on its origins, as well as a random lipsum generator.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <!-- Card -->
+                        <div class="card mb-3 border shadow-none border-top-0">
+                            <div class="border-top border-4 rounded-3 border-dark-warning">
+                                <!-- Card body -->
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="fw-bold">Free
+                                        </h3>
+                                        <p class="mb-0">
+                                            To start your learning to day you will get only
+                                            <span class="text-dark fw-medium">free Course</span> access.
+                                        </p>
+                                        <h1 class="mb-3 fw-bold mt-5">It's Free</h1>
+                                        <a href="#" class="btn btn-outline-dark-warning">Get Started for Free</a>
+                                    </div>
+                                    <hr class="m-0" />
+                                    <div class="mt-5">
+                                        <h4 class="fw-bold mb-4">
+                                            All core features, including:
+                                        </h4>
+                                        <!-- List -->
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Only free courses </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span><span class="fw-bold text-dark">Free </span>learning paths
+                                                </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span><span class="fw-bold text-dark">5GB </span>storage</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Analytics </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Free mobile app</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Access to support forums</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <!-- Card -->
+                        <div class="card mb-3 border border-top-0 ">
+                            <!-- Card body -->
+                            <div class="border-top border-4 rounded-3 border-dark-primary">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="fw-bold">Growth
+                                        </h3>
+                                        <p class="mb-0">
+                                            Access all
+                                            <span class="text-dark fw-medium">premium courses, workshops, and mobile apps.</span> Renewed monthly.
+                                        </p>
+                                        <h1 class="mb-3 fw-bold mt-5">$39 <span class="fs-5 text-muted fw-normal">/Monthly</span></h1>
+                                        <a href="#" class="btn btn-primary">Start Today</a>
+                                    </div>
+                                    <hr class="m-0" />
+                                    <div class="mt-5">
+                                        <h4 class="fw-bold mb-4">
+                                            Everything in Starter, plus:
+                                        </h4>
+                                        <!-- List -->
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Offline viewing </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span><span class="fw-bold text-dark">Offline </span>projects
+                                                </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span><span class="fw-bold text-dark">Unlimited </span>storage</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Custom domain support </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Bulk editing </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>12 / 5 support</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <!-- Card -->
+                        <div class="card mb-3 border border-top-0 shadow-none">
+                            <!-- Card body -->
+                            <div class="border-top border-4 rounded-3 border-dark-info">
+                                <div class="p-5">
+
+                                    <div class="mb-5">
+                                        <h3 class="fw-bold">Enterprise
+                                        </h3>
+                                        <p class="mb-0">
+                                            Upto 10 member access everything. Save
+                                            <span class="text-primary fw-medium">$78 </span>per year! Renewed yearly.
+                                        </p>
+                                        <h1 class="mb-3 fw-bold mt-5">$139 <span class="fs-5 text-muted fw-normal">/Monthly</span></h1>
+                                        <a href="#" class="btn btn-outline-dark-info">Contact Sales</a>
+                                    </div>
+                                    <hr class="m-0" />
+                                    <div class="mt-5">
+                                        <h4 class="fw-bold mb-4">
+                                            Everything in Individual, plus:
+                                        </h4>
+                                        <!-- List -->
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Workshop </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span><span class="fw-bold text-dark">Dedicated </span>hardware
+                                                </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span><span class="fw-bold text-dark">99.9% uptime </span>guarantee
+                                                </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>Advanced analytics </span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>3rd party integrations</span>
+                                            </li>
+                                            <li class="mb-1">
+                                                <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
+                                                <span>24 / 7 support</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <hr class="m-0" />
-                <div class="mt-5">
-                  <h4 class="fw-bold mb-4">
-                    All core features, including:
-                  </h4>
-                  <!-- List -->
-                  <ul class="list-unstyled mb-0">
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Only free courses </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span><span class="fw-bold text-dark">Free </span>learning paths
-                      </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span><span class="fw-bold text-dark">5GB </span>storage</span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Analytics </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Free mobile app</span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Access to support forums</span>
-                    </li>
-                  </ul>
+            </div>
+        </section>
+
+        <section class="pb-14 pt-lg-8">
+            <!-- container -->
+            <div class="container">
+                <div class="row">
+                    <!-- heading -->
+                    <div class="col-lg-6 col-12">
+                        <div class="mb-8">
+                            <h1 class="display-4 fw-bold mb-4 pe-8">Compare plan &
+
+                                <span class="text-primary">additional features</span>
+                            </h1>
+                            <!-- para -->
+                            <p class="lead">Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-12">
-            <!-- Card -->
-            <div class="card mb-3 border border-top-0 ">
-              <!-- Card body -->
-              <div class="border-top border-4 rounded-3 border-dark-primary">
-              <div class="p-5">
-                <div class="mb-5">
-                  <h3 class="fw-bold">Growth
-                  </h3>
-                  <p class="mb-0">
-                    Access all
-                    <span class="text-dark fw-medium">premium courses, workshops, and mobile apps.</span>
-                    Renewed monthly.
-                  </p>
-                  <h1 class="mb-3 fw-bold mt-5">$39 <span
-                      class="fs-5 text-muted fw-normal">/Monthly</span></h1>
-                  <a href="#" class="btn btn-primary">Start Today</a>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- table -->
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <tbody>
+                                    <tr>
+                                        <td class="border-top-0 ps-0" colspan="5">
+                                            <h1 class="fw-bold">Features</h1>
+                                        </td>
+                                        <td class="border-top-0 ps-0">
+                                            <h3 class="mb-1 fw-bold"> Free</h3>
+                                            <a href="#">Try for free</a>
+                                        </td>
+                                        <td class="border-top-0 ps-0">
+                                            <h3 class="mb-1 fw-bold">Growth</h3>
+                                            <a href="#">Subscribe</a>
+                                        </td>
+                                        <td class="border-top-0 ps-0">
+                                            <h3 class="mb-1 fw-bold">Enterprise</h3>
+                                            <a href="#">Contact us</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pt-8 ps-0">
+                                            <h3 class="mb-0">Essentials</h3>
+                                        </td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-top-0 ps-0" colspan="5">Unlimited viewers</td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Public packages</td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Cross-platform Desktop app</td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Sketch & Figma import</td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                </tbody>
+                                <tbody class="border-top-0">
+                                    <tr>
+                                        <td class="pt-8 ps-0">
+                                            <h3 class="mb-0 ">Customer Support and Success</h3>
+                                        </td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-top-0 ps-0" colspan="5">Community support</td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Email support </td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Dedicated account manager</td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Sketch & Figma import</td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                </tbody>
+                                <tbody class="border-top-0">
+                                    <tr>
+                                        <td class="pt-8 ps-0">
+                                            <h3 class="mb-0 ">Design Systems</h3>
+                                        </td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+                                        <td class="pt-8 ps-0"></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="border-top-0 ps-0" colspan="5">Smart Components</td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Custom Fonts</td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-0" colspan="5">Figma Files</td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
+                                        <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <hr class="m-0" />
-                <div class="mt-5">
-                  <h4 class="fw-bold mb-4">
-                    Everything in Starter, plus:
-                  </h4>
-                  <!-- List -->
-                  <ul class="list-unstyled mb-0">
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Offline viewing </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span><span class="fw-bold text-dark">Offline </span>projects
-                      </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span><span class="fw-bold text-dark">Unlimited </span>storage</span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Custom domain support </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Bulk editing </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>12 / 5 support</span>
-                    </li>
-                  </ul>
+            </div>
+        </section>
+        <section class="pb-14 pt-lg-8">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-10 col-12">
+                        <div class="mb-8 pe-8">
+                            <!-- heading -->
+                            <h1 class="display-4 fw-bold mb-4">Frequently asked questions,
+
+                                <span class="text-primary"> answered.</span>
+                            </h1>
+                            <!-- para -->
+                            <p class="fs-4">More questions? Visit the <a href="#">Help Center.</a></p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-12">
-            <!-- Card -->
-            <div class="card mb-3 border border-top-0 shadow-none">
-              <!-- Card body -->
-              <div class="border-top border-4 rounded-3 border-dark-info">
-              <div class="p-5">
-
-                <div class="mb-5">
-                  <h3 class="fw-bold">Enterprise
-                  </h3>
-                  <p class="mb-0">
-                    Upto 10 member access everything. Save
-                    <span class="text-primary fw-medium">$78 </span>per year! Renewed yearly.
-                  </p>
-                  <h1 class="mb-3 fw-bold mt-5">$139 <span
-                      class="fs-5 text-muted fw-normal">/Monthly</span></h1>
-                  <a href="#" class="btn btn-outline-dark-info">Contact Sales</a>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <!-- col -->
+                        <div class="mb-6 pe-lg-8">
+                            <h3 class="mb-2">What is the cost of an online course?</h3>
+                            <p class="fs-4">Even though some people don't pay attention, information is what makes you who you are. Begin studying and instructing right now.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <!-- col -->
+                        <div class="mb-6 pe-lg-8 ">
+                            <h3 class="mb-2">What do I need to take a course?</h3>
+                            <p class="fs-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae aspernatur autem consequatur placeat.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <!-- col -->
+                        <div class="mb-6 pe-lg-8">
+                            <h3 class="mb-2">What do I receive for taking this course?</h3>
+                            <p class="fs-4">Sit amet lorem ipsum consectetur adipisicing elit. Officiis libero quibusdam minus ipsum saepe?</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <!-- col -->
+                        <div class="mb-6 pe-lg-8">
+                            <h3 class="mb-2">What will I get if I subscribe to this Certificate?</h3>
+                            <p class="fs-4">Dolor lorem ipsum sit amet consectetur adipisicing elit. Perspiciatis magnam dolorem.</p>
+                        </div>
+                    </div>
                 </div>
-                <hr class="m-0" />
-                <div class="mt-5">
-                  <h4 class="fw-bold mb-4">
-                    Everything in Individual, plus:
-                  </h4>
-                  <!-- List -->
-                  <ul class="list-unstyled mb-0">
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Workshop </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span><span class="fw-bold text-dark">Dedicated </span>hardware
-                      </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span><span class="fw-bold text-dark">99.9% uptime </span>guarantee
-                      </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>Advanced analytics </span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>3rd party integrations</span>
-                    </li>
-                    <li class="mb-1">
-                      <span class="text-success me-1"><i class="mdi mdi-check-circle-outline fs-4"></i></span>
-                      <span>24 / 7 support</span>
-                    </li>
-                  </ul>
+            </div>
+        </section>
+
+        <section class="pb-14 pt-8 ps-0 bg-light ">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 col-md-12">
+                        <!-- heading -->
+                        <div class="text-center mb-8">
+                            <h1 class="display-4 fw-bold mb-3">Developer<i class="mdi mdi-heart text-danger mx-1"></i>Stoody
+                            </h1>
+                            <!-- para -->
+                            <p class="fs-4">Our average call quality rating is 4.4 out of 5. That leads to happy tweets like these:</p>
+                        </div>
+
+                    </div>
                 </div>
-              </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="pb-14 pt-lg-8">
-      <!-- container -->
-      <div class="container">
-        <div class="row">
-          <!-- heading -->
-          <div class="col-lg-6 col-12">
-            <div class="mb-8">
-              <h1 class="display-4 fw-bold mb-4 pe-8">Compare plan &
-
-                <span class="text-primary">additional features</span>
-              </h1>
-              <!-- para -->
-              <p class="lead">Lorem Ipsum, giving information on its origins, as well as a
-                random Lipsum generator.</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <!-- table -->
-            <div class="table-responsive">
-              <table class="table text-nowrap">
-                <tbody>
-                  <tr>
-                    <td class="border-top-0 ps-0" colspan="5">
-                      <h1 class="fw-bold">Features</h1>
-                    </td>
-                    <td class="border-top-0 ps-0">
-                      <h3 class="mb-1 fw-bold"> Free</h3>
-                      <a href="#">Try for free</a>
-                    </td>
-                    <td class="border-top-0 ps-0">
-                      <h3 class="mb-1 fw-bold">Growth</h3>
-                      <a href="#">Subscribe</a>
-                    </td>
-                    <td class="border-top-0 ps-0">
-                      <h3 class="mb-1 fw-bold">Enterprise</h3>
-                      <a href="#">Contact us</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="pt-8 ps-0">
-                      <h3 class="mb-0">Essentials</h3>
-                    </td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-
-                  </tr>
-
-                  <tr>
-                    <td class="border-top-0 ps-0" colspan="5">Unlimited viewers</td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Public packages</td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Cross-platform Desktop app</td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Sketch & Figma import</td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                </tbody>
-                <tbody class="border-top-0">
-                  <tr>
-                    <td class="pt-8 ps-0">
-                      <h3 class="mb-0 ">Customer Support and Success</h3>
-                    </td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-
-                  </tr>
-
-                  <tr>
-                    <td class="border-top-0 ps-0" colspan="5">Community support</td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Email support </td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Dedicated account manager</td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Sketch & Figma import</td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                </tbody>
-                <tbody class="border-top-0">
-                  <tr>
-                    <td class="pt-8 ps-0">
-                      <h3 class="mb-0 ">Design Systems</h3>
-                    </td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-                    <td class="pt-8 ps-0"></td>
-
-                  </tr>
-
-                  <tr>
-                    <td class="border-top-0 ps-0" colspan="5">Smart Components</td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="border-top-0 ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-
-                  <tr>
-                    <td class="ps-0" colspan="5">Custom Fonts</td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                  <tr>
-                    <td class="ps-0" colspan="5">Figma Files</td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-x fs-3 text-muted"></i></td>
-                    <td class="ps-0"><i class="fe fe-check fs-3 text-success"></i></td>
-
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="pb-14 pt-lg-8">
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="col-xl-6 col-lg-10 col-12">
-            <div class="mb-8 pe-8">
-              <!-- heading -->
-              <h1 class="display-4 fw-bold mb-4">Frequently asked
-
-                questions,
-
-                <span class="text-primary"> answered.</span>
-              </h1>
-              <!-- para -->
-              <p class="fs-4">More questions? Visit the <a href="#">Help Center.</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-12">
-            <!-- col -->
-            <div class="mb-6 pe-lg-8">
-              <h3 class="mb-2">What is the cost of an online course?</h3>
-              <p class="fs-4">Even though some people don't pay attention, information is what makes you who you are. 
-                Begin studying and instructing right now.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <!-- col -->
-            <div class="mb-6 pe-lg-8 ">
-              <h3 class="mb-2">What do I need to take a course?</h3>
-              <p class="fs-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae aspernatur autem consequatur placeat.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <!-- col -->
-            <div class="mb-6 pe-lg-8">
-              <h3 class="mb-2">What do I receive for taking this course?</h3>
-              <p class="fs-4">Sit amet lorem ipsum consectetur adipisicing elit. Officiis libero quibusdam minus ipsum saepe?</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <!-- col -->
-            <div class="mb-6 pe-lg-8">
-              <h3 class="mb-2">What will I get if I subscribe to this Certificate?</h3>
-              <p class="fs-4">Dolor lorem ipsum sit amet consectetur adipisicing elit. Perspiciatis magnam dolorem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pb-14 pt-8 ps-0 bg-light ">
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="offset-xl-3 col-xl-6 col-md-12">
-            <!-- heading -->
-            <div class="text-center mb-8">
-              <h1 class="display-4 fw-bold mb-3">Developer<i class="mdi mdi-heart text-danger mx-1"></i>Stoody
-              </h1>
-              <!-- para -->
-              <p class="fs-4">Our average call quality rating is 4.4 out of 5. That leads to happy
-                tweets like these:</p>
-            </div>
-
-          </div>
-        </div>
 
 
-        <div class="row">
-          <!-- col -->
-          <div class="col-md-6 col-12">
-            <!-- card -->
-            <div class="card mb-6 mb-lg-0">
-              <!-- card body -->
-              <div class="card-body p-6">
-                <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
+                <div class="row">
+                    <!-- col -->
+                    <div class="col-md-6 col-12">
+                        <!-- card -->
+                        <div class="card mb-6 mb-lg-0">
+                            <!-- card body -->
+                            <div class="card-body p-6">
+                                <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
 
-                <p class="fs-3 text-dark fw-semi-bold">"Stoody has created an incredibly seamless
-                  experience for learning and teaching. My mind is blown
-                  fusce consequat ligula in dui congue interdum."</p>
+                                <p class="fs-3 text-dark fw-semi-bold">"Stoody has created an incredibly seamless experience for learning and teaching. My mind is blown fusce consequat ligula in dui congue interdum."</p>
 
-                <div class="d-flex mt-4 align-items-center">
-                  <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle">
-                  <div class="ms-2">
-                    <h5 class="text-primary mb-0">Ronald Richards</h5>
-                    <p class="mb-0 fs-6">Payments Engineer</p>
-                  </div>
+                                <div class="d-flex mt-4 align-items-center">
+                                    <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar avatar-md rounded-circle">
+                                    <div class="ms-2">
+                                        <h5 class="text-primary mb-0">Ronald Richards</h5>
+                                        <p class="mb-0 fs-6">Payments Engineer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <!-- card -->
+                        <div class="card">
+                            <!-- card body -->
+                            <div class="card-body p-6">
+                                <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
+                                <p class="fs-3 text-dark fw-semi-bold">"I am very satisfied with my purchase. Your team helped me a lot with the new release for RLT version. I hope you are always successful."</p>
+                                <div class="d-flex mt-4 align-items-center">
+                                    <img src="../../static/assets/images/avatar/avatar-9.jpg" alt="" class="avatar avatar-md rounded-circle">
+                                    <div class="ms-2">
+                                        <h5 class="text-primary mb-0">Darlene Robertson</h5>
+                                        <p class="mb-0 fs-6">Senior Data Analyst</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="col-md-6 col-12">
-            <!-- card -->
-            <div class="card">
-              <!-- card body -->
-              <div class="card-body p-6">
-                <i class="mdi mdi-48px mdi-format-quote-open text-light-primary lh-1 mb-3 d-block"></i>
-                <p class="fs-3 text-dark fw-semi-bold">"I am very satisfied with my purchase. Your team
-                  helped me a lot with the new release for RLT
-                  version. I hope you are always successful."</p>
-                <div class="d-flex mt-4 align-items-center">
-                  <img src="../../static/assets/images/avatar/avatar-9.jpg" alt="" class="avatar avatar-md rounded-circle">
-                  <div class="ms-2">
-                    <h5 class="text-primary mb-0">Darlene Robertson</h5>
-                    <p class="mb-0 fs-6">Senior Data Analyst</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-  </main>
+    </main>
     <!-- footer -->
     <!-- footer -->
 <footer class="pt-lg-10 pt-5 footer bg-white">
@@ -1314,19 +1308,24 @@
 
     <!-- Scripts -->
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
 
-
-
-  </body>
+</body>
 
 </html>

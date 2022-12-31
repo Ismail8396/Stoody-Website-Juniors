@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>	<!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,25 +11,32 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
-	<title>Subscriptions | Stoody</title>
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Subscriptions | Stoody</title>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
         <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
@@ -1164,239 +1171,235 @@
         </div>
     </div>
 </nav>
-	<!-- Page Content -->
-	<main>
-	<section class="pt-5 pb-5">
-		<div class="container">
-			<!-- User info -->
-			<div class="row align-items-center">
-				<div class="col-xl-12 col-lg-12 col-md-12 col-12">
-					<!-- Bg -->
-					<div class="pt-16 rounded-top-md" style="
+    <!-- Page Content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- User info -->
+                <div class="row align-items-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <!-- Bg -->
+                        <div class="pt-16 rounded-top-md" style="
 								background: url(../assets/images/background/profile-bg.jpg) no-repeat;
 								background-size: cover;
 							"></div>
-				  <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
-					<div
-					  class="d-flex align-items-end justify-content-between  ">
-					  <div class="d-flex align-items-center">
-						<div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-						  <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white"
-							alt="">
-						</div>
-						<div class="lh-1">
-						  <h2 class="mb-0">Stella Flores
-							<a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
-							  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
+                            <div class="d-flex align-items-end justify-content-between  ">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white" alt="">
+                                    </div>
+                                    <div class="lh-1">
+                                        <h2 class="mb-0">Stella Flores
+                                            <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
 								<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
 								<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
 							  </svg>
-							</a>
-						  </h2>
-						  <p class=" mb-0 d-block">@stellaflores</p>
-						</div>
-					  </div>
-					  <div>
-						<a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
+                                            </a>
+                                        </h2>
+                                        <p class=" mb-0 d-block">@stellaflores</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
 						  Setting</a>
-					  </div>
-					</div>
-					</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-	<!-- Content -->
+                <!-- Content -->
 
-	<div class="row mt-0 mt-md-4">
-				<div class="col-lg-3 col-md-4 col-12">
-					<!-- Side navbar -->
-					<nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-							<!-- Menu -->
-						<a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-							<!-- Button -->
-						<button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button"
-							data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false"
-							aria-label="Toggle navigation">
+                <div class="row mt-0 mt-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <!-- Side navbar -->
+                        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+                            <!-- Menu -->
+                            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+                            <!-- Button -->
+                            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="fe fe-menu"></span>
 						</button>
-							<!-- Collapse navbar -->
-						<div class="collapse navbar-collapse" id="sidenav">
-							<div class="navbar-nav flex-column">
-								<span class="navbar-header">Subscription</span>
-								<ul class="list-unstyled ms-n2 mb-4">
-										<!-- Nav item -->
-									<li class="nav-item active">
-										<a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
+                            <!-- Collapse navbar -->
+                            <div class="collapse navbar-collapse" id="sidenav">
+                                <div class="navbar-nav flex-column">
+                                    <span class="navbar-header">Subscription</span>
+                                    <ul class="list-unstyled ms-n2 mb-4">
+                                        <!-- Nav item -->
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
 											Subscriptions
 										</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
 											Info</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
-									</li>
-									  <!-- Nav item -->
-									  <li class="nav-item  ">
-                                        <a class="nav-link" href="student-quiz.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item  ">
+                                            <a class="nav-link" href="student-quiz.html"><i
                                                 class="fe fe-help-circle nav-icon"></i>My Quiz Attempt</a>
-                                    </li>
-								</ul>
-									<!-- Navbar header -->
-								<span class="navbar-header">Account Settings</span>
-								<ul class="list-unstyled ms-n2 mb-0">
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
+                                        </li>
+                                    </ul>
+                                    <!-- Navbar header -->
+                                    <span class="navbar-header">Account Settings</span>
+                                    <ul class="list-unstyled ms-n2 mb-0">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
 											Profiles</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
 											Privacy</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
 											Profile</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<div class="col-lg-9 col-md-8 col-12">
-					<!-- Card -->
-					<div class="card border-0">
-						<!-- Card header -->
-						<div class="card-header d-lg-flex justify-content-between align-items-center">
-							<div class="mb-3 mb-lg-0">
-								<h3 class="mb-0">My Subscriptions</h3>
-								<p class="mb-0">
-									Here is list of package/product that you have subscribed.
-								</p>
-							</div>
-							<div>
-								<a href="pricing.html" class="btn btn-success btn-sm">Upgrade Now — Go Pro $39.00</a>
-							</div>
-						</div>
-						<!-- Card body -->
-						<div class="card-body">
-							<div class="border-bottom pt-0 pb-5">
-								<div class="row mb-4">
-									<div class="col-lg-6 col-md-8 col-7 mb-2 mb-lg-0">
-										<span class="d-block">
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card border-0">
+                            <!-- Card header -->
+                            <div class="card-header d-lg-flex justify-content-between align-items-center">
+                                <div class="mb-3 mb-lg-0">
+                                    <h3 class="mb-0">My Subscriptions</h3>
+                                    <p class="mb-0">
+                                        Here is list of package/product that you have subscribed.
+                                    </p>
+                                </div>
+                                <div>
+                                    <a href="pricing.html" class="btn btn-success btn-sm">Upgrade Now — Go Pro $39.00</a>
+                                </div>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="border-bottom pt-0 pb-5">
+                                    <div class="row mb-4">
+                                        <div class="col-lg-6 col-md-8 col-7 mb-2 mb-lg-0">
+                                            <span class="d-block">
 											<span class="h4">Monthly</span>
-											<span class="badge bg-success ms-2">
+                                            <span class="badge bg-success ms-2">
 												Active</span></span>
-										<p class="mb-0 fs-6">
-											Subscription ID: #100010002
-										</p>
-									</div>
-									<div class="col-lg-3 col-md-4 col-5 mb-2 mb-lg-0">
-										<!-- Custom Switch -->
-										<span>Auto Renewal</span>
-										<div class="form-check form-switch">
-											<input type="checkbox" class="form-check-input" id="customSwitch1" checked>
-											<label class="form-check-label" for="customSwitch1"></label>
-										</div>
-									</div>
-									<div class="col-lg-3 col-md-12 col-12 d-lg-flex align-items-start justify-content-end">
-										<a href="#" class="btn btn-outline-primary btn-sm">Change Plan</a>
-									</div>
-								</div>
-								<!-- Pricing data -->
-								<div class="row">
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Started On</span>
-										<h6 class="mb-0">Oct 1, 2020</h6>
-									</div>
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Price</span>
-										<h6 class="mb-0">Monthly</h6>
-									</div>
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Access</span>
-										<h6 class="mb-0">Access All Courses</h6>
-									</div>
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Billing Date</span>
-										<h6 class="mb-0">Next Billing on Nov 1, 2020</h6>
-									</div>
-								</div>
-							</div>
-							<div class="pt-5">
-								<div class="row mb-4">
-									<div class="col mb-2 mb-lg-0">
-										<span class="d-block">
+                                            <p class="mb-0 fs-6">
+                                                Subscription ID: #100010002
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-5 mb-2 mb-lg-0">
+                                            <!-- Custom Switch -->
+                                            <span>Auto Renewal</span>
+                                            <div class="form-check form-switch">
+                                                <input type="checkbox" class="form-check-input" id="customSwitch1" checked>
+                                                <label class="form-check-label" for="customSwitch1"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-12 col-12 d-lg-flex align-items-start justify-content-end">
+                                            <a href="#" class="btn btn-outline-primary btn-sm">Change Plan</a>
+                                        </div>
+                                    </div>
+                                    <!-- Pricing data -->
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Started On</span>
+                                            <h6 class="mb-0">Oct 1, 2020</h6>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Price</span>
+                                            <h6 class="mb-0">Monthly</h6>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Access</span>
+                                            <h6 class="mb-0">Access All Courses</h6>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Billing Date</span>
+                                            <h6 class="mb-0">Next Billing on Nov 1, 2020</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pt-5">
+                                    <div class="row mb-4">
+                                        <div class="col mb-2 mb-lg-0">
+                                            <span class="d-block">
 											<span class="h4">Free Plan</span>
-											<span class="badge bg-danger ms-2">
+                                            <span class="badge bg-danger ms-2">
 												Expired</span></span>
-										<p class="mb-0 fs-6">
-											Subscription ID: #100010001
-										</p>
-									</div>
-									<div class="col-auto">
-										<a href="#" class="btn btn-light btn-sm disabled">Disabled</a>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Started On</span>
-										<h6 class="mb-0">Sept 1, 2020</h6>
-									</div>
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Price</span>
-										<h6 class="mb-0">Free - Trial a Month</h6>
-									</div>
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Access</span>
-										<h6 class="mb-0">Access All Courses</h6>
-									</div>
-									<div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
-										<span class="fs-6">Billing Date</span>
-										<h6 class="mb-0">Next Billing on Oct 1, 2020</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</main>
+                                            <p class="mb-0 fs-6">
+                                                Subscription ID: #100010001
+                                            </p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="#" class="btn btn-light btn-sm disabled">Disabled</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Started On</span>
+                                            <h6 class="mb-0">Sept 1, 2020</h6>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Price</span>
+                                            <h6 class="mb-0">Free - Trial a Month</h6>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Access</span>
+                                            <h6 class="mb-0">Access All Courses</h6>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-6 mb-2 mb-lg-0">
+                                            <span class="fs-6">Billing Date</span>
+                                            <h6 class="mb-0">Next Billing on Oct 1, 2020</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-	<!-- Footer -->
-	<!-- Footer -->
+    <!-- Footer -->
+    <!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center g-0 border-top py-2">
@@ -1418,19 +1421,24 @@
 </footer>
 
 
-	<!-- Scripts -->
-	<!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Scripts -->
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
-
-
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 </body>
 
 </html>

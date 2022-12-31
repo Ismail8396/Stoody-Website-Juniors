@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>  <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,26 +11,33 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
-  <title>Portfoilo list | Stoody</title>
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Portfoilo list | Stoody</title>
 </head>
 
 <body class="bg-white">
-  <!-- Page content -->
-  <nav class="navbar navbar-expand-lg navbar-default">
+    <!-- Page content -->
+    <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
         <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
@@ -1165,199 +1172,191 @@
         </div>
     </div>
 </nav>
-  <!-- Page header -->
-  <main>
-  <section class="py-12">
-    <div class="container">
-      <div class="row ">
-        <div class="offset-md-2 col-md-8 col-12">
-          <!-- text -->
-          <div class="mb-5">
-            <h1 class="display-3 fw-semi-bold mb-4">We showcase projects that we
-              are proud of it
-            </h1>
-            <!-- lead -->
-            <p class="lead mb-0">Check out some of the work we've done for startups and established
-              businesses around the world.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- row -->
-      <div class="row mt-6 g-6">
-        <!-- col -->
-        <div class="col-md-6">
-          <div class="mb-6">
-            <!-- img -->
-            <div class="img-overlay ">
-              <div class="img-color ">
-                <a href="portfolio-single.html"><img src="../../static/assets/images/portfolio/portfolio-large-1.jpg"
-                    alt="" class="img-fluid w-100"></a>
-                <!-- caption -->
-                <div class="caption">
-                  <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
+    <!-- Page header -->
+    <main>
+        <section class="py-12">
+            <div class="container">
+                <div class="row ">
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <!-- text -->
+                        <div class="mb-5">
+                            <h1 class="display-3 fw-semi-bold mb-4">We showcase projects that we are proud of it
+                            </h1>
+                            <!-- lead -->
+                            <p class="lead mb-0">Check out some of the work we've done for startups and established businesses around the world.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <!-- text -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Makeup Mockup</a>
-                </h3>
-                <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                <!-- row -->
+                <div class="row mt-6 g-6">
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="mb-6">
+                            <!-- img -->
+                            <div class="img-overlay ">
+                                <div class="img-color ">
+                                    <a href="portfolio-single.html"><img src="../../static/assets/images/portfolio/portfolio-large-1.jpg" alt="" class="img-fluid w-100"></a>
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <!-- text -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Makeup Mockup</a>
+                                    </h3>
+                                    <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
                   </svg></a>
-              </div>
-              <span>Website / Illustration / Art Direction </span>
-            </div>
-          </div>
-          <div class="mb-6">
-            <!-- img -->
-            <div class="img-overlay ">
-              <div class="img-color ">
-                <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-square-1.jpg"
-                    alt="" class="img-fluid w-100"></a>
-                <!-- caption -->
-                <div class="caption">
-                  <a href="portfolio-single.html" class="btn btn-white">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <!-- text -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="fw-semi-bold mb-1"><a href="portfolio-single.html" class="text-inherit">Business Card</a>
-                </h3>
-                <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                </div>
+                                <span>Website / Illustration / Art Direction </span>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <!-- img -->
+                            <div class="img-overlay ">
+                                <div class="img-color ">
+                                    <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-square-1.jpg" alt="" class="img-fluid w-100"></a>
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <a href="portfolio-single.html" class="btn btn-white">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <!-- text -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="fw-semi-bold mb-1"><a href="portfolio-single.html" class="text-inherit">Business Card</a>
+                                    </h3>
+                                    <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
                   </svg></a>
-              </div>
-              <span>Website / UX/UI / Development </span>
-            </div>
-          </div>
-          <div class="mb-6">
-            <!-- img -->
-            <div class="img-overlay ">
-              <div class="img-color ">
-                <a href="portfolio-single.html"><img src="../../static/assets/images/portfolio/portfolio-large-2.jpg"
-                    alt="" class="img-fluid w-100"></a>
-                <!-- caption -->
-                <div class="caption">
-                  <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <!-- text -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Makeup Mockup</a>
-                </h3>
-                <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                </div>
+                                <span>Website / UX/UI / Development </span>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <!-- img -->
+                            <div class="img-overlay ">
+                                <div class="img-color ">
+                                    <a href="portfolio-single.html"><img src="../../static/assets/images/portfolio/portfolio-large-2.jpg" alt="" class="img-fluid w-100"></a>
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <!-- text -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Makeup Mockup</a>
+                                    </h3>
+                                    <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
                   </svg></a>
-              </div>
-              <span>Website / Illustration / Art Direction </span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="mb-6">
-            <!-- img -->
-            <div class="img-overlay ">
-              <div class="img-color ">
-                <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-square-2.jpg"
-                    alt="" class="img-fluid w-100"></a>
-                <!-- caption -->
-                <div class="caption">
-                  <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
-                </div>
-              </div>
-            </div>
+                                </div>
+                                <span>Website / Illustration / Art Direction </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-6">
+                            <!-- img -->
+                            <div class="img-overlay ">
+                                <div class="img-color ">
+                                    <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-square-2.jpg" alt="" class="img-fluid w-100"></a>
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="mt-4">
-              <!-- text -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Hello Summer</a>
-                </h3>
-                <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            <div class="mt-4">
+                                <!-- text -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Hello Summer</a>
+                                    </h3>
+                                    <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
                   </svg></a>
-              </div>
-              <span>Website / UX/UI / Development
+                                </div>
+                                <span>Website / UX/UI / Development
               </span>
-            </div>
-          </div>
-          <div class="mb-6">
-            <!-- img -->
-            <div class="img-overlay ">
-              <div class="img-color ">
-                <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-large-3.jpg"
-                    alt="" class="img-fluid w-100"></a>
-                <!-- caption -->
-                <div class="caption">
-                  <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <!-- text -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Bottle Mockup </a></h3>
-                <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <!-- img -->
+                            <div class="img-overlay ">
+                                <div class="img-color ">
+                                    <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-large-3.jpg" alt="" class="img-fluid w-100"></a>
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <!-- text -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Bottle Mockup </a></h3>
+                                    <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
                   </svg></a>
-              </div>
-              <span>Mobile App / Development
+                                </div>
+                                <span>Mobile App / Development
               </span>
-            </div>
-          </div>
-          <div class="mb-6">
-            <!-- img -->
-            <div class="img-overlay ">
-              <div class="img-color ">
-                <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-square-3.jpg"
-                    alt="" class="img-fluid w-100"></a>
-                <!-- caption -->
-                <div class="caption">
-                  <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
-                </div>
-              </div>
-            </div>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <!-- img -->
+                            <div class="img-overlay ">
+                                <div class="img-color ">
+                                    <a href="portfolio-single.html"> <img src="../../static/assets/images/portfolio/portfolio-square-3.jpg" alt="" class="img-fluid w-100"></a>
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <a href="portfolio-single.html" class="btn btn-white  ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="mt-4">
-              <!-- text -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Jar Mockup</a>
-                </h3>
-                <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            <div class="mt-4">
+                                <!-- text -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="fw-semi-bold mb-1"> <a href="portfolio-single.html" class="text-inherit">Jar Mockup</a>
+                                    </h3>
+                                    <a href="portfolio-single.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z" />
                   </svg></a>
-              </div>
-              <span>Website / UX/UI / Development
+                                </div>
+                                <span>Website / UX/UI / Development
               </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-          </div>
-        </div>
 
-      </div>
-    </div>
-
-  </section>
-</main>
-  <!-- Footer -->
-  <!-- footer -->
+        </section>
+    </main>
+    <!-- Footer -->
+    <!-- footer -->
 <footer class="pt-lg-10 pt-5 footer bg-white">
     <div class="container">
         <div class="row">
@@ -1432,19 +1431,24 @@
         </div>
     </div>
 </footer>
-  <!-- Scripts -->
-  <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Scripts -->
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
-
-
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
 </body>
 

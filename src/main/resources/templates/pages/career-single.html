@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-  <head>    <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,26 +11,33 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
 
     <title>Career Single | Stoody </title>
 
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Navbar -->
     <!-- navbar login -->
 <nav class="navbar navbar-expand-lg navbar-default">
@@ -761,176 +768,147 @@
     </div>
 </nav>
     <main>
-    <!-- Page Content -->
-    <section class="pt-14 bg-white">
-       <!-- contaier -->
-      <div class="container ">
-         <!-- row -->
-        <div class="row ">
-          <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-12">
-            <div class="mb-5">
-               <!-- heading -->
-              <div class="text-center mb-6">
-                <h1 class="display-3 mb-4 fw-bold">Software Engineer
-                  Ruby on Rails</h1>
-               Canada <span class="text-muted">(Remote)</span>
-              </div>
-               <!-- para -->
-              <p>We are looking for a Ruby on Rails developer responsible for managing the
-                interchange of data between the server and the users.</p>
-                 <!-- para -->
-              <p>Your primary focus will be development of all server-side logic, definition and
-                maintenance of the central database, and ensuring high performance and
-                responsiveness to requests from the front-end.
-              </p>
-               <!-- para -->
-              <p>You will also be responsible for integrating the front-end elements built by your
-                co-workers into the application. Therefore, a basic understanding of front-end
-                technologies is necessary as well.</p>
+        <!-- Page Content -->
+        <section class="pt-14 bg-white">
+            <!-- contaier -->
+            <div class="container ">
+                <!-- row -->
+                <div class="row ">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-12">
+                        <div class="mb-5">
+                            <!-- heading -->
+                            <div class="text-center mb-6">
+                                <h1 class="display-3 mb-4 fw-bold">Software Engineer Ruby on Rails</h1>
+                                Canada <span class="text-muted">(Remote)</span>
+                            </div>
+                            <!-- para -->
+                            <p>We are looking for a Ruby on Rails developer responsible for managing the interchange of data between the server and the users.</p>
+                            <!-- para -->
+                            <p>Your primary focus will be development of all server-side logic, definition and maintenance of the central database, and ensuring high performance and responsiveness to requests from the front-end.
+                            </p>
+                            <!-- para -->
+                            <p>You will also be responsible for integrating the front-end elements built by your co-workers into the application. Therefore, a basic understanding of front-end technologies is necessary as well.</p>
 
- <!-- heading -->
-              <div class="mt-8">
-                <h2>Responsibilities</h2>
+                            <!-- heading -->
+                            <div class="mt-8">
+                                <h2>Responsibilities</h2>
 
-                <div class="mt-4">
-                   <!-- list -->
-                  <ul class="list-unstyled">
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i>Design, build, and
-                      maintain efficient, reusable, and reliable Ruby code</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i> Identify
-                      bottlenecks and bugs, and devise solutions to these problems</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i> Integration of
-                      user-facing elements developed by front-end developers with
-                      server side logic</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i> Help maintain
-                      code quality, organization and automatization</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Experience with
-                      Ruby on Rails, along with other common libraries such as RSpec
-                      and Resque</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Basic
-                      understanding of front-end technologies, such as JavaScript, HTML5, and
-                      CSS3</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Ability to
-                      integrate multiple data sources and databases into one system</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="mt-8">
-                 <!-- heading -->
-                <h2>What We Offer</h2>
+                                <div class="mt-4">
+                                    <!-- list -->
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i>Design, build, and maintain efficient, reusable, and reliable Ruby code</li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i> Identify bottlenecks and bugs, and devise solutions to these problems</li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i> Integration of user-facing elements developed by front-end developers with server side logic</li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i> Help maintain code quality, organization and automatization</li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Experience with Ruby on Rails, along with other common libraries such as RSpec and Resque</li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Basic understanding of front-end technologies, such as JavaScript, HTML5, and CSS3
+                                        </li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Ability to integrate multiple data sources and databases into one system</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-8">
+                                <!-- heading -->
+                                <h2>What We Offer</h2>
 
-                <div class="mt-4">
-                   <!-- list -->
-                  <ul class="list-unstyled">
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i>Competitive salary
-                    </li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Benefits (vary by
-                      location)</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i> A highly skilled
-                      and dedicated team that is fun to work with</li>
-                    <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i> Remote work – We
-                      are a diverse and distributed team that uses Slack, Zoom,
-                      Notion and other tools to stay connected</li>
+                                <div class="mt-4">
+                                    <!-- list -->
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i>Competitive salary
+                                        </li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i>Benefits (vary by location)
+                                        </li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary mt-1"></i> A highly skilled and dedicated team that is fun to work with</li>
+                                        <li class="d-flex mb-4 "><i class="fe fe-check-circle me-2 text-primary  mt-1"></i> Remote work – We are a diverse and distributed team that uses Slack, Zoom, Notion and other tools to stay connected</li>
 
-                  </ul>
-                </div>
-              </div>
-              <div class="mt-8">
-                 <!-- heading -->
-                <h2>Our Values</h2>
-                <div class="mt-4 ">
-                   <!-- para -->
-                  <p class="mb-4"><span class="text-dark fw-bold">Work in the open:</span>
-                    Operate with high integrity and choose what's right over what's
-                    easy. Be transparent as a company and with each other.</p>
-                  <p class="mb-4"><span class="text-dark fw-bold">People are People:</span>
-                    Treat yourself, colleagues, and customers with dignity, empathy,
-                    and respect. Start from a presumption of positive intent.</p>
-                  <p class="mb-4"><span class="text-dark fw-bold">Win and grow together:
-                    </span> Strive to be the best, individually, and as a team. Support and
-                    encourage each other. Seek opportunities for growth</p>
-                  <p>We are hiring in the United States, Canada, Ireland, and the United Kingdom, and
-                    are
-                    interested in every qualified candidate who is eligible to work in these regions
-                    without
-                    employment visa sponsorship.</p>
-                  <p>Please refer to the position specific location requirements listed under the
-                    location
-                    section of the job description.</p>
-                </div>
-              </div>
-               <!-- card -->
-              <div class="mt-8 mb-12">
-                <div class="card bg-light shadow-none">
-                  <div class="card-body p-md-8">
-                    <h3 class="mb-4">Apply for this Job </h3>
-                     <!-- form -->
-                    <form>
-                       <!-- input -->
-                      <div class="mb-3">
-                        <label class="form-label" for="fname">First Name <span class="text-danger">*</span></label>
-                        <input type="text" id="fname" class="form-control" placeholder="First Name" required>
-                      </div>
-                      <!-- input -->
-                      <div class="mb-3">
-                        <label class="form-label" for="lname">Last Name <span class="text-danger">*</span></label>
-                        <input type="text" id="lname" class="form-control" placeholder="Last Name" required>
-                      </div>
-                      <!-- input -->
-                      <div class="mb-3">
-                        <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" id="email" class="form-control" placeholder="hello@example.com" required>
-                      </div>
-                <!-- input -->
-                      <div class="mb-3">
-                        <label class="form-label" for="phone">Phone <span class="text-danger">*</span></label>
-                        <input type="text" id="phone" class="form-control" placeholder="+91" required>
-                      </div>
-                      <!-- input -->
-                      <div class="mb-3">
-                        <label class="form-label" for="resume">Resume/CV <span class="text-danger">*</span></label>
-                        <div class="input-group mb-3">
-                          <input type="file" class="form-control" id="resume">
-                          <label class="input-group-text visually-hidden" for="resume" ></label>
-                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-8">
+                                <!-- heading -->
+                                <h2>Our Values</h2>
+                                <div class="mt-4 ">
+                                    <!-- para -->
+                                    <p class="mb-4"><span class="text-dark fw-bold">Work in the open:</span> Operate with high integrity and choose what's right over what's easy. Be transparent as a company and with each other.</p>
+                                    <p class="mb-4"><span class="text-dark fw-bold">People are People:</span> Treat yourself, colleagues, and customers with dignity, empathy, and respect. Start from a presumption of positive intent.</p>
+                                    <p class="mb-4"><span class="text-dark fw-bold">Win and grow together:
+                    </span> Strive to be the best, individually, and as a team. Support and encourage each other. Seek opportunities for growth</p>
+                                    <p>We are hiring in the United States, Canada, Ireland, and the United Kingdom, and are interested in every qualified candidate who is eligible to work in these regions without employment visa sponsorship.</p>
+                                    <p>Please refer to the position specific location requirements listed under the location section of the job description.</p>
+                                </div>
+                            </div>
+                            <!-- card -->
+                            <div class="mt-8 mb-12">
+                                <div class="card bg-light shadow-none">
+                                    <div class="card-body p-md-8">
+                                        <h3 class="mb-4">Apply for this Job </h3>
+                                        <!-- form -->
+                                        <form>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="fname">First Name <span class="text-danger">*</span></label>
+                                                <input type="text" id="fname" class="form-control" placeholder="First Name" required>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="lname">Last Name <span class="text-danger">*</span></label>
+                                                <input type="text" id="lname" class="form-control" placeholder="Last Name" required>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                                                <input type="email" id="email" class="form-control" placeholder="hello@example.com" required>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="phone">Phone <span class="text-danger">*</span></label>
+                                                <input type="text" id="phone" class="form-control" placeholder="+91" required>
+                                            </div>
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="resume">Resume/CV <span class="text-danger">*</span></label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="resume">
+                                                    <label class="input-group-text visually-hidden" for="resume"></label>
+                                                </div>
 
-                        </div>
-                        <!-- input -->
+                                            </div>
+                                            <!-- input -->
 
-                        <div class="mb-3">
-                          <label class="form-label" for="coverletter">Cover letter <span
+                                            <div class="mb-3">
+                                                <label class="form-label" for="coverletter">Cover letter <span
                               class="text-danger">*</span></label>
-                          <div class="input-group mb-3">
-                              <input type="file" class="form-control" id="coverletter">
-                              <label class="input-group-text visually-hidden" for="coverletter"></label>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="coverletter">
+                                                    <label class="input-group-text visually-hidden" for="coverletter"></label>
 
 
-                          </div>
-                          </div>
+                                                </div>
+                                            </div>
 
-                          <!-- input -->
-                          <div class="mb-3">
-                            <label class="form-label" for="message">Why is Stoody important
+                                            <!-- input -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="message">Why is Stoody important
                               to you?</label>
-                            <textarea class="form-control" rows="4" placeholder="type here...." id="message"></textarea>
+                                                <textarea class="form-control" rows="4" placeholder="type here...." id="message"></textarea>
 
-                          </div>
-                          <div>
-                            <!-- button -->
-                            <button class="btn btn-primary" type="submit">Submit
+                                            </div>
+                                            <div>
+                                                <!-- button -->
+                                                <button class="btn btn-primary" type="submit">Submit
                               Application</button>
 
-                          </div>
-                    </form>
-                  </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
+    </main>
 
     <!-- footer -->
     <!-- footer -->
@@ -1011,22 +989,27 @@
 
     <!-- Scripts -->
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
+
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
 
 
 
 
-
-
-
-
-  </body>
+</body>
 
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-  <head>    <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,25 +11,32 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
 
     <title>Help Center Guide Single | Stoody </title>
-  </head>
+</head>
 
-  <body class="bg-white">
+<body class="bg-white">
     <!-- Navbar -->
     <!-- Navbar -->
     <div class="collapse" id="collapseExample">
@@ -117,182 +124,152 @@
 
 </nav>
     <main>
-<!-- page content -->
-    <section class="pt-3">
-      <div class="container">
-        <div class="row">
-          <!-- breadcrumb -->
-           <div class="offset-md-2 col-md-8 col-12">
-            <div>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="help-center.html">Help
+        <!-- page content -->
+        <section class="pt-3">
+            <div class="container">
+                <div class="row">
+                    <!-- breadcrumb -->
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <div>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="help-center.html">Help
                       Center</a></li>
-                  <li class="breadcrumb-item"><a href="help-center-guide.html">Guides
+                                    <li class="breadcrumb-item"><a href="help-center-guide.html">Guides
                       & Resources</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">What is
-                    Stoody UI Design?</li>
-                </ol>
-              </nav>
+                                    <li class="breadcrumb-item active" aria-current="page">What is Stoody UI Design?</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<!-- content -->
-    <section class="py-10">
-      <div class="container">
-        <div class="row">
-          <div class="offset-md-2 col-md-8 col-12">
-            <div class="mb-8">
-              <h1 class="display-4 fw-semi-bold">What is Stoody UI Design?</h1>
-              <p class="mb-5 lead">Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do amet luno jaso eiusmod
-                tempor incididunt
-              </p>
-              <div class="mb-3">
-                <!-- header -->
-                <h2 class="fw-semi-bold">Header Level 2</h2>
-                <p>Pellentesque habitant morbi tristique senectus et netus et
-                  malesuada fames ac turpis egestas.
-                  Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor
-                  sit amet, ante. Donec eu libero sit amet
-                  quam egestas semper. Aenean ultricies mi vitae est. Mauris
-                  placerat eleifend leo. Quisque sit amet est
-                  et sapien ullamcorper pharetra. Vestibulum erat wisi,
-                  condimentum sed, commodo vitae, ornare sit amet,
-                  wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
-                  ipsum rutrum orci, sagittis tempus lacus
-                  enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut
-                  felis.</p>
-                <p>Orci varius natoque penatibus et magnis dis parturient
-                  montes, nascetur ridiculus mus. Class aptent
-                  taciti sociosqu ad litora torquent per conubia nostra, per
-                  inceptos himenaeos. Curabitur vitae sagittis
-                  odio. Suspendisse ullamcorper nunc non pellentesque laoreet.
-                  Curabitur eu tortor id quam pretium mattis.
-                  Proin ut quam velit.</p>
-              </div>
-              <div class="mb-3">
-                <!-- images -->
-                <h3 class="mb-3 fw-semi-bold">Header Level 3</h3>
-                <img src="../../static/assets/images/background/help-center-img.jpg"
-                  alt="" class="img-fluid rounded-3">
-              </div>
+        </section>
+        <!-- content -->
+        <section class="py-10">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <div class="mb-8">
+                            <h1 class="display-4 fw-semi-bold">What is Stoody UI Design?</h1>
+                            <p class="mb-5 lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do amet luno jaso eiusmod tempor incididunt
+                            </p>
+                            <div class="mb-3">
+                                <!-- header -->
+                                <h2 class="fw-semi-bold">Header Level 2</h2>
+                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+                                    ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
+                                    condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.
+                                </p>
+                                <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur vitae sagittis odio. Suspendisse
+                                    ullamcorper nunc non pellentesque laoreet. Curabitur eu tortor id quam pretium mattis. Proin ut quam velit.</p>
+                            </div>
+                            <div class="mb-3">
+                                <!-- images -->
+                                <h3 class="mb-3 fw-semi-bold">Header Level 3</h3>
+                                <img src="../../static/assets/images/background/help-center-img.jpg" alt="" class="img-fluid rounded-3">
+                            </div>
 
-              <div class="mb-4">
-                <!-- blockquote -->
-                <h4 class="mb-3">Header Level 4</h4>
-                <blockquote class="blockquote-left">
-                  <p class="ms-3">Blockquote. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Vivamus magna. Cras
-                    in mi at felis aliquet congue. Ut a est eget ligula
-                    molestiefend, libero at sagittis mollis, tellus
-                    est malesuada tellus, at luctus turpis elit sit amet quam.
-                    Vivamus pretium ornare est.
-                  </p>
-                  <span class="ms-3">- Andrew Watkins</span>
-                </blockquote>
-              </div>
-              <div class="mb-3">
-                <!-- list -->
-                <ul class="list-group-numbered list-unstyled">
-                  <li>Ordered list</li>
-                  <li>Suspendisse pellentesque orci quis auctor feugiat.</li>
-                  <li>Pellentesque consequat libero ut leo accumsan ullamcorper.</li>
-                  <li>Etiam et dolor faucibus libero aliquam tempor.</li>
-                </ul>
-              </div>
-              <div class="mb-4">
-                <!-- header -->
-                <h5 class="mb-3">Header Level 5</h5>
-                <ul class="ps-3">
-                  <li>This is a list.</li>
-                  <li>It appears completely unstyled.</li>
-                  <li>Structurally, it's still a list.</li>
-                  <li>However, this style only applies to immediate child
-                    elements.</li>
-                  <li>Nested lists:
-                    <ul>
-                      <li>are unaffected by this style</li>
-                      <li>will still show a bullet</li>
-                      <li>and have appropriate left margin</li>
-                    </ul>
-                  </li>
-                  <li>This may still come in handy in some situations.</li>
-                </ul>
-              </div>
-              <div class="mb-4">
-                <!-- header level  -->
-                <h6 class="mb-3">Header Level 6</h6>
-                <div class="mb-4">
-                  <h5>Definition list</h5>
-                  <!-- para -->
-                  <p>Vestibulum nec porta tortor. Phasellus metus quam, semper
-                    ut tincidunt sit amet, viverra quis neque.
-                    Nullam mattis mollis massa nec pulvinar. Vivamus ut velit
-                    orci. Aenean nec pretium augue. In eu tellus
-                    quis urna vestibulum pulvinar. Etiam in elementum lectus, id
-                    dignissim mauris. Quisque tempus posuere
-                    aliquet.</p>
-                </div>
-                <div class="mb-8">
-                   <!-- header level  -->
-                  <h5>Definition list</h5>
-                   <!-- para  -->
-                  <p>Vestibulum nec porta tortor. Phasellus metus quam, semper
-                    ut tincidunt sit amet, viverra quis neque.
-                    Nullam mattis mollis massa nec pulvinar. Vivamus ut velit
-                    orci. Aenean nec pretium augue. In eu tellus
-                    quis urna vestibulum pulvinar. Etiam in elementum lectus, id
-                    dignissim mauris. Quisque tempus posuere
-                    aliquet.</p>
-                </div>
-              </div>
-               <!-- text  -->
-              <div class="d-md-flex justify-content-between align-items-center">
-                <div class="mb-2 mb-md-0">
-                  <p class="mb-0 fs-6">Last updated 2 months ago</p>
-                </div>
-                <div>
-                  <h5 class="mb-0">Was this article helpful?<a href="#"
-                      class="text-muted ms-2"> <i
-                        class="fe fe-thumbs-up"></i>
-                    </a> <a href="#" class="text-muted ms-2"><i class="fe
+                            <div class="mb-4">
+                                <!-- blockquote -->
+                                <h4 class="mb-3">Header Level 4</h4>
+                                <blockquote class="blockquote-left">
+                                    <p class="ms-3">Blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestiefend, libero at sagittis mollis, tellus est malesuada tellus, at luctus
+                                        turpis elit sit amet quam. Vivamus pretium ornare est.
+                                    </p>
+                                    <span class="ms-3">- Andrew Watkins</span>
+                                </blockquote>
+                            </div>
+                            <div class="mb-3">
+                                <!-- list -->
+                                <ul class="list-group-numbered list-unstyled">
+                                    <li>Ordered list</li>
+                                    <li>Suspendisse pellentesque orci quis auctor feugiat.</li>
+                                    <li>Pellentesque consequat libero ut leo accumsan ullamcorper.</li>
+                                    <li>Etiam et dolor faucibus libero aliquam tempor.</li>
+                                </ul>
+                            </div>
+                            <div class="mb-4">
+                                <!-- header -->
+                                <h5 class="mb-3">Header Level 5</h5>
+                                <ul class="ps-3">
+                                    <li>This is a list.</li>
+                                    <li>It appears completely unstyled.</li>
+                                    <li>Structurally, it's still a list.</li>
+                                    <li>However, this style only applies to immediate child elements.
+                                    </li>
+                                    <li>Nested lists:
+                                        <ul>
+                                            <li>are unaffected by this style</li>
+                                            <li>will still show a bullet</li>
+                                            <li>and have appropriate left margin</li>
+                                        </ul>
+                                    </li>
+                                    <li>This may still come in handy in some situations.</li>
+                                </ul>
+                            </div>
+                            <div class="mb-4">
+                                <!-- header level  -->
+                                <h6 class="mb-3">Header Level 6</h6>
+                                <div class="mb-4">
+                                    <h5>Definition list</h5>
+                                    <!-- para -->
+                                    <p>Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. Vivamus ut velit orci. Aenean nec pretium augue. In eu tellus quis urna vestibulum
+                                        pulvinar. Etiam in elementum lectus, id dignissim mauris. Quisque tempus posuere aliquet.
+                                    </p>
+                                </div>
+                                <div class="mb-8">
+                                    <!-- header level  -->
+                                    <h5>Definition list</h5>
+                                    <!-- para  -->
+                                    <p>Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. Vivamus ut velit orci. Aenean nec pretium augue. In eu tellus quis urna vestibulum
+                                        pulvinar. Etiam in elementum lectus, id dignissim mauris. Quisque tempus posuere aliquet.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- text  -->
+                            <div class="d-md-flex justify-content-between align-items-center">
+                                <div class="mb-2 mb-md-0">
+                                    <p class="mb-0 fs-6">Last updated 2 months ago</p>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Was this article helpful?
+                                        <a href="#" class="text-muted ms-2"> <i class="fe fe-thumbs-up"></i>
+                                        </a> <a href="#" class="text-muted ms-2"><i class="fe
                         fe-thumbs-down"></i></a></h5>
-                </div>
-              </div>
-            </div>
-             <!-- card  -->
-            <div class="card border">
-               <!-- card body  -->
-              <div class="card-body">
-                <h3 class="mb-3 fw-semi-bold">Related articles</h3>
-                 <!-- list  -->
-                <ul class="list-unstyled mb-0">
-                  <li class="mb-2"><a href="#" class="text-body"><i
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card  -->
+                        <div class="card border">
+                            <!-- card body  -->
+                            <div class="card-body">
+                                <h3 class="mb-3 fw-semi-bold">Related articles</h3>
+                                <!-- list  -->
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><a href="#" class="text-body"><i
                         class="mdi mdi-arrow-right me-1 text-muted"></i>Billing
                       and Plans Guide</a></li>
-                  <li class="mb-2"><a href="#" class="text-body"><i class="mdi
+                                    <li class="mb-2"><a href="#" class="text-body"><i class="mdi
                         mdi-arrow-right me-1 text-muted"></i>Manage
                       Your User Profile</a></li>
-                  <li class="mb-2"><a href="#" class="text-body"><i
+                                    <li class="mb-2"><a href="#" class="text-body"><i
                         class="mdi mdi-arrow-right me-1 text-muted"></i>Signing
                       in to the dashboard</a></li>
-                  <li class="mb-2"><a href="#" class="text-body"><i class="mdi
+                                    <li class="mb-2"><a href="#" class="text-body"><i class="mdi
                         mdi-arrow-right me-1 text-muted"></i>What's
                       New With Annual Payments?</a></li>
-                  <li><a href="#" class="text-body"><i class="mdi
+                                    <li><a href="#" class="text-body"><i class="mdi
                         mdi-arrow-right me-1 text-muted"></i>User Roles and
                       Permissions</a></li>
-                </ul>
-              </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
+    </main>
 
 
 
@@ -377,19 +354,24 @@
 
     <!-- Scripts -->
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
 
-
-
-  </body>
+</body>
 
 </html>

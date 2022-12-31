@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>	<!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,26 +11,33 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
-	<title>Instructor Payouts | Stoody</title>
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
+
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Instructor Payouts | Stoody</title>
 </head>
 
 <body>
-	<!-- Page Content -->
-	<nav class="navbar navbar-expand-lg navbar-default">
+    <!-- Page Content -->
+    <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
         <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
@@ -1165,243 +1172,235 @@
         </div>
     </div>
 </nav>
-	<main>
-	<section class="pt-5 pb-5">
-		<div class="container">
-				<!-- User info -->
-			<div class="row align-items-center">
-				<div class="col-xl-12 col-lg-12 col-md-12 col-12">
-					<!-- Bg -->
-					<div class="pt-16 rounded-top-md" style="
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- User info -->
+                <div class="row align-items-center">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <!-- Bg -->
+                        <div class="pt-16 rounded-top-md" style="
 								background: url(../assets/images/background/profile-bg.jpg) no-repeat;
 								background-size: cover;
 							"></div>
-						<div class="card px-4 pt-2 pb-4 rounded-0 rounded-bottom shadow-sm">
-							<div class="d-flex align-items-end justify-content-between  ">
-								<div class="d-flex align-items-center">
-									<div
-										class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-										<img src="../../static/assets/images/avatar/avatar-1.jpg"
-											class="avatar-xl rounded-circle border border-4 border-white position-relative"
-											alt="">
-										<a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip"
-											data-placement="top" title="Verified">
-											<img src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30"
-												width="30">
-										</a>
-									</div>
-									<div class="lh-1">
-										<h2 class="mb-0">Jenny Wilson</h2>
-										<p class="mb-0 d-block">@Jennywilson</p>
-									</div>
-								</div>
-								<div>
-									<a href="add-course.html" class="btn btn-primary d-none d-md-block">Create New
+                        <div class="card px-4 pt-2 pb-4 rounded-0 rounded-bottom shadow-sm">
+                            <div class="d-flex align-items-end justify-content-between  ">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" class="avatar-xl rounded-circle border border-4 border-white position-relative" alt="">
+                                        <a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip" data-placement="top" title="Verified">
+                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30" width="30">
+                                        </a>
+                                    </div>
+                                    <div class="lh-1">
+                                        <h2 class="mb-0">Jenny Wilson</h2>
+                                        <p class="mb-0 d-block">@Jennywilson</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="add-course.html" class="btn btn-primary d-none d-md-block">Create New
 										Course</a>
-								</div>
-							</div>
-						</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-	<!-- Content -->
+                <!-- Content -->
 
-	<div class="row mt-0 mt-md-4">
-				<div class="col-lg-3 col-md-4 col-12">
-					<!-- Navbar -->
-					<nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-							<!-- Menu -->
-						<a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-							<!-- Button -->
-						<button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button"
-							data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false"
-							aria-label="Toggle navigation">
+                <div class="row mt-0 mt-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <!-- Navbar -->
+                        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+                            <!-- Menu -->
+                            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+                            <!-- Button -->
+                            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="fe fe-menu"></span>
 						</button>
-							<!-- Collpase navbar -->
-						<div class="collapse navbar-collapse" id="sidenav">
-							<div class="navbar-nav flex-column">
-								<span class="navbar-header">Dashboard</span>
-								<ul class="list-unstyled ms-n2 mb-4">
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
+                            <!-- Collpase navbar -->
+                            <div class="collapse navbar-collapse" id="sidenav">
+                                <div class="navbar-nav flex-column">
+                                    <span class="navbar-header">Dashboard</span>
+                                    <ul class="list-unstyled ms-n2 mb-4">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
 											Dashboard</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-earning.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-earning.html"><i
 												class="fe fe-pie-chart nav-icon"></i>Earnings</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-order.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-order.html"><i
 												class="fe fe-shopping-bag nav-icon"></i>Orders</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-students.html"><i class="fe fe-users nav-icon"></i>Students</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item active">
-										<a class="nav-link" href="instructor-payouts.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-students.html"><i class="fe fe-users nav-icon"></i>Students</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="instructor-payouts.html"><i
 												class="fe fe-dollar-sign nav-icon"></i>Payouts</a>
-									</li>
-									  <!-- Nav item -->
-									  <li class="nav-item ">
-                                        <a class="nav-link" href="instructor-quiz.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="instructor-quiz.html"><i
                                                 class="fe fe-help-circle nav-icon"></i>Quiz</a>
-                                    </li>
-									<!-- Nav item -->
-									<li class="nav-item ">
-										<a class="nav-link" href="instructor-quiz-result.html"><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
-									  </li>
-								</ul>
-									<!-- Navbar header -->
-								<span class="navbar-header">Account Settings</span>
-								<ul class="list-unstyled ms-n2 mb-0">
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="instructor-quiz-result.html"><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Navbar header -->
+                                    <span class="navbar-header">Account Settings</span>
+                                    <ul class="list-unstyled ms-n2 mb-0">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
 											Profiles</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
 											Privacy</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
 											Profile</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<div class="col-lg-9 col-md-8 col-12">
-					<!-- Card -->
-					<div class="card mb-4">
-						<!-- Card header -->
-						<div class="card-header">
-							<h3 class="mb-0">Payout Method</h3>
-							<p class="mb-0">
-								Order Dashboard is a quick overview of all current orders.
-							</p>
-						</div>
-						<!-- Card body -->
-						<div class="card-body">
-							<div class="alert bg-light-warning text-dark-warning alert-dismissible fade show" role="alert">
-								<strong>payout@stoody.com</strong>
-								<p class="mb-0">
-									Your selected payout method was confirmed on Next Payout on
-									15 July, 2020
-								</p>
-									<!-- Button -->
-								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <!-- Card header -->
+                            <div class="card-header">
+                                <h3 class="mb-0">Payout Method</h3>
+                                <p class="mb-0">
+                                    Order Dashboard is a quick overview of all current orders.
+                                </p>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="alert bg-light-warning text-dark-warning alert-dismissible fade show" role="alert">
+                                    <strong>payout@stoody.com</strong>
+                                    <p class="mb-0">
+                                        Your selected payout method was confirmed on Next Payout on 15 July, 2020
+                                    </p>
+                                    <!-- Button -->
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
 
 								</button>
-							</div>
-							<div class="row mt-6">
-								<div class="col-xl-4 col-lg-4 col-md-12 col-12 mb-3 mb-lg-0">
-									<div class="text-center">
-										<!-- PayOut chart -->
-										<div id="payoutChart" class="apex-charts"></div>
-										<h4 class="mb-1">Your Earning this month</h4>
-										<h5 class="mb-0 display-4 fw-bold">$3,210</h5>
-										<p class="px-4">Update your payout method in settings</p>
-										<a href="#" class="btn btn-primary">
+                                </div>
+                                <div class="row mt-6">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-12 mb-3 mb-lg-0">
+                                        <div class="text-center">
+                                            <!-- PayOut chart -->
+                                            <div id="payoutChart" class="apex-charts"></div>
+                                            <h4 class="mb-1">Your Earning this month</h4>
+                                            <h5 class="mb-0 display-4 fw-bold">$3,210</h5>
+                                            <p class="px-4">Update your payout method in settings</p>
+                                            <a href="#" class="btn btn-primary">
 											Withdraw Earning
 										</a>
-									</div>
-								</div>
-								<div class="col-xl-8 col-lg-8 col-md-12 col-12">
-									<!-- Check box -->
-									<div class="border p-4 rounded-3 mb-3">
-										<div class="custom-control custom-radio">
-											<input type="radio" id="customRadio1" name="customRadio" class="form-check-input" checked>
-											<label class="form-check-label" for="customRadio1">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+                                        <!-- Check box -->
+                                        <div class="border p-4 rounded-3 mb-3">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio1" name="customRadio" class="form-check-input" checked>
+                                                <label class="form-check-label" for="customRadio1">
 												<img src="../../static/assets/images/brand/paypal-small.svg" alt="">
 											</label>
-											<p>
-												Your paypal account has been authorized for payouts.
-											</p>
-											<a href="#" class="btn btn-outline-primary">
+                                                <p>
+                                                    Your paypal account has been authorized for payouts.
+                                                </p>
+                                                <a href="#" class="btn btn-outline-primary">
 												Remove Account</a>
-										</div>
-									</div>
-									<!-- Check box -->
-									<div class="border p-4 rounded-3 mb-3">
-										<div class="custom-control custom-radio">
-											<input type="radio" id="customRadio2" name="customRadio" class="form-check-input">
-											<label class="form-check-label ps-1" for="customRadio2">
+                                            </div>
+                                        </div>
+                                        <!-- Check box -->
+                                        <div class="border p-4 rounded-3 mb-3">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" name="customRadio" class="form-check-input">
+                                                <label class="form-check-label ps-1" for="customRadio2">
 												<img src="../../static/assets/images/brand/payoneer.svg" alt="">
 											</label>
-										</div>
-									</div>
-									<!-- Check box -->
-									<div class="border p-4 rounded-3">
-										<div class="custom-control custom-radio">
-											<input type="radio" id="customRadio3" name="customRadio" class="form-check-input">
-											<label class="form-check-label ps-1 h4" for="customRadio3">
+                                            </div>
+                                        </div>
+                                        <!-- Check box -->
+                                        <div class="border p-4 rounded-3">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio3" name="customRadio" class="form-check-input">
+                                                <label class="form-check-label ps-1 h4" for="customRadio3">
 												Bank Transfer
 											</label>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Card -->
-					<div class="card mb-4">
-						<!-- Card header -->
-						<div class="card-header border-bottom-0">
-							<h3 class="h4 mb-3">Withdraw History</h3>
-							<div class="row align-items-center">
-								<div class="col-lg-3 col-md-6 pe-md-0 mb-2 mb-lg-0">
-										<!-- Custom select -->
-									<select class="selectpicker" data-width="100%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <!-- Card header -->
+                            <div class="card-header border-bottom-0">
+                                <h3 class="h4 mb-3">Withdraw History</h3>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 col-md-6 pe-md-0 mb-2 mb-lg-0">
+                                        <!-- Custom select -->
+                                        <select class="selectpicker" data-width="100%">
 										<option value="">30 days</option>
 										<option value="Last 7 days">2 Months</option>
 										<option value="High Rated">6 Months</option>
 									</select>
-								</div>
-								<div class="col-lg-3 col-md-6 pe-md-0 mb-2 mb-2 mb-lg-0">
-										<!-- Custom select -->
-									<select class="selectpicker" data-width="100%">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 pe-md-0 mb-2 mb-2 mb-lg-0">
+                                        <!-- Custom select -->
+                                        <select class="selectpicker" data-width="100%">
 										<option value="">Oct 2020</option>
 										<option value="Jan 2021">Jan 2021</option>
 										<option value="May 2021">May 2021</option>
 									</select>
-								</div>
-								<div class="col-lg-4 col-md-6 mb-2 mb-2 mb-lg-0">
-										<!-- Custom select -->
-									<select class="selectpicker" data-width="100%">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mb-2 mb-2 mb-lg-0">
+                                        <!-- Custom select -->
+                                        <select class="selectpicker" data-width="100%">
 										<option value="">Transaction Type</option>
 										<option value="cash transactions">
 											Cash Transactions
@@ -1413,319 +1412,319 @@
 											Credit Transactions
 										</option>
 									</select>
-								</div>
-								<div class="col-lg-2 col-md-6 text-lg-end">
-										<!-- Button -->
-									<a href="#" class="btn btn-outline-secondary btn-icon" download="">
-										<i class="fe fe-download"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- Table -->
-						<div class="table-responsive">
-							<table class="table mb-0 text-nowrap table-hover table-centered table-with-checkbox">
-								<thead class="table-light">
-									<tr>
-										<th>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="checkAll">
-												<label class="form-check-label" for="checkAll"></label>
-											</div>
-										</th>
-										<th>ID</th>
-										<th>Method</th>
-										<th>Status</th>
-										<th>Amount</th>
-										<th>Date</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawTwo">
-												<label class="form-check-label" for="withdrawTwo"></label>
-											</div>
-										</td>
-										<td>#1060</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-warning">Pending</span>
-										</td>
-										<td>$1200</td>
-										<td>Sept 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 text-lg-end">
+                                        <!-- Button -->
+                                        <a href="#" class="btn btn-outline-secondary btn-icon" download="">
+                                            <i class="fe fe-download"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Table -->
+                            <div class="table-responsive">
+                                <table class="table mb-0 text-nowrap table-hover table-centered table-with-checkbox">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="checkAll">
+                                                    <label class="form-check-label" for="checkAll"></label>
+                                                </div>
+                                            </th>
+                                            <th>ID</th>
+                                            <th>Method</th>
+                                            <th>Status</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawTwo">
+                                                    <label class="form-check-label" for="withdrawTwo"></label>
+                                                </div>
+                                            </td>
+                                            <td>#1060</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-warning">Pending</span>
+                                            </td>
+                                            <td>$1200</td>
+                                            <td>Sept 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawThree">
-												<label class="form-check-label" for="withdrawThree"></label>
-											</div>
-										</td>
-										<td>#1038</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$2000</td>
-										<td>Aug 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawThree">
+                                                    <label class="form-check-label" for="withdrawThree"></label>
+                                                </div>
+                                            </td>
+                                            <td>#1038</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$2000</td>
+                                            <td>Aug 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown1"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown1">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawFour">
-												<label class="form-check-label" for="withdrawFour"></label>
-											</div>
-										</td>
-										<td>#1016</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$3590</td>
-										<td>July 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawFour">
+                                                    <label class="form-check-label" for="withdrawFour"></label>
+                                                </div>
+                                            </td>
+                                            <td>#1016</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$3590</td>
+                                            <td>July 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown2"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown2">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawFive">
-												<label class="form-check-label" for="withdrawFive"></label>
-											</div>
-										</td>
-										<td>#1008</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$4500</td>
-										<td>Aug 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawFive">
+                                                    <label class="form-check-label" for="withdrawFive"></label>
+                                                </div>
+                                            </td>
+                                            <td>#1008</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$4500</td>
+                                            <td>Aug 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown3"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown3">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawSix">
-												<label class="form-check-label" for="withdrawSix"></label>
-											</div>
-										</td>
-										<td>#1002</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$4500</td>
-										<td>May 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawSix">
+                                                    <label class="form-check-label" for="withdrawSix"></label>
+                                                </div>
+                                            </td>
+                                            <td>#1002</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$4500</td>
+                                            <td>May 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown4"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown4">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawSeven">
-												<label class="form-check-label" for="withdrawSeven"></label>
-											</div>
-										</td>
-										<td>#982</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$1232</td>
-										<td>April 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawSeven">
+                                                    <label class="form-check-label" for="withdrawSeven"></label>
+                                                </div>
+                                            </td>
+                                            <td>#982</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$1232</td>
+                                            <td>April 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown5"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown5">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawEight">
-												<label class="form-check-label" for="withdrawEight"></label>
-											</div>
-										</td>
-										<td>#970</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-danger">Cancel</span>
-										</td>
-										<td>$4235</td>
-										<td>March 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawEight">
+                                                    <label class="form-check-label" for="withdrawEight"></label>
+                                                </div>
+                                            </td>
+                                            <td>#970</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-danger">Cancel</span>
+                                            </td>
+                                            <td>$4235</td>
+                                            <td>March 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown6"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown6">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawNine">
-												<label class="form-check-label" for="withdrawNine"></label>
-											</div>
-										</td>
-										<td>#965</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$1231</td>
-										<td>Feb 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawNine">
+                                                    <label class="form-check-label" for="withdrawNine"></label>
+                                                </div>
+                                            </td>
+                                            <td>#965</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$1231</td>
+                                            <td>Feb 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown7"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown7">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="withdrawTen">
-												<label class="form-check-label" for="withdrawTen"></label>
-											</div>
-										</td>
-										<td>#953</td>
-										<td>PayPal</td>
-										<td>
-											<span class="badge bg-success">Paid</span>
-										</td>
-										<td>$5435</td>
-										<td>Jan 15, 2020</td>
-										<td>
-											<span class="dropdown dropstart">
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="withdrawTen">
+                                                    <label class="form-check-label" for="withdrawTen"></label>
+                                                </div>
+                                            </td>
+                                            <td>#953</td>
+                                            <td>PayPal</td>
+                                            <td>
+                                                <span class="badge bg-success">Paid</span>
+                                            </td>
+                                            <td>$5435</td>
+                                            <td>Jan 15, 2020</td>
+                                            <td>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown8"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown8">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												</span>
-											</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="card-footer">
-								<nav>
-									<ul class="pagination justify-content-center mb-0">
-										<li class="page-item disabled">
-											<a class="page-link mx-1 rounded" href="#" ><i
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                </span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="card-footer">
+                                    <nav>
+                                        <ul class="pagination justify-content-center mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link mx-1 rounded" href="#"><i
 													class="mdi mdi-chevron-left"></i></a>
-										</li>
-										<li class="page-item active">
-											<a class="page-link mx-1 rounded" href="#">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link mx-1 rounded" href="#">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link mx-1 rounded" href="#">3</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link mx-1 rounded" href="#"><i class="mdi mdi-chevron-right"></i></a>
-										</li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</main>
-  <!-- Footer -->
-	<!-- Footer -->
+                                            </li>
+                                            <li class="page-item active">
+                                                <a class="page-link mx-1 rounded" href="#">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link mx-1 rounded" href="#">2</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link mx-1 rounded" href="#">3</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link mx-1 rounded" href="#"><i class="mdi mdi-chevron-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center g-0 border-top py-2">
@@ -1747,22 +1746,27 @@
 </footer>
 
 
-	<!-- Scripts -->
-	<!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Scripts -->
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
-
-
-	<script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<script src="../../static/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script src="../../static/assets/js/vendors/chart.js"></script>
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
+    <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../../static/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../../static/assets/js/vendors/chart.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head> <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -11,22 +11,29 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- bu-ild:css ../assets/css/theme.min.css -->
+<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
+<!-- end-build -->
 
-    <title>Contact | Stoody</title>
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+
+    <title data-th-text="#{global.contact}">Contact | Stoody </title>
 </head>
 
 <body class="bg-white">
@@ -39,7 +46,8 @@
                     <div class="px-xl-20 px-md-8 px-4 py-8 py-lg-0">
                         <!-- content -->
                         <div class="d-flex justify-content-between mb-7 align-items-center">
-                            <a href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse">
+                            <a th:href="@{/}" href="../index.html">
+                                <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse">
                             </a>
                             <!-- theme switch -->
                             <div class="form-check form-switch theme-switch d-none ">
@@ -48,39 +56,39 @@
                             </div>
                         </div>
                         <div class="">
-                            <h1 class="display-4 fw-bold">Get In Touch.</h1>
-                            <p class="lead text-dark">
+                            <h1 class="display-4 fw-bold" data-th-text="#{global.get_in_touch_dot}">Get In Touch.</h1>
+                            <p class="lead text-dark" data-th-text="#{global.get_in_touch_informer}">
                                 Fill in the form to the right to get in touch with someone on our team, and we will reach out shortly.
                             </p>
                             <div class="mt-8 fs-4">
                                 <p class="mb-4">
-                                    If you are seeking support please visit our
-                                    <a href="#">support portal</a> before reaching out directly.
+                                    <span data-th-text="#{global.if_you_want_to_support_message}">If you are seeking support please visit our</span>
+                                    <a th:href="@{/}" href="#" data-th-text="#{global.support_portal}">support portal.</a>
                                 </p>
                                 <!-- address -->
 
                                 <p>
-                                    <i class="bi bi-telephone text-primary me-2"></i> + 0123-456-7890
+                                    <i class="bi bi-telephone text-primary me-2"></i> <span data-th-text="#{global.company_phone_number}">+ 0123-456-7890</span>
                                 </p>
                                 <p>
-                                    <i class="bi bi-envelope-open text-primary me-2"></i> hello@stoody.com
+                                    <i class="bi bi-envelope-open text-primary me-2"></i> <span data-th-text="#{global.contact_stoody_email}">hello@stoody.com</span>
                                 </p>
                                 <p class="d-flex">
-                                    <i class="bi bi-geo-alt text-primary me-2"></i> 2652 Kooter Lane Charlotte, NC 28263
+                                    <i class="bi bi-geo-alt text-primary me-2"></i> <span data-th-text="#{global.stoody_address_location}">2652 Kooter Lane Charlotte, NC 28263</span>
                                 </p>
                             </div>
                             <div class="mt-10">
                                 <!--Facebook-->
-                                <a href="#" class="text-muted me-3">
+                                <a th:href="@{/}" href="#" class="text-muted me-3">
                                     <i class="mdi mdi-facebook fs-3"></i>
                                 </a>
                                 <!--Twitter-->
-                                <a href="#" class="text-muted me-3">
+                                <a th:href="@{/}" href="#" class="text-muted me-3">
                                     <i class="mdi mdi-twitter fs-3"></i>
                                 </a>
 
                                 <!--GitHub-->
-                                <a href="#" class="text-muted">
+                                <a th:href="@{/}" href="#" class="text-muted">
                                     <i class="mdi mdi-github fs-3"></i>
                                 </a>
                             </div>
@@ -93,46 +101,63 @@
                         <!-- form section -->
                         <div id="form">
                             <!-- form row -->
-                            <form class="row">
+                            <form class="row" th:action="@{/contact/submit/form}" th:object="${contact}" method="post">
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="fname">First Name:<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="fname">
+                                        <span data-th-text="#{global.first_name_colon}">First Name:</span>
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input class="form-control" type="text" name="last name" id="fname" placeholder="First Name" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="lname">Last Name:<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="lname">
+                                        <span data-th-text="#{global.last_name_colon}">Last Name:</span>
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input class="form-control" type="text" name="last name" id="lname" placeholder="Last Name" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="email">Email:<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="email">
+                                        <span data-th-text="#{global.email_colon}">Email:</span>
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input class="form-control" type="email" name="email" id="email" placeholder="Email" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="phone">Phone Number:<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="phone">
+                                        <span data-th-text="#{global.phone_number_colon}">Phone Number:</span>
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12">
-                                    <label class="text-dark form-label" for="frustration">Contact Reason:<span
-                    class="text-danger">*</span></label>
-                                    <select class="selectpicker" data-width="100%">
-                  <option selected>Select</option>
-                  <option value="1">Design</option>
-                  <option value="2">Development</option>
-                  <option value="3">Other</option>
+                                    <label class="text-dark form-label" for="frustration">
+                                        <span data-th-text="#{global.contact_reason_colon}">Contact Reason:</span>
+                                        <span
+                    class="text-danger">*</span>
+                </label>
+                                    <!-- This is not configured for now. Don't forget to add Template Engine attrs-->
+                                    <select th:field="*{contactReasons}" id="contactReasons" class="selectpicker" data-width="100%">
+                  <option value="1" th:value="1" data-th-text="#{global.website}" selected>Website</option>
+                  <option value="2" th:value="2" data-th-text="#{global.business_offer}">Business Offer</option>
+                  <option value="3" th:value="3" data-th-text="#{global.other}">Other</option>
                 </select>
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12">
-                                    <label class="text-dark form-label" for="messages">Message:</label>
+                                    <label class="text-dark form-label" for="messages">
+                                        <span data-th-text="#{global.message_colon}">Message:</span>
+                                    </label>
                                     <textarea class="form-control" id="messages" rows="3" placeholder="Messages"></textarea>
                                 </div>
                                 <!-- button -->
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-primary btn-block" data-th-text="#{global.submit}">
                   Submit
                 </button>
                                 </div>
@@ -145,18 +170,23 @@
     </main>
     <!-- Scripts -->
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- bu-ild:js ../assets/js/theme.min.js -->
+<!-- <script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script> -->
+<!-- end-build -->
 
 
-
-
-    <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<!-- Should be Deprecated/Removed! Find better method to replace the below -->
+<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
+<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
+    <script th:src="@{/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js}" src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>
