@@ -14,6 +14,7 @@ package com.loam.stoody.controller;
 
 import com.loam.stoody.components.IAuthenticationFacade;
 import com.loam.stoody.global.constants.PRL;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -29,13 +30,21 @@ public class ViewController {
     }
 
     @GetMapping(value = PRL.homeURL)
-    public String getHomePage(){
-        Authentication authentication = authenticationFacade.getAuthentication();
-        boolean isAuthenticated  = authentication != null && authentication.getName() != null && !authentication.getName().equals("anonymousUser");
+    public String getHomePage(HttpServletRequest httpServletRequest){
+        boolean authenticated = httpServletRequest.getSession().getAttribute("userName") != null;
 
-        if(isAuthenticated)
-            return PRL.userHomePage;
+//        Authentication authentication = authenticationFacade.getAuthentication();
+//        boolean isAuthenticated  = authentication != null && authentication.getName() != null && !authentication.getName().equals("anonymousUser");
+//
+//        if(isAuthenticated)
+        if(authenticated)
+            return "redirect:"+PRL.userHomeURL;
 
         return PRL.visitorHomePage;
+    }
+
+    @GetMapping(value = PRL.userHomeURL)
+    public String getUserHomePage(){
+        return PRL.userHomePage;
     }
 }

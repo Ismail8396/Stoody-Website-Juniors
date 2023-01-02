@@ -10,15 +10,20 @@
 @created:   01.12.2022
 */
 
-package com.loam.stoody.model.user;
+package com.loam.stoody.model.user.courses;
 
 import com.loam.stoody.model.communication.video.Video;
-import lombok.Data;
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
-@Data
+import java.util.Objects;
+
+@Getter
+@Setter
+@ToString
 @Entity
-public class UserVideoHistory {
+public class UserCourseVideoHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,12 +31,27 @@ public class UserVideoHistory {
 
     @ManyToOne(targetEntity = CourseHistory.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_history_id")
+    @ToString.Exclude
     private CourseHistory courseHistory;
 
     @ManyToOne(targetEntity = Video.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "video_id")
+    @ToString.Exclude
     private Video video;
 
     private Long timeElapsed;
     private Boolean isCompleted;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        UserCourseVideoHistory that = (UserCourseVideoHistory) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -4,11 +4,15 @@ import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.communication.sms.SmsSenderService;
 import com.loam.stoody.service.user.LoginServiceProxy;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
 
 
 @Controller
@@ -21,6 +25,16 @@ public class LoginController {
     @GetMapping(PRL.signInURL)
     public String getSignIn(){
         return PRL.signInPage;
+    }
+
+    @GetMapping("/logout")
+    public String getLogOutTest(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        return "redirect:"+PRL.signInURL;
     }
 
     @SneakyThrows

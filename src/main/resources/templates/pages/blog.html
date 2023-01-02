@@ -24,13 +24,9 @@
 
 
 <!-- Theme CSS -->
-<!-- bu-ild:css ../assets/css/theme.min.css -->
-<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
-<!-- end-build -->
+<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
 
-<!-- Should be Deprecated/Removed! Find better method to replace the below -->
-<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
-<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
     <title>Blog | Stoody</title>
 </head>
@@ -1120,21 +1116,20 @@
         <div class="row align-items-center g-0 border-top py-2">
             <!-- Desc -->
             <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© 2022 Stoody. All Rights Reserved.</span>
+                <span data-th-text="#{global.copyright_warner}">© 2022 Stoody. All Rights Reserved.</span>
             </div>
-              <!-- Links -->
+            <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
                     <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
+                    <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
                 </nav>
             </div>
         </div>
     </div>
 </footer>
-
 
 
     <!-- Scripts -->
@@ -1145,15 +1140,10 @@
 
 
 <!-- Theme JS -->
-<!-- bu-ild:js ../assets/js/theme.min.js -->
-<!-- <script src="../../static/assets/js/main.js"></script>
-<script src="../../static/assets/js/darkMode.js"></script> -->
-<!-- end-build -->
+<script src="../../static/assets/js/theme.min.js"></script>
 
 
-<!-- Should be Deprecated/Removed! Find better method to replace the below -->
-<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
-<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<!--This should be merged with the one above-->
 <script th:src="@{/assets/js/theme.min.js}"></script>
 
 </body>

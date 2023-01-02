@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -75,7 +76,7 @@ public class SecurityConfig {
                         PRL.error404URL).permitAll()
 
                 // Only for authorized users
-                .requestMatchers(""/* PAGES SPECIAL FOR AUTHENTICATED USERS */)
+                .requestMatchers(PRL.userHomeURL/* PAGES SPECIAL FOR AUTHENTICATED USERS */)
                 .hasRole("USER")
 
                 // Only for Admins
@@ -105,7 +106,7 @@ public class SecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher(PRL.logoutURL))
                 .logoutSuccessUrl(PRL.signInURL)
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
+                .deleteCookies("JSESSIONID", "Auth")
 
                 // Misc
                 .and()

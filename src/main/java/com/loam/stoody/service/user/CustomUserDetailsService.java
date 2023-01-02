@@ -19,14 +19,12 @@
 package com.loam.stoody.service.user;
 
 import com.loam.stoody.global.constants.IndoorResponse;
-import com.loam.stoody.model.user.Role;
+import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.LoginRequest;
 import com.loam.stoody.repository.user.LoginRequestRepository;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
-import com.loam.stoody.service.communication.sms.SmsSenderService;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -45,7 +43,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final LoginRequestRepository loginRequestRepository;
-    //private final SmsSenderService smsSenderService;
 
     public User getDefaultUser() {
         User defaultUser = new User();
@@ -53,7 +50,24 @@ public class CustomUserDetailsService implements UserDetailsService {
         defaultUser.setUsername(null);
         defaultUser.setPassword(null);
         defaultUser.setEmail(null);
+
+        //--------------------------------
+        // TODO: REMOVE LATER
+        if(roleRepository.count() <= 0)
+        {
+            Role testRole = new Role();
+            testRole.setName("ROLE_USER");
+            roleRepository.save(testRole);
+        }
+        System.out.println(roleRepository.findAll());
+        //--------------------------------
+
         defaultUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
+
+        //--------------------------------
+        // TODO: REMOVE LATER
+        System.out.println("USER HAS THESE ROLES: "+defaultUser.getRoles());
+        //--------------------------------
 
         defaultUser.setAccountEnabled(true);
         defaultUser.setAccountExpired(false);
@@ -63,7 +77,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return defaultUser;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -79,6 +92,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
         grantList.add(grantedAuthority);
+
         return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), grantList);
     }
 

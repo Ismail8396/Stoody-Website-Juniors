@@ -1,9 +1,12 @@
 package com.loam.stoody.configuration.jwt;
 
-import com.loam.stoody.global.constants.About;
+import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.global.logger.ConsoleColors;
+import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -14,54 +17,62 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.WebUtils;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 @Component
 @AllArgsConstructor
-@Slf4j
 public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTUtility jwtUtility;
     private final CustomUserDetailsService userService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
 
-        String authorizationHeader = request.getHeader("Auth");
-        String token = null;
-        String username = null;
+        Cookie authCookie = WebUtils.getCookie(request, "Auth");
 
-        Enumeration<String> headerNames = request.getHeaderNames();
-         // @todo just for testing will remove later
-//        if (headerNames != null) {
-//            while (headerNames.hasMoreElements()) {
-//                System.out.println("Header: " + request.getHeader(headerNames.nextElement()));
-//            }
-//        }
+        String jwtTokenValue = authCookie == null ? null : authCookie.getValue();
+        try {
+            if (jwtTokenValue == null) {
+                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "JWT TOKEN WAS NULL!");
+                throw new RuntimeException("Test");
+            }
+            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "PASSED JWT!");
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            token = authorizationHeader.substring(7);
-            username = jwtUtility.extractUsername(token);
+            String username = JWTUtility.extractUsername(jwtTokenValue);
+            if (username == null) {
+                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USERNAME WAS NULL");
 
-            // TODO: aleemkhowaja, use this instead as it is a static method?:
-            // username = JWTUtility.extractUsername(token);
-        }
-        //if username is not and security authentication is null
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            log.info("login with username:{}", username);
-            //get userDetail based on username from db
+                throw new RuntimeException("Test");
+            }
+
+            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USERNAME PASSED");
+
+            // This can throw UsernameNotFoundException
             UserDetails userDetails = userService.loadUserByUsername(username);
+            if (userDetails == null) {
+                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USER DETAILS WAS NULL");
+                throw new RuntimeException("Test");
+            }
+            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USER DETAILS PASSED");
 
-            //if received token is valid /not-expired then add token with security context
-            if (JWTUtility.validateToken(token, userDetails)) {
-
+            if (JWTUtility.validateToken(jwtTokenValue, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "PASSED VALIDATION");
+
+            } else{
+                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "VALIDATION ERROR!");
+                throw new RuntimeException("Test");
             }
+
+        } catch (RuntimeException ignore) {
         }
 
         //do the filter

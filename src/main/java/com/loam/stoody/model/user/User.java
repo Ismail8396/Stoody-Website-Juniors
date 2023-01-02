@@ -15,6 +15,7 @@
 
 package com.loam.stoody.model.user;
 
+import com.loam.stoody.model.user.misc.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -35,31 +36,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstName;
-    private String lastName;
+    @Column(nullable = false, unique = true)
+    private String username;
+    // Security
     @Column(nullable = false, unique = true)
     @Email(message = "{errors.invalid_email}")
     private String email;
-    @Column(nullable = false, unique = true)
-    private String username;
     @Column(nullable = false)
     private String password;
+    private String phoneNumber;
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
+    private List<Role> roles;
+
 
     private boolean isAccountExpired;
     private boolean isAccountLocked;
     private boolean isCredentialsExpired;
     private boolean isAccountEnabled;
-    private String phoneNumber;
+
     @Column(name = "multi_factor_auth")
     private boolean multiFactorAuth;
-
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")}
-    )
-    private List<Role> roles;
 
     @Override
     public boolean equals(Object o) {

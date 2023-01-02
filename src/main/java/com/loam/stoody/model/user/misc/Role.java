@@ -10,7 +10,7 @@
 @created:   01.12.2022
 */
 
-package com.loam.stoody.model.user;
+package com.loam.stoody.model.user.misc;
 
 import lombok.Data;
 

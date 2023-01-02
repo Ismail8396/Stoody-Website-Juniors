@@ -21,8 +21,9 @@
 @created:   01.12.2022
 */
 
-package com.loam.stoody.model.user;
+package com.loam.stoody.model.user.misc;
 
+import com.loam.stoody.model.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
