@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>	<!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,28 +11,32 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../static/assets/css/theme.min.css">
-	<title>Payment Method | Stoody</title>
+
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Payment Method | Stoody</title>
 </head>
 
 <body>
-	<!-- Page Content -->
-	<nav class="navbar navbar-expand-lg navbar-default">
+    <!-- Page Content -->
+    <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+        <a class="navbar-brand" href="../index.html">
+            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
             <li class="dropdown stopevent">
@@ -52,7 +56,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                     <p class="mb-3 text-body">
@@ -82,7 +86,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                     <p class="mb-3 text-body">
@@ -108,7 +112,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                     <p class="mb-3 text-body">
@@ -134,7 +138,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-4.jpg}" src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                     <p class="mb-3 text-body">
@@ -166,14 +170,14 @@
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                             <div class="ms-3 lh-1">
                                 <h5 class="mb-1">Annette Black</h5>
@@ -212,25 +216,25 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                 <i class="fe fe-user me-2"></i>Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                            <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                 <i class="fe fe-star me-2"></i>Subscription
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="fe fe-settings me-2"></i>Settings
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                <i class="fe fe-settings me-2"></i>Security
                             </a>
                         </li>
                     </ul>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                         <li>
-                            <a class="dropdown-item" href="../index.html">
+                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                 <i class="fe fe-power me-2"></i>Sign Out
                             </a>
                         </li>
@@ -770,7 +774,7 @@
 										Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
 										Subscriptions
 									</a>
                                 </li>
@@ -862,12 +866,12 @@
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
 								Edit Profile
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
 								Security
 							</a>
                         </li>
@@ -971,7 +975,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                             <p class="mb-3 text-body">
@@ -1003,7 +1007,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                             <p class="mb-3 text-body">
@@ -1030,7 +1034,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                             <p class="mb-3 text-body">
@@ -1057,7 +1061,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-4.jpg}" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                             <p class="mb-3 text-body">
@@ -1090,14 +1094,14 @@
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                                     </div>
                                     <div class="ms-3 lh-1">
                                         <h5 class="mb-1">Annette Black</h5>
@@ -1135,25 +1139,25 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/profile-edit.html">
+                                    <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                         <i class="fe fe-user me-2"></i>Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                         <i class="fe fe-star me-2"></i>Subscription
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fe fe-settings me-2"></i>Settings
+                                    <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                        <i class="fe fe-settings me-2"></i>Security
                                     </a>
                                 </li>
                             </ul>
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="../index.html">
+                                    <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                         <i class="fe fe-power me-2"></i>Sign Out
                                     </a>
                                 </li>
@@ -1165,356 +1169,351 @@
         </div>
     </div>
 </nav>
-	<main>
-	<section class="pt-5 pb-5">
-		<div class="container">
-			<div class="row align-items-center">
-				<!-- User info -->
-				<div class="col-xl-12 col-lg-12 col-md-12 col-12">
-					<!-- Bg -->
-					<div class="pt-16 rounded-top-md" style="
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- User info -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <!-- Bg -->
+                        <div class="pt-16 rounded-top-md" style="
 								background: url(../assets/images/background/profile-bg.jpg) no-repeat;
 								background-size: cover;
 							"></div>
-				  <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
-					<div
-					  class="d-flex align-items-end justify-content-between  ">
-					  <div class="d-flex align-items-center">
-						<div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-						  <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white"
-							alt="">
-						</div>
-						<div class="lh-1">
-						  <h2 class="mb-0">Stella Flores
-							<a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
-							  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
+                            <div class="d-flex align-items-end justify-content-between  ">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white" alt="">
+                                    </div>
+                                    <div class="lh-1">
+                                        <h2 class="mb-0">Stella Flores
+                                            <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
 								<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
 								<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
 							  </svg>
-							</a>
-						  </h2>
-						  <p class=" mb-0 d-block">@stellaflores</p>
-						</div>
-					  </div>
-					  <div>
-						<a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
+                                            </a>
+                                        </h2>
+                                        <p class=" mb-0 d-block">@stellaflores</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
 						  Setting</a>
-					  </div>
-					</div>
-					</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-	<!-- Content -->
+                <!-- Content -->
 
-	<div class="row mt-0 mt-md-4">
-				<div class="col-lg-3 col-md-4 col-12">
-					<!-- Side navbar -->
-					<nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-						<!-- Menu -->
-						<a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-						<!-- Button -->
-						<button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button"
-							data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false"
-							aria-label="Toggle navigation">
+                <div class="row mt-0 mt-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <!-- Side navbar -->
+                        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+                            <!-- Menu -->
+                            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+                            <!-- Button -->
+                            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="fe fe-menu"></span>
 						</button>
-						<!-- Collpase navbar -->
-						<div class="collapse navbar-collapse" id="sidenav">
-							<div class="navbar-nav flex-column">
-								<span class="navbar-header">Subscription</span>
-								<ul class="list-unstyled ms-n2 mb-4">
-									<li class="nav-item">
-										<a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
+                            <!-- Collpase navbar -->
+                            <div class="collapse navbar-collapse" id="sidenav">
+                                <div class="navbar-nav flex-column">
+                                    <span class="navbar-header">Subscription</span>
+                                    <ul class="list-unstyled ms-n2 mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
 											Subscriptions</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
 											Info</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item active">
-										<a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
-									</li>
-									  <!-- Nav item -->
-									  <li class="nav-item  ">
-                                        <a class="nav-link" href="student-quiz.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item  ">
+                                            <a class="nav-link" href="student-quiz.html"><i
                                                 class="fe fe-help-circle nav-icon"></i>My Quiz Attempt</a>
-                                    </li>
-								</ul>
-								<!-- Navbar header -->
-								<span class="navbar-header">Account Settings</span>
-								<ul class="list-unstyled ms-n2 mb-0">
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
+                                        </li>
+                                    </ul>
+                                    <!-- Navbar header -->
+                                    <span class="navbar-header">Account Settings</span>
+                                    <ul class="list-unstyled ms-n2 mb-0">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
 											Profiles</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
 											Privacy</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
 											Profile</a>
-									</li>
-										<!-- Nav item -->
-										<li class="nav-item">
-											<a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
-										</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<div class="col-lg-9 col-md-8 col-12">
-					<!-- Card -->
-					<div class="card mb-4">
-						<div class="d-lg-flex justify-content-between align-items-center card-header">
-							<div class="mb-3 mb-lg-0">
-								<h3 class="mb-0">Current Plan</h3>
-								<span>Below your current active plan information.</span>
-							</div>
-							<div>
-								<a href="#" class="btn btn-outline-primary btn-sm">Switch to Annual Billing</a>
-							</div>
-						</div>
-						<!-- Card body -->
-						<div class="card-body">
-							<h2 class="fw-bold mb-0">$39/Monthly</h2>
-							<p class="mb-0">
-								Your next monthly charge of
-								<span class="text-success">$39</span> will be applied to your
-								primary payment method on
-								<span class="text-success">July 20, 2020.</span>
-							</p>
-						</div>
-					</div>
-					<!-- Card -->
-					<div class="card mb-4">
-						<!-- Card header -->
-						<div class="card-header">
-							<h3 class="mb-0">Payment Methods</h3>
-							<span>Primary payment method is used by default</span>
-						</div>
-						<!-- Card body -->
-						<div class="card-body">
-							<!-- List group -->
-							<ul class="list-group list-group-flush">
-								<!-- List group item -->
-								<li class="list-group-item px-0 pb-3 pt-0">
-									<div class="d-flex justify-content-between">
-										<div class="d-flex">
-											<img src="../../static/assets/images/creditcard/visa.svg" alt="" class="me-3">
-											<div>
-												<h5 class="mb-0">Visa ending in 1234</h5>
-												<p class="mb-0 fs-6">Expires in 10/2021</p>
-											</div>
-										</div>
-										<div>
-											<span class="badge bg-success me-4">Primary</span>
-											<span class="dropdown dropstart">
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <div class="d-lg-flex justify-content-between align-items-center card-header">
+                                <div class="mb-3 mb-lg-0">
+                                    <h3 class="mb-0">Current Plan</h3>
+                                    <span>Below your current active plan information.</span>
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Switch to Annual Billing</a>
+                                </div>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <h2 class="fw-bold mb-0">$39/Monthly</h2>
+                                <p class="mb-0">
+                                    Your next monthly charge of
+                                    <span class="text-success">$39</span> will be applied to your primary payment method on
+                                    <span class="text-success">July 20, 2020.</span>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <!-- Card header -->
+                            <div class="card-header">
+                                <h3 class="mb-0">Payment Methods</h3>
+                                <span>Primary payment method is used by default</span>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <!-- List group -->
+                                <ul class="list-group list-group-flush">
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 pb-3 pt-0">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex">
+                                                <img src="../../static/assets/images/creditcard/visa.svg" alt="" class="me-3">
+                                                <div>
+                                                    <h5 class="mb-0">Visa ending in 1234</h5>
+                                                    <p class="mb-0 fs-6">Expires in 10/2021</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="badge bg-success me-4">Primary</span>
+                                                <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="paymentDropdown">
 													<span class="dropdown-header">Setting </span>
-													<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-													<a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
+                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                <a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
 														Primary</a>
-												</span>
-											</span>
-										</div>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-3">
-									<div class="d-flex justify-content-between">
-										<div class="d-flex">
-											<img src="../../static/assets/images/creditcard/mastercard.svg" alt="" class="me-3">
-											<div>
-												<h5 class="mb-0">Mastercard ending in 1234</h5>
-												<p class="mb-0 fs-6">Expires in 03/2022</p>
-											</div>
-										</div>
-										<span class="dropdown dropstart">
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-3">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex">
+                                                <img src="../../static/assets/images/creditcard/mastercard.svg" alt="" class="me-3">
+                                                <div>
+                                                    <h5 class="mb-0">Mastercard ending in 1234</h5>
+                                                    <p class="mb-0 fs-6">Expires in 03/2022</p>
+                                                </div>
+                                            </div>
+                                            <span class="dropdown dropstart">
 											<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown1"
 												data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 												<i class="fe fe-more-vertical"></i>
 											</a>
 											<span class="dropdown-menu" aria-labelledby="paymentDropdown1">
 												<span class="dropdown-header">Setting </span>
-												<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
+                                            <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
 													Primary</a>
-											</span>
-										</span>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-3">
-									<div class="d-flex justify-content-between">
-										<div class="d-flex">
-											<img src="../../static/assets/images/creditcard/discover.svg" alt="" class="me-3">
-											<div>
-												<h5 class="mb-0">Discover ending in 1234</h5>
-												<p class="mb-0 fs-6">Expires in 07/2021</p>
-											</div>
-										</div>
-										<span class="dropdown dropstart">
+                                            </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-3">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex">
+                                                <img src="../../static/assets/images/creditcard/discover.svg" alt="" class="me-3">
+                                                <div>
+                                                    <h5 class="mb-0">Discover ending in 1234</h5>
+                                                    <p class="mb-0 fs-6">Expires in 07/2021</p>
+                                                </div>
+                                            </div>
+                                            <span class="dropdown dropstart">
 											<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown2"
 												data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 												<i class="fe fe-more-vertical"></i>
 											</a>
 											<span class="dropdown-menu" aria-labelledby="paymentDropdown2">
 												<span class="dropdown-header">Setting </span>
-												<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
+                                            <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
 													Primary</a>
-											</span>
-										</span>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-3">
-									<div class="d-flex justify-content-between">
-										<div class="d-flex">
-											<img src="../../static/assets/images/creditcard/americanexpress.svg" alt="" class="me-3">
-											<div>
-												<h5 class="mb-0">American Express ending in 1234</h5>
-												<p class="mb-0 fs-6">Expires in 12/2021</p>
-											</div>
-										</div>
-										<span class="dropdown dropstart">
+                                            </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-3">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex">
+                                                <img src="../../static/assets/images/creditcard/americanexpress.svg" alt="" class="me-3">
+                                                <div>
+                                                    <h5 class="mb-0">American Express ending in 1234</h5>
+                                                    <p class="mb-0 fs-6">Expires in 12/2021</p>
+                                                </div>
+                                            </div>
+                                            <span class="dropdown dropstart">
 											<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown3"
 												data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 												<i class="fe fe-more-vertical"></i>
 											</a>
 											<span class="dropdown-menu" aria-labelledby="paymentDropdown3">
 												<span class="dropdown-header">Setting </span>
-												<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
+                                            <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
 													Primary</a>
-											</span>
-										</span>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-3 border-bottom">
-									<div class="d-flex justify-content-between">
-										<div class="d-flex">
-											<img src="../../static/assets/images/creditcard/paypal.svg" alt="" class="me-3">
-											<div>
-												<h5 class="mb-0">Paypal Express ending in 1234</h5>
-												<p class="mb-0 fs-6">Expires in 10/2021</p>
-											</div>
-										</div>
-										<span class="dropdown dropstart">
+                                            </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-3 border-bottom">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex">
+                                                <img src="../../static/assets/images/creditcard/paypal.svg" alt="" class="me-3">
+                                                <div>
+                                                    <h5 class="mb-0">Paypal Express ending in 1234</h5>
+                                                    <p class="mb-0 fs-6">Expires in 10/2021</p>
+                                                </div>
+                                            </div>
+                                            <span class="dropdown dropstart">
 											<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="paymentDropdown4"
 												data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 												<i class="fe fe-more-vertical"></i>
 											</a>
 											<span class="dropdown-menu" aria-labelledby="paymentDropdown4">
 												<span class="dropdown-header">Setting </span>
-												<a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-												<a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
+                                            <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                            <a class="dropdown-item" href="#"><i class="fe fe-credit-card dropdown-item-icon"></i>Make it
 													Primary</a>
-											</span>
-										</span>
-									</div>
-								</li>
-							</ul>
-							<!-- button-->
-							<a href="#" class="btn btn-outline-primary mt-4" data-bs-toggle="modal" data-bs-target="#paymentModal">Add
+                                            </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- button-->
+                                <a href="#" class="btn btn-outline-primary mt-4" data-bs-toggle="modal" data-bs-target="#paymentModal">Add
 								Payment Method</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</main>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<!-- Payment Modal -->
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header align-items-center d-flex">
-                <h4 class="modal-title" id="paymentModalLabel">
-                    Add New Payment Method
-                </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header align-items-center d-flex">
+                    <h4 class="modal-title" id="paymentModalLabel">
+                        Add New Payment Method
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 
 					</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div>
-                    <!-- Form -->
-                    <form class="row mb-4">
-                        <div class="mb-3 col-12 col-md-12 mb-4">
-                            <h5 class="mb-3">Credit / Debit card</h5>
-                            <!-- Radio button -->
-                            <div class="d-inline-flex">
-                            <div class="form-check me-2">
-                                <input type="radio" id="paymentRadioOne" name="paymentRadioOne" class="form-check-input" />
-                                <label class="form-check-label" for="paymentRadioOne"><img
-											src="../../static/assets/images/creditcard/americanexpress.svg" alt="" /></label>
-                            </div>
-                            <!-- Radio button -->
-                            <div class="form-check me-2">
-                                <input type="radio" id="paymentRadioTwo" name="paymentRadioOne" class="form-check-input" />
-                                <label class="form-check-label" for="paymentRadioTwo"><img
-											src="../../static/assets/images/creditcard/mastercard.svg" alt="" /></label>
-                            </div>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div>
+                        <!-- Form -->
+                        <form class="row mb-4">
+                            <div class="mb-3 col-12 col-md-12 mb-4">
+                                <h5 class="mb-3">Credit / Debit card</h5>
+                                <!-- Radio button -->
+                                <div class="d-inline-flex">
+                                    <div class="form-check me-2">
+                                        <input type="radio" id="paymentRadioOne" name="paymentRadioOne" class="form-check-input" />
+                                        <label class="form-check-label" for="paymentRadioOne"><img
+											src="../assets/images/creditcard/americanexpress.svg" alt="" /></label>
+                                    </div>
+                                    <!-- Radio button -->
+                                    <div class="form-check me-2">
+                                        <input type="radio" id="paymentRadioTwo" name="paymentRadioOne" class="form-check-input" />
+                                        <label class="form-check-label" for="paymentRadioTwo"><img
+											src="../assets/images/creditcard/mastercard.svg" alt="" /></label>
+                                    </div>
 
-                            <!-- Radio button -->
-                            <div class="form-check">
-                                <input type="radio" id="paymentRadioFour" name="paymentRadioOne" class="form-check-input" />
-                                <label class="form-check-label" for="paymentRadioFour"><img src="../../static/assets/images/creditcard/visa.svg"
+                                    <!-- Radio button -->
+                                    <div class="form-check">
+                                        <input type="radio" id="paymentRadioFour" name="paymentRadioOne" class="form-check-input" />
+                                        <label class="form-check-label" for="paymentRadioFour"><img src="../../static/assets/images/creditcard/visa.svg"
 											alt="" /></label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        </div>
-                        <!-- Name on card -->
-                        <div class="mb-3 col-12 col-md-4">
-                            <label for="nameoncard" class="form-label">Name on card</label>
-                            <input id="nameoncard" type="text" class="form-control" name="nameoncard" placeholder="Name" required />
-                        </div>
-                        <!-- Month -->
-                        <div class="mb-3 col-12 col-md-4">
-                            <label class="form-label">Month</label>
-                            <select class="selectpicker" data-width="100%">
+                            <!-- Name on card -->
+                            <div class="mb-3 col-12 col-md-4">
+                                <label for="nameoncard" class="form-label">Name on card</label>
+                                <input id="nameoncard" type="text" class="form-control" name="nameoncard" placeholder="Name" required />
+                            </div>
+                            <!-- Month -->
+                            <div class="mb-3 col-12 col-md-4">
+                                <label class="form-label">Month</label>
+                                <select class="selectpicker" data-width="100%">
 									<option value="">Month</option>
 									<option value="Jan">Jan</option>
 									<option value="Feb">Feb</option>
@@ -1529,11 +1528,11 @@
 									<option value="Nov">Nov</option>
 									<option value="Dec">Dec</option>
 								</select>
-                        </div>
-                        <!-- Year -->
-                        <div class="mb-3 col-12 col-md-4">
-                            <label class="form-label">Year</label>
-                            <select class="selectpicker" data-width="100%">
+                            </div>
+                            <!-- Year -->
+                            <div class="mb-3 col-12 col-md-4">
+                                <label class="form-label">Year</label>
+                                <select class="selectpicker" data-width="100%">
 									<option value="">Year</option>
 									<option value="June">2018</option>
 									<option value="July">2019</option>
@@ -1541,79 +1540,78 @@
 									<option value="Sep">2021</option>
 									<option value="Oct">2022</option>
 								</select>
-                        </div>
-                        <!-- Card number -->
-                        <div class="mb-3 col-md-8 col-12">
-                            <label for="cc-mask" class="form-label">Card Number</label>
-                            <input type="text" class="form-control" id="cc-mask" data-inputmask="'mask': '9999 9999 9999 9999'" inputmode="numeric" placeholder="xxxx-xxxx-xxxx-xxxx" required />
-                        </div>
-                        <!-- CVV -->
-                        <div class="mb-3 col-md-4 col-12">
-                            <div class="mb-3">
-                                <label for="cvv" class="form-label">CVV Code
+                            </div>
+                            <!-- Card number -->
+                            <div class="mb-3 col-md-8 col-12">
+                                <label for="cc-mask" class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="cc-mask" data-inputmask="'mask': '9999 9999 9999 9999'" inputmode="numeric" placeholder="xxxx-xxxx-xxxx-xxxx" required />
+                            </div>
+                            <!-- CVV -->
+                            <div class="mb-3 col-md-4 col-12">
+                                <div class="mb-3">
+                                    <label for="cvv" class="form-label">CVV Code
 										<i class="fe fe-help-circle ms-1" data-bs-toggle="tooltip" data-placement="top"
 											title="A 3 - digit number, typically printed on the back of a card."></i></label>
-                                <input type="password" class="form-control" name="cvv" id="cvv" placeholder="xxx" maxlength="3" inputmode="numeric" required />
+                                    <input type="password" class="form-control" name="cvv" id="cvv" placeholder="xxx" maxlength="3" inputmode="numeric" required />
+                                </div>
                             </div>
-                        </div>
-                        <!-- Button -->
-                        <div class="col-md-6 col-12">
-                            <button class="btn btn-primary" type="submit">
+                            <!-- Button -->
+                            <div class="col-md-6 col-12">
+                                <button class="btn btn-primary" type="submit">
 									Add New Card
 								</button>
-                            <button class="btn btn-outline-white" type="button" data-bs-dismiss="modal">
+                                <button class="btn btn-outline-white" type="button" data-bs-dismiss="modal">
 									Close
 								</button>
-                        </div>
-                    </form>
-                    <span><strong>Note:</strong> that you can later remove your card at
+                            </div>
+                        </form>
+                        <span><strong>Note:</strong> that you can later remove your card at
 							the account setting page.</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-   <!-- Footer -->
-	<!-- Footer -->
+    <!-- Footer -->
+    <!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center g-0 border-top py-2">
             <!-- Desc -->
             <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© 2022 Stoody. All Rights Reserved.</span>
+                <span data-th-text="#{global.copyright_warner}">© 2022 Stoody. All Rights Reserved.</span>
             </div>
-              <!-- Links -->
+            <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
                     <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
+                    <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
                 </nav>
             </div>
         </div>
     </div>
 </footer>
 
-
-	<!-- Scripts -->
-	<!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Scripts -->
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../static/assets/js/theme.min.js"></script>
 
 
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
-
-
-	<script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-	<script src="../../static/assets/libs/inputmask/dist/jquery.inputmask.min.js"></script>
-	<script src="../../static/assets/js/vendors/inputmask.js"></script>
+    <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../../static/assets/libs/inputmask/dist/jquery.inputmask.min.js"></script>
+    <script src="../../static/assets/js/vendors/inputmask.js"></script>
 
 </body>
 

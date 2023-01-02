@@ -11,10 +11,11 @@
 @created:   16.12.2022
 */
 
-package com.loam.stoody.model.user;
+package com.loam.stoody.model.user.courses;
 
 import com.loam.stoody.model.ParentModel;
 import com.loam.stoody.model.product.course.Course;
+import com.loam.stoody.model.user.User;
 import lombok.Data;
 
 import jakarta.persistence.*;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>  <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -11,27 +11,31 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
   <title>Quiz | Stoody</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+        <a class="navbar-brand" href="../index.html">
+            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
             <li class="dropdown stopevent">
@@ -51,7 +55,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                     <p class="mb-3 text-body">
@@ -81,7 +85,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                     <p class="mb-3 text-body">
@@ -107,7 +111,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                     <p class="mb-3 text-body">
@@ -133,7 +137,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-4.jpg}" src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                     <p class="mb-3 text-body">
@@ -165,14 +169,14 @@
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                             <div class="ms-3 lh-1">
                                 <h5 class="mb-1">Annette Black</h5>
@@ -211,25 +215,25 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                 <i class="fe fe-user me-2"></i>Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                            <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                 <i class="fe fe-star me-2"></i>Subscription
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="fe fe-settings me-2"></i>Settings
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                <i class="fe fe-settings me-2"></i>Security
                             </a>
                         </li>
                     </ul>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                         <li>
-                            <a class="dropdown-item" href="../index.html">
+                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                 <i class="fe fe-power me-2"></i>Sign Out
                             </a>
                         </li>
@@ -769,7 +773,7 @@
 										Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
 										Subscriptions
 									</a>
                                 </li>
@@ -861,12 +865,12 @@
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
 								Edit Profile
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
 								Security
 							</a>
                         </li>
@@ -970,7 +974,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                             <p class="mb-3 text-body">
@@ -1002,7 +1006,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                             <p class="mb-3 text-body">
@@ -1029,7 +1033,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                             <p class="mb-3 text-body">
@@ -1056,7 +1060,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-4.jpg}" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                             <p class="mb-3 text-body">
@@ -1089,14 +1093,14 @@
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                                     </div>
                                     <div class="ms-3 lh-1">
                                         <h5 class="mb-1">Annette Black</h5>
@@ -1134,25 +1138,25 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/profile-edit.html">
+                                    <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                         <i class="fe fe-user me-2"></i>Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                         <i class="fe fe-star me-2"></i>Subscription
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fe fe-settings me-2"></i>Settings
+                                    <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                        <i class="fe fe-settings me-2"></i>Security
                                     </a>
                                 </li>
                             </ul>
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="../index.html">
+                                    <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                         <i class="fe fe-power me-2"></i>Sign Out
                                     </a>
                                 </li>
@@ -1721,36 +1725,35 @@
         <div class="row align-items-center g-0 border-top py-2">
             <!-- Desc -->
             <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© 2022 Stoody. All Rights Reserved.</span>
+                <span data-th-text="#{global.copyright_warner}">© 2022 Stoody. All Rights Reserved.</span>
             </div>
-              <!-- Links -->
+            <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
                     <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
+                    <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
                 </nav>
             </div>
         </div>
     </div>
 </footer>
 
-
     <!-- Scripts -->
 
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../static/assets/js/theme.min.js"></script>
 
 
-
-
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
     <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 </body>

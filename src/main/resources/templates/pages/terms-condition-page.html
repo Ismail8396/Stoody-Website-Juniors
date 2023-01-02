@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>    <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,20 +11,23 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
     <title>Terms & Condition Page | Stoody</title>
 </head>
 
@@ -760,92 +763,92 @@
     </div>
 </nav>
     <main>
-    <!-- pageheader -->
-    <section class="py-10">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-12 col-12">
-                    <!-- text center -->
-                    <div class="text-center">
-                        <h1 class="display-3 fw-bold">Terms & Conditions</h1>
-                        <p class="lead px-8">Read our terms below to learn more about your rights and responsibilities as a Product Name user.</p>
+        <!-- pageheader -->
+        <section class="py-10">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-12 col-12">
+                        <!-- text center -->
+                        <div class="text-center">
+                            <h1 class="display-3 fw-bold">Terms & Conditions</h1>
+                            <p class="lead px-8">Read our terms below to learn more about your rights and responsibilities as a Product Name user.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- content -->
-    <section class="pb-10">
-        <div class="container">
-            <div class="row justify-content-center">
+        </section>
+        <!-- content -->
+        <section class="pb-10">
+            <div class="container">
+                <div class="row justify-content-center">
 
 
-                <div class="col-lg-8 col-md-12 col-12">
-                    <!-- date -->
-                    <div class="py-3 mb-5 border-bottom">
-                        <h3>Effective date: <span class="text-primary">23rd of March, 2025</span></h3>
-                    </div>
-                    <!-- heading -->
-                    <h1 class="fw-bold mb-3">This is a H1, Perfect's for titles.</h1>
-                    <!-- para -->
-                    <p class="fs-4 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain, sometimes none at all, freedom of the living creature was as the profit and financial
-                        security. Jasmine neck adapter and just running it lorem makeup sad smile of the television set.</p>
-                    <!-- para -->
-                    <p class="mb-1 fs-4"><span class="text-dark fw-semi-bold">Email: </span>hello@stoody.com
-                    </p>
-                    <!-- para -->
-                    <p class="mb-1 fs-4"><span class="text-dark fw-semi-bold">Address: </span>52, Komal Villas, Mansarovar Vadodara - 374321</p>
-                    <!-- para -->
-                    <div class="d-flex mt-5">
-                        <div>
-                            <h3 class="fw-bold">A</h3>
+                    <div class="col-lg-8 col-md-12 col-12">
+                        <!-- date -->
+                        <div class="py-3 mb-5 border-bottom">
+                            <h3>Effective date: <span class="text-primary">23rd of March, 2025</span></h3>
                         </div>
-                        <div class="ms-3">
-                            <h3 class="fw-bold">This is a H3's perfect for the titles.</h3>
-                            <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain, none at all, freedom of the living creature was as the profit and financial
-                                security. Jasmine neck adapter and just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
+                        <!-- heading -->
+                        <h1 class="fw-bold mb-3">This is a H1, Perfect's for titles.</h1>
+                        <!-- para -->
+                        <p class="fs-4 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain, sometimes none at all, freedom of the living creature was as the profit and financial
+                            security. Jasmine neck adapter and just running it lorem makeup sad smile of the television set.</p>
+                        <!-- para -->
+                        <p class="mb-1 fs-4"><span class="text-dark fw-semi-bold">Email: </span>hello@stoody.com
+                        </p>
+                        <!-- para -->
+                        <p class="mb-1 fs-4"><span class="text-dark fw-semi-bold">Address: </span>52, Komal Villas, Mansarovar Vadodara - 374321</p>
+                        <!-- para -->
+                        <div class="d-flex mt-5">
+                            <div>
+                                <h3 class="fw-bold">A</h3>
+                            </div>
+                            <div class="ms-3">
+                                <h3 class="fw-bold">This is a H3's perfect for the titles.</h3>
+                                <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain, none at all, freedom of the living creature was as the profit and financial
+                                    security. Jasmine neck adapter and just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- para -->
-                    <div class="d-flex mt-3">
-                        <div>
-                            <h3 class="fw-bold">B</h3>
+                        <!-- para -->
+                        <div class="d-flex mt-3">
+                            <div>
+                                <h3 class="fw-bold">B</h3>
+                            </div>
+                            <div class="ms-3">
+                                <h3 class="fw-bold">This is a H3's perfect for the titles.</h3>
+                                <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain, none at all, freedom of the living creature was as the profit and financial
+                                    security. Jasmine neck adapter and just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
+                            </div>
                         </div>
-                        <div class="ms-3">
-                            <h3 class="fw-bold">This is a H3's perfect for the titles.</h3>
-                            <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain, none at all, freedom of the living creature was as the profit and financial
-                                security. Jasmine neck adapter and just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
+                        <!-- para -->
+                        <div class="mt-5">
+                            <h2 class="fw-bold">This is a H2's perfect for the titles.</h2>
+                            <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain , sometimes none at all, freedom of the living creature was as the profit and
+                                financial security. Jasmine neck adapter and just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
+                            <!-- list -->
+                            <ul class="fs-4">
+                                <li>More than 60+ components</li>
+                                <li>Five ready tests</li>
+                                <li>Coming soon page</li>
+                                <li>Check list with left icon</li>
+                                <li>And much more ...</li>
+                            </ul>
                         </div>
-                    </div>
-                    <!-- para -->
-                    <div class="mt-5">
-                        <h2 class="fw-bold">This is a H2's perfect for the titles.</h2>
-                        <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stress, for the United States element ante. Duis cursus, mi quis viverra ornare, eros pain , sometimes none at all,
-                            freedom of the living creature was as the profit and financial security. Jasmine neck adapter and just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
-                        <!-- list -->
-                        <ul class="fs-4">
-                            <li>More than 60+ components</li>
-                            <li>Five ready tests</li>
-                            <li>Coming soon page</li>
-                            <li>Check list with left icon</li>
-                            <li>And much more ...</li>
-                        </ul>
-                    </div>
-                    <!-- para -->
-                    <div class="mt-5">
-                        <h2 class="fw-bold">This is a H2's perfect for the titles.</h2>
-                        <p class="fs-4">Stoody ui takes the privacy of its users very seriously. For the current our Privacy Policy, please click <a href="#">here</a>.</p>
-                        <p class="mb-6 fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, mi quis viverra ornare, eros pain, sometimes none at all, freedom of the living creature was as the profit and financial security. Jasmine neck adapter and just
-                            running it lorem makeup hairstyle. Now sad smile of the television set.</p>
-                        <h2 class="fw-bold">Changes about terms</h2>
-                        <p class="fs-4">If we change our terms of use we will post those changes on this page. Registered users will be sent an email that outlines changes made to the terms of use.</p>
-                        <p class="fs-4">Questions? Please email us at <a href="#">hello@example.com</a></p>
+                        <!-- para -->
+                        <div class="mt-5">
+                            <h2 class="fw-bold">This is a H2's perfect for the titles.</h2>
+                            <p class="fs-4">Stoody ui takes the privacy of its users very seriously. For the current our Privacy Policy, please click <a href="#">here</a>.</p>
+                            <p class="mb-6 fs-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, mi quis viverra ornare, eros pain, sometimes none at all, freedom of the living creature was as the profit and financial security. Jasmine neck adapter and
+                                just running it lorem makeup hairstyle. Now sad smile of the television set.</p>
+                            <h2 class="fw-bold">Changes about terms</h2>
+                            <p class="fs-4">If we change our terms of use we will post those changes on this page. Registered users will be sent an email that outlines changes made to the terms of use.</p>
+                            <p class="fs-4">Questions? Please email us at <a href="#">hello@example.com</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
     <!-- Scripts -->
     <!-- footer -->
 <footer class="pt-lg-10 pt-5 footer bg-white">
@@ -924,17 +927,17 @@
 </footer>
     <!-- Scripts -->
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../static/assets/js/theme.min.js"></script>
 
 
-
-
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
 </body>
 

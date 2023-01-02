@@ -1,6 +1,7 @@
 package com.loam.stoody.configuration.jwt;
 
 import com.loam.stoody.global.constants.About;
+import com.loam.stoody.global.constants.PRL;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Setter
 public class JwtResponse {
     private String token;
-    private String type = "Bearer";
+    private String type = PRL.JWTTokenPrefix;
     private Long id;
     private String username;
     private String email;

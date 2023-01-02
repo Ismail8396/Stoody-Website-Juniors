@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>	<!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,27 +11,31 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../static/assets/css/theme.min.css">
-	<title>Reviews | Stoody</title>
+
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Reviews | Stoody</title>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+        <a class="navbar-brand" href="../index.html">
+            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
             <li class="dropdown stopevent">
@@ -51,7 +55,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                     <p class="mb-3 text-body">
@@ -81,7 +85,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                     <p class="mb-3 text-body">
@@ -107,7 +111,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                     <p class="mb-3 text-body">
@@ -133,7 +137,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-4.jpg}" src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                     <p class="mb-3 text-body">
@@ -165,14 +169,14 @@
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                             <div class="ms-3 lh-1">
                                 <h5 class="mb-1">Annette Black</h5>
@@ -211,25 +215,25 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                 <i class="fe fe-user me-2"></i>Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                            <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                 <i class="fe fe-star me-2"></i>Subscription
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="fe fe-settings me-2"></i>Settings
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                <i class="fe fe-settings me-2"></i>Security
                             </a>
                         </li>
                     </ul>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                         <li>
-                            <a class="dropdown-item" href="../index.html">
+                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                 <i class="fe fe-power me-2"></i>Sign Out
                             </a>
                         </li>
@@ -769,7 +773,7 @@
 										Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
 										Subscriptions
 									</a>
                                 </li>
@@ -861,12 +865,12 @@
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
 								Edit Profile
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
 								Security
 							</a>
                         </li>
@@ -970,7 +974,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                             <p class="mb-3 text-body">
@@ -1002,7 +1006,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                             <p class="mb-3 text-body">
@@ -1029,7 +1033,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                             <p class="mb-3 text-body">
@@ -1056,7 +1060,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-4.jpg}" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                             <p class="mb-3 text-body">
@@ -1089,14 +1093,14 @@
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                                     </div>
                                     <div class="ms-3 lh-1">
                                         <h5 class="mb-1">Annette Black</h5>
@@ -1134,25 +1138,25 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/profile-edit.html">
+                                    <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                         <i class="fe fe-user me-2"></i>Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                         <i class="fe fe-star me-2"></i>Subscription
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fe fe-settings me-2"></i>Settings
+                                    <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                        <i class="fe fe-settings me-2"></i>Security
                                     </a>
                                 </li>
                             </ul>
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="../index.html">
+                                    <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                         <i class="fe fe-power me-2"></i>Sign Out
                                     </a>
                                 </li>
@@ -1164,166 +1168,159 @@
         </div>
     </div>
 </nav>
-	<!-- Page content -->
-	<main>
-	<section class="pt-5 pb-5">
-		<div class="container">
-			<div class="row align-items-center">
-				<!-- User info -->
-				<div class="col-xl-12 col-lg-12 col-md-12 col-12">
-					<!-- Bg -->
-					<div class="pt-16 rounded-top-md" style="
+    <!-- Page content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- User info -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <!-- Bg -->
+                        <div class="pt-16 rounded-top-md" style="
 								background: url(../assets/images/background/profile-bg.jpg) no-repeat;
 								background-size: cover;
 							"></div>
-				<div class="card px-4 pt-2 pb-4 rounded-0 rounded-bottom shadow-sm">
-					<div class="d-flex align-items-end justify-content-between  ">
-						<div class="d-flex align-items-center">
-							<div
-								class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-								<img src="../../static/assets/images/avatar/avatar-1.jpg"
-									class="avatar-xl rounded-circle border border-4 border-white position-relative"
-									alt="">
-								<a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip"
-									data-placement="top" title="Verified">
-									<img src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30"
-										width="30">
-								</a>
-							</div>
-							<div class="lh-1">
-								<h2 class="mb-0">Jenny Wilson</h2>
-								<p class="mb-0 d-block">@Jennywilson</p>
-							</div>
-						</div>
-						<div>
-							<a href="add-course.html" class="btn btn-primary d-none d-md-block">Create New
+                        <div class="card px-4 pt-2 pb-4 rounded-0 rounded-bottom shadow-sm">
+                            <div class="d-flex align-items-end justify-content-between  ">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" class="avatar-xl rounded-circle border border-4 border-white position-relative" alt="">
+                                        <a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip" data-placement="top" title="Verified">
+                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30" width="30">
+                                        </a>
+                                    </div>
+                                    <div class="lh-1">
+                                        <h2 class="mb-0">Jenny Wilson</h2>
+                                        <p class="mb-0 d-block">@Jennywilson</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="add-course.html" class="btn btn-primary d-none d-md-block">Create New
 								Course</a>
-						</div>
-					</div>
-				</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-	<!-- Content -->
+                <!-- Content -->
 
-	<div class="row mt-0 mt-md-4">
-				<div class="col-lg-3 col-md-4 col-12">
-					<!-- Side navbar -->
-					<nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-							<!-- Menu -->
-						<a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-							<!-- Button -->
-						<button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button"
-							data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false"
-							aria-label="Toggle navigation">
+                <div class="row mt-0 mt-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <!-- Side navbar -->
+                        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+                            <!-- Menu -->
+                            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+                            <!-- Button -->
+                            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="fe fe-menu"></span>
 						</button>
-							<!-- Collapse navbar -->
-						<div class="collapse navbar-collapse" id="sidenav">
-							<div class="navbar-nav flex-column">
-								<span class="navbar-header">Dashboard</span>
-								<ul class="list-unstyled ms-n2 mb-4">
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
+                            <!-- Collapse navbar -->
+                            <div class="collapse navbar-collapse" id="sidenav">
+                                <div class="navbar-nav flex-column">
+                                    <span class="navbar-header">Dashboard</span>
+                                    <ul class="list-unstyled ms-n2 mb-4">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
 											Dashboard</a>
-									</li>
-										<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item active">
-										<a class="nav-link" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-earning.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-earning.html"><i
 												class="fe fe-pie-chart nav-icon"></i>Earnings</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-order.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-order.html"><i
 												class="fe fe-shopping-bag nav-icon"></i>Orders</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-students.html"><i class="fe fe-users nav-icon"></i>Students</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="instructor-payouts.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-students.html"><i class="fe fe-users nav-icon"></i>Students</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="instructor-payouts.html"><i
 												class="fe fe-dollar-sign nav-icon"></i>Payouts</a>
-									</li>
-									  <!-- Nav item -->
-									  <li class="nav-item ">
-                                        <a class="nav-link" href="instructor-quiz.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="instructor-quiz.html"><i
                                                 class="fe fe-help-circle nav-icon"></i>Quiz</a>
-                                    </li>
-									<!-- Nav item -->
-									<li class="nav-item ">
-										<a class="nav-link" href="instructor-quiz-result.html"><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
-									  </li>
-								</ul>
-								<!-- Navbar header -->
-								<span class="navbar-header">Account Settings</span>
-								<ul class="list-unstyled ms-n2 mb-0">
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="instructor-quiz-result.html"><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Navbar header -->
+                                    <span class="navbar-header">Account Settings</span>
+                                    <ul class="list-unstyled ms-n2 mb-0">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
 											Profiles</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
 											Privacy</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
 											Profile</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<div class="col-lg-9 col-md-8 col-12">
-					<!-- Card -->
-					<div class="card mb-4">
-						<!-- Card header -->
-						<div class="card-header d-lg-flex align-items-center justify-content-between">
-							<div class="mb-3 mb-lg-0">
-								<h3 class="mb-0">Reviews</h3>
-								<span>You have full control to manage your own account
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <!-- Card header -->
+                            <div class="card-header d-lg-flex align-items-center justify-content-between">
+                                <div class="mb-3 mb-lg-0">
+                                    <h3 class="mb-0">Reviews</h3>
+                                    <span>You have full control to manage your own account
 									setting.</span>
-							</div>
-							<div>
-								<a href="#" class="btn btn-outline-primary btn-sm">Export To CSV...</a>
-							</div>
-						</div>
-						<!-- Card body -->
-						<div class="card-body">
-							<!-- Form -->
-							<form class="row mb-4">
-								<div class="col-xl-7 col-lg-6 col-md-4 col-12 mb-2 mb-lg-0">
-									<select class="selectpicker" data-width="100%">
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Export To CSV...</a>
+                                </div>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <!-- Form -->
+                                <form class="row mb-4">
+                                    <div class="col-xl-7 col-lg-6 col-md-4 col-12 mb-2 mb-lg-0">
+                                        <select class="selectpicker" data-width="100%">
 										<option value="">ALL</option>
 										<option value="How to easily create a website">
 											How to easily create a website
@@ -1335,10 +1332,10 @@
 											Vue js: The JavaScript Task...
 										</option>
 									</select>
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-4 col-12 mb-2 mb-lg-0">
-									<!-- Custom select -->
-									<select class="selectpicker" data-width="100%">
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-4 col-12 mb-2 mb-lg-0">
+                                        <!-- Custom select -->
+                                        <select class="selectpicker" data-width="100%">
 										<option value="">Rating</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -1346,253 +1343,232 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-								</div>
-								<div class="col-xl-3 col-lg-3 col-md-4 col-12 mb-2 mb-lg-0">
-									<!-- Custom select -->
-									<select class="selectpicker" data-width="100%">
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-4 col-12 mb-2 mb-lg-0">
+                                        <!-- Custom select -->
+                                        <select class="selectpicker" data-width="100%">
 										<option value="">Sort by</option>
 										<option value="Newest">Newest</option>
 										<option value="Oldest">Oldest</option>
 									</select>
-								</div>
-							</form>
-							<!-- List group -->
-							<ul class="list-group list-group-flush border-top">
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-4">
-									<div class="d-flex">
-										<img src="../../static/assets/images/avatar/avatar-9.jpg" alt="" class="rounded-circle avatar-lg" >
-										<div class="ms-3 mt-2">
-											<div class="d-flex align-items-center justify-content-between">
-												<div>
-													<h4 class="mb-0">Eleanor Pena</h4>
-													<span class="text-muted">2 hour ago</span>
-												</div>
-												<div>
-													<a href="#"  class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
+                                    </div>
+                                </form>
+                                <!-- List group -->
+                                <ul class="list-group list-group-flush border-top">
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-4">
+                                        <div class="d-flex">
+                                            <img src="../../static/assets/images/avatar/avatar-9.jpg" alt="" class="rounded-circle avatar-lg">
+                                            <div class="ms-3 mt-2">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h4 class="mb-0">Eleanor Pena</h4>
+                                                        <span class="text-muted">2 hour ago</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
 															class="fe fe-flag"></i></a>
-												</div>
-											</div>
-											<div class="mt-2">
-												<span class="me-1">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="me-1">
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star mb-2 text-warning fs-6"></i>
 												</span>
-												<span class="me-1">for</span>
-												<span class="h5">How to easily create a website with WordPress</span>
-												<p class="mt-2">
-													The course is very interesting and insightful. I
-													think it should have more downloadable resources for
-													'points to remember' or 'key learnings' kind of
-													document for later reference after finishing each
-													section.
-												</p>
-												<a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
-											</div>
-										</div>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-4">
-									<div class="d-flex">
-										<img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="rounded-circle avatar-lg" >
-										<div class="ms-3 mt-2">
-											<div class="d-flex align-items-center justify-content-between">
-												<div>
-													<h4 class="mb-0">Jenny Wilson</h4>
-													<span class="text-muted">2 hour ago</span>
-												</div>
-												<div>
-													<a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
+                                                    <span class="me-1">for</span>
+                                                    <span class="h5">How to easily create a website with WordPress</span>
+                                                    <p class="mt-2">
+                                                        The course is very interesting and insightful. I think it should have more downloadable resources for 'points to remember' or 'key learnings' kind of document for later reference after finishing each section.
+                                                    </p>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-4">
+                                        <div class="d-flex">
+                                            <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="rounded-circle avatar-lg">
+                                            <div class="ms-3 mt-2">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h4 class="mb-0">Jenny Wilson</h4>
+                                                        <span class="text-muted">2 hour ago</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
 															class="fe fe-flag"></i></a>
-												</div>
-											</div>
-											<div class="mt-2">
-												<span class="me-1">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="me-1">
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star mb-2-half-alt text-warning fs-6"></i>
 												</span>
-												<span class="me-1">for</span>
-												<span class="h5">Getting started - Grunt: The JavaScript
+                                                    <span class="me-1">for</span>
+                                                    <span class="h5">Getting started - Grunt: The JavaScript
 													Task...</span>
-												<p class="mt-2">
-													Quisque semper aliquet lacinia. Ut molestie felis
-													nec consectetur hendrerit. Aliquam eu viverra velit.
-													In non leo ornare, ornare lorem elementum, efficitur
-													urna. Curabitur fringilla nulla ac odio dignissim
-													viverra.
-												</p>
-												<a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
-											</div>
-										</div>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-4">
-									<div class="d-flex">
-										<img src="../../static/assets/images/avatar/avatar-7.jpg" alt="" class="rounded-circle avatar-lg" >
-										<div class="ms-3 mt-2">
-											<div class="d-flex align-items-center justify-content-between">
-												<div>
-													<h4 class="mb-0">Brooklyn Simmons</h4>
-													<span class="text-muted">2 hour ago</span>
-												</div>
-												<div>
-													<a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
+                                                    <p class="mt-2">
+                                                        Quisque semper aliquet lacinia. Ut molestie felis nec consectetur hendrerit. Aliquam eu viverra velit. In non leo ornare, ornare lorem elementum, efficitur urna. Curabitur fringilla nulla ac odio dignissim viverra.
+                                                    </p>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-4">
+                                        <div class="d-flex">
+                                            <img src="../../static/assets/images/avatar/avatar-7.jpg" alt="" class="rounded-circle avatar-lg">
+                                            <div class="ms-3 mt-2">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h4 class="mb-0">Brooklyn Simmons</h4>
+                                                        <span class="text-muted">2 hour ago</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
 															class="fe fe-flag"></i></a>
-												</div>
-											</div>
-											<div class="mt-2">
-												<span class="me-1">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="me-1">
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star mb-2-half-alt text-warning fs-6"></i>
 												</span>
-												<span class="me-1">for</span>
-												<span class="h5">Getting started - Vue js: The JavaScript
+                                                    <span class="me-1">for</span>
+                                                    <span class="h5">Getting started - Vue js: The JavaScript
 													Task...</span>
-												<p class="mt-2">
-													Nulla eu cursus lacus. Vestibulum imperdiet accumsan
-													tempor. Vivamus lacinia posuere augue ac mollis.
-													Integer ornare purus ac hendrerit vehicula. In
-													condimentum efficitur quam, sed porta turpis
-													lobortis sit amet.
-												</p>
-												<a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
-											</div>
-										</div>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 py-4">
-									<div class="d-flex">
-										<img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="rounded-circle avatar-lg" >
-										<div class="ms-3 mt-2">
-											<div class="d-flex align-items-center justify-content-between">
-												<div>
-													<h4 class="mb-0">John Deo</h4>
-													<span class="text-muted">1 hour ago</span>
-												</div>
-												<div>
-													<a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
+                                                    <p class="mt-2">
+                                                        Nulla eu cursus lacus. Vestibulum imperdiet accumsan tempor. Vivamus lacinia posuere augue ac mollis. Integer ornare purus ac hendrerit vehicula. In condimentum efficitur quam, sed porta turpis lobortis sit amet.
+                                                    </p>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 py-4">
+                                        <div class="d-flex">
+                                            <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="rounded-circle avatar-lg">
+                                            <div class="ms-3 mt-2">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h4 class="mb-0">John Deo</h4>
+                                                        <span class="text-muted">1 hour ago</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
 															class="fe fe-flag"></i></a>
-												</div>
-											</div>
-											<div class="mt-2">
-												<span class="me-1">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="me-1">
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star mb-2 text-light fs-6"></i>
 												</span>
-												<span class="me-1">for</span>
-												<span class="h5">Getting started - Gulp: The JavaScript
+                                                    <span class="me-1">for</span>
+                                                    <span class="h5">Getting started - Gulp: The JavaScript
 													Task...</span>
-												<p class="mt-2">
-													Suspendisse mauris lectus, posuere et quam eu,
-													auctor interdum turpis. Maecenas gravida libero
-													vitae risus sodales dictu llentesque tristique mi ut
-													lectus luctus, eu hendrerit felis accumsan. Nam eget
-													felis porttitor, volutpat nisi id, aliquam purus.
-												</p>
-												<a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
-											</div>
-										</div>
-									</div>
-								</li>
-								<!-- List group item -->
-								<li class="list-group-item px-0 pt-4 pb-0">
-									<div class="d-flex">
-										<img src="../../static/assets/images/avatar/avatar-8.jpg" alt="" class="rounded-circle avatar-lg" >
-										<div class="ms-3 mt-2">
-											<div class="d-flex align-items-center justify-content-between">
-												<div>
-													<h4 class="mb-0">Simons Xolaa</h4>
-													<span class="text-muted">3 hour ago</span>
-												</div>
-												<div>
-													<a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
+                                                    <p class="mt-2">
+                                                        Suspendisse mauris lectus, posuere et quam eu, auctor interdum turpis. Maecenas gravida libero vitae risus sodales dictu llentesque tristique mi ut lectus luctus, eu hendrerit felis accumsan. Nam eget felis porttitor, volutpat nisi id, aliquam purus.
+                                                    </p>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- List group item -->
+                                    <li class="list-group-item px-0 pt-4 pb-0">
+                                        <div class="d-flex">
+                                            <img src="../../static/assets/images/avatar/avatar-8.jpg" alt="" class="rounded-circle avatar-lg">
+                                            <div class="ms-3 mt-2">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <h4 class="mb-0">Simons Xolaa</h4>
+                                                        <span class="text-muted">3 hour ago</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" title="Report Abuse"><i
 															class="fe fe-flag"></i></a>
-												</div>
-											</div>
-											<div class="mt-2">
-												<span class="me-1">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="me-1">
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star me-n1 mb-2 text-warning fs-6"></i>
 													<i class="mdi mdi-star mb-2 text-warning fs-6"></i>
 												</span>
-												<span class="me-1">for</span>
-												<span class="h5">Getting started - HTML: The Foundations
+                                                    <span class="me-1">for</span>
+                                                    <span class="h5">Getting started - HTML: The Foundations
 													Task...</span>
-												<p class="mt-2">
-													Lorem ipsum dolor sit amet, consectetur adipiscing
-													elit. Sed euismod nulla orci, sed varius metus
-													tincidunt consequat. Maecenas in purus non nisi
-													luctus pulvinar vitae eu lacus. Nam magna ipsum,
-													fermentum in commodo ut, tristique ut mauris.
-												</p>
-												<a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
-											</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</main>
+                                                    <p class="mt-2">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod nulla orci, sed varius metus tincidunt consequat. Maecenas in purus non nisi luctus pulvinar vitae eu lacus. Nam magna ipsum, fermentum in commodo ut, tristique ut mauris.
+                                                    </p>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm">Respond</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <!-- Footer -->
-	<!-- Footer -->
+    <!-- Footer -->
+    <!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center g-0 border-top py-2">
             <!-- Desc -->
             <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© 2022 Stoody. All Rights Reserved.</span>
+                <span data-th-text="#{global.copyright_warner}">© 2022 Stoody. All Rights Reserved.</span>
             </div>
-              <!-- Links -->
+            <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
                     <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
+                    <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
                 </nav>
             </div>
         </div>
     </div>
 </footer>
 
-
-	<!-- Scripts -->
-	<!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Scripts -->
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../static/assets/js/theme.min.js"></script>
 
 
-
-
-	<script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
+    <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>

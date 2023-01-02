@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>	<!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,28 +11,32 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../static/assets/css/theme.min.css">
-	<title>Notifications | Stoody</title>
+
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Notifications | Stoody</title>
 </head>
 
 <body>
-	<!-- Page Content -->
-	<nav class="navbar navbar-expand-lg navbar-default">
+    <!-- Page Content -->
+    <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+        <a class="navbar-brand" href="../index.html">
+            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
             <li class="dropdown stopevent">
@@ -52,7 +56,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                     <p class="mb-3 text-body">
@@ -82,7 +86,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                     <p class="mb-3 text-body">
@@ -108,7 +112,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                     <p class="mb-3 text-body">
@@ -134,7 +138,7 @@
                                     <div class="col">
                                         <a href="#" class="text-body">
                                             <div class="d-flex">
-                                                <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                <img th:src="@{/assets/images/avatar/avatar-4.jpg}" src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
                                                 <div class="ms-3">
                                                     <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                     <p class="mb-3 text-body">
@@ -166,14 +170,14 @@
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                             <div class="ms-3 lh-1">
                                 <h5 class="mb-1">Annette Black</h5>
@@ -212,25 +216,25 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                 <i class="fe fe-user me-2"></i>Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                            <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                 <i class="fe fe-star me-2"></i>Subscription
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="fe fe-settings me-2"></i>Settings
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                <i class="fe fe-settings me-2"></i>Security
                             </a>
                         </li>
                     </ul>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                         <li>
-                            <a class="dropdown-item" href="../index.html">
+                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                 <i class="fe fe-power me-2"></i>Sign Out
                             </a>
                         </li>
@@ -770,7 +774,7 @@
 										Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
 										Subscriptions
 									</a>
                                 </li>
@@ -862,12 +866,12 @@
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
 								Edit Profile
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
 								Security
 							</a>
                         </li>
@@ -971,7 +975,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                             <p class="mb-3 text-body">
@@ -1003,7 +1007,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                             <p class="mb-3 text-body">
@@ -1030,7 +1034,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                             <p class="mb-3 text-body">
@@ -1057,7 +1061,7 @@
                                             <div class="col">
                                                 <a class="text-body" href="#">
                                                     <div class="d-flex">
-                                                        <img src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                                        <img th:src="@{/assets/images/avatar/avatar-4.jpg}" alt="" class="avatar-md rounded-circle">
                                                         <div class="ms-3">
                                                             <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                             <p class="mb-3 text-body">
@@ -1090,14 +1094,14 @@
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                                        <img alt="avatar" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
                                     </div>
                                     <div class="ms-3 lh-1">
                                         <h5 class="mb-1">Annette Black</h5>
@@ -1135,25 +1139,25 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/profile-edit.html">
+                                    <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
                                         <i class="fe fe-user me-2"></i>Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
                                         <i class="fe fe-star me-2"></i>Subscription
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fe fe-settings me-2"></i>Settings
+                                    <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                        <i class="fe fe-settings me-2"></i>Security
                                     </a>
                                 </li>
                             </ul>
                             <div class="dropdown-divider"></div>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="dropdown-item" href="../index.html">
+                                    <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
                                         <i class="fe fe-power me-2"></i>Sign Out
                                     </a>
                                 </li>
@@ -1165,365 +1169,356 @@
         </div>
     </div>
 </nav>
-	<main>
-	<section class="pt-5 pb-4">
-		<div class="container">
-			<div class="row align-items-center">
-				<!-- User info -->
-				<div class="col-xl-12 col-lg-12 col-md-12 col-12">
-						<!-- Bg -->
-					<div class="pt-16 rounded-top-md" style="
+    <main>
+        <section class="pt-5 pb-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- User info -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <!-- Bg -->
+                        <div class="pt-16 rounded-top-md" style="
 								background: url(../assets/images/background/profile-bg.jpg) no-repeat;
 								background-size: cover;
 							"></div>
-			  <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
-				<div
-				  class="d-flex align-items-end justify-content-between  ">
-				  <div class="d-flex align-items-center">
-					<div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-					  <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white"
-						alt="">
-					</div>
-					<div class="lh-1">
-					  <h2 class="mb-0">Stella Flores
-						<a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
-						  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
+                            <div class="d-flex align-items-end justify-content-between  ">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white" alt="">
+                                    </div>
+                                    <div class="lh-1">
+                                        <h2 class="mb-0">Stella Flores
+                                            <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
 							<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
 							<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
 						  </svg>
-						</a>
-					  </h2>
-					  <p class=" mb-0 d-block">@stellaflores</p>
-					</div>
-				  </div>
-				  <div>
-					<a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
+                                            </a>
+                                        </h2>
+                                        <p class=" mb-0 d-block">@stellaflores</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
 					  Setting</a>
-				  </div>
-				</div>
-				</div>
-				</div>
-			</div>
-	<!-- Content -->
-	<div class="row mt-0 mt-md-4">
-				<div class="col-lg-3 col-md-4 col-12">
-					<!-- Side navbar -->
-					<nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-						<!-- Menu -->
-						<a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-						<!-- Button -->
-						<button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button"
-							data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false"
-							aria-label="Toggle navigation">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="row mt-0 mt-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <!-- Side navbar -->
+                        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+                            <!-- Menu -->
+                            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+                            <!-- Button -->
+                            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="fe fe-menu"></span>
 						</button>
-						<!-- Collapse navbar -->
-						<div class="collapse navbar-collapse" id="sidenav">
-							<div class="navbar-nav flex-column">
-								<!-- Navbar header -->
-								<span class="navbar-header">Subscription</span>
-								<ul class="list-unstyled ms-n2 mb-4">
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
+                            <!-- Collapse navbar -->
+                            <div class="collapse navbar-collapse" id="sidenav">
+                                <div class="navbar-nav flex-column">
+                                    <!-- Navbar header -->
+                                    <span class="navbar-header">Subscription</span>
+                                    <ul class="list-unstyled ms-n2 mb-4">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
 											Subscriptions</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
 											Info</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item  ">
-                                        <a class="nav-link" href="student-quiz.html"><i
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item  ">
+                                            <a class="nav-link" href="student-quiz.html"><i
                                                 class="fe fe-help-circle nav-icon"></i>My Quiz Attempt</a>
-                                    </li>
-								</ul>
-								<!-- Navbar header -->
-								<span class="navbar-header">Account Settings</span>
-								<ul class="list-unstyled ms-n2 mb-0">
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
+                                        </li>
+                                    </ul>
+                                    <!-- Navbar header -->
+                                    <span class="navbar-header">Account Settings</span>
+                                    <ul class="list-unstyled ms-n2 mb-0">
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
 											Profiles</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item active">
-										<a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
 											Privacy</a>
-									</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
 											Profile</a>
-									</li>
-										<!-- Nav item -->
-										<li class="nav-item">
-											<a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
-										</li>
-									<!-- Nav item -->
-									<li class="nav-item">
-										<a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-				</div>
-				<!-- Content -->
-				<div class="col-lg-9 col-md-8 col-12">
-					<!-- Card -->
-					<div class="card">
-						<!-- Card header -->
-						<div class="card-header d-flex justify-content-between align-items-center">
-							<div>
-								<!-- Notification -->
-								<h3 class="mb-0">Notifications</h3>
-								<p class="mb-0">
-									You will get only notification what have enabled.
-								</p>
-							</div>
-							<div>
-								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" id="checkAll" checked="">
-									<label class="form-check-label" for="checkAll"></label>
-								</div>
-							</div>
-						</div>
-						<!-- Card body -->
-						<div class="card-body">
-							<div class="mb-5">
-								<h4 class="mb-0">Security Alerts</h4>
-								<p>
-									You will get only those email notification what you want.
-								</p>
-								<!-- List group -->
-								<ul class="list-group list-group-flush">
-										<!-- List group item -->
-									<li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
-										<div>Email me whenever encounter unusual activity</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchOne" checked>
-												<label class="form-check-label" for="switchOne"></label>
-											</div>
-										</div>
-									</li>
-										<!-- List group item -->
-									<li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
-										<div>Email me if new browser is used to sign in</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchTwo">
-												<label class="form-check-label" for="switchTwo"></label>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="mb-5">
-								<h4 class="mb-0">News</h4>
-								<p>
-									You will get only those email notification what you want.
-								</p>
-								<!-- List group-->
-								<ul class="list-group list-group-flush">
-										<!-- List group item -->
-									<li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
-										<div>Notify me by email about sales and latest news</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchThree" checked>
-												<label class="form-check-label" for="switchThree"></label>
-											</div>
-										</div>
-									</li>
-									<!-- List group item -->
-									<li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
-										<div>Email me about new features and updates</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchFour">
-												<label class="form-check-label" for="switchFour"></label>
-											</div>
-										</div>
-									</li>
-									<!-- List group item -->
-									<li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
-										<div>Email me about tips on using account</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchFive" checked>
-												<label class="form-check-label" for="switchFive"></label>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div>
-								<!-- Content -->
-								<h4 class="mb-0">Courses</h4>
-								<p>
-									You will get only those email notification what you want.
-								</p>
-									<!-- List group -->
-								<ul class="list-group list-group-flush mb-4">
-										<!-- List group item -->
-									<li class="list-group-item d-flex justify-content-between px-0">
-										<div>
-											<h5 class="mb-0">Updates from Classes You're Taking</h5>
-											<span class="text-body">Announcements, events, and tips and tricks.</span>
-										</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchSix" checked>
-												<label class="form-check-label" for="switchSix"></label>
-											</div>
-										</div>
-									</li>
-										<!-- List group item -->
-									<li class="list-group-item d-flex justify-content-between px-0">
-										<div>
-											<h5 class="mb-0">Updates from Teacher Discussions</h5>
-											<span class="text-body">Public Discussions outside of a class that teachers
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
+                                        </li>
+                                        <!-- Nav item -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <!-- Content -->
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card">
+                            <!-- Card header -->
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <div>
+                                    <!-- Notification -->
+                                    <h3 class="mb-0">Notifications</h3>
+                                    <p class="mb-0">
+                                        You will get only notification what have enabled.
+                                    </p>
+                                </div>
+                                <div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="checkAll" checked="">
+                                        <label class="form-check-label" for="checkAll"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <div class="mb-5">
+                                    <h4 class="mb-0">Security Alerts</h4>
+                                    <p>
+                                        You will get only those email notification what you want.
+                                    </p>
+                                    <!-- List group -->
+                                    <ul class="list-group list-group-flush">
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Email me whenever encounter unusual activity</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchOne" checked>
+                                                    <label class="form-check-label" for="switchOne"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Email me if new browser is used to sign in</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchTwo">
+                                                    <label class="form-check-label" for="switchTwo"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="mb-5">
+                                    <h4 class="mb-0">News</h4>
+                                    <p>
+                                        You will get only those email notification what you want.
+                                    </p>
+                                    <!-- List group-->
+                                    <ul class="list-group list-group-flush">
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Notify me by email about sales and latest news</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchThree" checked>
+                                                    <label class="form-check-label" for="switchThree"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Email me about new features and updates</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchFour">
+                                                    <label class="form-check-label" for="switchFour"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Email me about tips on using account</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchFive" checked>
+                                                    <label class="form-check-label" for="switchFive"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <!-- Content -->
+                                    <h4 class="mb-0">Courses</h4>
+                                    <p>
+                                        You will get only those email notification what you want.
+                                    </p>
+                                    <!-- List group -->
+                                    <ul class="list-group list-group-flush mb-4">
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex justify-content-between px-0">
+                                            <div>
+                                                <h5 class="mb-0">Updates from Classes You're Taking</h5>
+                                                <span class="text-body">Announcements, events, and tips and tricks.</span>
+                                            </div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchSix" checked>
+                                                    <label class="form-check-label" for="switchSix"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex justify-content-between px-0">
+                                            <div>
+                                                <h5 class="mb-0">Updates from Teacher Discussions</h5>
+                                                <span class="text-body">Public Discussions outside of a class that teachers
 												share to all of their followers.</span>
-										</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchSeven">
-												<label class="form-check-label" for="switchSeven"></label>
-											</div>
-										</div>
-									</li>
-										<!-- List group item -->
-									<li class="list-group-item d-flex justify-content-between px-0">
-										<div>
-											<h5 class="mb-0">Personalized Class Recommendations</h5>
-											<span class="text-body">Weekly recommendations tailored to your
+                                            </div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchSeven">
+                                                    <label class="form-check-label" for="switchSeven"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex justify-content-between px-0">
+                                            <div>
+                                                <h5 class="mb-0">Personalized Class Recommendations</h5>
+                                                <span class="text-body">Weekly recommendations tailored to your
 												interests.</span>
-										</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchEight">
-												<label class="form-check-label" for="switchEight"></label>
-											</div>
-										</div>
-									</li>
-										<!-- List group item -->
-									<li class="list-group-item d-flex justify-content-between px-0">
-										<div>
-											<h5 class="mb-0">Featured content</h5>
-											<p class="mb-0 text-body">Tips on Courses and dashboard usage, workshop, books,
-												tutorials and many insightful articles.</p>
-										</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchNine">
-												<label class="form-check-label" for="switchNine"></label>
-											</div>
-										</div>
-									</li>
-										<!-- List group item -->
-									<li class="list-group-item d-flex justify-content-between px-0">
-										<div>
-											<h5 class="mb-0">Product updates</h5>
-											<p class="mb-0 text-body">We'll send you a newsletter announcing essential
-												product updates in CoursesUI.</p>
-										</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchTen">
-												<label class="form-check-label" for="switchTen"></label>
-											</div>
-										</div>
-									</li>
-									<!-- List group item -->
-									<li class="list-group-item d-flex justify-content-between px-0">
-										<div>
-											<h5 class="mb-0">Events and offers</h5>
-											<p class="mb-0 text-body">Announcing promos and upcoming events,such as Ask Me
-												Anything sessions and webinars.</p>
-										</div>
-										<div>
-											<div class="form-check form-switch">
-												<input type="checkbox" class="form-check-input" id="switchEleven">
-												<label class="form-check-label" for="switchEleven"></label>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<!-- Short note -->
-								<a href="#" class="text-danger mb-2 d-block">
-									<u>Unsubscribe from all of the above</u>
-								</a>
-								<p class="mb-0 ">
-									Please note: you'll still receive important administrative
-									emails,such as password resets.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</main>
-  <!-- Footer -->
-	<!-- Footer -->
+                                            </div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchEight">
+                                                    <label class="form-check-label" for="switchEight"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex justify-content-between px-0">
+                                            <div>
+                                                <h5 class="mb-0">Featured content</h5>
+                                                <p class="mb-0 text-body">Tips on Courses and dashboard usage, workshop, books, tutorials and many insightful articles.</p>
+                                            </div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchNine">
+                                                    <label class="form-check-label" for="switchNine"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex justify-content-between px-0">
+                                            <div>
+                                                <h5 class="mb-0">Product updates</h5>
+                                                <p class="mb-0 text-body">We'll send you a newsletter announcing essential product updates in CoursesUI.</p>
+                                            </div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchTen">
+                                                    <label class="form-check-label" for="switchTen"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex justify-content-between px-0">
+                                            <div>
+                                                <h5 class="mb-0">Events and offers</h5>
+                                                <p class="mb-0 text-body">Announcing promos and upcoming events,such as Ask Me Anything sessions and webinars.</p>
+                                            </div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchEleven">
+                                                    <label class="form-check-label" for="switchEleven"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- Short note -->
+                                    <a href="#" class="text-danger mb-2 d-block">
+                                        <u>Unsubscribe from all of the above</u>
+                                    </a>
+                                    <p class="mb-0 ">
+                                        Please note: you'll still receive important administrative emails,such as password resets.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <!-- Footer -->
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center g-0 border-top py-2">
             <!-- Desc -->
             <div class="col-md-6 col-12 text-center text-md-start">
-                <span>© 2022 Stoody. All Rights Reserved.</span>
+                <span data-th-text="#{global.copyright_warner}">© 2022 Stoody. All Rights Reserved.</span>
             </div>
-              <!-- Links -->
+            <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
                     <a class="nav-link active ps-0" href="#">Privacy</a>
-                    <a class="nav-link" href="#">Terms </a>
-                    <a class="nav-link" href="#">Feedback</a>
-                    <a class="nav-link" href="#">Support</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
+                    <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
                 </nav>
             </div>
         </div>
     </div>
 </footer>
 
-
-	<!-- Scripts -->
-	<!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Scripts -->
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../static/assets/js/theme.min.js"></script>
 
 
-
-
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 </body>
 
 </html>

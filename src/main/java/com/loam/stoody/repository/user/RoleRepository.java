@@ -1,6 +1,6 @@
 package com.loam.stoody.repository.user;
 
-import com.loam.stoody.model.user.Role;
+import com.loam.stoody.model.user.misc.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

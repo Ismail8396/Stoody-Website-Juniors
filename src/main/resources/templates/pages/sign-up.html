@@ -11,7 +11,7 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
@@ -24,13 +24,9 @@
 
 
 <!-- Theme CSS -->
-<!-- bu-ild:css ../assets/css/theme.min.css -->
-<!-- <link rel="stylesheet" href="../../static/assets/css/theme.css"> -->
-<!-- end-build -->
+<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
 
-<!-- Should be Deprecated/Removed! Find better method to replace the below -->
-<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
-<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually!-->
+<!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
     <title data-th-text="#{global.sign_up_title}">Sign up | Stoody </title>
 </head>
@@ -47,7 +43,7 @@
                         <div class="card-body p-6">
                             <div class="mb-4">
                                 <a th:href="@{/}" href="../index.html">
-                                    <img src="../../static/assets/images/brand/logo/logo-icon.png" class="mb-4" alt=""></a>
+                                    <img th:src="@{/assets/images/brand/logo/logo-icon.png}" src="../../static/assets/images/brand/logo/logo-icon.png" class="mb-4" alt=""></a>
                                 <h1 class="mb-1 fw-bold" data-th-text="#{global.sign_up}">Sign up</h1>
 
                                 <span> 
@@ -86,9 +82,11 @@
                                 <div>
                                     <!-- Button -->
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary" data-th-text="#{global.create_free_account}">
-									Create Free Account
-								</button>
+                                        <button type="submit" class="btn btn-primary" onclick="elementVisibility('create_free_account_button_spinner',true)">
+									        <!-- Loading spinner(hidden by default) -->
+                                            <span id="create_free_account_button_spinner" style="display:none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            <span data-th-text="#{global.create_free_account}">Create free account</span>
+								        </button>
                                     </div>
                                 </div>
                                 <hr class="my-4">
@@ -125,15 +123,10 @@
 
 
 <!-- Theme JS -->
-<!-- bu-ild:js ../assets/js/theme.min.js -->
-<!-- <script src="../../static/assets/js/main.js"></script>
-<script src="../../static/assets/js/darkMode.js"></script> -->
-<!-- end-build -->
+<script src="../../static/assets/js/theme.min.js"></script>
 
 
-<!-- Should be Deprecated/Removed! Find better method to replace the below -->
-<!-- Link(s) below will be used after building process. They are special for Template Engine as automation process cannot create it automatically -->
-<!-- If you want to use any other links/files/sources than the minified one(s) below, you have to add it manually-->
+<!--This should be merged with the one above-->
 <script th:src="@{/assets/js/theme.min.js}"></script>
 </body>
 

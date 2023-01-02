@@ -14,38 +14,42 @@
 package com.loam.stoody.global.constants;
 
 
-public class PRL {
-    public static final int openCode = 65565;
+public interface PRL {
+    int openCode = 65565;
+
+    // Misc
+    String JWTTokenPrefix = "Bearer";
 
     // URLs ------------------------------------------------------------------------------------------------------------
     // Controller
-    public static final String homeURL = "/";
-    public static final String signInURL = "/sign-in";
-    public static final String signUpURL = "/sign-up";
-    public static final String logoutURL = "/logout";
-    public static final String forgetPasswordURL = "/forget-password";
-    public static final String error404URL = "/error";
-    public static final String redirectPageURL = "/redirect-page";
-    public static final String verifyPasswordPageURL = "/verify-password";
+    String homeURL = "/";
+    String userHomeURL = "/home";
+    String signInURL = "/sign-in";
+    String signUpURL = "/sign-up";
+    String logoutURL = "/logout";
+    String forgetPasswordURL = "/forget-password";
+    String error404URL = "/error";
+    String redirectPageURL = "/redirect-page";
+    String verifyPasswordPageURL = "/verify-password";
 
     // API (Rest Controller)
     // Prefixes
-    public static final String apiPrefix = "/" + About.AppNameLC + "/api/" + About.AppVersion;
-    public static final String apiRegistrationPrefixURL = apiPrefix + "/registration";
-    public static final String apiLoginPrefixURL = apiPrefix + "/user";
-    public static final String apiVerifySuffixURL = "/verify";
+    String apiPrefix = "/" + About.AppNameLC + "/api/" + About.AppVersion;
+    String apiRegistrationPrefixURL = apiPrefix + "/registration";
+    String apiLoginPrefixURL = apiPrefix + "/user";
+    String apiVerifySuffixURL = "/verify";
 
     // HTML NAMES ------------------------------------------------------------------------------------------------------
     // Public Pages
-    public static final String visitorHomePage = "pages/landings/home-academy";
-    public static final String signInPage = "pages/sign-in";
-    public static final String signUpPage = "pages/sign-up";
-    public static final String forgetPasswordPage = "pages/forget-password";
-    public static final String error404Page = "pages/404-error";
-    public static final String contactPage = "pages/contact";
-    public static final String redirectPage = "pages/redirect-page";
-    public static final String verifyPasswordPage = "pages/verify-password";
+    String visitorHomePage = "pages/landings/home-academy";
+    String signInPage = "pages/sign-in";
+    String signUpPage = "pages/sign-up";
+    String forgetPasswordPage = "pages/forget-password";
+    String error404Page = "pages/404-error";
+    String contactPage = "pages/contact";
+    String redirectPage = "pages/redirect-page";
+    String verifyPasswordPage = "pages/verify-password";
 
         // Only for any authorized one
-    public static final String userHomePage = "index";
+    String userHomePage = "index";
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-  <head>    <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,14 +11,14 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
@@ -26,11 +26,14 @@
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../static/assets/css/theme.min.css">
 
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+
     <title>Career Page | Stoody </title>
 
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Navbar -->
     <!-- navbar login -->
 <nav class="navbar navbar-expand-lg navbar-default">
@@ -761,257 +764,223 @@
     </div>
 </nav>
     <!-- Page Content -->
-<main>
-    <div class="pt-5 bg-white">
-      <div class="container-fluid px-md-5">
-        <!-- row -->
-        <div class="row">
-          <div class="col-lg-6 col-12 d-none d-lg-block ">
-            <div class="row">
-              <!-- col -->
-              <div class="col-md-4 col-4 px-1">
-                <!-- image -->
-                <div class="bg-cover rounded-3 mb-2 h-20rem"
-                  style="background-image:url(../assets/images/avatar/avatar-1.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2 h-18rem"
-                  style="background-image:url(../assets/images/avatar/avatar-3.jpg);"></div>
-              </div>
-               <!-- image -->
-              <div class="col-md-4 col-4 px-1">
-                <div class="bg-cover rounded-3 mb-2 h-16rem"
-                  style="background-image:url(../assets/images/avatar/avatar-2.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2 h-17rem"
-                  style="background-image:url(../assets/images/avatar/avatar-4.jpg);"></div>
-              </div>
-               <!-- image -->
-              <div class="col-md-4 col-4 px-1">
-                <div class="bg-cover rounded-3 mb-2 h-20rem"
-                  style="background-image:url(../assets/images/avatar/avatar-5.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2 h-19rem"
-                  style="background-image:url(../assets/images/avatar/avatar-7.jpg);"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-12">
-            <div class="row">
-              <div class="col-lg-4 col-4 px-1 ">
-                 <!-- image -->
-                <div class="bg-cover rounded-3 mb-2 h-14rem"
-                  style="background-image:url(../assets/images/avatar/avatar-6.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2 h-22rem"
-                  style="background-image:url(../assets/images/avatar/avatar-8.jpg);"></div>
-              </div>
-               <!-- image -->
-              <div class="col-lg-4 col-4 px-1 ">
-                <div class="bg-cover rounded-3 mb-2  h-22rem"
-                  style="background-image:url(../assets/images/avatar/avatar-10.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2  h-24rem"
-                  style="background-image:url(../assets/images/avatar/avatar-11.jpg);"></div>
-              </div>
-               <!-- image -->
-              <div class="col-lg-4 col-4 px-1  ">
-                <div class="bg-cover rounded-3 mb-2  h-14rem"
-                  style="background-image:url(../assets/images/avatar/avatar-12.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2  h-16rem"
-                  style="background-image:url(../assets/images/avatar/avatar-13.jpg);"></div>
-                <div class="bg-cover rounded-3 mb-2  h-20rem"
-                  style="background-image:url(../assets/images/avatar/avatar-14.jpg);"></div>
-              </div>
+    <main>
+        <div class="pt-5 bg-white">
+            <div class="container-fluid px-md-5">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-6 col-12 d-none d-lg-block ">
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-md-4 col-4 px-1">
+                                <!-- image -->
+                                <div class="bg-cover rounded-3 mb-2 h-20rem" style="background-image:url(../assets/images/avatar/avatar-1.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2 h-18rem" style="background-image:url(../assets/images/avatar/avatar-3.jpg);"></div>
+                            </div>
+                            <!-- image -->
+                            <div class="col-md-4 col-4 px-1">
+                                <div class="bg-cover rounded-3 mb-2 h-16rem" style="background-image:url(../assets/images/avatar/avatar-2.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2 h-17rem" style="background-image:url(../assets/images/avatar/avatar-4.jpg);"></div>
+                            </div>
+                            <!-- image -->
+                            <div class="col-md-4 col-4 px-1">
+                                <div class="bg-cover rounded-3 mb-2 h-20rem" style="background-image:url(../assets/images/avatar/avatar-5.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2 h-19rem" style="background-image:url(../assets/images/avatar/avatar-7.jpg);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="row">
+                            <div class="col-lg-4 col-4 px-1 ">
+                                <!-- image -->
+                                <div class="bg-cover rounded-3 mb-2 h-14rem" style="background-image:url(../assets/images/avatar/avatar-6.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2 h-22rem" style="background-image:url(../assets/images/avatar/avatar-8.jpg);"></div>
+                            </div>
+                            <!-- image -->
+                            <div class="col-lg-4 col-4 px-1 ">
+                                <div class="bg-cover rounded-3 mb-2  h-22rem" style="background-image:url(../assets/images/avatar/avatar-10.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2  h-24rem" style="background-image:url(../assets/images/avatar/avatar-11.jpg);"></div>
+                            </div>
+                            <!-- image -->
+                            <div class="col-lg-4 col-4 px-1  ">
+                                <div class="bg-cover rounded-3 mb-2  h-14rem" style="background-image:url(../assets/images/avatar/avatar-12.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2  h-16rem" style="background-image:url(../assets/images/avatar/avatar-13.jpg);"></div>
+                                <div class="bg-cover rounded-3 mb-2  h-20rem" style="background-image:url(../assets/images/avatar/avatar-14.jpg);"></div>
+                            </div>
 
-            </div>
+                        </div>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-     <!-- content -->
-    <section class="pb-14 pt-8 pt-lg-0 bg-white ">
-      <div class="container">
-        <div class="row">
-          <div class="offset-xl-1 col-xl-10 col-12">
-            <div class="row">
-              <div class="col-xl-7 col-lg-10 col-md-12 col-12">
-                 <!-- heading -->
-                <span class="text-uppercase text-primary fw-semi-bold ls-md">career at Stoody</span>
-                <h1 class="display-3 mt-4 mb-4 fw-bold">Do your best work and thrive at Stoody</h1>
-                 <!-- para -->
-                <p class="fs-3 mb-5">We’re building a better way to work, fueled by
-                  transparency, trust, and technology that is a
-                  force for positive change in the world.</p>
-                <a href="career-list.html" class="btn btn-primary">See all open positions</a>
-              </div>
+        <!-- content -->
+        <section class="pb-14 pt-8 pt-lg-0 bg-white ">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-1 col-xl-10 col-12">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-10 col-md-12 col-12">
+                                <!-- heading -->
+                                <span class="text-uppercase text-primary fw-semi-bold ls-md">career at Stoody</span>
+                                <h1 class="display-3 mt-4 mb-4 fw-bold">Do your best work and thrive at Stoody</h1>
+                                <!-- para -->
+                                <p class="fs-3 mb-5">We’re building a better way to work, fueled by transparency, trust, and technology that is a force for positive change in the world.</p>
+                                <a href="career-list.html" class="btn btn-primary">See all open positions</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <!-- counter -->
+                                <div class="border-top pt-4 mt-xl-10 mt-5 mb-md-5">
+                                    <h1 class="display-3 fw-bold mb-0">100+</h1>
+                                    <p class="lead text-muted">Team members</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <!-- counter -->
+                                <div class="border-top pt-4 mt-xl-10 mt-5 mb-md-5">
+                                    <h1 class="display-3 fw-bold mb-0">$47M</h1>
+                                    <p class="lead text-muted">in VC funding</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <!-- counter -->
+                                <div class="border-top pt-4 mt-xl-10 mt-5 mb-md-5">
+                                    <h1 class="display-3 fw-bold mb-0">18K</h1>
+                                    <p class="lead text-muted">Customers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-              <div class="col-lg-4 col-md-4 col-12">
-                <!-- counter -->
-                <div class="border-top pt-4 mt-xl-10 mt-5 mb-md-5">
-                  <h1 class="display-3 fw-bold mb-0">100+</h1>
-                  <p class="lead text-muted">Team members</p>
+        </section>
+        <section class="pt-lg-14 pb-lg-18 pb-8 bg-white">
+            <!-- container -->
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-1 col-xl-10 col-12">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-10 col-md-12 col-12">
+                                <!-- heading -->
+                                <span class="text-uppercase text-primary fw-semi-bold ls-md">A team member at Stoody</span>
+                                <h1 class="display-4 mt-4 mb-4 fw-bold">Our employees are our most valuable assets</h1>
+                                <!-- para -->
+                                <p class="fs-3 mb-5">Employees are the most valuable assets an organization has. It s their abilities, knowledge, and experience that can't be replaced. </p>
+
+
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <!-- row -->
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 col-md-12 col-12">
+                                    <div>
+                                        <!-- para -->
+                                        <p class="h2 fw-normal mb-6 lh-lg">"Working for Stoody UI has been nothing short of an incredible experience. I am continuously motivated to bring my best self to work with Stoody’s core values as inspiration - what a special place to grow and thrive!"</p>
+                                        <h3 class="mb-1">
+                                            Orkhan Aliyev
+                                        </h3>
+                                        <p class="mb-0">Software Engineer</p>
+                                    </div>
+                                </div>
+                                <div class="offset-lg-1 col-lg-5 col-md-12 col-12">
+                                    <!-- image -->
+                                    <div class=" mt-6 mt-lg-0">
+                                        <img src="../../static/assets/images/career/employee-pic.jpg" alt="" class="img-fluid w-100 rounded-3">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-12">
-                <!-- counter -->
-                <div class="border-top pt-4 mt-xl-10 mt-5 mb-md-5">
-                  <h1 class="display-3 fw-bold mb-0">$47M</h1>
-                  <p class="lead text-muted">in VC funding</p>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-12">
-                <!-- counter -->
-                <div class="border-top pt-4 mt-xl-10 mt-5 mb-md-5">
-                  <h1 class="display-3 fw-bold mb-0">18K</h1>
-                  <p class="lead text-muted">Customers</p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="pt-lg-14 pb-lg-18 pb-8 bg-white">
-       <!-- container -->
-      <div class="container">
-        <div class="row">
-          <div class="offset-xl-1 col-xl-10 col-12">
-            <div class="row">
-              <div class="col-xl-7 col-lg-10 col-md-12 col-12">
-                 <!-- heading -->
-                <span class="text-uppercase text-primary fw-semi-bold ls-md">A team member at Stoody</span>
-                <h1 class="display-4 mt-4 mb-4 fw-bold">Our employees are our
-                  most valuable assets</h1>
-                   <!-- para -->
-                <p class="fs-3 mb-5">Employees are the most valuable assets an
-                  organization has. It s their abilities, knowledge,
-                  and experience that can't be replaced. </p>
+        </section>
+        <section class="py-14">
+            <!-- container -->
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-1 col-xl-10 col-12">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-10 col-md-12 col-12">
+                                <!-- heading -->
+                                <span class="text-uppercase text-primary fw-semi-bold ls-md">Stoody Culture</span>
+                                <h1 class="display-4 mt-4 mb-4 fw-bold">Culture that drives business results</h1>
+                                <!-- para -->
+                                <p class="fs-3 mb-5">Great workplace is one where employees trust the people they work for, have pride in what they do, and enjoy the people they work with. </p>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <div class="row">
+                                <!-- content -->
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="mb-6 pe-xl-12">
+                                        <h3 class="mb-3 fw-bold">Benefits</h3>
+                                        <p class="mb-0 fs-4 ">Our benefits are designed to ensure that you are energized, focused, and thriving, from comprehensive mental health programs.</p>
 
+                                    </div>
+                                </div>
+                                <!-- content -->
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="mb-6 pe-xl-12">
+                                        <h3 class="mb-3 fw-bold">Growth</h3>
+                                        <p class="mb-0 fs-4 ">Areas of Responsibility empower you to take on big
+                                            <a href="#">responsibilities</a> across the organization that will challenge you in new ways.
+                                        </p>
 
-              </div>
+                                    </div>
+                                </div>
+                                <!-- content -->
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="mb-6 pe-xl-12">
+                                        <h3 class="mb-3 fw-bold">Values</h3>
+                                        <p class="mb-0 fs-4 ">Our values are at the core of <a href="#">who we are</a>. They guide us on how we show up & work together in order to be our best achieve our mission.</p>
+
+                                    </div>
+                                </div>
+                                <!-- content -->
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="mb-6 pe-xl-12">
+                                        <h3 class="mb-3 fw-bold">Development</h3>
+                                        <p class="mb-0  fs-4 ">You’ll have access to Conscious Leadership training, success guides, anti-bias & harassment training, & free executive coaching. </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mt-8">
-               <!-- row -->
-              <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12 col-12">
-                  <div>
-                     <!-- para -->
-                    <p class="h2 fw-normal mb-6 lh-lg">"Working for Stoody UI has been nothing
-                      short of an incredible experience. I am
-                      continuously motivated to bring my best
-                      self to work with Stoody’s core values as
-                      inspiration - what a special place to grow
-                      and thrive!"</p>
-                    <h3 class="mb-1">
-                      Orkhan Aliyev
-                    </h3>
-                    <p class="mb-0">Software Engineer</p>
-                  </div>
+        </section>
+        <!-- cta -->
+        <section class="bg-primary">
+            <div class="container">
+                <!-- row -->
+                <div class="row align-items-center g-0">
+                    <div class="col-xl-6 col-lg-6 col-md-12">
+                        <!-- heading -->
+                        <div class="pt-6 pt-lg-0">
+                            <h1 class="text-white display-4 fw-bold pe-lg-8">Join the Stoody team & shape the future of design
+                            </h1>
+                            <!-- text -->
+                            <p class="text-white-50 mb-4 lead">
+                                If you’re passionate and ready to dive in, we’d love to meet you. We’re committed to supporting our employee professional development and well-being.
+                            </p>
+                            <!-- btn -->
+                            <a href="#" class="btn btn-dark">View opportunities</a>
+                        </div>
+                    </div>
+                    <!-- img -->
+                    <div class=" col-xl-6 col-lg-6 col-md-12 text-lg-end text-center pt-6">
+                        <img src="../../static/assets/images/hero/hero-img.png" alt="" class="img-fluid">
+                    </div>
                 </div>
-                <div class="offset-lg-1 col-lg-5 col-md-12 col-12">
-                  <!-- image -->
-                  <div class=" mt-6 mt-lg-0">
-                    <img src="../../static/assets/images/career/employee-pic.jpg" alt="" class="img-fluid w-100 rounded-3">
-                  </div>
-                </div>
-
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="py-14">
-       <!-- container -->
-      <div class="container">
-        <div class="row">
-          <div class="offset-xl-1 col-xl-10 col-12">
-            <div class="row">
-              <div class="col-xl-7 col-lg-10 col-md-12 col-12">
-                 <!-- heading -->
-                <span class="text-uppercase text-primary fw-semi-bold ls-md">Stoody Culture</span>
-                <h1 class="display-4 mt-4 mb-4 fw-bold">Culture that drives
-                  business results</h1>
-                   <!-- para -->
-                <p class="fs-3 mb-5">Great workplace is one where employees trust
-                  the people they work for, have pride in what they
-                  do, and enjoy the people they work with. </p>
-              </div>
-            </div>
-            <div class="mt-8">
-              <div class="row">
-                 <!-- content -->
-                <div class="col-lg-6 col-md-6 col-12">
-                  <div class="mb-6 pe-xl-12">
-                    <h3 class="mb-3 fw-bold">Benefits</h3>
-                    <p class="mb-0 fs-4 ">Our benefits are designed to ensure that you are
-                      energized, focused, and thriving, from comprehensive
-                      mental health programs.</p>
+        </section>
 
-                  </div>
-                </div>
-                   <!-- content -->
-                <div class="col-lg-6 col-md-6 col-12">
-                  <div class="mb-6 pe-xl-12">
-                    <h3 class="mb-3 fw-bold">Growth</h3>
-                    <p class="mb-0 fs-4 ">Areas of Responsibility empower you to take on big
-                      <a href="#">responsibilities</a> across the organization that will
-                      challenge you in new ways.
-                    </p>
-
-                  </div>
-                </div>
-                   <!-- content -->
-                <div class="col-lg-6 col-md-6 col-12">
-                  <div class="mb-6 pe-xl-12">
-                    <h3 class="mb-3 fw-bold">Values</h3>
-                    <p class="mb-0 fs-4 ">Our values are at the core of <a href="#">who we are</a>. They guide us
-                      on how we show up & work together in order to be
-                      our best achieve our mission.</p>
-
-                  </div>
-                </div>
-                   <!-- content -->
-                <div class="col-lg-6 col-md-6 col-12">
-                  <div class="mb-6 pe-xl-12">
-                    <h3 class="mb-3 fw-bold">Development</h3>
-                    <p class="mb-0  fs-4 ">You’ll have access to Conscious Leadership training,
-                      success guides, anti-bias & harassment training, &
-                      free executive coaching. </p>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- cta -->
-    <section class="bg-primary">
-      <div class="container">
-        <!-- row -->
-        <div class="row align-items-center g-0">
-          <div class="col-xl-6 col-lg-6 col-md-12">
-            <!-- heading -->
-            <div class="pt-6 pt-lg-0">
-              <h1 class="text-white display-4 fw-bold pe-lg-8">Join the Stoody team & shape the future of design
-              </h1>
-              <!-- text -->
-              <p class="text-white-50 mb-4 lead">
-                If you’re passionate and ready to dive in, we’d love to meet you. We’re committed to supporting our
-                employee professional development and well-being.
-              </p>
-              <!-- btn -->
-              <a href="#" class="btn btn-dark">View opportunities</a>
-            </div>
-          </div>
-          <!-- img -->
-          <div class=" col-xl-6 col-lg-6 col-md-12 text-lg-end text-center pt-6">
-            <img src="../../static/assets/images/hero/hero-img.png" alt="" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-
-</main>
+    </main>
 
     <!-- footer -->
     <!-- footer -->
@@ -1092,19 +1061,19 @@
 
     <!-- Scripts -->
     <!-- Libs JS -->
-<script src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../static/assets/js/theme.min.js"></script>
 
 
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
 
 
-
-
-  </body>
+</body>
 
 </html>

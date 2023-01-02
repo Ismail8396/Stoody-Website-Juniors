@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>  <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -11,26 +11,29 @@
 
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon" href="../../../static/assets/images/favicon/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../../static/assets/images/favicon/favicon.ico">
 
 
 <!-- Libs CSS -->
-<link href="../../../static/assets/fonts/feather/feather.css" rel="stylesheet">
-<link href="../../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="../../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-<link href="../../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
+<link th:href="@{/assets/fonts/feather/feather.css}" href="../../../static/assets/fonts/feather/feather.css" rel="stylesheet">
+<link th:href="@{/assets/libs/bootstrap-icons/font/bootstrap-icons.css}" href="../../../static/assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+<link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 
 
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../../../static/assets/css/theme.min.css">
-  <title>Upload Resume | Stoody</title>
+
+<!--This should be merged with the one above-->
+<link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
+    <title>Upload Resume | Stoody</title>
 </head>
 
 <body class="bg-white">
-  <!-- Navbar -->
-  <!-- navbar login -->
+    <!-- Navbar -->
+    <!-- navbar login -->
 <nav class="navbar navbar-expand-lg navbar-default">
     <div class="container px-0">
         <a class="navbar-brand" href="../../index.html"><img src="../../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
@@ -192,383 +195,361 @@
         </div>
     </div>
 </nav>
-  <!-- Page header-->
-  <main>
-  <section class="py-6 py-lg-12">
-    <div class="container">
-      <div class="row">
-        <div class="offset-lg-1 col-lg-7 col-12">
+    <!-- Page header-->
+    <main>
+        <section class="py-6 py-lg-12">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-1 col-lg-7 col-12">
 
-          <!-- Content -->
-          <div class="mb-10">
-            <!-- heading -->
-            <h1 class="mb-3 display-4 fw-bold">Find a Job & grow your career</h1>
-            <!-- lead -->
-            <p class="mb-0 lead pe-lg-10 ">
-              Build your profile and let recruiters find you. Get job
-              postings delivered right to your email.
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- row -->
-      <div class="row">
-        <div class="offset-lg-1 col-lg-10 col-12">
-          <div class="row">
-            <div class=" col-md-8 col-12">
-
-              <div id="stepperForm" class="bs-stepper">
+                        <!-- Content -->
+                        <div class="mb-10">
+                            <!-- heading -->
+                            <h1 class="mb-3 display-4 fw-bold">Find a Job & grow your career</h1>
+                            <!-- lead -->
+                            <p class="mb-0 lead pe-lg-10 ">
+                                Build your profile and let recruiters find you. Get job postings delivered right to your email.
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <!-- row -->
                 <div class="row">
-                  <div>
-                    <!-- Stepper Button -->
-                    <div class="bs-stepper-header bg-transparent d-flex justify-content-between px-0" role="tablist">
-                      <div class="step" data-target="#test-l-1">
-                        <!-- button -->
-                        <button type="button" class="step-trigger d-block" role="tab" id="courseFormtrigger1"
-                          aria-controls="test-l-1">
+                    <div class="offset-lg-1 col-lg-10 col-12">
+                        <div class="row">
+                            <div class=" col-md-8 col-12">
+
+                                <div id="stepperForm" class="bs-stepper">
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div>
+                                            <!-- Stepper Button -->
+                                            <div class="bs-stepper-header bg-transparent d-flex justify-content-between px-0" role="tablist">
+                                                <div class="step" data-target="#test-l-1">
+                                                    <!-- button -->
+                                                    <button type="button" class="step-trigger d-block" role="tab" id="courseFormtrigger1" aria-controls="test-l-1">
                           <div class="bs-stepper-circle d-block  step-line">1</div>
                           <div class="bs-stepper-label">Basic Details</div>
                         </button>
-                      </div>
-                      <!-- button -->
-                      <div class="step" data-target="#test-l-2">
-                        <button type="button" class="step-trigger d-block " role="tab" id="courseFormtrigger2"
-                          aria-controls="test-l-2">
+                                                </div>
+                                                <!-- button -->
+                                                <div class="step" data-target="#test-l-2">
+                                                    <button type="button" class="step-trigger d-block " role="tab" id="courseFormtrigger2" aria-controls="test-l-2">
                           <span class="bs-stepper-circle d-block step-line">2</span>
                           <span class="bs-stepper-label">Employment </span>
                         </button>
-                      </div>
-                      <!-- button -->
-                      <div class="step" data-target="#test-l-3">
-                        <button type="button" class="step-trigger d-block  " role="tab" id="courseFormtrigger3"
-                          aria-controls="test-l-3">
+                                                </div>
+                                                <!-- button -->
+                                                <div class="step" data-target="#test-l-3">
+                                                    <button type="button" class="step-trigger d-block  " role="tab" id="courseFormtrigger3" aria-controls="test-l-3">
                           <span class="bs-stepper-circle d-block step-line">3</span>
                           <span class="bs-stepper-label">Education</span>
                         </button>
-                      </div>
-                      <!-- button -->
-                      <div class="step" data-target="#test-l-4">
-                        <button type="button" class="step-trigger d-block " role="tab" id="courseFormtrigger4"
-                          aria-controls="test-l-4">
+                                                </div>
+                                                <!-- button -->
+                                                <div class="step" data-target="#test-l-4">
+                                                    <button type="button" class="step-trigger d-block " role="tab" id="courseFormtrigger4" aria-controls="test-l-4">
                           <span class="bs-stepper-circle d-block">4</span>
                           <span class="bs-stepper-label">Job</span>
                         </button>
-                      </div>
-                    </div>
-                    <!-- Stepper content -->
+                                                </div>
+                                            </div>
+                                            <!-- Stepper content -->
 
-                    <div class="bs-stepper-content mt-5">
-                      <form onSubmit="return false">
-                        <!-- Content one -->
-                        <div id="test-l-1" role="tabpanel" class="bs-stepper-pane fade"
-                          aria-labelledby="courseFormtrigger1">
-                          <!-- Card -->
-                          <div class="card card-bordered shadow-none mb-3  ">
+                                            <div class="bs-stepper-content mt-5">
+                                                <form onSubmit="return false">
+                                                    <!-- Content one -->
+                                                    <div id="test-l-1" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="courseFormtrigger1">
+                                                        <!-- Card -->
+                                                        <div class="card card-bordered shadow-none mb-3  ">
 
-                            <!-- Card body -->
-                            <div class="card-body p-6">
-                              <div class="mb-4">
-                                <h2 class="mb-0">Basic Information</h2>
-                                <span>Add your personal details in the form.</span>
-                              </div>
-                              <!-- row -->
+                                                            <!-- Card body -->
+                                                            <div class="card-body p-6">
+                                                                <div class="mb-4">
+                                                                    <h2 class="mb-0">Basic Information</h2>
+                                                                    <span>Add your personal details in the form.</span>
+                                                                </div>
+                                                                <!-- row -->
 
-                              <div class="row">
+                                                                <div class="row">
 
-                                <div class="mb-4 col-12 col-md-6">
-                                  <!-- label -->
+                                                                    <div class="mb-4 col-12 col-md-6">
+                                                                        <!-- label -->
 
-                                  <label class="form-label" for="fname">First Name<span
+                                                                        <label class="form-label" for="fname">First Name<span
                                       class="text-danger">*</span></label>
-                                  <!-- input -->
-                                  <input type="text" id="fname" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="mb-4 col-12 col-md-6">
-                                  <!-- label -->
-                                  <label class="form-label" for="lname">Last Name<span
+                                                                        <!-- input -->
+                                                                        <input type="text" id="fname" class="form-control" placeholder="First Name">
+                                                                    </div>
+                                                                    <div class="mb-4 col-12 col-md-6">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="lname">Last Name<span
                                       class="text-danger">*</span></label>
-                                  <!-- input -->
-                                  <input type="text" id="lname" class="form-control" placeholder="Last Name">
-                                </div>
-                                <div class="mb-4 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="email">Email<span class="text-danger">*</span></label>
-                                  <!-- input -->
-                                  <input type="email" id="email" class="form-control"
-                                    placeholder="Tell us your Email ID">
-                                  <!-- label -->
-                                  <span class="fs-6">We'll send you relevant jobs in your mail</span>
-                                </div>
-                                <div class="mb-4 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="phone">Phone<span class="text-danger">*</span></label>
-                                  <!-- input group -->
-                                  <div class="input-group mb-1">
-                                    <span class="input-group-text" id="phone">+91</span>
-                                    <!-- input -->
-                                    <input type="text" class="form-control" placeholder="Mobile Number"
-                                      aria-label="Mobile Number" aria-describedby="phone">
-                                  </div>
-                                  <!-- text -->
-                                  <span class="fs-6">Recruiters will call you on this number</span>
-                                </div>
+                                                                        <!-- input -->
+                                                                        <input type="text" id="lname" class="form-control" placeholder="Last Name">
+                                                                    </div>
+                                                                    <div class="mb-4 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="email">Email<span class="text-danger">*</span></label>
+                                                                        <!-- input -->
+                                                                        <input type="email" id="email" class="form-control" placeholder="Tell us your Email ID">
+                                                                        <!-- label -->
+                                                                        <span class="fs-6">We'll send you relevant jobs in your mail</span>
+                                                                    </div>
+                                                                    <div class="mb-4 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="phone">Phone<span class="text-danger">*</span></label>
+                                                                        <!-- input group -->
+                                                                        <div class="input-group mb-1">
+                                                                            <span class="input-group-text" id="phone">+91</span>
+                                                                            <!-- input -->
+                                                                            <input type="text" class="form-control" placeholder="Mobile Number" aria-label="Mobile Number" aria-describedby="phone">
+                                                                        </div>
+                                                                        <!-- text -->
+                                                                        <span class="fs-6">Recruiters will call you on this number</span>
+                                                                    </div>
 
-                                <div class="mb-4 col-12 col-md-12">
-                                  <!-- text -->
+                                                                    <div class="mb-4 col-12 col-md-12">
+                                                                        <!-- text -->
 
-                                  <div class="fs-5 text-dark mb-2">Gender</div>
-                                  <!-- radio -->
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="male"
-                                      value="option1">
-                                    <label class="form-check-label" for="male">Male</label>
-                                  </div>
-                                  <!-- radio -->
-                                  <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="female"
-                                      value="option2">
-                                    <label class="form-check-label" for="female">Female</label>
-                                  </div>
-                                </div>
+                                                                        <div class="fs-5 text-dark mb-2">Gender</div>
+                                                                        <!-- radio -->
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="male" value="option1">
+                                                                            <label class="form-check-label" for="male">Male</label>
+                                                                        </div>
+                                                                        <!-- radio -->
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="female" value="option2">
+                                                                            <label class="form-check-label" for="female">Female</label>
+                                                                        </div>
+                                                                    </div>
 
-                                <div class="mb-4 col-12 col-md-12">
-                                  <!-- radio -->
-                                  <label class="form-label" for="resume">Resume</label>
-                                  <div class="input-group mb-1">
-                                    <input type="file" class="form-control" id="resume">
-                                    <label class="input-group-text" for="resume">Upload</label>
-                                  </div>
-                                  <!-- text -->
-                                  <span class="fs-6">DOC, DOCx, PDF, RTF | Max: 2 MB. Recruiters give first preference
+                                                                    <div class="mb-4 col-12 col-md-12">
+                                                                        <!-- radio -->
+                                                                        <label class="form-label" for="resume">Resume</label>
+                                                                        <div class="input-group mb-1">
+                                                                            <input type="file" class="form-control" id="resume">
+                                                                            <label class="input-group-text" for="resume">Upload</label>
+                                                                        </div>
+                                                                        <!-- text -->
+                                                                        <span class="fs-6">DOC, DOCx, PDF, RTF | Max: 2 MB. Recruiters give first preference
                                     to
                                     candidates who have a
                                     resume</span>
-                                </div>
-                                <div class="mb-4 col-12 col-md-12">
-                                  <!-- chechbox -->
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="formId">
-                                    <label class="form-check-label fs-6" for="formId">
+                                                                    </div>
+                                                                    <div class="mb-4 col-12 col-md-12">
+                                                                        <!-- chechbox -->
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="" id="formId">
+                                                                            <label class="form-check-label fs-6" for="formId">
                                       Send me important updates on email id.
                                     </label>
-                                  </div>
-                                </div>
+                                                                        </div>
+                                                                    </div>
 
-                                <div class="col-12">
-                                  <!-- Button -->
-                                  <button class="btn btn-primary" onclick="stepperForm.next()">
+                                                                    <div class="col-12">
+                                                                        <!-- Button -->
+                                                                        <button class="btn btn-primary" onclick="stepperForm.next()">
                                     Next
                                   </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                        <!-- Content two -->
-                        <div id="test-l-2" role="tabpanel" class="bs-stepper-pane fade"
-                          aria-labelledby="courseFormtrigger2">
-                          <!-- Card -->
-                          <div class="card card-bordered shadow-none mb-3  ">
+                                                    <!-- Content two -->
+                                                    <div id="test-l-2" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="courseFormtrigger2">
+                                                        <!-- Card -->
+                                                        <div class="card card-bordered shadow-none mb-3  ">
 
-                            <!-- Card body -->
-                            <div class="card-body p-6">
-                              <div class="mb-4">
-                                <h2 class="mb-0">Employment</h2>
-                                <span>Add your Employment details like company, job title and salary.</span>
-                              </div>
-                              <!-- row -->
-                              <div class="row">
-                                <!-- col -->
-                                <div class="mb-3 col-12">
-                                  <label class="form-label" for="jobTitle">Job title<span
+                                                            <!-- Card body -->
+                                                            <div class="card-body p-6">
+                                                                <div class="mb-4">
+                                                                    <h2 class="mb-0">Employment</h2>
+                                                                    <span>Add your Employment details like company, job title and salary.</span>
+                                                                </div>
+                                                                <!-- row -->
+                                                                <div class="row">
+                                                                    <!-- col -->
+                                                                    <div class="mb-3 col-12">
+                                                                        <label class="form-label" for="jobTitle">Job title<span
                                       class="text-danger">*</span></label>
-                                  <input type="text" id="jobTitle" class="form-control"
-                                    placeholder="Write the Job Title">
-                                </div>
-                                <!-- col -->
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- text -->
-                                  <div class="mb-2 text-dark">Job type<span class="text-danger">*</span></div>
-                                  <!-- btn group -->
-                                  <div class="btn-group" role="group" aria-label="Basic
+                                                                        <input type="text" id="jobTitle" class="form-control" placeholder="Write the Job Title">
+                                                                    </div>
+                                                                    <!-- col -->
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- text -->
+                                                                        <div class="mb-2 text-dark">Job type<span class="text-danger">*</span></div>
+                                                                        <!-- btn group -->
+                                                                        <div class="btn-group" role="group" aria-label="Basic
                                         radio toggle button group">
-                                    <!-- radio -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="fullTime"
-                                      autocomplete="off" checked="">
-                                    <!-- label -->
-                                    <label class="btn btn-outline-primary" for="FullTime">Full Time </label>
-                                    <!-- radio -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="partTime"
-                                      autocomplete="off">
+                                                                            <!-- radio -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="fullTime" autocomplete="off" checked="">
+                                                                            <!-- label -->
+                                                                            <label class="btn btn-outline-primary" for="FullTime">Full Time </label>
+                                                                            <!-- radio -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="partTime" autocomplete="off">
 
-                                    <!-- label -->
-                                    <label class="btn btn-outline-primary" for="freelance">Freelance </label>
-                                    <!-- input -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="contract"
-                                      autocomplete="off">
+                                                                            <!-- label -->
+                                                                            <label class="btn btn-outline-primary" for="freelance">Freelance </label>
+                                                                            <!-- input -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="contract" autocomplete="off">
 
-                                    <!-- label -->
-                                    <label class="btn btn-outline-primary" for="contract">Contract</label>
-                                  </div>
-                                </div>
+                                                                            <!-- label -->
+                                                                            <label class="btn btn-outline-primary" for="contract">Contract</label>
+                                                                        </div>
+                                                                    </div>
 
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="compnayName">Company Name</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="Company Name" id="companyName">
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="compnayName">Company Name</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="Company Name" id="companyName">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="companyAddress">Company Address</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="Company Address"
-                                    id="companyAddress">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="companyAddress">Company Address</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="Company Address" id="companyAddress">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="companyCity">Company City</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="City" id="companyCity">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="companyCity">Company City</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="City" id="companyCity">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- label -->
-                                  <label class="form-label">Company State</label>
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- label -->
+                                                                        <label class="form-label">Company State</label>
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>State</option>
                                     <option value="Gujarat">Gujarat</option>
                                     <option value="Maharashtra">Maharashtra</option>
                                     <option value="MP">MP</option>
                                   </select>
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- label -->
-                                  <label class="form-label">Pin code</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="Pin code">
-                                </div>
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- label -->
+                                                                        <label class="form-label">Pin code</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="Pin code">
+                                                                    </div>
 
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- label -->
-                                  <label class="form-label" for="dateofjoining">Date of Joining</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control flatpickr" placeholder="Date"
-                                    id="dateofjoining">
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="dateofjoining">Date of Joining</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control flatpickr" placeholder="Date" id="dateofjoining">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- label -->
-                                  <label class="form-label" for="dateofrelive">Date of relieving</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control flatpickr" placeholder="Date"
-                                    id="dateofrelive">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="dateofrelive">Date of relieving</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control flatpickr" placeholder="Date" id="dateofrelive">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="annualSalary">Annual Salary</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="Eg. 5,64,000" id="annualSalary">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="annualSalary">Annual Salary</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="Eg. 5,64,000" id="annualSalary">
 
-                                </div>
+                                                                    </div>
 
-                                <div class="d-md-flex justify-content-between mb-3 col-12 col-md-12">
-                                  <!-- button -->
-                                  <button class="btn btn-outline-secondary" onclick="stepperForm.previous()">
+                                                                    <div class="d-md-flex justify-content-between mb-3 col-12 col-md-12">
+                                                                        <!-- button -->
+                                                                        <button class="btn btn-outline-secondary" onclick="stepperForm.previous()">
                                     Go to Back
                                   </button>
-                                  <div class="mt-2 mt-md-0">
-                                    <!-- button -->
-                                    <button class="btn btn-outline-secondary me-2" onclick="stepperForm.next()">
+                                                                        <div class="mt-2 mt-md-0">
+                                                                            <!-- button -->
+                                                                            <button class="btn btn-outline-secondary me-2" onclick="stepperForm.next()">
                                       Skip
                                     </button>
-                                    <!-- button -->
-                                    <button class="btn btn-primary" onclick="stepperForm.next()">
+                                                                            <!-- button -->
+                                                                            <button class="btn btn-primary" onclick="stepperForm.next()">
                                       Save and Continue
                                     </button>
-                                  </div>
-                                </div>
+                                                                        </div>
+                                                                    </div>
 
 
 
 
-                              </div>
+                                                                </div>
 
 
-                            </div>
-                          </div>
-                          <!-- Button -->
+                                                            </div>
+                                                        </div>
+                                                        <!-- Button -->
 
-                        </div>
-                        <!-- Content three -->
-                        <div id="test-l-3" role="tabpanel" class="bs-stepper-pane fade"
-                          aria-labelledby="courseFormtrigger3">
-                          <!-- Card -->
-                          <div class="card card-bordered shadow-none mb-3">
+                                                    </div>
+                                                    <!-- Content three -->
+                                                    <div id="test-l-3" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="courseFormtrigger3">
+                                                        <!-- Card -->
+                                                        <div class="card card-bordered shadow-none mb-3">
 
-                            <!-- Card body -->
-                            <div class="card-body p-6">
-                              <div class="mb-4">
-                                <h2 class="mb-0">Education</h2>
-                                <span>Add your education detail like school, degree and graduate.</span>
-                              </div>
-                              <!-- row -->
-                              <div class="row">
-                                <div class="mb-3 col-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="school">School / University<span
+                                                            <!-- Card body -->
+                                                            <div class="card-body p-6">
+                                                                <div class="mb-4">
+                                                                    <h2 class="mb-0">Education</h2>
+                                                                    <span>Add your education detail like school, degree and graduate.</span>
+                                                                </div>
+                                                                <!-- row -->
+                                                                <div class="row">
+                                                                    <div class="mb-3 col-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="school">School / University<span
                                       class="text-danger">*</span></label>
-                                  <!-- input -->
-                                  <input type="text" id="school" class="form-control"
-                                    placeholder="Ex: Boston University">
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="Degree">Degree</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="Company Name" id="Degree">
+                                                                        <!-- input -->
+                                                                        <input type="text" id="school" class="form-control" placeholder="Ex: Boston University">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="Degree">Degree</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="Company Name" id="Degree">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="study">Fiels of study</label>
-                                  <!-- input -->
-                                  <input type="text" class="form-control" placeholder="Ex. Business" id="study">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="study">Fiels of study</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" class="form-control" placeholder="Ex. Business" id="study">
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <div class="mb-2 text-dark">Course Type</div>
-                                  <!-- btn group -->
-                                  <div class="btn-group" role="group" aria-label="Basic
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <div class="mb-2 text-dark">Course Type</div>
+                                                                        <!-- btn group -->
+                                                                        <div class="btn-group" role="group" aria-label="Basic
                                     radio toggle button group">
-                                    <!-- input -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="fullTime1"
-                                      autocomplete="off">
-                                    <!-- label -->
-                                    <label class="btn btn-outline-primary" for="fullTime1">Full Time </label>
-                                    <!-- input -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="partTime2"
-                                      autocomplete="off" checked>
-                                    <label class="btn btn-outline-primary" for="partTime2">Part Time</label>
+                                                                            <!-- input -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="fullTime1" autocomplete="off">
+                                                                            <!-- label -->
+                                                                            <label class="btn btn-outline-primary" for="fullTime1">Full Time </label>
+                                                                            <!-- input -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="partTime2" autocomplete="off" checked>
+                                                                            <label class="btn btn-outline-primary" for="partTime2">Part Time</label>
 
 
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <!-- label -->
-                                  <label class="form-label">From</label>
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label">From</label>
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>Month</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -583,10 +564,10 @@
                                     <option value="December">December</option>
                                   </select>
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- selct menu -->
-                                  <select class="form-select">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- selct menu -->
+                                                                        <select class="form-select">
                                     <option selected>Year</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
@@ -599,14 +580,14 @@
 
                                   </select>
 
-                                </div>
-                                <div class="col-12">
-                                  <!-- label -->
-                                  <label class="form-label">To</label>
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label">To</label>
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>Month</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
@@ -621,10 +602,10 @@
                                     <option value="December">December</option>
                                   </select>
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-6">
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>Year</option>
                                     <option value="2015">2015</option>
                                     <option value="2016">2016</option>
@@ -637,60 +618,58 @@
 
                                   </select>
 
-                                </div>
+                                                                    </div>
 
 
 
-                                <div class="d-md-flex justify-content-between mb-3 col-12 col-md-12">
-                                  <!-- button -->
-                                  <button class="btn btn-outline-secondary" onclick="stepperForm.previous()">
+                                                                    <div class="d-md-flex justify-content-between mb-3 col-12 col-md-12">
+                                                                        <!-- button -->
+                                                                        <button class="btn btn-outline-secondary" onclick="stepperForm.previous()">
                                     Go to Back
                                   </button>
 
-                                  <!-- button -->
-                                  <button class="btn btn-primary mt-md-0" onclick="stepperForm.next()">
+                                                                        <!-- button -->
+                                                                        <button class="btn btn-primary mt-md-0" onclick="stepperForm.next()">
                                     Save and Continue
                                   </button>
 
-                                </div>
+                                                                    </div>
 
 
 
 
-                              </div>
+                                                                </div>
 
 
-                            </div>
-                          </div>
-                          <!-- Button -->
-                        </div>
-                        <!-- Content four -->
-                        <div id="test-l-4" role="tabpanel" class="bs-stepper-pane fade"
-                          aria-labelledby="courseFormtrigger4">
-                          <!-- Card -->
-                          <div class="card card-bordered shadow-none mb-3">
+                                                            </div>
+                                                        </div>
+                                                        <!-- Button -->
+                                                    </div>
+                                                    <!-- Content four -->
+                                                    <div id="test-l-4" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="courseFormtrigger4">
+                                                        <!-- Card -->
+                                                        <div class="card card-bordered shadow-none mb-3">
 
-                            <!-- Card body -->
-                            <div class="card-body p-6">
-                              <div class="mb-4">
-                                <!-- heading -->
-                                <h2 class="mb-0">What kind of job are you looking for?</h2>
-                                <!-- text -->
-                                <span>Add the details for are you looking for future opportunity.</span>
-                              </div>
-                              <div class="row">
-                                <div class="mb-3 col-12">
-                                  <!-- label -->
-                                  <label class="form-label" for="rsumeHeadline">Resume Headline</label>
-                                  <!-- input -->
-                                  <input type="text" id="rsumeHeadline" class="form-control"
-                                    placeholder="Ex:Figma Designer">
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label"> Job Type</label>
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                            <!-- Card body -->
+                                                            <div class="card-body p-6">
+                                                                <div class="mb-4">
+                                                                    <!-- heading -->
+                                                                    <h2 class="mb-0">What kind of job are you looking for?</h2>
+                                                                    <!-- text -->
+                                                                    <span>Add the details for are you looking for future opportunity.</span>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="mb-3 col-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label" for="rsumeHeadline">Resume Headline</label>
+                                                                        <!-- input -->
+                                                                        <input type="text" id="rsumeHeadline" class="form-control" placeholder="Ex:Figma Designer">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label"> Job Type</label>
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>Permanent</option>
                                     <option value="Ahmedabad">Contract</option>
 
@@ -698,37 +677,34 @@
 
                                   </select>
 
-                                </div>
+                                                                    </div>
 
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- title -->
-                                  <div class="mb-2 text-dark">Employment Type</div>
-                                  <!-- btn group -->
-                                  <div class="btn-group" role="group" aria-label="Basic
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- title -->
+                                                                        <div class="mb-2 text-dark">Employment Type</div>
+                                                                        <!-- btn group -->
+                                                                        <div class="btn-group" role="group" aria-label="Basic
                                         radio toggle button group">
-                                    <!-- radio -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="fullTime2"
-                                      autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="fullTime2">Full Time </label>
-                                    <!-- radio -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="partTime3"
-                                      autocomplete="off" checked>
-                                    <label class="btn btn-outline-primary" for="partTime3">Part Time</label>
+                                                                            <!-- radio -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="fullTime2" autocomplete="off">
+                                                                            <label class="btn btn-outline-primary" for="fullTime2">Full Time </label>
+                                                                            <!-- radio -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="partTime3" autocomplete="off" checked>
+                                                                            <label class="btn btn-outline-primary" for="partTime3">Part Time</label>
 
-                                    <!-- radio -->
-                                    <input type="radio" class="btn-check" name="btnradio" id="contract2"
-                                      autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="contract2">Contract</label>
+                                                                            <!-- radio -->
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="contract2" autocomplete="off">
+                                                                            <label class="btn btn-outline-primary" for="contract2">Contract</label>
 
 
-                                  </div>
-                                </div>
+                                                                        </div>
+                                                                    </div>
 
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label"> Location</label>
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label"> Location</label>
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>Select</option>
                                     <option value="Ahmedabad">Ahmedabad</option>
                                     <option value="Bombay">Bombay</option>
@@ -738,12 +714,12 @@
 
                                   </select>
 
-                                </div>
-                                <div class="mb-3 col-12 col-md-12">
-                                  <!-- label -->
-                                  <label class="form-label"> Availability to Join</label>
-                                  <!-- select menu -->
-                                  <select class="form-select">
+                                                                    </div>
+                                                                    <div class="mb-3 col-12 col-md-12">
+                                                                        <!-- label -->
+                                                                        <label class="form-label"> Availability to Join</label>
+                                                                        <!-- select menu -->
+                                                                        <select class="form-select">
                                     <option selected>15 Days to less</option>
                                     <option value="One Month">One Month</option>
                                     <option value="within 15 days">Within 15 days</option>
@@ -752,79 +728,74 @@
 
                                   </select>
 
-                                </div>
+                                                                    </div>
 
 
 
-                                <div class="d-md-flex justify-content-between mb-3 col-12 col-md-12">
-                                  <!-- button -->
-                                  <button class="btn btn-outline-secondary" onclick="stepperForm.previous()">
+                                                                    <div class="d-md-flex justify-content-between mb-3 col-12 col-md-12">
+                                                                        <!-- button -->
+                                                                        <button class="btn btn-outline-secondary" onclick="stepperForm.previous()">
                                     Go to Back
                                   </button>
 
-                                  <!-- button -->
-                                  <button class="btn btn-primary" onclick="stepperForm.next()">
+                                                                        <!-- button -->
+                                                                        <button class="btn btn-primary" onclick="stepperForm.next()">
                                     Submit Application
                                   </button>
 
+                                                                    </div>
+
+
+
+
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
 
 
 
-                              </div>
-
-
                             </div>
+                            <div class="col-md-4 col-12">
+                                <!-- card -->
+                                <div class="card bg-light shadow-none">
+                                    <!-- card  body -->
+                                    <div class="card-body p-5">
+                                        <div class="mb-4">
+                                            <img src="../../../static/assets/images/job/job-graphics.svg" alt="">
 
-                          </div>
+                                        </div>
+                                        <h3 class="mb-3">On registering you can
+                                        </h3>
+                                        <ul class="list-unstyled text-dark mb-0">
+                                            <li class="d-flex align-items-start mb-3"><i class="mdi mdi-check-circle me-2 text-success"></i>Build your profile and let recruiters find you.</li>
+                                            <li class="d-flex align-items-start mb-3"><i class="mdi mdi-check-circle me-2 text-success"></i>Get job postings delivered right to your email.</li>
+                                            <li class="d-flex align-items-start"><i class="mdi mdi-check-circle me-2 text-success"></i>Find a Job & grow your career</li>
+                                        </ul>
 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </form>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-            </div>
-            <div class="col-md-4 col-12">
-              <!-- card -->
-              <div class="card bg-light shadow-none">
-                <!-- card  body -->
-                <div class="card-body p-5">
-                  <div class="mb-4">
-                    <img src="../../../static/assets/images/job/job-graphics.svg" alt="">
-
-                  </div>
-                  <h3 class="mb-3">On registering you
-                    can</h3>
-                  <ul class="list-unstyled text-dark mb-0">
-                    <li class="d-flex align-items-start mb-3"><i
-                        class="mdi mdi-check-circle me-2 text-success"></i>Build your profile and let
-                      recruiters find you.</li>
-                    <li class="d-flex align-items-start mb-3"><i class="mdi mdi-check-circle me-2 text-success"></i>Get
-                      job postings delivered right
-                      to your email.</li>
-                    <li class="d-flex align-items-start"><i class="mdi mdi-check-circle me-2 text-success"></i>Find a
-                      Job & grow your career</li>
-                  </ul>
+                    <!-- col -->
 
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <!-- col -->
-
-      </div>
-    </div>
-  </section>
-</main>
-  <!-- Footer -->
-  <!-- footer -->
+        </section>
+    </main>
+    <!-- Footer -->
+    <!-- footer -->
 <footer class="pt-lg-10 pt-5 footer bg-white">
     <div class="container">
         <div class="row">
@@ -900,24 +871,24 @@
     </div>
 </footer>
 
-  <!-- Scripts -->
+    <!-- Scripts -->
 
-  <!-- Libs JS -->
-<script src="../../../static/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Libs JS -->
+<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../../static/assets/libs/jquery/dist/jquery.min.js"></script>
+<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 
 <!-- Theme JS -->
 <script src="../../../static/assets/js/theme.min.js"></script>
 
 
-
-
-  <script src="../../../static/assets/libs/flatpickr/dist/flatpickr.min.js"></script>
-  <script src="../../../static/assets/libs/bs-stepper/dist/js/bs-stepper.min.js"></script>
-  <script src="../../../static/assets/js/vendors/beStepper.js"></script>
-  <script src="../../../static/assets/js/vendors/flatpickr.js"></script>
+<!--This should be merged with the one above-->
+<script th:src="@{/assets/js/theme.min.js}"></script>
+    <script src="../../../static/assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="../../../static/assets/libs/bs-stepper/dist/js/bs-stepper.min.js"></script>
+    <script src="../../../static/assets/js/vendors/beStepper.js"></script>
+    <script src="../../../static/assets/js/vendors/flatpickr.js"></script>
 </body>
 
 </html>

@@ -22,6 +22,7 @@ public class LoginServiceProxy {
     private final CustomUserDetailsService customUserDetailsService;
     private final SmsSenderService smsSenderService;
 
+
     public OutdoorResponse<?> login(String username, String password, HttpServletRequest request) {
         // Check if user exists
         try {

@@ -1,6 +1,6 @@
 package com.loam.stoody.service.user;
 
-import com.loam.stoody.model.user.Role;
+import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.repository.user.UserRepository;
 import org.springframework.security.core.Authentication;

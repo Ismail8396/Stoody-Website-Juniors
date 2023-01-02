@@ -1,6 +1,6 @@
 package com.loam.stoody.configuration;
 
-import com.loam.stoody.model.user.Role;
+import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
