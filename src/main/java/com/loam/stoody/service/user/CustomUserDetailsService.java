@@ -19,12 +19,14 @@
 package com.loam.stoody.service.user;
 
 import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.model.user.*;
 import com.loam.stoody.model.user.misc.Role;
-import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.LoginRequest;
+import com.loam.stoody.model.user.statistics.UserStatistics;
 import com.loam.stoody.repository.user.LoginRequestRepository;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
+import com.loam.stoody.repository.user.attributes.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,10 +42,19 @@ import java.util.*;
 @Service
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
+    // -> Repositories
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final LoginRequestRepository loginRequestRepository;
 
+    private final UserStatisticsRepository userStatisticsRepository;
+    private final UserNotificationSettingsRepository userNotificationSettingsRepository;
+    private final UserPrivacySettingsRepository userPrivacySettingsRepository;
+    private final UserProfileSettingsRepository userProfileSettingsRepository;
+    private final UserSocialProfilesSettingsRepository userSocialProfilesSettingsRepository;
+    // --> Repositories end
+
+    // Returns simple user without an email, username nor password.
     public User getDefaultUser() {
         User defaultUser = new User();
 
@@ -69,6 +80,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         System.out.println("USER HAS THESE ROLES: "+defaultUser.getRoles());
         //--------------------------------
 
+        // Linked Models
+        defaultUser.setUserStatistics(new UserStatistics());
+        defaultUser.setUserNotifications(new UserNotifications());
+        defaultUser.setUserPrivacy(new UserPrivacy());
+        defaultUser.setUserProfile(new UserProfile());
+        defaultUser.setUserSocialProfiles(new UserSocialProfiles());
+        defaultUser.setUserFollowers(new ArrayList<>());
+
+        // Misc
         defaultUser.setAccountEnabled(true);
         defaultUser.setAccountExpired(false);
         defaultUser.setAccountLocked(false);
@@ -139,9 +159,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         return response;
     }
 
-    public IndoorResponse createUser(User user) {
+    public IndoorResponse saveUser(User user) {
         try {
             userRepository.save(user);
+            saveUserStatistics(user.getUserStatistics());
+            saveUserNotificationSettings(user.getUserNotifications());
+            saveUserPrivacySettings(user.getUserPrivacy());
+            saveUserProfileSettings(user.getUserProfile());
+            saveUserSocialProfilesSettings(user.getUserSocialProfiles());
         } catch (Exception ignored) {
             return IndoorResponse.FAIL;
         }
@@ -149,4 +174,43 @@ public class CustomUserDetailsService implements UserDetailsService {
         return IndoorResponse.SUCCESS;
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+    // --> User related data (Misc)
+    public UserStatistics getUserStatisticsById(int id){
+        return userStatisticsRepository.findById(id).orElse(null);
+    }
+    public void saveUserStatistics(UserStatistics userStatistics){
+        userStatisticsRepository.save(userStatistics);
+    }
+
+    public UserNotifications getUserNotificationSettingsById(int id){
+        return userNotificationSettingsRepository.findById(id).orElse(null);
+    }
+    public void saveUserNotificationSettings(UserNotifications userNotifications){
+        userNotificationSettingsRepository.save(userNotifications);
+    }
+
+    public UserPrivacy getUserPrivacySettingsById(int id){
+        return userPrivacySettingsRepository.findById(id).orElse(null);
+    }
+
+    public void saveUserPrivacySettings(UserPrivacy userPrivacy){
+        userPrivacySettingsRepository.save(userPrivacy);
+    }
+
+    public UserProfile getUserProfileSettingsById(int id){
+        return userProfileSettingsRepository.findById(id).orElse(null);
+    }
+
+    public void saveUserProfileSettings(UserProfile userProfile){
+        userProfileSettingsRepository.save(userProfile);
+    }
+
+    public UserSocialProfiles getUserSocialProfilesSettingsById(int id){
+        return userSocialProfilesSettingsRepository.findById(id).orElse(null);
+    }
+
+    public void saveUserSocialProfilesSettings(UserSocialProfiles userSocialProfiles){
+        userSocialProfilesSettingsRepository.save(userSocialProfiles);
+    }
 }

@@ -13,6 +13,9 @@
 <!-- Favicon icon-->
 <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
+<!-- Flag Icons-->
+<link rel="stylesheet" th:href="@{/assets/libs/flag-icons/css/flag-icons.min.css}" href="../../static/assets/libs/flag-icons/css/flag-icons.min.css" />
+
 
 <!-- Libs CSS -->
 <link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
@@ -24,7 +27,9 @@
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- build:css ../assets/css/theme.min.css -->
+<link rel="stylesheet" href="../../static/assets/css/theme.css">
+<!-- endbuild -->
 
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
@@ -33,10 +38,10 @@
 
 <body>
     <!-- Page Content -->
-    <nav class="navbar navbar-expand-lg navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-default" id="standard_navbar_code_a">
     <div class="container-fluid px-0">
         <a class="navbar-brand" href="../index.html">
-            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+            <img th:src="@{/assets/images/brand/logo/logo.png}" th:href="@{/}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
             <li class="dropdown stopevent">
@@ -169,19 +174,25 @@
             </li>
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
-                            <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            <!-- Avatar -->
+                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                             </div>
+
                             <div class="ms-3 lh-1">
-                                <h5 class="mb-1">Annette Black</h5>
-                                <p class="mb-0 text-muted">annette@stoody.com</p>
+                                <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
+                                <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
                             </div>
                         </div>
                     </div>
@@ -193,22 +204,22 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_online">
                                         <span class="badge-dot bg-success me-2"></span>Online
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_offline">
                                         <span class="badge-dot bg-secondary me-2"></span>Offline
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_away">
                                         <span class="badge-dot bg-warning me-2"></span>Away
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_busy">
                                         <span class="badge-dot bg-danger me-2"></span>Busy
                                     </a>
                                 </li>
@@ -216,17 +227,17 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
                                 <i class="fe fe-user me-2"></i>Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
                                 <i class="fe fe-star me-2"></i>Subscription
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
                                 <i class="fe fe-settings me-2"></i>Security
                             </a>
                         </li>
@@ -774,7 +785,7 @@
 										Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
 										Subscriptions
 									</a>
                                 </li>
@@ -866,12 +877,12 @@
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
 								Edit Profile
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
 								Security
 							</a>
                         </li>
@@ -951,8 +962,25 @@
 				</span>
                 <input type="search" class="form-control ps-6" placeholder="Search Courses">
             </form>
+
             <div class="ms-auto d-flex align-items-center">
-                <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
+                <!-- Links -->
+                <div class="dropdown me-3 me-lg-2 mt-3 mt-lg-0">
+                    <a href="#" class="dropdown-toggle text-body" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fe fe-globe me-2 align-middle"></i>Language
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li th:each="localeLanguage: ${languageServiceLayer.getAllLocaleLanguages()}">
+                            <a class="dropdown-item " th:data-locale="${localeLanguage}" onclick="setCurrentLocale(this.getAttribute('data-locale')); location.reload();" href="#">
+                                <span class="me-2">
+                                  <span class="fi" th:classappend="'fi-'+ ${localeLanguage == 'en' ? 'us' : localeLanguage}"></span>
+                                </span>
+                                <span th:text="${#strings.toUpperCase(localeLanguage == 'en' ? 'us' : localeLanguage)}">AS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle mt-3 mt-lg-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                     <label class="form-check-label" for="flexSwitchCheckDefault"></label>
 
@@ -1093,19 +1121,24 @@
 
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
-                                    <div class="avatar avatar-md avatar-indicators avatar-online">
-                                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                    <!-- Avatar -->
+                                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                                     </div>
                                     <div class="ms-3 lh-1">
-                                        <h5 class="mb-1">Annette Black</h5>
-                                        <p class="mb-0 text-muted">annette@stoody.com</p>
+                                        <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
+                                        <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -1117,39 +1150,39 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_online">
                                                 <span class="badge-dot bg-success me-2"></span>Online
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_offline">
                                                 <span class="badge-dot bg-secondary me-2"></span>Offline
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_away">
                                                 <span class="badge-dot bg-warning me-2"></span>Away
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_busy">
                                                 <span class="badge-dot bg-danger me-2"></span>Busy
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
                                         <i class="fe fe-user me-2"></i>Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
                                         <i class="fe fe-star me-2"></i>Subscription
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
                                         <i class="fe fe-settings me-2"></i>Security
                                     </a>
                                 </li>
@@ -1172,125 +1205,219 @@
     <main>
         <section class="pt-5 pb-5">
             <div class="container">
+                <!-- User info -->
                 <div class="row align-items-center">
-                    <!-- User info -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                        <!-- Bg -->
-                        <div class="pt-16 rounded-top-md" style="
-								background: url(../assets/images/background/profile-bg.jpg) no-repeat;
-								background-size: cover;
-							"></div>
-                        <div class="card rounded-0 rounded-bottom  px-4  pt-2 pb-4 ">
-                            <div class="d-flex align-items-end justify-content-between  ">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+        <!-- Bg -->
+        <div class="pt-16 rounded-top-md" th:style="'background:url(' + @{/assets/images/background/profile-bg.jpg} + ') no-repeat;
+                background-size: cover;'" style="
+                background: url(../assets/images/background/profile-bg.jpg) no-repeat;
+                background-size: cover;
+            ">
+        </div>
+
+        <!-- User info -->
+        <section class="card p-lg-2 pt-2 pt-lg-0 rounded-0 border-0">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <div class="d-flex align-items-center">
+
+                            <!-- User Image -->
+                            <div class="position-relative mt-n9">
+                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="" class="rounded-circle avatar-xxl border-white border border-4 position-relative">
+
+                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194); 
+                        width:120px; height:120px; min-height: 120px; min-width: 120px;
+                        color: white;
+                        font-size:35px;display: flex; align-items: center; justify-content:center;" class="rounded-circle avatar-xxl border-white border border-4 position-relative">O</div>
+
+                                <a href="#" th:if="${userInfo.getUserStatistics().getVerified()}" th:title="#{global.verified}" class="position-absolute top-0 end-0 me-2" data-bs-toggle="tooltip" data-placement="top" title="Verified">
+                                    <img th:src="@{/assets/images/svg/checked-mark.svg}" src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30" width="30">
+                                </a>
+                            </div>
+
+                            <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" class="avatar-xl rounded-circle border border-4 border-white" alt="">
-                                    </div>
-                                    <div class="lh-1">
-                                        <h2 class="mb-0">Stella Flores
-                                            <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" title="Beginner">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-								<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-								<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-							  </svg>
-                                            </a>
-                                        </h2>
-                                        <p class=" mb-0 d-block">@stellaflores</p>
-                                    </div>
+                                    <h3 class="mb-0 fw-bold me-2" th:text="${userInfo.getUserProfile().getUserDisplayName()}">Orkhan Aliyev</h3>
+                                    <span class="badge bg-primary-soft me-2" th:text="${userInfo.getUserStatistics().getRoleDisplayLabel()}">Instructor</span>
+                                    <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" th:title="${userInfo.getUserStatistics().getUserLevelString()}" title="Beginner">
+
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="8" width="2" height="6" rx="1" th:attr="fill=${userInfo.getUserStatistics().getUserLevelNumber() > 0}? '#754FFE' : '#DBD8E9'" fill="#754FFE"></rect>
+                        <rect x="7" y="5" width="2" height="9" rx="1" th:attr="fill=${userInfo.getUserStatistics().getUserLevelNumber() > 1}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                        <rect x="11" y="2" width="2" height="12" rx="1" th:attr="fill=${userInfo.getUserStatistics().getUserLevelNumber() > 2}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                      </svg>
+
+                                    </a>
                                 </div>
-                                <div>
-                                    <a href="profile-edit.html" class="btn btn-primary btn-sm d-none d-md-block">Account
-						  Setting</a>
-                                </div>
+                                <a th:href="@{/users/{username}(username = ${userInfo.username})}" href="../pages/instructor-profile.html" class=" mb-0" th:text="'@'+${userInfo.username}">@orkhanaliyevm</a>
+                                <span class="fs-6" th:text="${userInfo.getUserSocialProfiles().skills}">Front-end Developer, Designer, Teacher</span>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="fs-4 mt-4 mt-lg-0 pb-2 pb-lg-0 d-flex justify-content-end">
+                            <a th:if="${userInfo.getUserSocialProfiles().youtubeURL != null}" th:href="${userInfo.getUserSocialProfiles().youtubeURL}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
+                            <a th:if="${userInfo.getUserSocialProfiles().linkedInURL != null}" th:href="${userInfo.getUserSocialProfiles().linkedInURL}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
+                            <a th:if="${userInfo.getUserSocialProfiles().instagramURL != null}" th:href="${userInfo.getUserSocialProfiles().instagramURL}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
+                            <a th:if="${userInfo.getUserSocialProfiles().facebookURL != null}" th:href="${userInfo.getUserSocialProfiles().facebookURL}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
+                            <a th:if="${userInfo.getUserSocialProfiles().twitterURL != null}" th:href="${userInfo.getUserSocialProfiles().twitterURL}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
+    </div>
+</div>
 
                 <!-- Content -->
 
                 <div class="row mt-0 mt-md-4">
+                    <!-- This id is required to select the corresponding button -->
+                    <div id="user_profile_navbar_button_12_page"></div>
                     <div class="col-lg-3 col-md-4 col-12">
-                        <!-- Side navbar -->
-                        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-                            <!-- Menu -->
-                            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-                            <!-- Button -->
-                            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="fe fe-menu"></span>
-						</button>
-                            <!-- Collpase navbar -->
-                            <div class="collapse navbar-collapse" id="sidenav">
-                                <div class="navbar-nav flex-column">
-                                    <span class="navbar-header">Subscription</span>
-                                    <ul class="list-unstyled ms-n2 mb-4">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="student-subscriptions.html"><i class="fe fe-calendar nav-icon"></i>My
-											Subscriptions</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="billing-info.html"><i class="fe fe-credit-card nav-icon"></i>Billing
-											Info</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="payment-method.html"><i class="fe fe-credit-card nav-icon"></i>Payment</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="invoice.html"><i class="fe fe-clipboard nav-icon"></i>Invoice</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item  ">
-                                            <a class="nav-link" href="student-quiz.html"><i
-                                                class="fe fe-help-circle nav-icon"></i>My Quiz Attempt</a>
-                                        </li>
-                                    </ul>
-                                    <!-- Navbar header -->
-                                    <span class="navbar-header">Account Settings</span>
-                                    <ul class="list-unstyled ms-n2 mb-0">
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
-											Profiles</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
-											Privacy</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
-											Profile</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link " href="linked-accounts.html"><i class="fe fe-user nav-icon"></i>Linked Accounts</a>
-                                        </li>
-                                        <!-- Nav item -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+        <!-- Menu -->
+        <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+        <!-- Button -->
+        <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fe fe-menu"></span>
+    </button>
+        <!-- Collapse navbar -->
+        <div class="collapse navbar-collapse" id="sidenav">
+            <div class="navbar-nav flex-column">
+                <div id="user_profile_navbar_teacher_special_div" th:if="${#authorization.expression('hasRole(''INSTRUCTOR'')')}">
+                    <!-- Instructor navbar items-->
+
+                    <!-- Navbar header -->
+                    <span class="navbar-header">Dashboard</span>
+                    <ul class="list-unstyled ms-n2 mb-4">
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_1" th:href="@{/user/dashboard/instructor/stats}" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
+                                        Dashboard</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_2" th:href="@{/user/dashboard/instructor/courses}" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_3" th:href="@{/user/dashboard/instructor/reviews}" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_4" th:href="@{/user/dashboard/instructor/earning}" href="instructor-earning.html"><i
+                                            class="fe fe-pie-chart nav-icon"></i>Earnings</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_5" th:href="@{/user/dashboard/instructor/order}" href="instructor-order.html"><i
+                                            class="fe fe-shopping-bag nav-icon"></i>Orders</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_6" th:href="@{/user/dashboard/instructor/students}" href="instructor-students.html"><i class="fe fe-user nav-icon"></i>Students</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_7" th:href="@{/user/dashboard/instructor/payouts}" href="instructor-payouts.html"><i
+                                            class="fe fe-dollar-sign nav-icon"></i>Payouts</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item ">
+                            <a class="nav-link" id="user_profile_navbar_button_8" th:href="@{/user/dashboard/instructor/quiz}" href="instructor-quiz.html"><i
+                                            class="fe fe-help-circle nav-icon"></i>Quiz</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item ">
+                            <a class="nav-link" id="user_profile_navbar_button_9" th:href="@{/user/dashboard/instructor/quiz/result}" href="instructor-quiz-result.html" hidden><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navbar header -->
+                <span class="navbar-header">Subscription</span>
+                <ul class="list-unstyled ms-n2 mb-4">
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_10" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="student-subscriptions.html"><i
+                            class="fe fe-calendar nav-icon"></i>My
+                        Subscriptions</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_11" th:href="@{/user/dashboard/standard/profile/billing}" href="billing-info.html"><i
+                            class="fe fe-credit-card nav-icon"></i>Billing
+                        Info</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_12" th:href="@{/user/dashboard/standard/profile/payment/method}" href="payment-method.html"><i
+                            class="fe fe-credit-card nav-icon"></i>Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_13" th:href="@{/user/dashboard/standard/profile/invoice}" href="invoice.html"><i
+                            class="fe fe-clipboard nav-icon"></i>Invoice</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item  ">
+                        <a class="nav-link" id="user_profile_navbar_button_14" th:href="@{/user/dashboard/standard/quiz}" href="student-quiz.html"><i
+                            class="fe fe-help-circle nav-icon"></i>My Quiz Attempt</a>
+                    </li>
+                </ul>
+                <span class="navbar-header">Account Settings</span>
+                <ul class="list-unstyled ms-n2 mb-0">
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_15" th:href="@{/user/dashboard/standard/profile/edit}" href="profile-edit.html"><i
+                            class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_16" th:href="@{/user/dashboard/standard/profile/security}" href="security.html"><i
+                            class="fe fe-user nav-icon"></i>Security</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_17" th:href="@{/user/dashboard/standard/profile/social}" href="social-profile.html"><i
+                            class="fe fe-refresh-cw nav-icon"></i>Social
+                        Profiles</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_18" th:href="@{/user/dashboard/standard/profile/notifications}" href="notifications.html"><i
+                            class="fe fe-bell nav-icon"></i>Notifications</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_19" th:href="@{/user/dashboard/standard/profile/privacy}" href="profile-privacy.html"><i
+                            class="fe fe-lock nav-icon"></i>Profile
+                        Privacy</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_20" th:href="@{/user/dashboard/standard/profile/delete}" href="delete-profile.html"><i
+                            class="fe fe-trash nav-icon"></i>Delete
+                        Profile</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_21" th:href="@{/user/dashboard/standard/profile/accounts}" href="linked-accounts.html"><i
+                            class="fe fe-user nav-icon"></i>Linked Accounts</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_22" th:href="@{/logout}" href="../index.html"><i
+                            class="fe fe-power nav-icon"></i>Sign Out</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</div>
                     <div class="col-lg-9 col-md-8 col-12">
                         <!-- Card -->
                         <div class="card mb-4">
@@ -1585,7 +1712,7 @@
             <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                    <a class="nav-link active ps-0" href="#">Privacy</a>
+                    <a class="nav-link active ps-0" href="#" data-th-text="#{global.privacy}">Privacy</a>
                     <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
                     <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
                     <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
@@ -1603,7 +1730,10 @@
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- build:js ../assets/js/theme.min.js -->
+<script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script>
+<!-- endbuild -->
 
 
 <!--This should be merged with the one above-->

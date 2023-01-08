@@ -27,8 +27,7 @@ public class UserNotifications {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "userNotifications")
     private User user;
 
     // You will get only notification what have enabled.

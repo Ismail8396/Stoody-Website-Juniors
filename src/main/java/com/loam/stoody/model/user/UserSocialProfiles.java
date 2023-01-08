@@ -6,25 +6,106 @@ import lombok.*;
 
 import java.util.Objects;
 
-@Getter
-@Setter
 @ToString
 @Entity
 public class UserSocialProfiles {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "user_id")
+
+    @OneToOne(mappedBy = "userSocialProfiles")
     private User user;
 
     // Social Profiles
-    private String socialFacebook;
-    private String socialInstagram;
-    private String socialYoutube;
-    private String socialGithub;
-    private String socialLinkedIn;
-    private String socialTwitter;
+    private String facebookURL;
+    private String instagramURL;
+    private String youtubeURL;
+    private String githubURL;
+    private String linkedInURL;
+    private String twitterURL;
+    private String skills;
+    @Column(columnDefinition="TEXT", length=15000)
+    private String aboutUser;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getFacebookURL() {
+        return facebookURL;
+    }
+
+    public void setFacebookURL(String facebookURL) {
+        this.facebookURL = facebookURL.isBlank() ? null : facebookURL;
+    }
+
+    public String getInstagramURL() {
+        return instagramURL;
+    }
+
+    public void setInstagramURL(String instagramURL) {
+        this.instagramURL = instagramURL.isBlank() ? null : instagramURL;
+    }
+
+    public String getYoutubeURL() {
+        return youtubeURL;
+    }
+
+    public void setYoutubeURL(String youtubeURL) {
+        this.youtubeURL = youtubeURL.isBlank() ? null : youtubeURL;
+    }
+
+    public String getGithubURL() {
+        return githubURL;
+    }
+
+    public void setGithubURL(String githubURL) {
+        this.githubURL = githubURL.isBlank() ? null : githubURL;
+    }
+
+    public String getLinkedInURL() {
+        return linkedInURL;
+    }
+
+    public void setLinkedInURL(String linkedInURL) {
+        this.linkedInURL = linkedInURL.isBlank() ? null : linkedInURL;
+    }
+
+    public String getTwitterURL() {
+        return twitterURL;
+    }
+
+    public void setTwitterURL(String twitterURL) {
+        this.twitterURL = twitterURL.isBlank() ? null : twitterURL;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills.isBlank() ? null : skills;
+    }
+
+    public String getAboutUser() {
+        return aboutUser;
+    }
+
+    public void setAboutUser(String aboutUser) {
+        this.aboutUser = aboutUser.isBlank() ? null : aboutUser;
+    }
 
     @Override
     public boolean equals(Object o) {

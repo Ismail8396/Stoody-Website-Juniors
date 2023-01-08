@@ -1,27 +1,29 @@
-//package com.loam.stoody.controller.rest_controllers;
-//
-//import com.loam.stoody.service.utils.aws.S3BucketDetails;
-//import com.loam.stoody.service.utils.aws.S3Service;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.multipart.MultipartFile;
-//
-//import jakarta.servlet.http.HttpServletRequest;
-//import java.io.IOException;
-//import java.util.Map;
-//
-//@RestController
-//public class FileUploadAPI {
-//    private static final String FILE_NAME = "fileName";
-//
-//    private final S3Service s3Service;
-//
-//    @Autowired
-//    public FileUploadAPI(S3Service s3Service){
-//        this.s3Service = s3Service;
-//    }
+package com.loam.stoody.controller.rest_controllers;
+
+import com.loam.stoody.dto.api.response.OutdoorResponse;
+import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.service.utils.aws.S3BucketDetails;
+import com.loam.stoody.service.utils.aws.S3Service;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Map;
+
+@RestController
+@RequiredArgsConstructor
+// TODO: Configure CORS!
+@CrossOrigin(origins = "http://localhost:3000")
+public class FileUploadAPI {
+    private static final String FILE_NAME = "fileName";
+
+    private final S3Service s3Service;
 //
 //    // Presigned URL----------------------------------------------------------------------------------------------------
 //    @GetMapping("/api/uploader/generate_key")
@@ -38,17 +40,15 @@
 //    }
 //    // Presigned URL End------------------------------------------------------------------------------------------------
 //
-//    // Put Object Upload
-//    @PostMapping("/api/upload/image/5mb")
-//    public String putObjectToBucket(@RequestParam("file") MultipartFile multipartFile){
-//        String _return = null;
-//        try {
-//            _return = s3Service.putObject(S3BucketDetails.S3BucketNameStoodyStandardImages,multipartFile);
-//        } catch (InterruptedException | IOException e) {
-//            return "Error";
-//        }
-//
-//        return _return;
-//    }
-//
-//}
+    // Put Object Upload
+    @PostMapping(PRL.apiPrefix+"/upload/put/small")
+    // TODO: Configure CORS!
+    @CrossOrigin(origins = "http://localhost:3000")
+    public OutdoorResponse<?> putObjectToBucket(@RequestParam("file") MultipartFile multipartFile){
+        try{
+            return new OutdoorResponse<>(IndoorResponse.SUCCESS,
+                    s3Service.putObject(S3BucketDetails.S3BucketNameStoodyStandardImages, multipartFile));
+        }catch (Exception ignore){}
+        return new OutdoorResponse<>(IndoorResponse.FAIL, "FAILED");
+    }
+}

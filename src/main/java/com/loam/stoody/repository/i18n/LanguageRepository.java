@@ -14,5 +14,4 @@ public interface LanguageRepository extends JpaRepository<LanguageModel, Integer
 
     @Query(value = "select * from languages lang where lang.locale like %:filter% or lang.messagekey like %:filter% or lang.messagecontent like %:filter%", nativeQuery = true)
     List<LanguageModel> findBySearchKey(@Param("filter") String filter);
-
 }

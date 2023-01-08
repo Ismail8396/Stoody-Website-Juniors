@@ -5,6 +5,7 @@ import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.RegistrationService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RegistrationController {
     private final RegistrationService registrationService;
+    private final LanguageService languageService;
     @Autowired
-    public RegistrationController(RegistrationService registrationService){
+    public RegistrationController(RegistrationService registrationService,
+                                  LanguageService languageService){
         this.registrationService = registrationService;
+        this.languageService = languageService;
     }
 
     // Rest Controller
@@ -55,7 +59,7 @@ public class RegistrationController {
         IndoorResponse response = registrationService.sendTokenToEmail(registrationRequest, httpServletRequest);
 
         if(response == IndoorResponse.SUCCESS){
-            headerMessage = "Success!";
+            headerMessage = languageService.getContent("global.orkhan");
             messageContent = "We've sent an email to you with a link. Please, click on that link within 15 minutes so your account can get approved!";
         }else if(response == IndoorResponse.USERNAME_EXIST){
             headerMessage = "Registration Failed!";

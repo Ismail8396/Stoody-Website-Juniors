@@ -29,15 +29,14 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "userProfile")
     private User user;
 
     // Misc
     private String profilePictureURL;
     private String firstName;
     private String lastName;
-    private LocalDateTime dateOfBirth;
+    private String dateOfBirth;
 
     // Location
     private String addressLine;
@@ -45,7 +44,32 @@ public class UserProfile {
     private String state;
     private String country;
 
-    private UserStatus userStatus;
+    private UserStatus userStatus = UserStatus.Online;
+
+    public String userStatusCSSClass(){
+        if(userStatus.equals(UserStatus.Online)){
+            return "avatar-indicators avatar-online";
+        }
+        else if(userStatus.equals(UserStatus.Offline)){
+            return "avatar-indicators avatar-offline";
+        }
+        else if(userStatus.equals(UserStatus.Away)){
+            return "avatar-indicators avatar-away";
+        }
+        else if(userStatus.equals(UserStatus.Busy)){
+            return "avatar-indicators avatar-busy";
+        }else{
+            return "avatar-indicators avatar-offline";
+        }
+    }
+
+    @Transient
+    public String getUserDisplayName(){
+        if(firstName != null && lastName != null)
+            if(!firstName.isBlank() && !lastName.isBlank())
+                return firstName+" "+lastName;
+        return user.getUsername();
+    }
 
     @Transient
     public String getUserStatus(){

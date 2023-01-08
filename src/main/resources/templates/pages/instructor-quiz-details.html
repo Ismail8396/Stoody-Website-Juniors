@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>  <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -12,6 +12,9 @@
 
 <!-- Favicon icon-->
 <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
+
+<!-- Flag Icons-->
+<link rel="stylesheet" th:href="@{/assets/libs/flag-icons/css/flag-icons.min.css}" href="../../static/assets/libs/flag-icons/css/flag-icons.min.css" />
 
 
 <!-- Libs CSS -->
@@ -24,18 +27,20 @@
 
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
+<!-- build:css ../assets/css/theme.min.css -->
+<link rel="stylesheet" href="../../static/assets/css/theme.css">
+<!-- endbuild -->
 
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
-  <title>Quiz | Stoody</title>
+    <title>Quiz | Stoody</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-default" id="standard_navbar_code_a">
     <div class="container-fluid px-0">
         <a class="navbar-brand" href="../index.html">
-            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+            <img th:src="@{/assets/images/brand/logo/logo.png}" th:href="@{/}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
             <li class="dropdown stopevent">
@@ -168,19 +173,25 @@
             </li>
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
-                            <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            <!-- Avatar -->
+                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                             </div>
+
                             <div class="ms-3 lh-1">
-                                <h5 class="mb-1">Annette Black</h5>
-                                <p class="mb-0 text-muted">annette@stoody.com</p>
+                                <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
+                                <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
                             </div>
                         </div>
                     </div>
@@ -192,22 +203,22 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_online">
                                         <span class="badge-dot bg-success me-2"></span>Online
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_offline">
                                         <span class="badge-dot bg-secondary me-2"></span>Offline
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_away">
                                         <span class="badge-dot bg-warning me-2"></span>Away
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_busy">
                                         <span class="badge-dot bg-danger me-2"></span>Busy
                                     </a>
                                 </li>
@@ -215,17 +226,17 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
                                 <i class="fe fe-user me-2"></i>Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
                                 <i class="fe fe-star me-2"></i>Subscription
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
                                 <i class="fe fe-settings me-2"></i>Security
                             </a>
                         </li>
@@ -773,7 +784,7 @@
 										Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
 										Subscriptions
 									</a>
                                 </li>
@@ -865,12 +876,12 @@
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
 								Edit Profile
 							</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
 								Security
 							</a>
                         </li>
@@ -950,8 +961,25 @@
 				</span>
                 <input type="search" class="form-control ps-6" placeholder="Search Courses">
             </form>
+
             <div class="ms-auto d-flex align-items-center">
-                <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
+                <!-- Links -->
+                <div class="dropdown me-3 me-lg-2 mt-3 mt-lg-0">
+                    <a href="#" class="dropdown-toggle text-body" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fe fe-globe me-2 align-middle"></i>Language
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li th:each="localeLanguage: ${languageServiceLayer.getAllLocaleLanguages()}">
+                            <a class="dropdown-item " th:data-locale="${localeLanguage}" onclick="setCurrentLocale(this.getAttribute('data-locale')); location.reload();" href="#">
+                                <span class="me-2">
+                                  <span class="fi" th:classappend="'fi-'+ ${localeLanguage == 'en' ? 'us' : localeLanguage}"></span>
+                                </span>
+                                <span th:text="${#strings.toUpperCase(localeLanguage == 'en' ? 'us' : localeLanguage)}">AS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle mt-3 mt-lg-0">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                     <label class="form-check-label" for="flexSwitchCheckDefault"></label>
 
@@ -1092,19 +1120,24 @@
 
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
-                                    <div class="avatar avatar-md avatar-indicators avatar-online">
-                                        <img alt="avatar" th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                    <!-- Avatar -->
+                                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
+                                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
                                     </div>
                                     <div class="ms-3 lh-1">
-                                        <h5 class="mb-1">Annette Black</h5>
-                                        <p class="mb-0 text-muted">annette@stoody.com</p>
+                                        <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
+                                        <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -1116,39 +1149,39 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_online">
                                                 <span class="badge-dot bg-success me-2"></span>Online
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_offline">
                                                 <span class="badge-dot bg-secondary me-2"></span>Offline
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_away">
                                                 <span class="badge-dot bg-warning me-2"></span>Away
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="#" id="standard_navbar_user_status_busy">
                                                 <span class="badge-dot bg-danger me-2"></span>Busy
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/profile/edit}" href="../pages/profile-edit.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
                                         <i class="fe fe-user me-2"></i>Profile
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/student/subscriptions}" href="../pages/student-subscriptions.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
                                         <i class="fe fe-star me-2"></i>Subscription
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/user/security}" href="../pages/security.html">
+                                    <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
                                         <i class="fe fe-settings me-2"></i>Security
                                     </a>
                                 </li>
@@ -1168,554 +1201,581 @@
         </div>
     </div>
 </nav>
-  <!-- Page content -->
-  <main>
-  <section class="pt-5 pb-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <!-- User info -->
-        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-          <!-- Bg -->
-          <div class="pt-16 rounded-top-md" style="
+    <!-- Page content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- User info -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <!-- Bg -->
+                        <div class="pt-16 rounded-top-md" style="
                 background: url(../assets/images/background/profile-bg.jpg)
                   no-repeat;
                 background-size: cover;
               "></div>
-     	<div class="card px-4 pt-2 pb-4 rounded-0 rounded-bottom shadow-sm">
-							<div class="d-flex align-items-end justify-content-between  ">
-								<div class="d-flex align-items-center">
-									<div
-										class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-										<img src="../../static/assets/images/avatar/avatar-1.jpg"
-											class="avatar-xl rounded-circle border border-4 border-white position-relative"
-											alt="">
-										<a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip"
-											data-placement="top" title="Verified">
-											<img src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30"
-												width="30">
-										</a>
-									</div>
-									<div class="lh-1">
-										<h2 class="mb-0">Jenny Wilson</h2>
-										<p class="mb-0 d-block">@Jennywilson</p>
-									</div>
-								</div>
-								<div>
-									<a href="add-course.html" class="btn btn-primary d-none d-md-block">Create New
+                        <div class="card px-4 pt-2 pb-4 rounded-0 rounded-bottom shadow-sm">
+                            <div class="d-flex align-items-end justify-content-between  ">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" class="avatar-xl rounded-circle border border-4 border-white position-relative" alt="">
+                                        <a href="#" class="position-absolute top-0 end-0" data-bs-toggle="tooltip" data-placement="top" title="Verified">
+                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30" width="30">
+                                        </a>
+                                    </div>
+                                    <div class="lh-1">
+                                        <h2 class="mb-0">Jenny Wilson</h2>
+                                        <p class="mb-0 d-block">@Jennywilson</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="add-course.html" class="btn btn-primary d-none d-md-block">Create New
 										Course</a>
-								</div>
-							</div>
-						</div>
-        </div>
-      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- Content -->
+                <!-- Content -->
 
-      <div class="row mt-0 mt-md-4">
-        <div class="col-lg-3 col-md-4 col-12">
-          <!-- Side navbar -->
-          <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
-            <!-- Menu -->
-            <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-            <!-- Button -->
-            <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button"
-              data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span class="fe fe-menu"></span>
-            </button>
-            <!-- Collapse navbar -->
-            <div class="collapse navbar-collapse" id="sidenav">
-              <div class="navbar-nav flex-column">
-                <span class="navbar-header">Dashboard</span>
-                <ul class="list-unstyled ms-n2 mb-4">
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
-                      Dashboard</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="instructor-earning.html"><i
-                        class="fe fe-pie-chart nav-icon"></i>Earnings</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="instructor-order.html"><i
-                        class="fe fe-shopping-bag nav-icon"></i>Orders</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="instructor-students.html"><i class="fe fe-users nav-icon"></i>Students</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="instructor-payouts.html"><i
-                        class="fe fe-dollar-sign nav-icon"></i>Payouts</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item active">
-                    <a class="nav-link" href="instructor-quiz.html"><i class="fe fe-help-circle nav-icon"></i>Quiz</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item ">
-                    <a class="nav-link" href="instructor-quiz-result.html"><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
-                  </li>
-                </ul>
+                <div class="row mt-0 mt-md-4">
+                    <div class="col-lg-3 col-md-4 col-12">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4 mb-lg-0 sidenav">
+        <!-- Menu -->
+        <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+        <!-- Button -->
+        <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fe fe-menu"></span>
+    </button>
+        <!-- Collapse navbar -->
+        <div class="collapse navbar-collapse" id="sidenav">
+            <div class="navbar-nav flex-column">
+                <div id="user_profile_navbar_teacher_special_div" th:if="${#authorization.expression('hasRole(''INSTRUCTOR'')')}">
+                    <!-- Instructor navbar items-->
+
+                    <!-- Navbar header -->
+                    <span class="navbar-header">Dashboard</span>
+                    <ul class="list-unstyled ms-n2 mb-4">
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_1" th:href="@{/user/dashboard/instructor/stats}" href="dashboard-instructor.html"><i class="fe fe-home nav-icon"></i>My
+                                        Dashboard</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_2" th:href="@{/user/dashboard/instructor/courses}" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_3" th:href="@{/user/dashboard/instructor/reviews}" href="instructor-reviews.html"><i class="fe fe-star nav-icon"></i>Reviews</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_4" th:href="@{/user/dashboard/instructor/earning}" href="instructor-earning.html"><i
+                                            class="fe fe-pie-chart nav-icon"></i>Earnings</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_5" th:href="@{/user/dashboard/instructor/order}" href="instructor-order.html"><i
+                                            class="fe fe-shopping-bag nav-icon"></i>Orders</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_6" th:href="@{/user/dashboard/instructor/students}" href="instructor-students.html"><i class="fe fe-user nav-icon"></i>Students</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="user_profile_navbar_button_7" th:href="@{/user/dashboard/instructor/payouts}" href="instructor-payouts.html"><i
+                                            class="fe fe-dollar-sign nav-icon"></i>Payouts</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item ">
+                            <a class="nav-link" id="user_profile_navbar_button_8" th:href="@{/user/dashboard/instructor/quiz}" href="instructor-quiz.html"><i
+                                            class="fe fe-help-circle nav-icon"></i>Quiz</a>
+                        </li>
+                        <!-- Nav item -->
+                        <li class="nav-item ">
+                            <a class="nav-link" id="user_profile_navbar_button_9" th:href="@{/user/dashboard/instructor/quiz/result}" href="instructor-quiz-result.html" hidden><i class="fe fe-help-circle nav-icon"></i>Quiz Result</a>
+                        </li>
+                    </ul>
+                </div>
                 <!-- Navbar header -->
+                <span class="navbar-header">Subscription</span>
+                <ul class="list-unstyled ms-n2 mb-4">
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_10" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="student-subscriptions.html"><i
+                            class="fe fe-calendar nav-icon"></i>My
+                        Subscriptions</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_11" th:href="@{/user/dashboard/standard/profile/billing}" href="billing-info.html"><i
+                            class="fe fe-credit-card nav-icon"></i>Billing
+                        Info</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_12" th:href="@{/user/dashboard/standard/profile/payment/method}" href="payment-method.html"><i
+                            class="fe fe-credit-card nav-icon"></i>Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_13" th:href="@{/user/dashboard/standard/profile/invoice}" href="invoice.html"><i
+                            class="fe fe-clipboard nav-icon"></i>Invoice</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item  ">
+                        <a class="nav-link" id="user_profile_navbar_button_14" th:href="@{/user/dashboard/standard/quiz}" href="student-quiz.html"><i
+                            class="fe fe-help-circle nav-icon"></i>My Quiz Attempt</a>
+                    </li>
+                </ul>
                 <span class="navbar-header">Account Settings</span>
                 <ul class="list-unstyled ms-n2 mb-0">
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="profile-edit.html"><i class="fe fe-settings nav-icon"></i>Edit Profile</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="security.html"><i class="fe fe-user nav-icon"></i>Security</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="social-profile.html"><i class="fe fe-refresh-cw nav-icon"></i>Social
-                      Profiles</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="notifications.html"><i class="fe fe-bell nav-icon"></i>Notifications</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="profile-privacy.html"><i class="fe fe-lock nav-icon"></i>Profile
-                      Privacy</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="delete-profile.html"><i class="fe fe-trash nav-icon"></i>Delete
-                      Profile</a>
-                  </li>
-                  <!-- Nav item -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="../index.html"><i class="fe fe-power nav-icon"></i>Sign Out</a>
-                  </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_15" th:href="@{/user/dashboard/standard/profile/edit}" href="profile-edit.html"><i
+                            class="fe fe-settings nav-icon"></i>Edit Profile</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_16" th:href="@{/user/dashboard/standard/profile/security}" href="security.html"><i
+                            class="fe fe-user nav-icon"></i>Security</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_17" th:href="@{/user/dashboard/standard/profile/social}" href="social-profile.html"><i
+                            class="fe fe-refresh-cw nav-icon"></i>Social
+                        Profiles</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_18" th:href="@{/user/dashboard/standard/profile/notifications}" href="notifications.html"><i
+                            class="fe fe-bell nav-icon"></i>Notifications</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_19" th:href="@{/user/dashboard/standard/profile/privacy}" href="profile-privacy.html"><i
+                            class="fe fe-lock nav-icon"></i>Profile
+                        Privacy</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_20" th:href="@{/user/dashboard/standard/profile/delete}" href="delete-profile.html"><i
+                            class="fe fe-trash nav-icon"></i>Delete
+                        Profile</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_21" th:href="@{/user/dashboard/standard/profile/accounts}" href="linked-accounts.html"><i
+                            class="fe fe-user nav-icon"></i>Linked Accounts</a>
+                    </li>
+                    <!-- Nav item -->
+                    <li class="nav-item">
+                        <a class="nav-link" id="user_profile_navbar_button_22" th:href="@{/logout}" href="../index.html"><i
+                            class="fe fe-power nav-icon"></i>Sign Out</a>
+                    </li>
                 </ul>
-              </div>
+
             </div>
-          </nav>
         </div>
-        <div class="col-lg-9 col-md-8 col-12">
-          <!-- Card -->
-          <div class="card mb-4">
+    </nav>
+</div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card mb-4">
 
-            <!-- Card body -->
-            <div class="card-body">
+                            <!-- Card body -->
+                            <div class="card-body">
 
-              <!-- quiz -->
-              <div class="d-lg-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                  <!-- quiz img -->
-                  <a href="#"> <img src="../../static/assets/images/course/course-react.jpg" alt=""
-                      class="rounded img-4by3-lg" ></a>
-                  <!-- quiz content -->
-                  <div class="ms-3">
-                    <h3 class="mb-2"><a href="#" class="text-inherit">React Basic Quiz </a></h3>
-                    <div>
-                      <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>20
-                        Questions</span>
-                      <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>18
-                        Minutes</span>
-                      <span class="ms-2"><span class="me-2 align-middle"><i
+                                <!-- quiz -->
+                                <div class="d-lg-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <!-- quiz img -->
+                                        <a href="#"> <img src="../../static/assets/images/course/course-react.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                        <!-- quiz content -->
+                                        <div class="ms-3">
+                                            <h3 class="mb-2"><a href="#" class="text-inherit">React Basic Quiz </a></h3>
+                                            <div>
+                                                <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>20 Questions
+                                                </span>
+                                                <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>18 Minutes
+                                                </span>
+                                                <span class="ms-2"><span class="me-2 align-middle"><i
                             class="fe fe-file-text"></i></span>Result</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="d-none d-lg-block">
-                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuizQuestionModal">Add
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-none d-lg-block">
+                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuizQuestionModal">Add
                     new Questions</a>
-                </div>
-              </div>
+                                    </div>
+                                </div>
 
-            </div>
-          </div>
-           <!-- card -->
-          <div class="card mb-4">
-             <!-- card body -->
-            <div class="card-body">
-              <h3 class="mb-3">React is mainly used for building ___.</h3>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card mb-4">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <h3 class="mb-3">React is mainly used for building ___.</h3>
 
-               <!-- list group -->
-              <div class="list-group">
-                <div class="list-group-item list-group-item-action " aria-current="true">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
+                                <!-- list group -->
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action " aria-current="true">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
                       Database
                     </label>
-                  </div>
-                </div>
-                 <!-- list group -->
-                <div class="list-group-item list-group-item-action  bg-light">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action  bg-light">
 
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                            <label class="form-check-label" for="flexRadioDefault2">
                       Connectivity
                     </label>
-                  </div>
-                </div>
-                 <!-- list group -->
-                <div class="list-group-item list-group-item-action">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                    <label class="form-check-label" for="flexRadioDefault3">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                                            <label class="form-check-label" for="flexRadioDefault3">
                       User interface
                     </label>
-                  </div>
-                </div>
-                 <!-- list group -->
-                <div class="list-group-item list-group-item-action">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                    <label class="form-check-label" for="flexRadioDefault4">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                                            <label class="form-check-label" for="flexRadioDefault4">
                       Design Platform
                     </label>
-                  </div>
-                </div>
+                                        </div>
+                                    </div>
 
-              </div>
-               <!-- buttons -->
-              <div class="mt-3">
-                <a href="#" class="btn btn-outline-secondary">Edit</a>
-                <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
-              </div>
+                                </div>
+                                <!-- buttons -->
+                                <div class="mt-3">
+                                    <a href="#" class="btn btn-outline-secondary">Edit</a>
+                                    <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
+                                </div>
 
-            </div>
-          </div>
-           <!-- card -->
-          <div class="card mb-4">
-             <!-- card body -->
-            <div class="card-body">
-              <h3 class="mb-3">The lifecycle methods are mainly used for ___.</h3>
-               <!-- list group -->
-              <div class="list-group">
-                <div class="list-group-item list-group-item-action " aria-current="true">
-                   <!-- form check -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked>
-                    <label class="form-check-label" for="flexRadioDefault5">
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card mb-4">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <h3 class="mb-3">The lifecycle methods are mainly used for ___.</h3>
+                                <!-- list group -->
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action " aria-current="true">
+                                        <!-- form check -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked>
+                                            <label class="form-check-label" for="flexRadioDefault5">
                       keeping track of event history
                     </label>
-                  </div>
-                </div>
-                 <!-- list group -->
-                <div class="list-group-item list-group-item-action  bg-light">
- <!-- form check -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6">
-                    <label class="form-check-label" for="flexRadioDefault6">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action  bg-light">
+                                        <!-- form check -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6">
+                                            <label class="form-check-label" for="flexRadioDefault6">
                       enhancing components
                     </label>
-                  </div>
-                </div>
-                 <!-- list group -->
-                <div class="list-group-item list-group-item-action">
-                   <!-- form check -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault7">
-                    <label class="form-check-label" for="flexRadioDefault7">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action">
+                                        <!-- form check -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault7">
+                                            <label class="form-check-label" for="flexRadioDefault7">
                       freeing up resources
                     </label>
-                  </div>
-                </div>
-                 <!-- list group -->
-                <div class="list-group-item list-group-item-action">
-                   <!-- form check -->
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8">
-                    <label class="form-check-label" for="flexRadioDefault8">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action">
+                                        <!-- form check -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8">
+                                            <label class="form-check-label" for="flexRadioDefault8">
                       Design Platform
                     </label>
-                  </div>
-                </div>
+                                        </div>
+                                    </div>
 
-              </div>
-               <!-- buttons -->
-              <div class="mt-3">
-                <a href="#" class="btn btn-outline-secondary">Edit</a>
-                <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
-              </div>
+                                </div>
+                                <!-- buttons -->
+                                <div class="mt-3">
+                                    <a href="#" class="btn btn-outline-secondary">Edit</a>
+                                    <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
+                                </div>
 
-            </div>
-          </div>
-           <!-- card -->
-          <div class="card mb-4">
-             <!-- card body -->
-            <div class="card-body">
-              <h3 class="mb-3">___ can be done while multiple elements need to be returned from a
-                component.</h3>
-                 <!-- button -->
-              <div class="d-grid mb-2" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  checked>
-                <label class="btn btn-outline-light-primary text-dark-primary text-start"
-                  for="btnradio1">Abstraction</label></div>
- <!-- button -->
-              <div class="d-grid mb-2">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" >
-                <label class="btn btn-outline-light-primary text-dark-primary text-start"
-                  for="btnradio2">Packing</label>
-              </div>
-               <!-- button -->
-              <div class="d-grid mb-2">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" >
-                <label class="btn btn-outline-light-primary text-dark-primary text-start"
-                  for="btnradio3">Insulation</label>
-              </div>
-               <!-- button -->
-              <div class="d-grid mb-2">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" >
-                <label class="btn btn-outline-light-primary text-dark-primary text-start"
-                  for="btnradio4">Wrapping</label>
-              </div>
-            </div>
-          </div>
-           <!-- card -->
-          <div class="card mb-4">
-             <!-- card body -->
-            <div class="card-body">
-              <h3 class="mb-3">What’s the difference between a 301 and a 302 redirect?</h3>
-               <!-- list group -->
-              <div class="list-group">
-                <div class="list-group-item list-group-item-action " aria-current="true">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault5"
-                      checked>
-                    <label class="form-check-label" for="flexCheckboxDefault5">
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card mb-4">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <h3 class="mb-3">___ can be done while multiple elements need to be returned from a component.
+                                </h3>
+                                <!-- button -->
+                                <div class="d-grid mb-2" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" checked>
+                                    <label class="btn btn-outline-light-primary text-dark-primary text-start" for="btnradio1">Abstraction</label></div>
+                                <!-- button -->
+                                <div class="d-grid mb-2">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2">
+                                    <label class="btn btn-outline-light-primary text-dark-primary text-start" for="btnradio2">Packing</label>
+                                </div>
+                                <!-- button -->
+                                <div class="d-grid mb-2">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3">
+                                    <label class="btn btn-outline-light-primary text-dark-primary text-start" for="btnradio3">Insulation</label>
+                                </div>
+                                <!-- button -->
+                                <div class="d-grid mb-2">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4">
+                                    <label class="btn btn-outline-light-primary text-dark-primary text-start" for="btnradio4">Wrapping</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card mb-4">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <h3 class="mb-3">What’s the difference between a 301 and a 302 redirect?</h3>
+                                <!-- list group -->
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action " aria-current="true">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault5" checked>
+                                            <label class="form-check-label" for="flexCheckboxDefault5">
                       301 is used for a temporary page redirection, 302 for a redirection block
                     </label>
-                  </div>
-                </div>
-                <!-- list group -->
-                <div class="list-group-item list-group-item-action  bg-light">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action  bg-light">
 
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="flexCheckboxDefault"
-                      id="flexCheckboxDefault6">
-                    <label class="form-check-label" for="flexCheckboxDefault6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault6">
+                                            <label class="form-check-label" for="flexCheckboxDefault6">
                       301 is used for a permanent page redirection, 302 for a temporary
                       redirection
                     </label>
-                  </div>
-                </div>
-                <!-- list group -->
-                <div class="list-group-item list-group-item-action">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="flexCheckboxDefault"
-                      id="flexCheckboxDefault7">
-                    <label class="form-check-label" for="flexCheckboxDefault7">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault7">
+                                            <label class="form-check-label" for="flexCheckboxDefault7">
                       301 is used for a page redirection block, 302 for a permanent redirection
                     </label>
-                  </div>
-                </div>
-                <!-- list group -->
-                <div class="list-group-item list-group-item-action">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="flexCheckboxDefault"
-                      id="flexCheckboxDefault8">
-                    <label class="form-check-label" for="flexCheckboxDefault8">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="flexCheckboxDefault" id="flexCheckboxDefault8">
+                                            <label class="form-check-label" for="flexCheckboxDefault8">
                       301 is used for a temporary page redirection, 302 for a permanent
                       redirection
                     </label>
-                  </div>
-                </div>
+                                        </div>
+                                    </div>
 
-              </div>
-              <!-- button -->
-              <div class="mt-3">
-                <a href="#" class="btn btn-outline-secondary">Edit</a>
-                <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
-              </div>
+                                </div>
+                                <!-- button -->
+                                <div class="mt-3">
+                                    <a href="#" class="btn btn-outline-secondary">Edit</a>
+                                    <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
+                                </div>
 
-            </div>
-          </div>
-          <!-- card -->
-          <div class="card mb-4">
-            <!-- card body -->
-            <div class="card-body">
-              <h3 class="mb-3">Is React a programming language?</h3>
-              <!-- list group -->
-              <div class="list-group">
-                <div class="list-group-item list-group-item-action " aria-current="true">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault9">
-                    <label class="form-check-label" for="flexRadioDefault9">
+                            </div>
+                        </div>
+                        <!-- card -->
+                        <div class="card mb-4">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <h3 class="mb-3">Is React a programming language?</h3>
+                                <!-- list group -->
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action " aria-current="true">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault9">
+                                            <label class="form-check-label" for="flexRadioDefault9">
                       Yes
                     </label>
-                  </div>
-                </div>
-                <!-- list group -->
-                <div class="list-group-item list-group-item-action  bg-light">
+                                        </div>
+                                    </div>
+                                    <!-- list group -->
+                                    <div class="list-group-item list-group-item-action  bg-light">
 
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault10">
-                    <label class="form-check-label" for="flexRadioDefault10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault10">
+                                            <label class="form-check-label" for="flexRadioDefault10">
                       No
                     </label>
-                  </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- button -->
+                                <div class="mt-3">
+                                    <a href="#" class="btn btn-outline-secondary">Edit</a>
+                                    <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
-              </div>
-              <!-- button -->
-              <div class="mt-3">
-                <a href="#" class="btn btn-outline-secondary">Edit</a>
-                <a href="#" class="btn btn-outline-danger ms-2">Delete</a>
-              </div>
-
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+        </section>
+    </main>
 
     <!-- Modal -->
-    <div class="modal fade " id="addQuizQuestionModal" tabindex="-1" aria-labelledby="addQuizQuestionModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-<!-- modal body -->
-        <div class="modal-body">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="modal-title" id="addQuizQuestionModalLabel">Add Quiz Question</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div>
-            <!-- form -->
-            <form>
-              <div class="mb-5">
-                <h4 class="mb-3">General</h4>
-                <div class="mb-3">
-                  <label class="form-label">Write your question</label>
-                  <input type="text" class="form-control" placeholder="Quiz title">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Question Type</label>
-                  <select class="selectpicker" data-width="100%">
+    <div class="modal fade " id="addQuizQuestionModal" tabindex="-1" aria-labelledby="addQuizQuestionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="modal-title" id="addQuizQuestionModalLabel">Add Quiz Question</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div>
+                        <!-- form -->
+                        <form>
+                            <div class="mb-5">
+                                <h4 class="mb-3">General</h4>
+                                <div class="mb-3">
+                                    <label class="form-label">Write your question</label>
+                                    <input type="text" class="form-control" placeholder="Quiz title">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Question Type</label>
+                                    <select class="selectpicker" data-width="100%">
                     <option value="">Select Question Type</option>
                     <option value="Newest">Newest</option>
                     <option value="High Rated">High Rated</option>
                     <option value="Law Rated">Law Rated</option>
                     <option value="High Earned">High Earned</option>
                   </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <h4 class="mb-3">Answer</h4>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 1</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control">
+                                </div>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 2</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultTwo">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefaultTwo"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control">
+                                </div>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 3</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultThree">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefaultThree"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control">
+                                </div>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 4</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultFour">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefaultFour"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control ">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Point for this answer</label>
+                                    <textarea class="form-control " placeholder="Give point to the answer" rows="3"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary ms-2">Add Quiz</button>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
                 </div>
-              </div>
-              <div class="">
-                <h4 class="mb-3">Answer</h4>
-                <div class="mb-2">
-                  <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 class="mb-0 fw-normal">Choice 1</h5>
-                    </div>
-                    <div class="">
-                      <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
-                        <div class="form-check form-switch ms-2">
 
-                          <input class="form-check-input me-0" type="checkbox" role="switch"
-                            id="flexSwitchCheckDefault" checked>
-                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <input type="text" placeholder="Write the answer" class="form-control">
-                </div>
-                <div class="mb-2">
-                  <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 class="mb-0 fw-normal">Choice 2</h5>
-                    </div>
-                    <div class="">
-                      <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
-                        <div class="form-check form-switch ms-2">
-
-                          <input class="form-check-input me-0" type="checkbox" role="switch"
-                            id="flexSwitchCheckDefaultTwo">
-                          <label class="form-check-label" for="flexSwitchCheckDefaultTwo"></label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <input type="text" placeholder="Write the answer" class="form-control">
-                </div>
-                <div class="mb-2">
-                  <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 class="mb-0 fw-normal">Choice 3</h5>
-                    </div>
-                    <div class="">
-                      <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
-                        <div class="form-check form-switch ms-2">
-
-                          <input class="form-check-input me-0" type="checkbox" role="switch"
-                            id="flexSwitchCheckDefaultThree">
-                          <label class="form-check-label" for="flexSwitchCheckDefaultThree"></label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <input type="text" placeholder="Write the answer" class="form-control">
-                </div>
-                <div class="mb-2">
-                  <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 class="mb-0 fw-normal">Choice 4</h5>
-                    </div>
-                    <div class="">
-                      <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
-                        <div class="form-check form-switch ms-2">
-
-                          <input class="form-check-input me-0" type="checkbox" role="switch"
-                            id="flexSwitchCheckDefaultFour">
-                          <label class="form-check-label" for="flexSwitchCheckDefaultFour"></label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <input type="text" placeholder="Write the answer" class="form-control ">
-                </div>
-                <div class="mb-4">
-                  <label class="form-label">Point for this answer</label>
-                  <textarea class="form-control " placeholder="Give point to the answer" rows="3"></textarea>
-                </div>
-                <div class="d-flex justify-content-end">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary ms-2">Add Quiz</button>
-                </div>
-
-              </div>
-
-            </form>
-
-          </div>
+            </div>
         </div>
-
-      </div>
     </div>
-  </div>
 
 
     <!-- Footer -->
@@ -1730,7 +1790,7 @@
             <!-- Links -->
             <div class="col-12 col-md-6">
                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
-                    <a class="nav-link active ps-0" href="#">Privacy</a>
+                    <a class="nav-link active ps-0" href="#" data-th-text="#{global.privacy}">Privacy</a>
                     <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
                     <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
                     <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
@@ -1749,7 +1809,10 @@
 
 
 <!-- Theme JS -->
-<script src="../../static/assets/js/theme.min.js"></script>
+<!-- build:js ../assets/js/theme.min.js -->
+<script src="../../static/assets/js/main.js"></script>
+<script src="../../static/assets/js/darkMode.js"></script>
+<!-- endbuild -->
 
 
 <!--This should be merged with the one above-->

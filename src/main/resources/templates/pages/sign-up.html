@@ -13,6 +13,9 @@
 <!-- Favicon icon-->
 <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" href="../../static/assets/images/favicon/favicon.ico">
 
+<!-- Flag Icons-->
+<link rel="stylesheet" th:href="@{/assets/libs/flag-icons/css/flag-icons.min.css}" href="../../static/assets/libs/flag-icons/css/flag-icons.min.css" />
+
 
 <!-- Libs CSS -->
 <link th:href="@{/assets/fonts/feather/feather.css}" href="../../static/assets/fonts/feather/feather.css" rel="stylesheet">
@@ -68,16 +71,12 @@
                                     <label for="password" class="form-label" data-th-text="#{global.password}">Password</label>
                                     <input type="password" id="password" class="form-control" name="password" th:attr="placeholder=#{global.password_placeholder}" placeholder="Password here" required>
                                 </div>
-                                <!-- Checkbox -->
+                                <!-- Terms & Conditions -->
                                 <div class="mb-3">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="agreeCheck">
-                                        <label class="form-check-label" for="agreeCheck">
-                                            <span> <span data-th-text="#{global.i_agree_your_terms}">I accept your terms:</span>
-                                             <a th:href="@{/terms_and_conditions}" href="terms-condition-page.html" data-th-text="#{global.terms_of_service}">Terms of Service </a> &
-											<a th:href="@{/privacy_policy}" href="terms-condition-page.html" data-th-text="#{global.privacy_policy}">Privacy Policy.</a></span>
-                                        </label>
-                                    </div>
+                                    <span> <span data-th-text="#{global.i_agree_your_terms}">By creating account, I accept your terms:</span>
+                                    <br>
+                                    <a th:href="@{/terms_and_conditions}" href="terms-condition-page.html" data-th-text="#{global.terms_of_service}">Terms of Service </a> &
+                                    <a th:href="@{/privacy_policy}" href="terms-condition-page.html" data-th-text="#{global.privacy_policy}">Privacy Policy.</a></span>
                                 </div>
                                 <div>
                                     <!-- Button -->
