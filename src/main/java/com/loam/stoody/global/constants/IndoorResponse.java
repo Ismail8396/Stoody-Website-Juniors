@@ -4,6 +4,7 @@ public enum IndoorResponse {
     INIT,
     SUCCESS,
     FAIL,
+    BAD_REQUEST,
     TOKEN_EXPIRED,
     TOKEN_ABSENT,
     USERNAME_EXIST,

@@ -1,5 +1,6 @@
 package com.loam.stoody.configuration;
 
+import com.google.common.collect.ImmutableList;
 import com.loam.stoody.configuration.jwt.JWTFilter;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.user.CustomUserDetailsService;
@@ -20,6 +21,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.GenericFilterBean;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -63,6 +67,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // TODO: Configure CORS!
+        http.cors();
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         //http.addFilterBefore(new LoginPageFilter(), DefaultLoginPageGeneratingFilter.class);
 

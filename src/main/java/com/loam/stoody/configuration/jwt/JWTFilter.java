@@ -1,8 +1,5 @@
 package com.loam.stoody.configuration.jwt;
 
-import com.loam.stoody.global.constants.PRL;
-import com.loam.stoody.global.logger.ConsoleColors;
-import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -38,41 +35,32 @@ public class JWTFilter extends OncePerRequestFilter {
         String jwtTokenValue = authCookie == null ? null : authCookie.getValue();
         try {
             if (jwtTokenValue == null) {
-                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "JWT TOKEN WAS NULL!");
                 throw new RuntimeException("Test");
             }
-            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "PASSED JWT!");
 
             String username = JWTUtility.extractUsername(jwtTokenValue);
             if (username == null) {
-                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USERNAME WAS NULL");
-
                 throw new RuntimeException("Test");
             }
-
-            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USERNAME PASSED");
 
             // This can throw UsernameNotFoundException
             UserDetails userDetails = userService.loadUserByUsername(username);
             if (userDetails == null) {
-                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USER DETAILS WAS NULL");
                 throw new RuntimeException("Test");
             }
-            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "USER DETAILS PASSED");
 
             if (JWTUtility.validateToken(jwtTokenValue, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "PASSED VALIDATION");
 
             } else{
-                StoodyLogger.DebugLog(ConsoleColors.YELLOW, "VALIDATION ERROR!");
                 throw new RuntimeException("Test");
             }
 
         } catch (RuntimeException ignore) {
+            // do something if necessarry
         }
 
         //do the filter

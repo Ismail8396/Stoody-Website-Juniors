@@ -16,6 +16,7 @@
 package com.loam.stoody.model.user;
 
 import com.loam.stoody.model.user.misc.Role;
+import com.loam.stoody.model.user.statistics.UserStatistics;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -36,6 +37,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    // Technical
+    private boolean isAccountExpired;
+    private boolean isAccountLocked;
+    private boolean isCredentialsExpired;
+    private boolean isAccountEnabled;
+
     @Column(nullable = false, unique = true)
     private String username;
     // Security
@@ -45,21 +52,41 @@ public class User {
     @Column(nullable = false)
     private String password;
     private String phoneNumber;
+    @Column(name = "multi_factor_auth")
+    private boolean multiFactorAuth;
+
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles;
 
+    // Misc
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_statistics_id", referencedColumnName = "id")
+    private UserStatistics userStatistics;
 
-    private boolean isAccountExpired;
-    private boolean isAccountLocked;
-    private boolean isCredentialsExpired;
-    private boolean isAccountEnabled;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_notifications_id", referencedColumnName = "id")
+    private UserNotifications userNotifications;
 
-    @Column(name = "multi_factor_auth")
-    private boolean multiFactorAuth;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_privacy_id", referencedColumnName = "id")
+    private UserPrivacy userPrivacy;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_profile_settings_id", referencedColumnName = "id")
+    private UserProfile userProfile;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_social_profiles_id", referencedColumnName = "id")
+    private UserSocialProfiles userSocialProfiles;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_followers", referencedColumnName = "id")
+    private List<User> userFollowers;
+
+    //__________________________________________________________________________________________________________________
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

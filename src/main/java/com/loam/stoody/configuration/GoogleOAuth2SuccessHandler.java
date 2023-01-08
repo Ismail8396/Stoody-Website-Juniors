@@ -4,6 +4,7 @@ import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
+import com.loam.stoody.service.user.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -22,11 +23,14 @@ import java.util.List;
 public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Autowired
-    public GoogleOAuth2SuccessHandler(RoleRepository roleRepository, UserRepository userRepository){
+    public GoogleOAuth2SuccessHandler(RoleRepository roleRepository, UserRepository userRepository,
+                                      CustomUserDetailsService customUserDetailsService){
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -39,9 +43,9 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         if(userRepository.findUserByEmail(email).isPresent()) {
 
         }else{
-            User user = new User();
-            user.setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
-            user.setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
+            User user = customUserDetailsService.getDefaultUser();
+            user.getUserProfile().setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
+            user.getUserProfile().setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
             user.setEmail(email);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
             user.setUsername("User-"+ LocalDateTime.now().format(formatter)); // TODO: OrkhanGG check validity

@@ -12,6 +12,7 @@
 
 package com.loam.stoody.global.i18n;
 
+import com.loam.stoody.global.constants.MiscConstants;
 import com.loam.stoody.model.i18n.LanguageModel;
 import com.loam.stoody.repository.i18n.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class DBMessageSource extends AbstractMessageSource {
         this.languageRepository = languageRepository;
     }
 
-    private static final String DEFAULT_LOCALE_CODE = "en";
+    private static final String DEFAULT_LOCALE_CODE = MiscConstants.defaultLocale;
     @Override
     protected MessageFormat resolveCode(String key, Locale locale) {
         LanguageModel message = languageRepository.findByKeyAndLocale(key,locale.getLanguage());

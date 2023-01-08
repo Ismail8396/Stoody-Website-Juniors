@@ -127,25 +127,7 @@ public class RegistrationService {
         newUser.setPassword(request.getPassword());
         newUser.setEmail(request.getEmail());
 
-        //--------------------------------------
-        // Remove these later!
-        newUser.setMultiFactorAuth(true);
-        newUser.setPhoneNumber("+994513441321");
-        //--------------------------------------
-
-
-        // Try to save user
-        // If we get anything other than success, it'll return false
-        // TODO: Auto-login does not work! (Returns ServletException with Bad Credentials)
-        boolean response = customUserDetailsService.createUser(newUser) == IndoorResponse.SUCCESS;
-        if(response)
-            try {
-                servletRequest.login(newUser.getUsername(), newUser.getPassword());
-            } catch (ServletException e) {
-                StoodyLogger.DebugLog(ConsoleColors.YELLOW,"Servlet exception is thrown while auto login! Message: "+e.getMessage());
-            }
-
-        return response;
+        return customUserDetailsService.saveUser(newUser) == IndoorResponse.SUCCESS;
     }
 
     public IndoorResponse verifyAccount(String token, HttpServletRequest servletRequest) {

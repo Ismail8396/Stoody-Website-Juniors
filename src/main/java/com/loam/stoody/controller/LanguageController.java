@@ -1,13 +1,21 @@
 package com.loam.stoody.controller;
 
-import com.loam.stoody.dto.api.response.LanguageAPIResponse;
+import com.loam.stoody.components.IAuthenticationFacade;
+import com.loam.stoody.dto.api.response.OutdoorResponse;
+import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.global.constants.PRL;
+import com.loam.stoody.global.logger.ConsoleColors;
+import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.i18n.LanguageModel;
 import com.loam.stoody.model.user.User;
+import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.service.i18n.LanguageService;
+import com.loam.stoody.service.user.CustomUserDetailsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,82 +23,65 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
+@AllArgsConstructor
 public class LanguageController {
+    private final IAuthenticationFacade authenticationFacade;
+    private final CustomUserDetailsService customUserDetailsService;
     private final LanguageService languageService;
 
-    @Autowired
-    public LanguageController(LanguageService languageService){
-        this.languageService = languageService;
-    }
+    @GetMapping("/stoody/authorized/tables/internationalization")
+    public String getLanguagesPage(Model model) {
+        // TODO: Use a shortcut class for these kinds of stuffs.
+        User user = null;
+        try {
+            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+            // TODO: Check authorization
+        } catch (RuntimeException ignore) {
+            StoodyLogger.DebugLog(ConsoleColors.RED, "User was either null or not authorized!");
+            return "redirect:" + PRL.error404URL;
+        }
+        model.addAttribute("userInfo",user);
 
-    // Don't remove this method for now.
-    @Deprecated(/* forRemoval = true */)
-    @GetMapping("/admin/languages")
-    public ModelAndView getLanguagesPage(Map<String, Object> _model, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        User currentUser = (User) auth.getPrincipal();
-        model.addAttribute("userInfo", currentUser);
-
-        model.addAttribute("newLanguageModel", new LanguageModel());
+        model.addAttribute("languageModel", new LanguageModel());
         model.addAttribute("languageModels", languageService.getAllLanguageModels());
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user_panel/languages");
-        return modelAndView;
+        return "pages/dashboard/internationalization";
     }
 
-    @GetMapping("/api/language/search/{field}")
-    @ResponseBody
-    public LanguageAPIResponse<List<LanguageModel>> getLanguageModelsSorted2(@PathVariable("field") String field) {
-        List<LanguageModel> allLanguageModelsSorted = null;
-        if (field != null) allLanguageModelsSorted = languageService.getAllLanguagesBySearchKey(field);
-        else allLanguageModelsSorted = languageService.getAllLanguageModels();
+    @PostMapping("/stoody/authorized/tables/internationalization/post")
+    public String postLanguagesPage(@ModelAttribute("languageModel")LanguageModel languageModel) {
+        // TODO: Use a shortcut class for these kinds of stuffs.
+        User user = null;
+        try {
+            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+            // TODO: Check authorization
+        } catch (RuntimeException ignore) {
+            StoodyLogger.DebugLog(ConsoleColors.RED, "User was either null or not authorized!");
+            return "redirect:" + PRL.error404URL;
+        }
 
-        return new LanguageAPIResponse<>(allLanguageModelsSorted.size(), allLanguageModelsSorted);
+        languageService.addLanguageModel(languageModel);
+
+        return "redirect:"+"/stoody/authorized/tables/internationalization";
     }
 
-    @PostMapping(path = "/api/language/post/{locale}/{messagekey}/{messagecontent}")
-    @ResponseBody
-    public LanguageAPIResponse<List<LanguageModel>> postLanguageModelSeparate(@PathVariable("locale") String locale, @PathVariable("messagekey") String messagekey, @PathVariable("messagecontent") String messagecontent) {
-        LanguageModel langModel = new LanguageModel();
-        langModel.setLocale(locale);
-        langModel.setKey(messagekey);
-        langModel.setContent(messagecontent);
+    @PostMapping("/stoody/authorized/tables/internationalization/delete/{id}")
+    public String deleteLanguageModelById(@PathVariable("id")Integer id) {
+        // TODO: Use a shortcut class for these kinds of stuffs.
+        User user = null;
+        try {
+            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+            // TODO: Check authorization
+        } catch (RuntimeException ignore) {
+            StoodyLogger.DebugLog(ConsoleColors.RED, "User was either null or not authorized!");
+            return "redirect:" + PRL.error404URL;
+        }
 
-        languageService.addLanguageModel(langModel);
+        languageService.removeLanguageModelById(id);
 
-        return new LanguageAPIResponse<>(languageService.getAllLanguageModels().size(), languageService.getAllLanguageModels());
-    }
-
-    @PostMapping(path = "/api/language/delete/{locale}/{key}/{content}")
-    @ResponseBody
-    public LanguageAPIResponse<List<LanguageModel>> deleteLanguageModel(@PathVariable("locale") String locale, @PathVariable("key") String messagekey, @PathVariable("content") String messagecontent) {
-        for (LanguageModel i : languageService.getAllLanguageModels())
-            if (i.getLocale().equals(locale) && i.getKey().equals(messagekey) && i.getContent().equals(messagecontent)) {
-                languageService.removeLanguageModel(i);
-            }
-
-        return new LanguageAPIResponse<>(languageService.getAllLanguageModels().size(), languageService.getAllLanguageModels());
-    }
-
-    @Deprecated
-    @GetMapping("/api/language/get/sorted/{field}")
-    @ResponseBody
-    public LanguageAPIResponse<List<LanguageModel>> getLanguageModelsSorted(@PathVariable("field") String field) {
-        List<LanguageModel> allLanguageModelsSorted = languageService.getLanguageModelsSorted(field);
-
-        return new LanguageAPIResponse<>(allLanguageModelsSorted.size(), allLanguageModelsSorted);
-    }
-
-    @Deprecated
-    @GetMapping("/api/language/get/paginated/{offset}/{pageSize}")
-    @ResponseBody
-    public LanguageAPIResponse<Page<LanguageModel>> getLanguageModelsPaginated(@PathVariable int offset, @PathVariable int pageSize) {
-        Page<LanguageModel> allLanguageModelsPaginated = languageService.getLanguageModelsPaginated(offset, pageSize);
-
-        return new LanguageAPIResponse<>(allLanguageModelsPaginated.getSize(), allLanguageModelsPaginated);
+        return "redirect:"+"/stoody/authorized/tables/internationalization";
     }
 }
