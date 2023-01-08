@@ -38,7 +38,7 @@ public class Comment {
     private Integer likeCount;
     private Integer disLikeCount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
 

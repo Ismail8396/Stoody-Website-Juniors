@@ -10,27 +10,27 @@
 @created:   01.12.2022
 */
 
-package com.loam.stoody.model.product;
-
-import lombok.Data;
+package com.loam.stoody.model.product.course;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
 
 @Entity
 @Data
-public class Category {
+public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "category_id")
+    @Column(name = "id")
     private int id;
     private String name;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_category_id")
-    private Category parent;
+    private CourseCategory parent;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_categories_category_id")
-    private List<Category> subCategories;
+    private List<CourseCategory> subCategories;
 }

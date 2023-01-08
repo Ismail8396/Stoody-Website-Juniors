@@ -26,11 +26,6 @@ import jakarta.persistence.*;
 @Entity
 public class PurchasedCourse extends ParentModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-
     // TODO: aleemkhowaja, Course should be a collection since PurchasedCourse is not going to contain only one course.
     @ManyToOne(targetEntity = Course.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
