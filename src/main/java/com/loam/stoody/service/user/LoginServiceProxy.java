@@ -32,7 +32,7 @@ public class LoginServiceProxy {
 
                 request.getSession().setAttribute("userName", userDetails.getUsername());
                 User user = customUserDetailsService.getUserByUsername(userDetails.getUsername());
-
+                request.getSession().setAttribute("userId", user.getId());
                 // Check whether we should send OTP or not.
                 if (user.getPhoneNumber() != null)
                     if (!user.getPhoneNumber().isBlank()) {

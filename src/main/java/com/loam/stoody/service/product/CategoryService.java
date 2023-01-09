@@ -1,6 +1,6 @@
 package com.loam.stoody.service.product;
 
-import com.loam.stoody.model.product.Category;
+import com.loam.stoody.model.product.course.CourseCategory;
 import com.loam.stoody.repository.product.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getAllCategories(){
+    public List<CourseCategory> getAllCategories(){
         return categoryRepository.findAll();
     }
 
-    public void addCategory(Category category){
+    public void addCategory(CourseCategory category){
         categoryRepository.save(category);
     }
 
@@ -29,7 +29,7 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
-    public Optional<Category> getCategoryById(int id){
+    public Optional<CourseCategory> getCategoryById(int id){
         return categoryRepository.findById(id);
     }
 }

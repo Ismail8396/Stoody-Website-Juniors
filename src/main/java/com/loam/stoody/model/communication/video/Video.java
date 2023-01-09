@@ -12,10 +12,9 @@
 
 package com.loam.stoody.model.communication.video;
 
-import com.loam.stoody.model.product.course.Course;
-import lombok.Data;
-
+import com.loam.stoody.model.product.course.CourseLecture;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Data
 @Entity
@@ -30,6 +29,8 @@ public class Video {
     private String thumbnailUrl;
     private String subtitlesURL;
     private Long durationInMinutes;
-    @ManyToOne (fetch = FetchType.LAZY)
-    private Course course;
+
+    @ManyToOne(targetEntity = CourseLecture.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_lecture_id", referencedColumnName = "id")
+    CourseLecture courseLecture;
 }
