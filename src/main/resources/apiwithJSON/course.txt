@@ -1,0 +1,35 @@
+URL = localhost:8080/course/save
+Method = Post
+Payload:
+
+{
+    "title" : "testing title",
+    "price" : 200.00,
+    "level" : "Beginners",
+    "courseCategory" : {
+        "id" : 1
+    },
+    "courseSections" :[
+        {
+            "title" : "Introduction to Java11",
+            "courseLectures" : [
+                {
+                    "title" : "Introduction11",
+                    "article" : "article 1",
+                    "description" : "This is javascript introduction description"
+                }
+            ]
+        }
+    ]
+}
+
+
+********************************************************************
+Api  = localhost:8080/course/findById/302
+Method = Get
+
+********************************************************************
+Api =localhost:8080/course/delete
+Method = Delete
+Form Data
+courseId = 252
