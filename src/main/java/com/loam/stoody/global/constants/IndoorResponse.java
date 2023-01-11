@@ -4,7 +4,8 @@ public enum IndoorResponse {
     INIT,
     SUCCESS,
     FAIL,
-    BAD_REQUEST,
+    ACCESS_DENIED,// When unauthorized request is made
+    BAD_REQUEST,// When request does not carry acceptable data
     TOKEN_EXPIRED,
     TOKEN_ABSENT,
     USERNAME_EXIST,

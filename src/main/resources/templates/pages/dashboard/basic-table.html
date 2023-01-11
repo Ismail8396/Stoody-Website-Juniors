@@ -350,6 +350,24 @@
                 </div>
             </li>
 
+            <!-- Reports Nav item -->
+            <li class="nav-item">
+                <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navReports" aria-expanded="false" aria-controls="navReports">
+                    <i class="nav-icon bi-flag me-2"></i> Reports
+                </a>
+                <div id="navReports" class="collapse " data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <!-- Item -->
+                        <li class="nav-item">
+                            <a class="nav-link " th:href="@{/stoody/authorized/tables/reported/users}" href="../../pages/dashboard/user-report-table.html">
+                                 User Report Table
+                             </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
             <!-- Tables Nav item -->
             <li class="nav-item">
                 <a class="nav-link " href="#" data-bs-toggle="collapse" data-bs-target="#navTables" aria-expanded="false" aria-controls="navTables">
@@ -359,7 +377,7 @@
                     <ul class="nav flex-column">
                         <!-- Item -->
                         <li class="nav-item">
-                            <a class="nav-link " href="../../pages/dashboard/internationalization.html">
+                            <a class="nav-link " th:href="@{/stoody/authorized/tables/internationalization}" href="../../pages/dashboard/internationalization.html">
                                  Internationalization
                              </a>
                         </li>
@@ -744,23 +762,25 @@
                 <!-- List -->
                 <li class="dropdown ms-2">
                     <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                            <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../../static/assets/images/avatar/avatar-1.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                        <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                            <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../../static/assets/images/avatar/avatar-1.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                            <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                            <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                class="rounded-circle">O</div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                         <div class="dropdown-item">
                             <div class="d-flex">
-                                <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                    <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../../static/assets/images/avatar/avatar-1.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                                <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                    <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../../static/assets/images/avatar/avatar-1.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                    <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                    <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                        class="rounded-circle">O</div>
                                 </div>
                                 <div class="ms-3 lh-1">
-                                    <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
-                                    <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
+                                    <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
+                                    <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
                                 </div>
                             </div>
                         </div>

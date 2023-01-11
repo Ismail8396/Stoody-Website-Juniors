@@ -1,4 +1,4 @@
-package com.loam.stoody.configuration;
+package com.loam.stoody.components;
 
 import com.loam.stoody.components.UrlLocaleInterceptor;
 import com.loam.stoody.global.annotations.UnderDevelopment;

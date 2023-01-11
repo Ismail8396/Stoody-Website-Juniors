@@ -1,12 +1,9 @@
 package com.loam.stoody.configuration;
 
-import com.google.common.collect.ImmutableList;
-import com.loam.stoody.configuration.jwt.JWTFilter;
+import com.loam.stoody.components.jwt.JWTFilter;
 import com.loam.stoody.global.constants.PRL;
-import com.loam.stoody.service.user.CustomUserDetailsService;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,16 +11,11 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.GenericFilterBean;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -111,6 +103,7 @@ public class SecurityConfig {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher(PRL.logoutURL))
                 .logoutSuccessUrl(PRL.signInURL)
+                //.clearAuthentication(true)// TODO: Not sure about this
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "Auth")
 

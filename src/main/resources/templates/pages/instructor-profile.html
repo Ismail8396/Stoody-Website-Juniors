@@ -174,25 +174,27 @@
             </li>
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                            class="rounded-circle">O</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <!-- Avatar -->
-                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                    class="rounded-circle">O</div>
                             </div>
 
                             <div class="ms-3 lh-1">
-                                <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
-                                <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
+                                <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
+                                <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
                             </div>
                         </div>
                     </div>
@@ -1121,24 +1123,26 @@
 
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                    class="rounded-circle">O</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <!-- Avatar -->
-                                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                            class="rounded-circle">O</div>
                                     </div>
                                     <div class="ms-3 lh-1">
-                                        <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
-                                        <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
+                                        <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
+                                        <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -1255,7 +1259,9 @@
                                     </a>
                                 </div>
                                 <a th:href="@{/users/{username}(username = ${mainPreviewUserInfo.username})}" href="../pages/instructor-profile.html" class=" mb-0" th:text="'@'+${mainPreviewUserInfo.username}">@orkhanaliyevm</a>
-                                <span class="fs-6" th:text="${mainPreviewUserInfo.getUserSocialProfiles().skills}">Front-end Developer, Designer, Teacher</span>
+                                <span class="fs-6" th:if="${mainPreviewUserInfo.getUserSocialProfiles().skills != null}" th:text="${#strings.length(mainPreviewUserInfo.getUserSocialProfiles().skills) > 100
+                                 ? #strings.substring(mainPreviewUserInfo.getUserSocialProfiles().skills,0,100)+'...'
+                                 : mainPreviewUserInfo.getUserSocialProfiles().skills}">Front-end Developer, Designer, Teacher</span>
                             </div>
                         </div>
                     </div>
@@ -1281,16 +1287,24 @@
                             <!-- Card body -->
                             <div class="card-body">
 
-                                <!-- Follow -->
-                                <div th:if="${mainPreviewUserInfo.username != userInfo.username}" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
-                                    <a href="" class="btn btn-primary col-12">
-                                        <span>Follow</span>
-                                        <i class="bi-arrow-up-right-circle-fill ms-2"></i>
-                                    </a>
+                                <!-- Follow/Unfollow -->
+                                <div th:if="${mainPreviewUserInfo.username != getUserDTS.getCurrentUser().getUsername()}" th:switch="${getUserDTS.isUserFollowedByMe(getUserDTS.getCurrentUser().getUsername(),mainPreviewUserInfo.getUsername())}">
+                                    <div th:case="false" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
+                                        <a th:attr="data-username-string=${getUserDTS.getCurrentUser().getUsername()},data-preview-username-string=${mainPreviewUserInfo.username}" id="preview_user_page_follow_button" href="" class="btn btn-primary col-12">
+                                            <span>Follow</span>
+                                            <i class="bi-arrow-up-right-circle-fill ms-2"></i>
+                                        </a>
+                                    </div>
+                                    <div th:case="true" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
+                                        <a th:attr="data-username-string=${getUserDTS.getCurrentUser().getUsername()},data-preview-username-string=${mainPreviewUserInfo.username}" id="preview_user_page_unfollow_button" href="" class="btn btn-danger col-12">
+                                            <span>Unfollow</span>
+                                            <i class="bi-x-circle"></i>
+                                        </a>
+                                    </div>
                                 </div>
 
                                 <!-- Message -->
-                                <div th:if="${mainPreviewUserInfo.username != userInfo.username}" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
+                                <div th:if="${mainPreviewUserInfo.username != getUserDTS.getCurrentUser().getUsername()}" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
                                     <a href="" class="btn btn-primary col-12">
                                         <span>Message</span>
                                         <i class="bi-chat-dots ms-2"></i>
@@ -1300,7 +1314,7 @@
                                 <!-- Followers -->
                                 <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
                                     <div>
-                                        <h4 class="mb-0 fw-bold" th:text="${#lists.size(mainPreviewUserInfo.getUserFollowers())}">512</h4>
+                                        <h4 class="mb-0 fw-bold" th:text="${#lists.size(getUserDTS.getUserFollowersByUsername(mainPreviewUserInfo.getUsername()))}">512</h4>
                                         <p class="fs-6 mb-0">Followers</p>
                                     </div>
                                     <div>
@@ -1310,7 +1324,7 @@
                                 <!-- Following -->
                                 <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
                                     <div>
-                                        <h4 class="mb-0 fw-bold">64</h4>
+                                        <h4 class="mb-0 fw-bold" th:text="${#lists.size(getUserDTS.getUserFollowingsByUsername(mainPreviewUserInfo.getUsername()))}">64</h4>
                                         <p class="fs-6 mb-0">Following</p>
                                     </div>
                                     <div>
@@ -1349,17 +1363,22 @@
                                 </div>
 
                                 <!-- Report -->
-                                <div th:if="${mainPreviewUserInfo.username != userInfo.username}" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
+                                <div th:if="${mainPreviewUserInfo.username != getUserDTS.getCurrentUser().getUsername() and getUserDTS.didIReportThisUser(getUserDTS.getCurrentUser().getUsername(),mainPreviewUserInfo.getUsername()) == false}" class="d-flex align-items-center justify-content-center border-bottom pb-3 mb-3">
                                     <form class="col-12">
-                                        <!-- First name -->
-                                        <div class="mb-3 col-12">
-                                            <label class="form-label" for="reportReasonText">Reason</label>
-                                            <input type="text" id="reportReasonText" class="form-control" placeholder="Report reason" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-danger col-12">
+                                        <div id="reportContainer">
+                                            <!-- Report Reason -->
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label" for="reportReasonText">Reason</label>
+                                                <input type="text" maxlength="250" id="reportReasonText" class="form-control" placeholder="Report reason" required>
+                                            </div>
+                                            <button type="button" th:attr="data-username-string=${getUserDTS.getCurrentUser().getUsername()},data-preview-username-string=${mainPreviewUserInfo.username}" id="preview_user_page_report_button" class="btn btn-danger col-12">
                                         <span>Report</span>
                                         <i class="bi-exclamation-octagon ms-2"></i>
-                                    </button>
+                                        </button>
+                                        </div>
+                                        <div class="alert alert-danger mt-3 col-12" style="display:none;" th:text="global.field_is_required" id="reportAlertContainer" role="alert">
+                                            Field is required!
+                                        </div>
                                     </form>
                                 </div>
                             </div>

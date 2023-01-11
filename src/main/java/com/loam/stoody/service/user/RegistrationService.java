@@ -3,8 +3,6 @@ package com.loam.stoody.service.user;
 import com.loam.stoody.dto.api.request.RegistrationRequestDTO;
 import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.global.constants.PRL;
-import com.loam.stoody.global.logger.ConsoleColors;
-import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
 import com.loam.stoody.global.constants.IndoorResponse;
@@ -12,7 +10,6 @@ import com.loam.stoody.repository.user.PendingRegistrationRequests;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.communication.email.EmailSenderService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -61,7 +58,7 @@ public class RegistrationService {
         if(response != IndoorResponse.SUCCESS)
             return response;
 
-        return customUserDetailsService.doesUserExist(username,email);
+        return customUserDetailsService.userExist(username,email);
     }
 
     public IndoorResponse sendTokenToEmail(RegistrationRequestDTO registrationRequest, HttpServletRequest httpServletRequest){

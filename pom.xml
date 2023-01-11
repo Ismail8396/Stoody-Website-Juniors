@@ -116,6 +116,12 @@
 			<version>2.3.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.awspring.cloud</groupId>
+			<artifactId>spring-cloud-aws-messaging</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
 		<!-- Email Sender -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>

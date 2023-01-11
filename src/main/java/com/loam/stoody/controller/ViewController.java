@@ -19,6 +19,8 @@ import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
+import com.loam.stoody.service.user.UserDTS;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,23 +30,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
+@AllArgsConstructor
 public class ViewController {
     private final IAuthenticationFacade authenticationFacade;
     private final CustomUserDetailsService customUserDetailsService;
     private final LanguageService languageService;
+    private final UserDTS userDTS;
 
-    @Autowired
-    public ViewController(IAuthenticationFacade authenticationFacade,
-                          CustomUserDetailsService customUserDetailsService,
-                          LanguageService languageService) {
-        this.authenticationFacade = authenticationFacade;
-        this.customUserDetailsService = customUserDetailsService;
-        this.languageService = languageService;
+    @ModelAttribute("getUserDTS")
+    public UserDTS getUserDTS(){
+        return userDTS;
+    }
+
+    @ModelAttribute("languageServiceLayer")
+    public LanguageService getLanguageServiceLayer() {
+        return languageService;
     }
 
     @GetMapping(value = PRL.homeURL)
     public String getHomePage(Model model) {
-
         Authentication authentication = authenticationFacade.getAuthentication();
         boolean isAuthenticated = authentication != null && authentication.getName() != null && !authentication.getName().equals("anonymousUser");
 
@@ -55,7 +59,7 @@ public class ViewController {
     }
 
     @GetMapping(value = PRL.userHomeURL)
-    public String getUserHomePage(Model model) {
+    public String getUserHomePage() {
         User user = null;
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
@@ -63,14 +67,7 @@ public class ViewController {
             StoodyLogger.DebugLog(ConsoleColors.RED, "User was null!");
             return "redirect:" + PRL.error404URL;
         }
-        model.addAttribute("userInfo", user);
 
         return PRL.userHomePage;
-    }
-
-    // Required for all controllers!
-    @ModelAttribute("languageServiceLayer")
-    public LanguageService getLanguageServiceLayer() {
-        return languageService;
     }
 }
