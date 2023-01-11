@@ -13,7 +13,7 @@ import java.util.List;
 @UnderDevelopment
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    List<Course> findAllByCourseCategory(long id);
+    List<Course> findAllByCourseCategory_Id(long id);
 
     @Modifying
     @Query(value = "update Course SET isDeleted=true where id =: courseId")

@@ -43,7 +43,7 @@ public class CourseService {
     }
 
     public List<CourseResponseDTO> getAllCoursesByCategoryId(long id) {
-        List<Course> courses = courseRepository.findAllByCourseCategory(id);
+        List<Course> courses = courseRepository.findAllByCourseCategory_Id(id);
         List<CourseResponseDTO> courseResponseDTOS = Collections.EMPTY_LIST;
         if (!CollectionUtils.isEmpty(courses)) {
             courseResponseDTOS = courses.stream().map(course -> new CourseResponseDTO(course, true)).collect(Collectors.toList());
@@ -142,7 +142,7 @@ public class CourseService {
         return sectionsDtos;
     }
 
-    public List<CourseLectureResponseDTO> getLessonsBySectionId(long sectionId) {
+    public List<CourseLectureResponseDTO> findLecturesBySectionId(long sectionId) {
         List<CourseLecture> courseLectures = courseLectureRepository.findAllByCourseSection_Id(sectionId);
         List<CourseLectureResponseDTO> lectureResponseDTOS = Collections.EMPTY_LIST;
         if (!CollectionUtils.isEmpty(courseLectures)) {

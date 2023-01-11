@@ -51,18 +51,20 @@ public class CourseController {
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getSectionsByCourseId(courseId));
     }
 
-    @GetMapping("/findLessonsBySectionId/{sectionId}")
+    @GetMapping("/findLecturesBySectionId/{sectionId}")
     @ResponseBody
-    public OutdoorResponse<?> findLessonsBySectionId(@PathVariable long sectionId) {
-        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getLessonsBySectionId(sectionId));
+    public OutdoorResponse<?> findLecturesBySectionId(@PathVariable long sectionId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.findLecturesBySectionId(sectionId));
     }
 
     @PostMapping("/save")
+    @ResponseBody
     public OutdoorResponse<?> save(@RequestBody Course course) {
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
     }
 
     @PostMapping("/add-comment")
+    @ResponseBody
     public OutdoorResponse<?> addComment(@RequestParam(name = "courseId") long courseId,
                                          @RequestParam(name = "comment") String content,
                                          @RequestParam(name = "authorId") long authorId) {
@@ -70,6 +72,7 @@ public class CourseController {
     }
 
     @PostMapping("/add-ratting")
+    @ResponseBody
     public OutdoorResponse<?> addRatting(@RequestParam(name = "courseId") long courseId,
                                          @RequestParam(name = "rating") long rating,
                                          @RequestParam(name = "authorId") long authorId) {
@@ -77,6 +80,7 @@ public class CourseController {
     }
 
     @PostMapping("/purchase-course")
+    @ResponseBody
     public OutdoorResponse<?> purchaseCourse(
             @RequestParam(name = "courseId") long courseId,
             @RequestParam(name = "userId") long userId) {
