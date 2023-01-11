@@ -1,9 +1,10 @@
 package com.loam.stoody.controller.product;
 
+import com.loam.stoody.dto.api.response.OutdoorResponse;
+import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.model.product.course.Course;
 import com.loam.stoody.service.product.CourseService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,8 @@ public class CourseController {
 
     @GetMapping("/findAllByCategoryId/{categoryId}")
     @ResponseBody
-    public ResponseEntity<?> findAllByCategoryId(@PathVariable long categoryId) {
-        return ResponseEntity.ok(courseService.getAllCoursesByCategoryId(categoryId));
+    public OutdoorResponse findAllByCategoryId(@PathVariable long categoryId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getAllCoursesByCategoryId(categoryId));
     }
 
     @GetMapping("/findAll")
@@ -32,32 +33,71 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
-    @GetMapping("/findById/{id}")
+    @GetMapping("/findCourse/{id}")
     @ResponseBody
-    public ResponseEntity<?> findById(@PathVariable long id) {
-        return ResponseEntity.ok(courseService.getCourseById(id));
+    public OutdoorResponse<?> findCourse(@PathVariable long id) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getCourse(id));
+    }
+
+    @GetMapping("/findCourseWithDetails/{id}")
+    @ResponseBody
+    public OutdoorResponse<?> findCourseWithDetails(@PathVariable long id) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getCourseWithDetails(id));
+    }
+
+    @GetMapping("/findSectionByCourseId/{courseId}")
+    @ResponseBody
+    public OutdoorResponse<?> findSectionByCourseId(@PathVariable long courseId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getSectionsByCourseId(courseId));
+    }
+
+    @GetMapping("/findLessonsBySectionId/{sectionId}")
+    @ResponseBody
+    public OutdoorResponse<?> findLessonsBySectionId(@PathVariable long sectionId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.getLessonsBySectionId(sectionId));
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody Course course) {
-        return ResponseEntity.ok(courseService.save(course));
+    public OutdoorResponse<?> save(@RequestBody Course course) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
+    }
+
+    @PostMapping("/add-comment")
+    public OutdoorResponse<?> addComment(@RequestParam(name = "courseId") long courseId,
+                                         @RequestParam(name = "comment") String content,
+                                         @RequestParam(name = "authorId") long authorId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.addComment(courseId, content, authorId));
+    }
+
+    @PostMapping("/add-ratting")
+    public OutdoorResponse<?> addRatting(@RequestParam(name = "courseId") long courseId,
+                                         @RequestParam(name = "rating") long rating,
+                                         @RequestParam(name = "authorId") long authorId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.addRatting(courseId, rating, authorId));
+    }
+
+    @PostMapping("/purchase-course")
+    public OutdoorResponse<?> purchaseCourse(
+            @RequestParam(name = "courseId") long courseId,
+            @RequestParam(name = "userId") long userId) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.purchaseCourse(courseId, userId));
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> delete(@RequestParam long courseId) {
+    public OutdoorResponse<?> delete(@RequestParam long courseId) {
         courseService.delete(courseId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new OutdoorResponse(IndoorResponse.SUCCESS, "Course deleted successfully");
     }
 
     @DeleteMapping("/delete-section")
-    public ResponseEntity<?> deleteSection(@RequestParam(name = "sectionId") long sectionId) {
+    public OutdoorResponse<?> deleteSection(@RequestParam(name = "sectionId") long sectionId) {
         courseService.deleteSection(sectionId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new OutdoorResponse(IndoorResponse.SUCCESS, "Course section deleted successfully");
     }
 
     @DeleteMapping("/delete-lecture")
-    public ResponseEntity<?> deleteLecture(@RequestParam(name = "lectureId") long lectureId) {
+    public OutdoorResponse<?> deleteLecture(@RequestParam(name = "lectureId") long lectureId) {
         courseService.deleteLecture(lectureId);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return new OutdoorResponse(IndoorResponse.SUCCESS, "Course lecture deleted successfully");
     }
 }

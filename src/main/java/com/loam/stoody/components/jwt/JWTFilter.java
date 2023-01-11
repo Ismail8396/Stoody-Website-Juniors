@@ -1,4 +1,4 @@
-package com.loam.stoody.configuration.jwt;
+package com.loam.stoody.components.jwt;
 
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
@@ -7,7 +7,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,18 +34,18 @@ public class JWTFilter extends OncePerRequestFilter {
         String jwtTokenValue = authCookie == null ? null : authCookie.getValue();
         try {
             if (jwtTokenValue == null) {
-                throw new RuntimeException("Test");
+                throw new RuntimeException();
             }
 
             String username = JWTUtility.extractUsername(jwtTokenValue);
             if (username == null) {
-                throw new RuntimeException("Test");
+                throw new RuntimeException();
             }
 
             // This can throw UsernameNotFoundException
             UserDetails userDetails = userService.loadUserByUsername(username);
             if (userDetails == null) {
-                throw new RuntimeException("Test");
+                throw new RuntimeException();
             }
 
             if (JWTUtility.validateToken(jwtTokenValue, userDetails)) {
@@ -56,11 +55,14 @@ public class JWTFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
             } else{
-                throw new RuntimeException("Test");
+                throw new RuntimeException();
             }
 
         } catch (RuntimeException ignore) {
-            // do something if necessarry
+//            Cookie cookie = new Cookie("Auth",null);
+//            cookie.setMaxAge(0);
+//            response.addCookie(cookie);
+//            SecurityContextHolder.clearContext();// TODO: Not sure about this
         }
 
         //do the filter

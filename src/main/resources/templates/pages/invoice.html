@@ -173,25 +173,27 @@
             </li>
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                            class="rounded-circle">O</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end shadow">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <!-- Avatar -->
-                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                    class="rounded-circle">O</div>
                             </div>
 
                             <div class="ms-3 lh-1">
-                                <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
-                                <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
+                                <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
+                                <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
                             </div>
                         </div>
                     </div>
@@ -1120,24 +1122,26 @@
 
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                    class="rounded-circle">O</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <!-- Avatar -->
-                                    <div class="avatar avatar-md" th:classappend="${userInfo.getUserProfile().userStatusCSSClass()}">
-                                        <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
+                                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                        <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;" class="rounded-circle">O</div>
+                                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                            class="rounded-circle">O</div>
                                     </div>
                                     <div class="ms-3 lh-1">
-                                        <h5 class="mb-1" th:text="${userInfo.username}">Annette Black</h5>
-                                        <p class="mb-0 text-muted" th:text="${userInfo.email}">annette@stoody.com</p>
+                                        <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
+                                        <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -1224,44 +1228,46 @@
 
                             <!-- User Image -->
                             <div class="position-relative mt-n9">
-                                <img th:if="${userInfo.userProfile.profilePictureURL != null}" th:src="${userInfo.userProfile.profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="" class="rounded-circle avatar-xxl border-white border border-4 position-relative">
+                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="" class="rounded-circle avatar-xxl border-white border border-4 position-relative">
 
-                                <div th:if="${userInfo.userProfile.profilePictureURL == null}" th:text="${#strings.substring(userInfo.username,0,1)}" style="background-color:rgb(67, 194, 194); 
+                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194); 
                         width:120px; height:120px; min-height: 120px; min-width: 120px;
                         color: white;
                         font-size:35px;display: flex; align-items: center; justify-content:center;" class="rounded-circle avatar-xxl border-white border border-4 position-relative">O</div>
 
-                                <a href="#" th:if="${userInfo.getUserStatistics().getVerified()}" th:title="#{global.verified}" class="position-absolute top-0 end-0 me-2" data-bs-toggle="tooltip" data-placement="top" title="Verified">
+                                <a href="#" th:if="${getUserDTS.getCurrentUser().getUserStatistics().getVerified()}" th:title="#{global.verified}" class="position-absolute top-0 end-0 me-2" data-bs-toggle="tooltip" data-placement="top" title="Verified">
                                     <img th:src="@{/assets/images/svg/checked-mark.svg}" src="../../static/assets/images/svg/checked-mark.svg" alt="" height="30" width="30">
                                 </a>
                             </div>
 
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
-                                    <h3 class="mb-0 fw-bold me-2" th:text="${userInfo.getUserProfile().getUserDisplayName()}">Orkhan Aliyev</h3>
-                                    <span class="badge bg-primary-soft me-2" th:text="${userInfo.getUserStatistics().getRoleDisplayLabel()}">Instructor</span>
-                                    <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" th:title="${userInfo.getUserStatistics().getUserLevelString()}" title="Beginner">
+                                    <h3 class="mb-0 fw-bold me-2" th:text="${getUserDTS.getCurrentUser().getUserProfile().getUserDisplayName()}">Orkhan Aliyev</h3>
+                                    <span class="badge bg-primary-soft me-2" th:text="${getUserDTS.getCurrentUser().getUserStatistics().getRoleDisplayLabel()}">Instructor</span>
+                                    <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" th:title="${getUserDTS.getCurrentUser().getUserStatistics().getUserLevelString()}" title="Beginner">
 
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3" y="8" width="2" height="6" rx="1" th:attr="fill=${userInfo.getUserStatistics().getUserLevelNumber() > 0}? '#754FFE' : '#DBD8E9'" fill="#754FFE"></rect>
-                        <rect x="7" y="5" width="2" height="9" rx="1" th:attr="fill=${userInfo.getUserStatistics().getUserLevelNumber() > 1}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
-                        <rect x="11" y="2" width="2" height="12" rx="1" th:attr="fill=${userInfo.getUserStatistics().getUserLevelNumber() > 2}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                        <rect x="3" y="8" width="2" height="6" rx="1" th:attr="fill=${getUserDTS.getCurrentUser().getUserStatistics().getUserLevelNumber() > 0}? '#754FFE' : '#DBD8E9'" fill="#754FFE"></rect>
+                        <rect x="7" y="5" width="2" height="9" rx="1" th:attr="fill=${getUserDTS.getCurrentUser().getUserStatistics().getUserLevelNumber() > 1}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                        <rect x="11" y="2" width="2" height="12" rx="1" th:attr="fill=${getUserDTS.getCurrentUser().getUserStatistics().getUserLevelNumber() > 2}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
                       </svg>
 
                                     </a>
                                 </div>
-                                <a th:href="@{/users/{username}(username = ${userInfo.username})}" href="../pages/instructor-profile.html" class=" mb-0" th:text="'@'+${userInfo.username}">@orkhanaliyevm</a>
-                                <span class="fs-6" th:text="${userInfo.getUserSocialProfiles().skills}">Front-end Developer, Designer, Teacher</span>
+                                <a th:href="@{/users/{username}(username = ${getUserDTS.getCurrentUser().getUsername()})}" href="../pages/instructor-profile.html" class=" mb-0" th:text="'@'+${getUserDTS.getCurrentUser().getUsername()}">@orkhanaliyevm</a>
+                                <span class="fs-6" th:if="${mainPreviewUserInfo.getUserSocialProfiles().skills != null}" th:text="${#strings.length(mainPreviewUserInfo.getUserSocialProfiles().skills) > 100
+                                 ? #strings.substring(mainPreviewUserInfo.getUserSocialProfiles().skills,0,100)+'...'
+                                 : mainPreviewUserInfo.getUserSocialProfiles().skills}">Front-end Developer, Designer, Teacher</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="fs-4 mt-4 mt-lg-0 pb-2 pb-lg-0 d-flex justify-content-end">
-                            <a th:if="${userInfo.getUserSocialProfiles().youtubeURL != null}" th:href="${userInfo.getUserSocialProfiles().youtubeURL}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
-                            <a th:if="${userInfo.getUserSocialProfiles().linkedInURL != null}" th:href="${userInfo.getUserSocialProfiles().linkedInURL}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
-                            <a th:if="${userInfo.getUserSocialProfiles().instagramURL != null}" th:href="${userInfo.getUserSocialProfiles().instagramURL}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
-                            <a th:if="${userInfo.getUserSocialProfiles().facebookURL != null}" th:href="${userInfo.getUserSocialProfiles().facebookURL}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
-                            <a th:if="${userInfo.getUserSocialProfiles().twitterURL != null}" th:href="${userInfo.getUserSocialProfiles().twitterURL}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getCurrentUser().getUserSocialProfiles().getYoutubeURL() != null}" th:href="${getUserDTS.getCurrentUser().getUserSocialProfiles().getYoutubeURL()}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getCurrentUser().getUserSocialProfiles().getLinkedInURL() != null}" th:href="${getUserDTS.getCurrentUser().getUserSocialProfiles().getLinkedInURL()}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getCurrentUser().getUserSocialProfiles().getInstagramURL() != null}" th:href="${getUserDTS.getCurrentUser().getUserSocialProfiles().getInstagramURL()}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getCurrentUser().getUserSocialProfiles().getFacebookURL() != null}" th:href="${getUserDTS.getCurrentUser().getUserSocialProfiles().getFacebookURL()}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getCurrentUser().getUserSocialProfiles().getTwitterURL() != null}" th:href="${getUserDTS.getCurrentUser().getUserSocialProfiles().getTwitterURL()}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ public class CourseSection {
     private Long id;
     private String title;
 
-    @ManyToOne(targetEntity = Course.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Course.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     private Course course;
 

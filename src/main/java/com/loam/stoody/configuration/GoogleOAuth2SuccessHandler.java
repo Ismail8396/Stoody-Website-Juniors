@@ -36,13 +36,13 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
-    public void onAuthenticationSuccess(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, Authentication authentication) throws IOException, jakarta.servlet.ServletException {
+    public void onAuthenticationSuccess(jakarta.servlet.http.HttpServletRequest request,
+                                        jakarta.servlet.http.HttpServletResponse response,
+                                        Authentication authentication) throws IOException, jakarta.servlet.ServletException {
         OAuth2AuthenticationToken oAuth2AuthenticationToken = (OAuth2AuthenticationToken)authentication;
 
         String email = oAuth2AuthenticationToken.getPrincipal().getAttributes().get("email").toString();
-        if(userRepository.findUserByEmail(email).isPresent()) {
-
-        }else{
+        if(userRepository.findUserByEmail(email).isEmpty()){
             User user = customUserDetailsService.getDefaultUser();
             user.getUserProfile().setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
             user.getUserProfile().setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
@@ -55,7 +55,7 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             userRepository.save(user);
         }
 
-        redirectStrategy.sendRedirect(request,response,"/");
+        redirectStrategy.sendRedirect(request, response,"/");
     }
 }
 

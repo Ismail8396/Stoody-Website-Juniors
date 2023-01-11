@@ -7,22 +7,26 @@ import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.RegistrationService;
+import com.loam.stoody.service.user.UserDTS;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@AllArgsConstructor
 public class RegistrationController {
     private final RegistrationService registrationService;
     private final LanguageService languageService;
-    @Autowired
-    public RegistrationController(RegistrationService registrationService,
-                                  LanguageService languageService){
-        this.registrationService = registrationService;
-        this.languageService = languageService;
+    private final UserDTS userDTS;
+
+    @ModelAttribute("languageServiceLayer")
+    public LanguageService getLanguageServiceLayer() {
+        return languageService;
     }
+    //------------------------------------------------------------------------------------------------------------------
 
     // Rest Controller
     @UnderDevelopment @Deprecated// Remove this line once it's ready
@@ -59,7 +63,7 @@ public class RegistrationController {
         IndoorResponse response = registrationService.sendTokenToEmail(registrationRequest, httpServletRequest);
 
         if(response == IndoorResponse.SUCCESS){
-            headerMessage = languageService.getContent("global.orkhan");
+            headerMessage = languageService.getContent("global.success");
             messageContent = "We've sent an email to you with a link. Please, click on that link within 15 minutes so your account can get approved!";
         }else if(response == IndoorResponse.USERNAME_EXIST){
             headerMessage = "Registration Failed!";

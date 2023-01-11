@@ -82,10 +82,6 @@ public class User {
     @JoinColumn(name = "user_social_profiles_id", referencedColumnName = "id")
     private UserSocialProfiles userSocialProfiles;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_followers", referencedColumnName = "id")
-    private List<User> userFollowers;
-
     //__________________________________________________________________________________________________________________
     @Override
     public boolean equals(Object o) {

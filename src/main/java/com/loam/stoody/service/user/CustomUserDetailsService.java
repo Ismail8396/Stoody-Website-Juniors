@@ -18,6 +18,7 @@
 
 package com.loam.stoody.service.user;
 
+import com.loam.stoody.components.IAuthenticationFacade;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.model.user.*;
 import com.loam.stoody.model.user.misc.Role;
@@ -38,6 +39,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.ZoneId;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -46,12 +48,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final LoginRequestRepository loginRequestRepository;
+    private final IAuthenticationFacade authenticationFacade;
 
     private final UserStatisticsRepository userStatisticsRepository;
     private final UserNotificationSettingsRepository userNotificationSettingsRepository;
     private final UserPrivacySettingsRepository userPrivacySettingsRepository;
     private final UserProfileSettingsRepository userProfileSettingsRepository;
     private final UserSocialProfilesSettingsRepository userSocialProfilesSettingsRepository;
+    private final UserFollowersRepository userFollowersRepository;
+
     // --> Repositories end
 
     // Returns simple user without an email, username nor password.
@@ -62,23 +67,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         defaultUser.setPassword(null);
         defaultUser.setEmail(null);
 
-        //--------------------------------
-        // TODO: REMOVE LATER
-        if(roleRepository.count() <= 0)
-        {
-            Role testRole = new Role();
-            testRole.setName("ROLE_USER");
-            roleRepository.save(testRole);
-        }
-        System.out.println(roleRepository.findAll());
-        //--------------------------------
-
         defaultUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
-
-        //--------------------------------
-        // TODO: REMOVE LATER
-        System.out.println("USER HAS THESE ROLES: "+defaultUser.getRoles());
-        //--------------------------------
 
         // Linked Models
         defaultUser.setUserStatistics(new UserStatistics());
@@ -86,7 +75,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         defaultUser.setUserPrivacy(new UserPrivacy());
         defaultUser.setUserProfile(new UserProfile());
         defaultUser.setUserSocialProfiles(new UserSocialProfiles());
-        defaultUser.setUserFollowers(new ArrayList<>());
 
         // Misc
         defaultUser.setAccountEnabled(true);
@@ -96,6 +84,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         defaultUser.setMultiFactorAuth(false);
 
         return defaultUser;
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthorities(List<Role> roles) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        if (CollectionUtils.isEmpty(roles)) throw new RuntimeException("No roles available");
+        roles.stream().map(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+        return authorities;
     }
 
     @Override
@@ -123,31 +118,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return user;
     }
 
-    public Collection<? extends GrantedAuthority> getAuthorities(List<Role> roles) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        if (CollectionUtils.isEmpty(roles)) throw new RuntimeException("No roles available");
-        roles.stream().map(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-        return authorities;
-    }
-
-    public boolean isOTPRequired(String username) {
-        final long OTP_VALID_DURATION = 5 * 60 * 1000;   // 5 minutes
-        LoginRequest loginRequest = loginRequestRepository.findLoginRequestByUsername(username);
-        if (loginRequest.getOneTimePassword() == null) {
-            return false;
-        }
-
-        long currentTimeInMillis = System.currentTimeMillis();
-        long otpRequestedTimeInMillis = loginRequest.getOtpRequestedTime()
-                .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        if (otpRequestedTimeInMillis + OTP_VALID_DURATION < currentTimeInMillis) {
-            // OTP expires
-            return false;
-        }
-        return true;
-    }
-
-    public IndoorResponse doesUserExist(String username, String email) {
+    public IndoorResponse userExist(String username, String email) {
         IndoorResponse response = IndoorResponse.SUCCESS;
 
         if (userRepository.findUserByEmail(email).isPresent())
@@ -172,6 +143,121 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         return IndoorResponse.SUCCESS;
+    }
+
+    public User getCurrentUser(){
+        User user = null;
+        try {
+            user = getUserByUsername(authenticationFacade.getAuthentication().getName());
+        } catch (UsernameNotFoundException ignore) {
+            return null;
+        }
+        return user;
+    }
+
+    public Boolean compareUsers(User user, User toCompare){
+        if(user == null || toCompare == null)return false;
+        return user.getUsername().equals(toCompare.getUsername());
+    }
+
+    public boolean isOTPRequired(String username) {
+        final long OTP_VALID_DURATION = 5 * 60 * 1000;   // 5 minutes
+        LoginRequest loginRequest = loginRequestRepository.findLoginRequestByUsername(username);
+        if (loginRequest.getOneTimePassword() == null) {
+            return false;
+        }
+
+        long currentTimeInMillis = System.currentTimeMillis();
+        long otpRequestedTimeInMillis = loginRequest.getOtpRequestedTime()
+                .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        if (otpRequestedTimeInMillis + OTP_VALID_DURATION < currentTimeInMillis) {
+            // OTP expires
+            return false;
+        }
+        return true;
+    }
+
+    public List<User> getUserFollowers(User user){
+        return userFollowersRepository.findAll().stream()
+                .filter(e-> e.getTo().getUsername().equals(user.getUsername()))
+                .map(UserFollowers::getFrom).collect(Collectors.toList());
+    }
+
+    public List<User> getUserFollowings(User user){
+        return userFollowersRepository.findAll().stream()
+                .filter(e-> e.getFrom().getUsername().equals(user.getUsername()))
+                .map(UserFollowers::getTo).collect(Collectors.toList());
+    }
+
+    public boolean addUserFollower(User userFrom, User userTo){
+        try {
+            if(userFrom == null || userTo == null)
+                throw new RuntimeException();
+
+            final String userFromUsername = userFrom.getUsername();
+            final String userToUsername = userTo.getUsername();
+
+            // Check whether they exist or not. If not, throw exception
+            getUserByUsername(userFromUsername);
+            getUserByUsername(userToUsername);
+
+            if (userFollowersRepository.findAll().stream()
+                    .anyMatch(e -> e.getFrom().getUsername().equals(userFromUsername) &&
+                            e.getTo().getUsername().equals(userToUsername)))
+                throw new RuntimeException();
+
+            UserFollowers userFollowers = new UserFollowers();
+            userFollowers.setFrom(userFrom);
+            userFollowers.setTo(userTo);// userFrom wants to follow userTo
+            userFollowersRepository.save(userFollowers);
+        }catch(RuntimeException ignore){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean removeUserFollower(User userFrom, User userTo){
+        try {
+            if(userFrom == null || userTo == null)
+                throw new RuntimeException();
+
+            final String userFromUsername = userFrom.getUsername();
+            final String userToUsername = userTo.getUsername();
+
+            // Check whether they exist or not. If not, throw exception
+            getUserByUsername(userFromUsername);
+            getUserByUsername(userToUsername);
+
+            UserFollowers unfollow =  userFollowersRepository.findAll().stream().filter(e -> e.getFrom().getUsername().equals(userFromUsername) &&
+                    e.getTo().getUsername().equals(userToUsername)).findFirst().orElse(null);
+
+            if(unfollow == null) throw new RuntimeException();
+
+            userFollowersRepository.delete(unfollow);
+        }catch(RuntimeException ignore){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isUserFollowedBy(User userFrom, User userTo){
+        try {
+            if(userFrom == null || userTo == null) throw new RuntimeException();
+
+            final String userFromUsername = userFrom.getUsername();
+            final String userToUsername = userTo.getUsername();
+
+            // Check whether they exist or not. If not, throw exception
+            getUserByUsername(userFromUsername);
+            getUserByUsername(userToUsername);
+
+            if(userFollowersRepository.findAll().stream().filter(e -> e.getFrom().getUsername().equals(userFromUsername) &&
+                            e.getTo().getUsername().equals(userToUsername)).findFirst().orElse(null)
+                    == null) throw new RuntimeException();
+        }catch(RuntimeException ignore){
+            return false;
+        }
+        return true;
     }
 
     //------------------------------------------------------------------------------------------------------------------

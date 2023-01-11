@@ -1,4 +1,4 @@
-package com.loam.stoody.configuration.jwt;
+package com.loam.stoody.components.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

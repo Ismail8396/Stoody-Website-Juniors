@@ -11,6 +11,7 @@ import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
+import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -31,6 +32,17 @@ public class LanguageController {
     private final IAuthenticationFacade authenticationFacade;
     private final CustomUserDetailsService customUserDetailsService;
     private final LanguageService languageService;
+    private final UserDTS userDTS;
+
+    @ModelAttribute("getUserDTS")
+    public UserDTS getUserDTS(){
+        return userDTS;
+    }
+
+    @ModelAttribute("languageServiceLayer")
+    public LanguageService getLanguageServiceLayer() {
+        return languageService;
+    }
 
     @GetMapping("/stoody/authorized/tables/internationalization")
     public String getLanguagesPage(Model model) {
@@ -43,8 +55,6 @@ public class LanguageController {
             StoodyLogger.DebugLog(ConsoleColors.RED, "User was either null or not authorized!");
             return "redirect:" + PRL.error404URL;
         }
-        model.addAttribute("userInfo",user);
-
         model.addAttribute("languageModel", new LanguageModel());
         model.addAttribute("languageModels", languageService.getAllLanguageModels());
 

@@ -1,6 +1,6 @@
 package com.loam.stoody.service.user;
 
-import com.loam.stoody.configuration.jwt.JWTUtility;
+import com.loam.stoody.components.jwt.JWTUtility;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.model.user.User;

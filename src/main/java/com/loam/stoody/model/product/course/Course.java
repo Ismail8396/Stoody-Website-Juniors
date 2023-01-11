@@ -23,6 +23,7 @@ import lombok.Data;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,6 +37,7 @@ import java.util.Set;
 @Data
 @DynamicUpdate
 @DynamicInsert
+@Where(clause = "is_deleted='false'")
 public class Course extends ParentModel {
     private String title;
     private String subTitle;

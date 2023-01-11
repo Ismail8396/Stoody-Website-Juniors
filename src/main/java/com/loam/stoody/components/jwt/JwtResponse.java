@@ -1,4 +1,4 @@
-package com.loam.stoody.configuration.jwt;
+package com.loam.stoody.components.jwt;
 
 import com.loam.stoody.global.constants.About;
 import com.loam.stoody.global.constants.PRL;

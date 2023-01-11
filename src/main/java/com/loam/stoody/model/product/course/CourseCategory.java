@@ -22,7 +22,6 @@ import java.util.List;
 public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
     private String name;
 
