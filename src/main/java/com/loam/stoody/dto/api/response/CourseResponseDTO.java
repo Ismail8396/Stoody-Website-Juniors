@@ -34,6 +34,7 @@ public class CourseResponseDTO {
     private Long rating;
     private CourseStatus courseStatus;
     private long courseCategoryId;
+    private String tags;
     private List<CourseSectionResponseDTO> sections;
 
 

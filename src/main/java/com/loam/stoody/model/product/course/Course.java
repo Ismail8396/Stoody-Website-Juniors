@@ -59,7 +59,7 @@ public class Course extends ParentModel {
     private Double discount;
     private Long enrolledStudents;
     private Long rating;
-
+    private String tags;
 
     private CourseStatus courseStatus;
 
