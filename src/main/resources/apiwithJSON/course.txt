@@ -3,9 +3,13 @@ Method = Post
 Payload:
 
 {
-    "title" : "testing title",
+    "title" : "netwoking11",
     "price" : 200.00,
     "level" : "Beginners",
+    "description" : "this is course description",
+    "thumbnailURL" : "this is thumbnail url",
+    "promoVideoURL" : "this is promo video url",
+    "tags" : "tag1, tag2, tag3, tag4",
     "courseCategory" : {
         "id" : 1
     },
