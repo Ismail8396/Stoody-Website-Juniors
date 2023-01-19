@@ -17,6 +17,7 @@ public class CourseLecture {
     private Long id;
     private String title;
     private String article;
+    private String articleName;
     private String description;
     @OneToMany(
             mappedBy = "courseLecture",

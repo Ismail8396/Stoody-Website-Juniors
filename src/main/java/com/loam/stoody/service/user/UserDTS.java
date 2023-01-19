@@ -4,7 +4,8 @@ import com.loam.stoody.components.IAuthenticationFacade;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.global.logger.ConsoleColors;
 import com.loam.stoody.global.logger.StoodyLogger;
-import com.loam.stoody.model.user.User;
+import com.loam.stoody.model.user.*;
+import com.loam.stoody.model.user.statistics.UserStatistics;
 import com.loam.stoody.service.communication.report.ReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,6 +35,7 @@ public class UserDTS {
         return user;
     }
 
+    // -> Followers / Following
     public List<User> getUserFollowersByUsername(String username){
         return customUserDetailsService.getUserFollowers(customUserDetailsService.getUserByUsername(username));
     }
@@ -48,7 +50,33 @@ public class UserDTS {
                                                   customUserDetailsService.getUserByUsername(userTo));
     }
 
+    // -> Report User
     public Boolean didIReportThisUser(String reportedBy, String reportedUser){
         return reportService.doesReportedUserExistByUsername(reportedBy,reportedUser);
+    }
+
+    // -> User Statistics
+    public UserStatistics getUserStatistics(String username){
+        return customUserDetailsService.getUserStatistics(customUserDetailsService.getUserByUsername(username));
+    }
+
+    // -> User Notifications
+    public UserNotifications getUserNotifications(String username){
+        return customUserDetailsService.getUserNotifications(customUserDetailsService.getUserByUsername(username));
+    }
+
+    // -> User Privacy
+    public UserPrivacy getUserPrivacy(String username){
+        return customUserDetailsService.getUserPrivacy(customUserDetailsService.getUserByUsername(username));
+    }
+
+    // -> User Profile
+    public UserProfile getUserProfile(String username){
+        return customUserDetailsService.getUserProfile(customUserDetailsService.getUserByUsername(username));
+    }
+
+    // -> User Social Profiles
+    public UserSocialProfiles getUserSocialProfiles(String username){
+        return customUserDetailsService.getUserSocialProfiles(customUserDetailsService.getUserByUsername(username));
     }
 }

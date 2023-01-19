@@ -27,7 +27,8 @@ public class UserPrivacy {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(mappedBy = "userPrivacy")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     // Privacy

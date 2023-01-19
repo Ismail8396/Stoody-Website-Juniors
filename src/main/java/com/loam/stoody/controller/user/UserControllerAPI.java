@@ -24,22 +24,22 @@ public class UserControllerAPI {
     public OutdoorResponse<?> postUpdateUserStatus(@PathVariable("status") String status) {
         User user = null;
         try {
-            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-            if (status.equals("setmeonline") && !user.getUserProfile().getUserStatus().equals(UserStatus.Online)) {
-                user.getUserProfile().setUserStatus(UserStatus.Online);
-                customUserDetailsService.saveUser(user);
-            } else if (status.equals("setmeoffline") && !user.getUserProfile().getUserStatus().equals(UserStatus.Offline)) {
-                user.getUserProfile().setUserStatus(UserStatus.Offline);
-                customUserDetailsService.saveUser(user);
-            } else if (status.equals("setmeaway") && !user.getUserProfile().getUserStatus().equals(UserStatus.Away)) {
-                user.getUserProfile().setUserStatus(UserStatus.Away);
-                customUserDetailsService.saveUser(user);
-            } else if (status.equals("setmebusy") && !user.getUserProfile().getUserStatus().equals(UserStatus.Busy)) {
-                user.getUserProfile().setUserStatus(UserStatus.Busy);
-                customUserDetailsService.saveUser(user);
-            } else {
-                return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, "BAD REQUEST");
-            }
+//            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+//            if (status.equals("setmeonline") && !user.getUserProfile().getUserStatus().equals(UserStatus.Online)) {
+//                user.getUserProfile().setUserStatus(UserStatus.Online);
+//                customUserDetailsService.saveUser(user);
+//            } else if (status.equals("setmeoffline") && !user.getUserProfile().getUserStatus().equals(UserStatus.Offline)) {
+//                user.getUserProfile().setUserStatus(UserStatus.Offline);
+//                customUserDetailsService.saveUser(user);
+//            } else if (status.equals("setmeaway") && !user.getUserProfile().getUserStatus().equals(UserStatus.Away)) {
+//                user.getUserProfile().setUserStatus(UserStatus.Away);
+//                customUserDetailsService.saveUser(user);
+//            } else if (status.equals("setmebusy") && !user.getUserProfile().getUserStatus().equals(UserStatus.Busy)) {
+//                user.getUserProfile().setUserStatus(UserStatus.Busy);
+//                customUserDetailsService.saveUser(user);
+//            } else {
+//                return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, "BAD REQUEST");
+//            }
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
         }
@@ -51,7 +51,7 @@ public class UserControllerAPI {
         User user = null;
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-            user.getUserProfile().setProfilePictureURL(pictureURL);
+//            user.getUserProfile().setProfilePictureURL(pictureURL);
             customUserDetailsService.saveUser(user);
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
@@ -64,7 +64,7 @@ public class UserControllerAPI {
         User user = null;
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-            user.getUserProfile().setProfilePictureURL(null);
+//            user.getUserProfile().setProfilePictureURL(null);
             customUserDetailsService.saveUser(user);
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
@@ -87,14 +87,14 @@ public class UserControllerAPI {
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
 
-            user.getUserSocialProfiles().setTwitterURL(twitterURL);
-            user.getUserSocialProfiles().setFacebookURL(facebookURL);
-            user.getUserSocialProfiles().setGithubURL(githubURL);
-            user.getUserSocialProfiles().setInstagramURL(instagramURL);
-            user.getUserSocialProfiles().setLinkedInURL(linkedinURL);
-            user.getUserSocialProfiles().setYoutubeURL(youtubeURL);
-            user.getUserSocialProfiles().setSkills(skills);
-            user.getUserSocialProfiles().setAboutUser(aboutUser);
+//            user.getUserSocialProfiles().setTwitterURL(twitterURL);
+//            user.getUserSocialProfiles().setFacebookURL(facebookURL);
+//            user.getUserSocialProfiles().setGithubURL(githubURL);
+//            user.getUserSocialProfiles().setInstagramURL(instagramURL);
+//            user.getUserSocialProfiles().setLinkedInURL(linkedinURL);
+//            user.getUserSocialProfiles().setYoutubeURL(youtubeURL);
+//            user.getUserSocialProfiles().setSkills(skills);
+//            user.getUserSocialProfiles().setAboutUser(aboutUser);
 
             customUserDetailsService.saveUser(user);
         } catch (UsernameNotFoundException ignore) {

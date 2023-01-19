@@ -1,48 +1,52 @@
 package com.loam.stoody.dto.api.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.loam.stoody.enums.CourseLevel;
 import com.loam.stoody.enums.CourseStatus;
 import com.loam.stoody.model.product.course.Course;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@NoArgsConstructor
 public class CourseResponseDTO {
-    private String title;
-    private String subTitle;
+    private Long courseId;
+    private String congratulationsMessage;
+    private String contextTags;
+    private Integer courseCategoryId;
+    private CourseStatus courseStatus;
+    private String currency = "USD";// TODO: remove hardcode
     private String description;
-    private String thumbnailURL;
-    private String promoVideoURL;
+    private Double discount;
     private String languageCode;
     private CourseLevel level;
+    private Double price;
+    private String promoVideoName;
+    private String promoVideoURL;
+    private List<CourseSectionResponseDTO> sections;
+    private String tags;
+    private String thumbnailName;
+    private String thumbnailURL;
+    private String title;
     private String welcomeMessage;
-    private String congratulationsMessage;
+
     private Long viewCount;
     private LocalDateTime uploadDate;
-    private String currency = "USD";// TODO: remove hardcode
-    private Double price;
-    private Double discount;
     private Long enrolledStudents;
     private Long rating;
-    private CourseStatus courseStatus;
-    private long courseCategoryId;
-    private String tags;
-    private List<CourseSectionResponseDTO> sections;
 
 
     public CourseResponseDTO(Course course, boolean courseWithDetails) {
         BeanUtils.copyProperties(course, this);
         if(courseWithDetails) {
-            if (!CollectionUtils.isEmpty(course.getCourseSections())) {
-                this.setSections(course.getCourseSections().stream().map(courseSection -> {
+            if (!CollectionUtils.isEmpty(course.getSections())) {
+                this.setSections(course.getSections().stream().map(courseSection -> {
                     CourseSectionResponseDTO courseSectionResponseDTO = new CourseSectionResponseDTO(courseSection);
                     return courseSectionResponseDTO;
                 }).collect(Collectors.toList()));

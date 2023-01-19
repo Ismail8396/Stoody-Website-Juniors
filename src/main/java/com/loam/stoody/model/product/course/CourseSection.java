@@ -27,5 +27,5 @@ public class CourseSection {
             targetEntity = CourseLecture.class
     )
     @JoinColumn(name = "course_section_id")
-    private List<CourseLecture> courseLectures;
+    private List<CourseLecture> lectures;
 }

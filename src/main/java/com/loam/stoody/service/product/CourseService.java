@@ -31,7 +31,6 @@ public class CourseService {
     private final CommentRepository commentRepository;
     private final CourseRatingRepository courseRatingRepository;
     private final PurchasedCourseRepository purchasedCourseRepository;
-    private final S3Service s3Service;
 
     public List<CourseResponseDTO> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
@@ -40,6 +39,13 @@ public class CourseService {
             courseResponseDTOS = courses.stream().map(course -> new CourseResponseDTO(course, true)).collect(Collectors.toList());
         }
         return courseResponseDTOS;
+    }
+
+    public CourseResponseDTO getCourseById(Long id){
+        Course course = courseRepository.findById(id).orElse(null);
+        if(course != null)
+            return new CourseResponseDTO(course, true);
+        return null;
     }
 
     public List<CourseResponseDTO> getAllCoursesByCategoryId(long id) {

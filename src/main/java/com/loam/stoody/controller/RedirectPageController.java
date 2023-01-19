@@ -48,6 +48,7 @@ public class RedirectPageController {
                 model.addAttribute("buttons",new ArrayList<>(List.of(
                         new HTMLButton("/sign-in","Sign In"),
                         new HTMLButton("/contact","Contact"),
+                        new HTMLButton("/help","Help Center"),
                         new HTMLButton("/","Back to Safety")
                 )));
 

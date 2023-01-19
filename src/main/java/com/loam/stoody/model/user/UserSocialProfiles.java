@@ -13,7 +13,8 @@ public class UserSocialProfiles {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(mappedBy = "userSocialProfiles")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     // Social Profiles
@@ -24,7 +25,7 @@ public class UserSocialProfiles {
     private String linkedInURL;
     private String twitterURL;
     private String skills;
-    @Column(columnDefinition="TEXT", length=15000)
+    @Lob
     private String aboutUser;
 
     public Long getId() {
