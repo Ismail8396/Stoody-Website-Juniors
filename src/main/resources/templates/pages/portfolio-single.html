@@ -172,10 +172,11 @@
             </li>
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                            alt="avatar" class="rounded-circle">
 
-                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                             class="rounded-circle">O</div>
                     </div>
                 </a>
@@ -183,10 +184,11 @@
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <!-- Avatar -->
-                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                                    alt="avatar" class="rounded-circle">
 
-                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                     class="rounded-circle">O</div>
                             </div>
 
@@ -1121,10 +1123,11 @@
 
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                                    alt="avatar" class="rounded-circle">
 
-                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                     class="rounded-circle">O</div>
                             </div>
                         </a>
@@ -1132,10 +1135,11 @@
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <!-- Avatar -->
-                                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                                            alt="avatar" class="rounded-circle">
 
-                                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                             class="rounded-circle">O</div>
                                     </div>
                                     <div class="ms-3 lh-1">
@@ -1476,7 +1480,7 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
                     <div class="mt-4">
                         <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
                         <!-- social media -->

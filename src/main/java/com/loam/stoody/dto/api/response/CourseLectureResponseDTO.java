@@ -9,8 +9,9 @@ public class CourseLectureResponseDTO {
     private Long id;
     private String title;
     private String article;
+    private String articleName;
     private String description;
-    private String imageUrl;
+    private String imageUrl;// TODO: What is this?
     public CourseLectureResponseDTO(CourseLecture courseLecture) {
         BeanUtils.copyProperties(courseLecture, this);
     }

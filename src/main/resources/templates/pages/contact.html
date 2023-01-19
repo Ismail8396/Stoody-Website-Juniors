@@ -100,22 +100,22 @@
                         <!-- form section -->
                         <div id="form">
                             <!-- form row -->
-                            <form class="row" th:action="@{/contact/submit/form}" th:object="${contact}" method="post">
+                            <form class="row" th:action="@{/contact}" th:object="${contactEntity}" method="post">
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="fname">
+                                    <label class="form-label" for="firstName">
                                         <span data-th-text="#{global.first_name_colon}">First Name:</span>
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input class="form-control" type="text" name="last name" id="fname" placeholder="First Name" required />
+                                    <input class="form-control" type="text" id="firstName" th:field="*{firstName}" th:attr="placeholder=#{global.first_name}" placeholder="First Name" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="lname">
+                                    <label class="form-label" for="lastName">
                                         <span data-th-text="#{global.last_name_colon}">Last Name:</span>
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input class="form-control" type="text" name="last name" id="lname" placeholder="Last Name" required />
+                                    <input class="form-control" type="text" th:field="*{lastName}" name="lastName" id="lastName" th:attr="placeholder=#{global.last_name}" placeholder="Last Name" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
@@ -123,15 +123,15 @@
                                         <span data-th-text="#{global.email_colon}">Email:</span>
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input class="form-control" type="email" name="email" id="email" placeholder="Email" required />
+                                    <input class="form-control" type="email" th:field="*{email}" name="email" id="email" th:attr="placeholder=#{global.email}" placeholder="Email" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label" for="phone">
+                                    <label class="form-label" for="phoneNumber">
                                         <span data-th-text="#{global.phone_number_colon}">Phone Number:</span>
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone" required />
+                                    <input class="form-control" type="text" th:field="*{phoneNumber}" name="phoneNumber" id="phoneNumber" th:attr="placeholder=#{global.phone_number}" placeholder="Phone" required />
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12">
@@ -141,18 +141,18 @@
                     class="text-danger">*</span>
                 </label>
                                     <!-- This is not configured for now. Don't forget to add Template Engine attrs-->
-                                    <select th:field="*{contactReasons}" id="contactReasons" class="selectpicker" data-width="100%">
-                  <option value="1" th:value="1" data-th-text="#{global.website}" selected>Website</option>
-                  <option value="2" th:value="2" data-th-text="#{global.business_offer}">Business Offer</option>
-                  <option value="3" th:value="3" data-th-text="#{global.other}">Other</option>
+                                    <select th:field="*{contactReason}" id="contactReason" class="selectpicker" data-width="100%">
+                  <option value="1" th:value="'Website'" data-th-text="#{global.website}" selected>Website</option>
+                  <option value="2" th:value="'Business Offer'" data-th-text="#{global.business_offer}">Business Offer</option>
+                  <option value="3" th:value="Other" data-th-text="#{global.other}">Other</option>
                 </select>
                                 </div>
                                 <!-- form group -->
                                 <div class="mb-3 col-12">
-                                    <label class="text-dark form-label" for="messages">
+                                    <label class="text-dark form-label" for="message">
                                         <span data-th-text="#{global.message_colon}">Message:</span>
                                     </label>
-                                    <textarea class="form-control" id="messages" rows="3" placeholder="Messages"></textarea>
+                                    <textarea class="form-control" th:field="*{message}" id="message" rows="3" th:attr="placeholder=#{global.message}" placeholder="Messages"></textarea>
                                 </div>
                                 <!-- button -->
                                 <div class="col-12">

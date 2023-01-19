@@ -24,6 +24,7 @@ public class CourseCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    private Boolean published;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_category_id")

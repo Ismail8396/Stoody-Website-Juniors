@@ -71,7 +71,8 @@ public class SecurityConfig {
                         apiRegistrationPrefixURL+"/*", apiLoginPrefixURL+"/*",
                         PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**",
                         PRL.verifyPasswordPageURL+"/**","/course/**",
-                        PRL.error404URL).permitAll()
+                        PRL.error404URL,
+                        PRL.apiPrefix+"/upload/put/small").permitAll()
 
                 // Only for authorized users
                 .requestMatchers(PRL.userHomeURL/* PAGES SPECIAL FOR AUTHENTICATED USERS */)

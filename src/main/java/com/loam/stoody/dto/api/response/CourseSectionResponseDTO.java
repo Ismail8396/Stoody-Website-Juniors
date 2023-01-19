@@ -15,8 +15,8 @@ public class CourseSectionResponseDTO {
     private List<CourseLectureResponseDTO> lectures;
     public CourseSectionResponseDTO(CourseSection courseSection) {
         BeanUtils.copyProperties(courseSection, this);
-        if (!CollectionUtils.isEmpty(courseSection.getCourseLectures())) {
-            this.setLectures(courseSection.getCourseLectures().stream().map(courseLecture -> {
+        if (!CollectionUtils.isEmpty(courseSection.getLectures())) {
+            this.setLectures(courseSection.getLectures().stream().map(courseLecture -> {
                 CourseLectureResponseDTO courseLectureResponseDTO = new CourseLectureResponseDTO(courseLecture);
                 return courseLectureResponseDTO;
             }).collect(Collectors.toList()));

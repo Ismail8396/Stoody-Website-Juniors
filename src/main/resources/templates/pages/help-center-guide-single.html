@@ -32,7 +32,11 @@
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
 
-    <title>Help Center Guide Single | Stoody </title>
+    <meta name="description" th:content="${articleElement.metaDescription}">
+    <meta name="keywords" th:content="${articleElement.metaKeywords}">
+    <meta name="author" th:content="${articleElement.metaAuthor}">
+
+    <title th:text="${articleElement.name}+'| Stoody'">Help Center Guide Single | Stoody </title>
 </head>
 
 <body class="bg-white">
@@ -43,12 +47,15 @@
         <div class="row align-items-center">
             <div class="col-md-11 col-10">
                 <div class="py-4">
-                    <form class="d-flex align-items-center">
+                    <div id="helpCenterGlobalSearchBarForm" class="d-flex align-items-center">
                         <span class="position-absolute ps-3">
               <i class="fe fe-search text-muted"></i>
             </span>
-                        <input type="search" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
-                    </form>
+                        <input type="search" id="helpCenterGlobalSearchBarInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                        <button id="helpCenterGlobalSearchBarButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-1 col-2">
@@ -61,9 +68,9 @@
 <nav class="navbar navbar-expand navbar-default ">
     <div class="container px-0">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand me-2" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
+            <a class="navbar-brand me-2" href="../index.html" th:href="@{/}"><img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
 
-            <ul class="list-unstyled mb-0">
+            <!-- <ul class="list-unstyled mb-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
             Help Center
@@ -97,21 +104,20 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
 
         <div class="ms-auto d-flex align-items-center">
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
             </a>
             <div class=" d-flex align-items-center">
                 <a href="#" class="ms-2 me-md-4 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fe fe-search fs-3"></i>
 
                 </a>
-                <a href="../pages/help-center-support.html" class="btn btn-primary d-lg-block d-none">
+                <a href="../pages/help-center-support.html" th:href="@{/help/support}" class="btn btn-primary d-lg-block d-none">
         Submit Ticket
 
       </a>
@@ -132,11 +138,12 @@
                         <div>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="help-center.html">Help
-                      Center</a></li>
-                                    <li class="breadcrumb-item"><a href="help-center-guide.html">Guides
-                      & Resources</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">What is Stoody UI Design?</li>
+                                    <li class="breadcrumb-item">
+                                        <a href="help-center.html" th:href="@{/help}">Help Center</a></li>
+                                    <li class="breadcrumb-item">
+                                        <a href="help-center-guide.html" th:href="'/help/search/'+${articleElement.getCategory().getName()}" th:text="${articleElement.getCategory().getName()}">Guides & Resources</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page" th:text="${articleElement.getName()}">What is Stoody UI Design?</li>
                                 </ol>
                             </nav>
                         </div>
@@ -150,117 +157,40 @@
                 <div class="row">
                     <div class="offset-md-2 col-md-8 col-12">
                         <div class="mb-8">
-                            <h1 class="display-4 fw-semi-bold">What is Stoody UI Design?</h1>
-                            <p class="mb-5 lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do amet luno jaso eiusmod tempor incididunt
-                            </p>
-                            <div class="mb-3">
-                                <!-- header -->
-                                <h2 class="fw-semi-bold">Header Level 2</h2>
-                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                                    condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis.
-                                </p>
-                                <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur vitae sagittis odio. Suspendisse
-                                    ullamcorper nunc non pellentesque laoreet. Curabitur eu tortor id quam pretium mattis. Proin ut quam velit.</p>
-                            </div>
-                            <div class="mb-3">
-                                <!-- images -->
-                                <h3 class="mb-3 fw-semi-bold">Header Level 3</h3>
-                                <img src="../../static/assets/images/background/help-center-img.jpg" alt="" class="img-fluid rounded-3">
-                            </div>
+                            <div th:utext="${articleElement.getContent()}"></div>
 
-                            <div class="mb-4">
-                                <!-- blockquote -->
-                                <h4 class="mb-3">Header Level 4</h4>
-                                <blockquote class="blockquote-left">
-                                    <p class="ms-3">Blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestiefend, libero at sagittis mollis, tellus est malesuada tellus, at luctus
-                                        turpis elit sit amet quam. Vivamus pretium ornare est.
-                                    </p>
-                                    <span class="ms-3">- Andrew Watkins</span>
-                                </blockquote>
-                            </div>
-                            <div class="mb-3">
-                                <!-- list -->
-                                <ul class="list-group-numbered list-unstyled">
-                                    <li>Ordered list</li>
-                                    <li>Suspendisse pellentesque orci quis auctor feugiat.</li>
-                                    <li>Pellentesque consequat libero ut leo accumsan ullamcorper.</li>
-                                    <li>Etiam et dolor faucibus libero aliquam tempor.</li>
-                                </ul>
-                            </div>
-                            <div class="mb-4">
-                                <!-- header -->
-                                <h5 class="mb-3">Header Level 5</h5>
-                                <ul class="ps-3">
-                                    <li>This is a list.</li>
-                                    <li>It appears completely unstyled.</li>
-                                    <li>Structurally, it's still a list.</li>
-                                    <li>However, this style only applies to immediate child elements.
-                                    </li>
-                                    <li>Nested lists:
-                                        <ul>
-                                            <li>are unaffected by this style</li>
-                                            <li>will still show a bullet</li>
-                                            <li>and have appropriate left margin</li>
-                                        </ul>
-                                    </li>
-                                    <li>This may still come in handy in some situations.</li>
-                                </ul>
-                            </div>
-                            <div class="mb-4">
-                                <!-- header level  -->
-                                <h6 class="mb-3">Header Level 6</h6>
-                                <div class="mb-4">
-                                    <h5>Definition list</h5>
-                                    <!-- para -->
-                                    <p>Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. Vivamus ut velit orci. Aenean nec pretium augue. In eu tellus quis urna vestibulum
-                                        pulvinar. Etiam in elementum lectus, id dignissim mauris. Quisque tempus posuere aliquet.
-                                    </p>
-                                </div>
-                                <div class="mb-8">
-                                    <!-- header level  -->
-                                    <h5>Definition list</h5>
-                                    <!-- para  -->
-                                    <p>Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. Vivamus ut velit orci. Aenean nec pretium augue. In eu tellus quis urna vestibulum
-                                        pulvinar. Etiam in elementum lectus, id dignissim mauris. Quisque tempus posuere aliquet.
-                                    </p>
-                                </div>
-                            </div>
                             <!-- text  -->
                             <div class="d-md-flex justify-content-between align-items-center">
                                 <div class="mb-2 mb-md-0">
-                                    <p class="mb-0 fs-6">Last updated 2 months ago</p>
+                                    <p class="mb-0 fs-6" th:if="${articleElement.getModifiedDate() != null}" th:text="${articleElement.getModifiedDate()}">Last updated 2 months ago</p>
                                 </div>
                                 <div>
                                     <h5 class="mb-0">Was this article helpful?
-                                        <a href="#" class="text-muted ms-2"> <i class="fe fe-thumbs-up"></i>
-                                        </a> <a href="#" class="text-muted ms-2"><i class="fe
-                        fe-thumbs-down"></i></a></h5>
+                                        <a href="#" th:href="'/help/like/'+${articleElement.getId()}" class="text-muted ms-2">
+                                            <span th:text="${articleElement.getLikes()}">0</span>
+                                            <i class="fe fe-thumbs-up"></i>
+                                        </a>
+                                        <a href="#" th:href="'/help/dislike/'+${articleElement.getId()}" class="text-muted ms-2">
+                                            <span th:text="${articleElement.getDislikes()}">0</span>
+                                            <i class="fe fe-thumbs-down"></i>
+                                        </a>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                         <!-- card  -->
                         <div class="card border">
                             <!-- card body  -->
-                            <div class="card-body">
+                            <div class="card-body" th:if="${not #lists.isEmpty(getHelpCenterServiceLayer.getRelatedHelpCenterArticle(articleElement.getName(),5))}">
                                 <h3 class="mb-3 fw-semi-bold">Related articles</h3>
                                 <!-- list  -->
                                 <ul class="list-unstyled mb-0">
-                                    <li class="mb-2"><a href="#" class="text-body"><i
-                        class="mdi mdi-arrow-right me-1 text-muted"></i>Billing
-                      and Plans Guide</a></li>
-                                    <li class="mb-2"><a href="#" class="text-body"><i class="mdi
-                        mdi-arrow-right me-1 text-muted"></i>Manage
-                      Your User Profile</a></li>
-                                    <li class="mb-2"><a href="#" class="text-body"><i
-                        class="mdi mdi-arrow-right me-1 text-muted"></i>Signing
-                      in to the dashboard</a></li>
-                                    <li class="mb-2"><a href="#" class="text-body"><i class="mdi
-                        mdi-arrow-right me-1 text-muted"></i>What's
-                      New With Annual Payments?</a></li>
-                                    <li><a href="#" class="text-body"><i class="mdi
-                        mdi-arrow-right me-1 text-muted"></i>User Roles and
-                      Permissions</a></li>
+                                    <li class="mb-2" th:each="relatedArticle : ${getHelpCenterServiceLayer.getRelatedHelpCenterArticle(articleElement.getName(),5)}">
+                                        <a href="#" th:href="'/help/'+${relatedArticle.getCategory().getName()}+'/'+${relatedArticle.getUrlKey()}" class="text-body"><i
+                                                    class="mdi mdi-arrow-right me-1 text-muted"></i>
+                                                                        <span th:text="${relatedArticle.getName()}"> Related Article</span>
+                                                                    </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -282,7 +212,7 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
                     <div class="mt-4">
                         <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
                         <!-- social media -->

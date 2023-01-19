@@ -32,12 +32,13 @@
 
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
-    <link href="../../static/assets/libs/@yaireo/tagify/dist/tagify.css" rel="stylesheet">
-    <link href="../../static/assets/libs/dragula/dist/dragula.min.css" rel="stylesheet">
-    <title>Add Course | Stoody</title>
+    <link th:href="@{/assets/libs/@yaireo/tagify/dist/tagify.css}" href="../../static/assets/libs/@yaireo/tagify/dist/tagify.css" rel="stylesheet">
+    <link th:href="@{/assets/libs/dragula/dist/dragula.min.css}" href="../../static/assets/libs/dragula/dist/dragula.min.css" rel="stylesheet">
+    <title>Course Editor | Stoody</title>
 </head>
 
 <body>
+    <div id="course_configuration_page" th:attr="data-course-id=${courseIdParam}"></div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-default" id="standard_navbar_code_a">
     <div class="container-fluid px-0">
@@ -175,10 +176,11 @@
             </li>
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                            alt="avatar" class="rounded-circle">
 
-                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                             class="rounded-circle">O</div>
                     </div>
                 </a>
@@ -186,10 +188,11 @@
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <!-- Avatar -->
-                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                                    alt="avatar" class="rounded-circle">
 
-                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                     class="rounded-circle">O</div>
                             </div>
 
@@ -1124,10 +1127,11 @@
 
                     <li class="dropdown ms-2 d-inline-block">
                         <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                                    alt="avatar" class="rounded-circle">
 
-                                <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                     class="rounded-circle">O</div>
                             </div>
                         </a>
@@ -1135,10 +1139,11 @@
                             <div class="dropdown-item">
                                 <div class="d-flex">
                                     <!-- Avatar -->
-                                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                        <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg" id="img-uploaded"
+                                            alt="avatar" class="rounded-circle">
 
-                                        <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                             class="rounded-circle">O</div>
                                     </div>
                                     <div class="ms-3 lh-1">
@@ -1208,23 +1213,23 @@
     </div>
 </nav>
     <!-- Page header-->
+    </div>
     <main>
-
-        <section class="py-4 py-lg-6 bg-primary">
+        <section id="courseFormHeader" class="py-4 py-lg-6 bs-stepper-header shadow-sm my-2 px-5">
             <div class="container">
                 <div class="row">
                     <div class="offset-lg-1 col-lg-10 col-md-12 col-12">
                         <div class="d-lg-flex align-items-center justify-content-between">
                             <!-- Content -->
                             <div class="mb-4 mb-lg-0">
-                                <h1 class="text-white mb-1">Add New Course</h1>
-                                <p class="mb-0 text-white lead">
-                                    Just fill the form and create your courses.
+                                <h1 class="text-primary border-bottom mb-1">Course editor</h1>
+                                <p class="mb-0 text-dark lead">
+                                    Customize and submit the course.
                                 </p>
                             </div>
                             <div>
-                                <a href="instructor-courses.html" class="btn btn-white">Back to Course</a>
-                                <a href="instructor-courses.html" class="btn btn-dark">Save</a>
+                                <a id="back_to_courses_button" role="button" class="btn btn-dark">Back to Course</a>
+                                <a id="save_course_as_draft" role="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">Save</a>
                             </div>
                         </div>
                     </div>
@@ -1241,30 +1246,30 @@
                             <div class="bs-stepper-header shadow-sm" role="tablist">
                                 <div class="step" data-target="#test-l-1">
                                     <button type="button" class="step-trigger" role="tab" id="courseFormtrigger1" aria-controls="test-l-1">
-                  <span class="bs-stepper-circle">1</span>
-                  <span class="bs-stepper-label">Basic Information</span>
-                </button>
+                              <span class="bs-stepper-circle">1</span>
+                              <span class="bs-stepper-label">Basic Information</span>
+                              </button>
                                 </div>
                                 <div class="bs-stepper-line"></div>
                                 <div class="step" data-target="#test-l-2">
                                     <button type="button" class="step-trigger" role="tab" id="courseFormtrigger2" aria-controls="test-l-2">
-                  <span class="bs-stepper-circle">2</span>
-                  <span class="bs-stepper-label">Courses Media</span>
-                </button>
+                              <span class="bs-stepper-circle">2</span>
+                              <span class="bs-stepper-label">Courses Media</span>
+                              </button>
                                 </div>
                                 <div class="bs-stepper-line"></div>
                                 <div class="step" data-target="#test-l-3">
                                     <button type="button" class="step-trigger" role="tab" id="courseFormtrigger3" aria-controls="test-l-3">
-                  <span class="bs-stepper-circle">3</span>
-                  <span class="bs-stepper-label">Curriculum</span>
-                </button>
+                              <span class="bs-stepper-circle">3</span>
+                              <span class="bs-stepper-label">Curriculum</span>
+                              </button>
                                 </div>
                                 <div class="bs-stepper-line"></div>
                                 <div class="step" data-target="#test-l-4">
                                     <button type="button" class="step-trigger" role="tab" id="courseFormtrigger4" aria-controls="test-l-4">
-                  <span class="bs-stepper-circle">4</span>
-                  <span class="bs-stepper-label">Settings</span>
-                </button>
+                              <span class="bs-stepper-circle">4</span>
+                              <span class="bs-stepper-label">Additional</span>
+                              </button>
                                 </div>
                             </div>
                             <!-- Stepper content -->
@@ -1281,30 +1286,33 @@
                                             <div class="card-body">
                                                 <div class="mb-3">
                                                     <label for="courseTitle" class="form-label">Course Title</label>
-                                                    <input id="courseTitle" class="form-control" type="text" placeholder="Course Title">
+                                                    <input id="courseTitle" class="form-control" type="text" maxlength="60" placeholder="Course Title">
                                                     <small>Write a 60 character course title.</small>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Courses category</label>
-                                                    <select class="selectpicker" data-width="100%">
-                          <option value="">Select category</option>
-                          <option value="React">React</option>
-                          <option value="Javascript">Javascript</option>
-                          <option value="HTML">HTML</option>
-                          <option value="Vue">Vue js</option>
-                          <option value="Gulp">Gulp js</option>
-                        </select>
+                                                    <select id="courseCategory" class="selectpicker" th:field="${courseDTO.courseId}" data-width="100%">
+                                                        <option value="">Select Category</option>
+                                                        <option th:each="category : ${subCategoryElements}" th:text="${category.name}" th:value="${category.id}">India</option>
+                                                    </select>
                                                     <small>Help people find your courses by choosing
-                          categories that represent your course.</small>
+                                          categories that represent your course.</small>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Courses level</label>
-                                                    <select class="selectpicker" data-width="100%">
-                          <option value="">Select level</option>
-                          <option value="intermediate">Intermediate</option>
-                          <option value="Beignners">Beignners</option>
-                          <option value="Advance">Advance</option>
-                        </select>
+                                                    <select id="courseLevel" class="selectpicker" th:field="${courseDTO.level}" data-width="100%">
+                                             <option value="">Select level</option>
+                                             <option value="0">Beginners</option>
+                                             <option value="1">Intermediate</option>
+                                             <option value="2">Advance</option>
+                                             <option value="3">Zero to Hero</option>
+                                          </select>
+                                                    <small>Who is this course for?</small>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="courseContextTags" class="form-label">What they will learn?</label>
+                                                    <input id="courseContextTags" class="tagifyInput w-100" placeholder="How to Create UI, Excellent Frontend Skills" autofocus>
+                                                    <small>Tell your student candidates what they are about to learn.</small>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Course Description</label>
@@ -1319,8 +1327,8 @@
                                         </div>
                                         <!-- Button -->
                                         <button class="btn btn-primary" onclick="courseForm.next()">
-                    Next
-                  </button>
+                                 Next
+                                 </button>
                                     </div>
                                     <!-- Content two -->
                                     <div id="test-l-2" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="courseFormtrigger2">
@@ -1331,30 +1339,41 @@
                                             </div>
                                             <!-- Card body -->
                                             <div class="card-body">
-                                                <div class="custom-file-container mb-4" data-upload-id="courseImage"></div>
-                                                <div>
-                                                    <input type="url" class="form-control" placeholder="Video URL">
+                                                <h4 class="mb-0">Course Thumbnail</h4>
+                                                <div class="my-3">
+                                                    <input id="course_thumbnail_input_file" accept="image/png, image/jpg, image/jpeg" type="file" class="form-control">
+                                                    <!-- If input is fullfilled -->
+                                                    <div class="d-flex">
+                                                        <h4 style="display:none;" id="course_thumbnail_input_name" class="ms-2 text-muted">Introduction.mp4</h4>
+                                                        <a style="display:none;" id="course_thumbnail_input_remove" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
+                                                    </div>
+                                                    <small class="ms-1 d-block">Course thumbnail will be visible on the course card.
+                                                        </small>
                                                 </div>
-                                                <small class="mt-3 d-block">Enter a valid video URL. Students who watch a
-                        well-made promo video are 5X more likely to enroll in
-                        your course.
-                      </small>
-                                                <div class="mt-3 d-flex justify-content-center position-relative rounded py-14 border-white border rounded bg-cover" style="background-image: url(../assets/images/course/course-javascript.jpg);
-                                       ">
-                                                    <a class="popup-youtube icon-shape rounded-circle btn-play icon-xl text-decoration-none" href="https://www.youtube.com/watch?v=JRzWRZahOVU">
-                                                        <i class="fe fe-play fs-3"></i>
-                                                    </a>
+                                                <h4 class="mb-0">Course Promo Video</h4>
+                                                <div class="my-3">
+                                                    <!-- If input is not fullfilled -->
+                                                    <input id="course_promo_video_input_file" accept="video/mp4,video/avi,video/webm" type="file" class="form-control">
+                                                    <!-- If input is fullfilled -->
+                                                    <div class="d-flex">
+                                                        <h4 style="display:none;" id="course_promo_video_input_name" class="ms-2 text-muted">Introduction.mp4</h4>
+                                                        <a style="display:none;" id="course_promo_video_input_remove" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
+                                                    </div>
+                                                    <small class="ms-1 d-block">Enter a valid video. Students who watch a
+                                                        well-made promo video are 5X more likely to enroll in
+                                                        your course.
+                                                        </small>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Button -->
                                         <div class="d-flex justify-content-between">
-                                            <button class="btn btn-secondary" onclick="courseForm.previous()">
-                      Previous
-                    </button>
+                                            <button class="btn btn-danger" onclick="courseForm.previous()">
+                                    Previous
+                                    </button>
                                             <button class="btn btn-primary" onclick="courseForm.next()">
-                      Next
-                    </button>
+                                    Next
+                                    </button>
                                         </div>
                                     </div>
                                     <!-- Content three -->
@@ -1366,228 +1385,101 @@
                                             </div>
                                             <!-- Card body -->
                                             <div class="card-body ">
-                                                <div class="bg-light rounded p-2 mb-4">
-                                                    <h4>Introduction to JavaScript</h4>
-                                                    <!-- List group -->
-                                                    <div class="list-group list-group-flush border-top-0" id="courseList">
-                                                        <div id="courseOne">
-                                                            <div class="list-group-item rounded px-3 mb-1" id="introduction">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Introduction</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#collapselistOne" aria-controls="collapselistOne">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistOne" class="collapse show" aria-labelledby="introduction" data-bs-parent="#courseList">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item rounded px-3 mb-1" id="development">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Installing
-                                      Development Software</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistTwo" aria-expanded="false" aria-controls="collapselistTwo">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistTwo" class="collapse" aria-labelledby="development" data-bs-parent="#courseList">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item rounded px-3 mb-1" id="project">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Hello World Project
-                                      from GitHub</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistThree" aria-expanded="false" aria-controls="collapselistThree">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistThree" class="collapse" aria-labelledby="project" data-bs-parent="#courseList">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item rounded px-3 mb-1" id="sample">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Our Sample
-                                      Website</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistFour" aria-expanded="false" aria-controls="collapselistFour">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistFour" class="collapse" aria-labelledby="sample" data-bs-parent="#courseList">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                <!-- Reference -->
+                                                <div style="display:none;" id="courseSectionElementReference" class="bg-light rounded p-2 mb-4">
+                                                    <div class="d-flex border-bottom mb-3 align-items-center">
+                                                        <i class="bi-diagram-3 text-muted me-2"></i>
+                                                        <div class="w-25 py-1">
+                                                            <input id="courseSectionElementHeader" class="form-control" type="text" maxlength="254" />
                                                         </div>
+                                                        <a id="courseSectionElementRemoveButton" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
                                                     </div>
-                                                    <a href="#" class="btn btn-outline-primary btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#addLectureModal">Add Lecture +</a>
-                                                </div>
-                                                <div class="bg-light rounded p-2 mb-4">
-                                                    <h4>JavaScript Beginnings</h4>
+                                                    <!-- List group -->
+                                                    <div class="list-group list-group-flush border-top-0" id="sectionLectureList">
+                                                        <div style="display:none;" id="lectureDiv">
+                                                            <div class="list-group-item rounded px-3 mb-1" id="courseListElement">
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <i class="bi-collection text-muted me-3"></i>
+                                                                        <input id="lectureHeader" class="form-control" type="text" maxlength="254" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <a id="lecture_remove" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
+                                                                        <a id="lectureCollapseButton" href="#" class="text-inherit" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#lectureCollapseList" aria-controls="lectureCollapseList">
+                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="lectureCollapseList" class="collapse" aria-labelledby="courseListElement" data-bs-parent="#sectionLectureList">
 
-                                                    <!-- List group -->
-                                                    <div class="list-group list-group-flush border-top-0" id="courseListSecond">
-                                                        <div id="courseTwo">
-                                                            <div class="list-group-item rounded px-3 mb-1" id="introductionSecond">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Introduction</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistFive" aria-expanded="false" aria-controls="collapselistFive">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span></a>
+                                                                    <!-- Article Example-->
+                                                                    <div style="display:none;" id="lecture_article" class="mt-3 px-5 py-3 bg-dark-info-soft rounded-2">
+                                                                        <h4 class="user-select-none">Article</h4>
+                                                                        <p>You should select your articles such as videos or files so you can place in the lectures section.</p>
+                                                                        <!-- input -->
+                                                                        <input id="lecture_article_input_file" type="file" class="form-control">
+                                                                        <!-- If input is fullfilled -->
+                                                                        <div id="lectureArticleInputFilled" class="d-flex border-bottom mb-3">
+                                                                            <h4 style="display:none;" id="lecture_article_input_file_name" class="ms-2 text-muted">Introduction.mp4</h4>
+                                                                            <a style="display:none;" id="lecture_article_input_file_remove" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div id="collapselistFive" class="collapse" aria-labelledby="introductionSecond" data-bs-parent="#courseListSecond">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
+
+                                                                    <!-- Description Example-->
+                                                                    <div style="display:none;" id="lecture_description" class="mt-3 px-5 py-3 bg-dark-info-soft rounded-2">
+                                                                        <h4 class="user-select-none">Description</h4>
+                                                                        <p>Lecture description will be visible below the article.</p>
+                                                                        <!-- Name -->
+                                                                        <textarea id="lecture_description_input" type="text" class="form-control" placeholder="Description"></textarea>
+                                                                    </div>
+
+                                                                    <div class="my-2">
+                                                                        <a style="display:none;" id="lecture_add_article_button" role="button" class="btn btn-secondary btn-sm">Add
                                     Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item rounded px-3 mb-1" id="developmentSecond">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Installing
-                                      Development Software</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistSix" aria-expanded="false" aria-controls="collapselistSix">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistSix" class="collapse" aria-labelledby="developmentSecond" data-bs-parent="#courseListSecond">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item rounded px-3 mb-1" id="projectSecond">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Hello World Project
-                                      from GitHub</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistSeven" aria-expanded="false" aria-controls="collapselistSeven">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistSeven" class="collapse" aria-labelledby="projectSecond" data-bs-parent="#courseListSecond">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Description +</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item rounded px-3 mb-1" id="sampleSecond">
-                                                                <div class="d-flex align-items-center justify-content-between">
-                                                                    <h5 class="mb-0">
-                                                                        <a href="#" class="text-inherit">
-                                                                            <i class="fe fe-menu me-1 text-muted align-middle"></i>
-                                                                            <span class="align-middle">Our Sample
-                                      Website</span>
-                                                                        </a>
-                                                                    </h5>
-                                                                    <div><a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fe fe-edit fs-6"></i></a>
-                                                                        <a href="#" class="me-1 text-inherit" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a href="#" class="text-inherit" data-bs-toggle="collapse" data-bs-target="#collapselistEight" aria-expanded="false" aria-controls="collapselistEight">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="collapselistEight" class="collapse" aria-labelledby="sampleSecond" data-bs-parent="#courseListSecond">
-                                                                    <div class="card-body">
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
-                                    Article +</a>
-                                                                        <a href="#" class="btn btn-secondary btn-sm">Add
+                                                                        <a style="display:none;" id="lecture_add_description_button" role="button" class="btn btn-secondary btn-sm">Add
                                     Description +</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        <div id="sectionLecturesPasteArea">
+                                                        </div>
                                                     </div>
-                                                    <a href="#" class="btn btn-outline-primary btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#addLectureModal">Add Lecture +</a>
+
+                                                    <div style="display:none;" class="row mt-3" id="emptySectionMessage">
+                                                        <div class="col-12 display-2 d-flex justify-content-center align-items-center">
+                                                            <i class="bi-collection"></i>
+                                                        </div>
+                                                        <div class="col-12 text-muted mt-3 d-flex justify-content-center align-items-center">Add articles such as videos and files with a description.</div>
+                                                    </div>
+
+                                                    <a id="section_add_lecture_button" href="#" class="btn btn-outline-primary btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#addLectureModal">Add Lecture +</a>
                                                 </div>
+
+                                                <div id="courseSectionContents">
+
+                                                </div>
+
+                                                <div class="row" id="courseSectionEmptyMessage">
+                                                    <div class="col-12 display-2 d-flex justify-content-center align-items-center">
+                                                        <i class="bi-diagram-3"></i>
+                                                    </div>
+                                                    <div class="col-12 text-muted my-3 d-flex justify-content-center align-items-center">Start building your course content here. Add videos, quiz and whatever you want your student should get.</div>
+                                                </div>
+
                                                 <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSectionModal">Add Section</a>
                                             </div>
                                         </div>
+
                                         <!-- Button -->
                                         <div class="d-flex justify-content-between">
-                                            <button class="btn btn-secondary" onclick="courseForm.previous()">
-                      Previous
-                    </button>
+                                            <button class="btn btn-danger" onclick="courseForm.previous()">
+                                    Previous
+                                    </button>
                                             <button class="btn btn-primary" onclick="courseForm.next()">
-                      Next
-                    </button>
+                                    Next
+                                    </button>
                                         </div>
                                     </div>
                                     <!-- Content four -->
@@ -1595,21 +1487,93 @@
                                         <!-- Card -->
                                         <div class="card mb-3  border-0">
                                             <div class="card-header border-bottom px-4 py-3">
-                                                <h4 class="mb-0">Requirements</h4>
+                                                <h4 class="mb-0">Pricing</h4>
                                             </div>
                                             <!-- Card body -->
                                             <div class="card-body">
-                                                <input name='tags' class="w-100" value='jquery, bootstrap' autofocus>
+                                                <div class="mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <div>
+                                                            <label class="form-label">Price</label>
+                                                            <select id="coursePriceInput" th:field="${courseDTO.price}" class="selectpicker" data-width="100%">
+                                                                                                            <option value="0">Free</option>
+                                                                                                            <option value="5">5 USD</option>
+                                                                                                            <option value="10">10 USD</option>
+                                                                                                            <option value="15">15 USD</option>
+                                                                                                            <option value="20">20 USD</option>
+                                                                                                            <option value="25">25 USD</option>
+                                                                                                            <option value="30">30 USD</option>
+                                                                                                            <option value="35">35 USD</option>
+                                                                                                            <option value="40">40 USD</option>
+                                                                                                            <option value="45">45 USD</option>
+                                                                                                            <option value="50">50 USD</option>
+                                                                                                        </select>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <label class="form-label">Discount</label>
+                                                            <select id="coursePriceDiscountInput" th:field="${courseDTO.discount}" class="selectpicker" data-width="100%">
+                                                                                                            <option value="0">No Discount</option>
+                                                                                                            <option value="5">5%</option>
+                                                                                                            <option value="10">10%</option>
+                                                                                                            <option value="15">15%</option>
+                                                                                                            <option value="20">20%</option>
+                                                                                                            <option value="25">25%</option>
+                                                                                                            <option value="30">30%</option>
+                                                                                                            <option value="35">35%</option>
+                                                                                                            <option value="40">40%</option>
+                                                                                                            <option value="45">45%</option>
+                                                                                                            <option value="50">50%</option>
+                                                                                                            <option value="55">55%</option>
+                                                                                                            <option value="60">60%</option>
+                                                                                                            <option value="65">65%</option>
+                                                                                                            <option value="70">70%</option>
+                                                                                                            <option value="75">75%</option>
+                                                                                                            <option value="80">80%</option>
+                                                                                                            <option value="85">85%</option>
+                                                                                                            <option value="90">90%</option>
+                                                                                                            <option value="95">95%</option>
+                                                                                                            <option value="100">100%</option>
+                                                                                                        </select>
+                                                        </div>
+                                                    </div>
+                                                    <small>You may charge anything you want for your course. The amount of of the discount is the maximum that Stoody may apply to your course periodically.</small>
+                                                    <br>
+                                                    <span class="text-danger fs-6">Our recommendation to you is to consider the individuals who wish to profit from this course but are not wealthy and cannot afford to pay a high price for every course they see. We pledge to do our best for you if this is taken into account.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card -->
+                                        <div class="card mb-3  border-0">
+                                            <div class="card-header border-bottom px-4 py-3">
+                                                <h4 class="mb-0">Misc</h4>
+                                            </div>
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="welcomeMessageInput" class="form-label">Welcome Message</label>
+                                                    <input id="welcomeMessageInput" class="form-control" type="text" placeholder="Your message here. It's not required." />
+                                                    <small>Add a greeting message for your students.</small>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="congratulationMessage" class="form-label">Congratulation Message</label>
+                                                    <input id="congratulationMessage" class="form-control" type="text" placeholder="As welcome message, this field is not required either." />
+                                                    <small>Add a congratulation message for your students who finished your course.</small>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="courseTagsInput" class="form-label">Tags</label>
+                                                    <input id="courseTagsInput" class="tagifyInput w-100" value='' placeholder="Frontend, Bootstrap, JQuery" autofocus>
+                                                    <small>Tags are descriptive keywords you can add to your video to help viewers find your content.</small>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between mb-22">
                                             <!-- Button -->
-                                            <button class="btn btn-secondary mt-5" onclick="courseForm.previous()">
-                      Previous
-                    </button>
+                                            <button class="btn btn-danger mt-5" onclick="courseForm.previous()">
+                                    Previous
+                                    </button>
                                             <button type="submit" class="btn btn-danger mt-5">
-                      Submit For Review
-                    </button>
+                                    Submit For Review
+                                    </button>
                                         </div>
                                     </div>
                                 </form>
@@ -1617,10 +1581,51 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Upload Form -->
+                <div style="display:none;" id="uploadForm" class="bs-stepper">
+                    <div class="row">
+                        <div class="offset-lg-1 col-lg-10 col-md-12 col-12">
+                            <div class="mt-5">
+                                <!-- Card -->
+                                <div class="card mb-3 ">
+                                    <div class="card-header border-bottom px-4 py-3">
+                                        <div class="d-flex align-items-center">
+                                            <h4 id="uploadFormHeaderText" class="mb-0">Course in progress</h4>
+                                            <div id="uploadFormHeaderSpinner" class="ms-2 spinner-border spinner-border-sm text-primary" role="status">
+                                            </div>
+                                            <i style="display:none;" id="uploadFormHeaderDoneWithErrorsIcon" class="bi-exclamation-circle text-danger display-3"></i>
+                                            <i style="display:none;" id="uploadFormHeaderDoneIcon" class="bi-check2-square fs-2 text-primary display-3"></i>
+                                        </div>
+                                    </div>
+                                    <!-- Card body -->
+                                    <div class="card-body">
+                                        <div class="mb-3 d-flex">
+                                            <h3 id="uploadFormCourseTitle">Getting started with Python</h3>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="progress">
+                                                <div id="uploadFormProgressBar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <small id="courseUploadProgressBarBottomText">Please, don't close this page and be patient while we take care of your course.</small>
+                                        </div>
+                                        <hr>
+                                        <div id="uploadLogger" style="overflow-y: scroll; height:150px;" class="mt-3 px-2 py-2 bg-dark-info-soft rounded-2 small">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Buttons -->
+                                <button id="uploadFormNextButton" class="btn btn-primary" type="button">
+                                    <span id="uploadFormCompleteButtonSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Next
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-
     <!-- Footer -->
     <!-- Footer -->
 <footer class="footer">
@@ -1643,6 +1648,35 @@
     </div>
 </footer>
     <!-- Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="uploadModalLabel">
+                        Upload dialog
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>
+                            This procedure may take some time depending on the size of the assets and internet speed. Are you certain there is nothing else to edit?
+                        </h5>
+                        <hr>
+                        <button class="btn btn-warning" id="uploadStartButton" type="Button">
+                  I'm sure
+                  </button>
+                        <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
+                  Close
+                  </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
     <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="addSectionModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1651,19 +1685,17 @@
                         Add New Section
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-      </button>
+                  </button>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control mb-3" type="text" placeholder="Add new section" />
-                    <button class="btn btn-primary" type="Button">
-          Add New Section
-        </button>
+                    <input class="form-control mb-3" id="course_configuration_page_add_section_input" type="text" placeholder="Add new section" />
+                    <button class="btn btn-primary" id="course_configuration_page_add_section_button" type="Button">
+                  Add New Section
+                  </button>
                     <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-          Close
-        </button>
+                  Close
+                  </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -1676,32 +1708,28 @@
                         Add New Lecture
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-<!-- Modal -->
-<div class="modal fade" id="addLectureModal" tabindex="-1" role="dialog" aria-labelledby="addLectureModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h4 class="modal-title" id="addLectureModalLabel">
-                  Add New Lecture
-              </h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
+         <!-- Modal -->
+         <div class="modal fade" id="addLectureModal" tabindex="-1" role="dialog" aria-labelledby="addLectureModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h4 class="modal-title" id="addLectureModalLabel">
+                        Add New Lecture
+                     </h4>
       </button>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control mb-3" type="text" placeholder="Add new lecture" />
-                    <button class="btn btn-primary" type="Button">
-          Add New Lecture
-        </button>
-                    <button class="btn btn-outline-white" data-bs-dismiss="modal" aria-label="Close">
-          Close
-        </button>
+                    <input id="course_configuration_page_curriculum_modal_input" class="form-control mb-3" type="text" placeholder="Add new lecture" />
+                    <button id="course_configuration_page_curriculum_modal_add_lecture_button" class="btn btn-primary" type="Button">
+      Add New Lecture
+      </button>
+                    <button class="btn btn-muted" data-bs-dismiss="modal" aria-label="Close">
+      Close
+      </button>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="addSectionModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -1711,32 +1739,23 @@
                         Add New Section
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-
-      </button>
+                  </button>
                 </div>
                 <div class="modal-body">
                     <input class="form-control mb-3" type="text" placeholder="Add new section" />
                     <button class="btn btn-primary" type="Button">
-          Add New Section
-        </button>
+                  Add New Section
+                  </button>
                     <button class="btn btn-outline-white" data-bs-dismiss="modal" aria-label="Close">
-          Close
-        </button>
+                  Close
+                  </button>
                 </div>
-
             </div>
         </div>
     </div>
-
-
     <!-- Scripts -->
-
-    <script src="../../static/assets/libs/file-upload-with-preview/dist/file-upload-with-preview.iife.js"></script>
-    <script src="../../static/assets/libs/@yaireo/tagify/dist/tagify.min.js"></script>
-
-
-
-
+    <script th:src="@{/assets/libs/file-upload-with-preview/dist/file-upload-with-preview.iife.js}" src="../../static/assets/libs/file-upload-with-preview/dist/file-upload-with-preview.iife.js"></script>
+    <script th:src="@{/assets/libs/@yaireo/tagify/dist/tagify.min.js}" src="../../static/assets/libs/@yaireo/tagify/dist/tagify.min.js"></script>
     <!-- Libs JS -->
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
 <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -1749,17 +1768,20 @@
 
 <!--This should be merged with the one above-->
 <script th:src="@{/assets/js/theme.min.js}"></script>
+    <script th:src="@{/assets/libs/quill/dist/quill.min.js}" src="../../static/assets/libs/quill/dist/quill.min.js"></script>
+    <script th:src="@{/assets/libs/dragula/dist/dragula.min.js}" src="../../static/assets/libs/dragula/dist/dragula.min.js"></script>
+    <script th:src="@{/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js}" src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script th:src="@{/assets/libs/bs-stepper/dist/js/bs-stepper.min.js}" src="../../static/assets/libs/bs-stepper/dist/js/bs-stepper.min.js"></script>
 
-    <script src="../../static/assets/libs/quill/dist/quill.min.js"></script>
-    <script src="../../static/assets/libs/dragula/dist/dragula.min.js"></script>
-    <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="../../static/assets/libs/bs-stepper/dist/js/bs-stepper.min.js"></script>
-    <script src="../../static/assets/js/vendors/beStepper.js"></script>
-    <script src="../../static/assets/js/vendors/customDragula.js"></script>
-    <script src="../../static/assets/js/vendors/editor.js"></script>
-    <script src="../../static/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-    <script src="../../static/assets/js/vendors/popup.js"></script>
+    <script th:src="@{/assets/js/vendors/beStepper.js}" src="../../static/assets/js/vendors/beStepper.js"></script>
+    <script th:src="@{/assets/js/vendors/customDragula.js}" src="../../static/assets/js/vendors/customDragula.js"></script>
+    <script th:src="@{/assets/js/vendors/editor.js}" src="../../static/assets/js/vendors/editor.js"></script>
+    <script th:src="@{/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js}" src="../../static/assets/libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script th:src="@{/assets/js/vendors/popup.js}" src="../../static/assets/js/vendors/popup.js"></script>
 
+    <!-- Page Special-->
+    <script th:src="@{/assets/js/pageCourseEditor.js}" src="../../static/assets/js/pageCourseEditor.js"></script>
+    <!-- Page Special End-->
 </body>
 
 </html>

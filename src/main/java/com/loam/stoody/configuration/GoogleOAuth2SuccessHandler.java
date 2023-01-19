@@ -44,8 +44,8 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         String email = oAuth2AuthenticationToken.getPrincipal().getAttributes().get("email").toString();
         if(userRepository.findUserByEmail(email).isEmpty()){
             User user = customUserDetailsService.getDefaultUser();
-            user.getUserProfile().setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
-            user.getUserProfile().setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
+//            user.getUserProfile().setFirstName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("given_name").toString());
+//            user.getUserProfile().setLastName(oAuth2AuthenticationToken.getPrincipal().getAttributes().get("family_name").toString());
             user.setEmail(email);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
             user.setUsername("User-"+ LocalDateTime.now().format(formatter)); // TODO: OrkhanGG check validity

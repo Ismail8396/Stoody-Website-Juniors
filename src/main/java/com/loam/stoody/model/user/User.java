@@ -61,27 +61,6 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles;
 
-    // Misc
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_statistics_id", referencedColumnName = "id")
-    private UserStatistics userStatistics;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_notifications_id", referencedColumnName = "id")
-    private UserNotifications userNotifications;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_privacy_id", referencedColumnName = "id")
-    private UserPrivacy userPrivacy;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_profile_settings_id", referencedColumnName = "id")
-    private UserProfile userProfile;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_social_profiles_id", referencedColumnName = "id")
-    private UserSocialProfiles userSocialProfiles;
-
     //__________________________________________________________________________________________________________________
     @Override
     public boolean equals(Object o) {

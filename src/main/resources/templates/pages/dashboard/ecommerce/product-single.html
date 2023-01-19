@@ -76,6 +76,11 @@
                 <div id="navCourses" class="collapse " data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link " href="../../../pages/dashboard/admin-course-category-table.html">
+                                 Courses Category Table
+                             </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link " href="../../../pages/dashboard/admin-course-overview.html">
                                  All Courses
                              </a>
@@ -345,6 +350,34 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  " href="../../../pages/dashboard/layouts/layout-vertical.html">Vertical</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Help Center Nav item -->
+            <li class="nav-item">
+                <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navHelpCenter" aria-expanded="false" aria-controls="navHelpCenter">
+                    <i class="bi-info-circle me-2"></i> Help Center
+                </a>
+                <div id="navHelpCenter" class="collapse " data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <!-- Item -->
+                        <li class="nav-item">
+                            <a class="nav-link " th:href="@{/stoody/authorized/help/center/categories}" href="../../../pages/dashboard/help-center-manage-category.html">
+                                             Category Manager
+                                         </a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav flex-column">
+                        <!-- Item -->
+                        <li class="nav-item">
+                            <a class="nav-link " th:href="@{/stoody/authorized/help/center/content/manager}" href="../../../pages/dashboard/help-center-manage-content.html">
+                                             Content Manager
+                                         </a>
                         </li>
 
                     </ul>
@@ -763,20 +796,22 @@
                 <!-- List -->
                 <li class="dropdown ms-2">
                     <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                            <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../../../static/assets/images/avatar/avatar-1.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                        <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                            <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../../../static/assets/images/avatar/avatar-1.jpg"
+                                id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                            <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                            <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                 class="rounded-circle">O</div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                         <div class="dropdown-item">
                             <div class="d-flex">
-                                <div class="avatar avatar-md" th:classappend="${getUserDTS.getCurrentUser().getUserProfile().userStatusCSSClass()}">
-                                    <img th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL != null}" th:src="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL}" src="../../../../static/assets/images/avatar/avatar-1.jpg" id="img-uploaded" alt="avatar" class="rounded-circle">
+                                <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).userStatusCSSClass()}">
+                                    <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL}" src="../../../../static/assets/images/avatar/avatar-1.jpg"
+                                        id="img-uploaded" alt="avatar" class="rounded-circle">
 
-                                    <div th:if="${getUserDTS.getCurrentUser().getUserProfile().profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                    <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
                                         class="rounded-circle">O</div>
                                 </div>
                                 <div class="ms-3 lh-1">

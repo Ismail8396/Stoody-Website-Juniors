@@ -29,7 +29,8 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     // Misc

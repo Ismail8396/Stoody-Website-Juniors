@@ -16,7 +16,8 @@ public class UserStatistics {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(mappedBy = "userStatistics")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     private UserLevel userLevel = UserLevel.Beginner;

@@ -45,12 +45,15 @@
         <div class="row align-items-center">
             <div class="col-md-11 col-10">
                 <div class="py-4">
-                    <form class="d-flex align-items-center">
+                    <div id="helpCenterGlobalSearchBarForm" class="d-flex align-items-center">
                         <span class="position-absolute ps-3">
               <i class="fe fe-search text-muted"></i>
             </span>
-                        <input type="search" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
-                    </form>
+                        <input type="search" id="helpCenterGlobalSearchBarInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                        <button id="helpCenterGlobalSearchBarButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-1 col-2">
@@ -63,9 +66,9 @@
 <nav class="navbar navbar-expand navbar-default ">
     <div class="container px-0">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand me-2" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
+            <a class="navbar-brand me-2" href="../index.html" th:href="@{/}"><img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
 
-            <ul class="list-unstyled mb-0">
+            <!-- <ul class="list-unstyled mb-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
             Help Center
@@ -99,21 +102,20 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
 
         <div class="ms-auto d-flex align-items-center">
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
             </a>
             <div class=" d-flex align-items-center">
                 <a href="#" class="ms-2 me-md-4 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fe fe-search fs-3"></i>
 
                 </a>
-                <a href="../pages/help-center-support.html" class="btn btn-primary d-lg-block d-none">
+                <a href="../pages/help-center-support.html" th:href="@{/help/support}" class="btn btn-primary d-lg-block d-none">
         Submit Ticket
 
       </a>
@@ -145,7 +147,7 @@
                             <!-- breadcrumb  -->
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="help-center.html">Help Center</a></li>
+                                    <li class="breadcrumb-item"><a href="help-center.html" th:href="@{/help}">Help Center</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Support</li>
                                 </ol>
                             </nav>
@@ -178,36 +180,26 @@
                                 <div class="card-body p-5">
                                     <h2 class="mb-4 fw-semi-bold">Submit a Request</h2>
                                     <!-- form  -->
-                                    <form>
+                                    <form th:action="@{/help/support}" method="post" th:object="${supportTicket}">
                                         <!-- input  -->
                                         <div class="mb-3">
                                             <label class="form-label" for="name">Your Name</label>
-                                            <input class="form-control" type="text" placeholder="Your name" id="name" required>
-                                        </div>
-                                        <!-- input  -->
-                                        <div class="mb-3">
-                                            <label class="form-label" for="company">Company</label>
-                                            <input class="form-control" type="text" placeholder="Company name" id="company" required>
+                                            <input class="form-control" th:field="*{fullName}" type="text" placeholder="Your name" id="name" required>
                                         </div>
                                         <!-- input  -->
                                         <div class="mb-3">
                                             <label class="form-label" for="email">Email Address <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" placeholder="Email address here" id="email" required>
+                                            <input class="form-control" th:field="*{email}" type="text" placeholder="Email address here" id="email" required>
                                         </div>
-                                        <!-- select options  -->
+                                        <!-- input  -->
                                         <div class="mb-3">
-                                            <label class="form-label" for="select">Subject</label>
-                                            <select class="form-select" id="select">
-                      <option selected>Select</option>
-                      <option value="1">General</option>
-                      <option value="2">Accounts</option>
-                      <option value="3">Payment</option>
-                    </select>
+                                            <label class="form-label" for="subject">Subject</label>
+                                            <input class="form-control" type="text" th:field="*{subject}" placeholder="Subject" id="subject">
                                         </div>
                                         <div class="mb-3">
                                             <!-- input  -->
                                             <label class="form-label" for="description">Description</label>
-                                            <textarea placeholder="Write down here" id="description" rows="2" class="form-control"></textarea>
+                                            <textarea placeholder="Write down here" th:field="*{description}" id="description" rows="2" class="form-control"></textarea>
                                         </div>
                                         <!-- button  -->
                                         <button class="btn btn-primary" type="submit">Submit</button>
@@ -229,7 +221,7 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
                     <div class="mt-4">
                         <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
                         <!-- social media -->

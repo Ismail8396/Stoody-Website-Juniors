@@ -32,36 +32,34 @@ import java.util.Set;
 @Entity
 @Table(indexes = {
         @Index(name = "courseIndex_id", columnList = "id", unique = true),
-        @Index(name = "courseIndex_title", columnList = "title", unique = true),
 })
 @Data
 @DynamicUpdate
 @DynamicInsert
 @Where(clause = "is_deleted='false'")
 public class Course extends ParentModel {
-    private String title;
-    private String subTitle;
+    private String congratulationsMessage;
+    private String contextTags;
+    private CourseStatus courseStatus;
+    private String currency = "USD";// TODO: remove hardcode
+    @Lob
     private String description;
-    private String thumbnailURL;
-    private String promoVideoURL;
-
+    private Double discount;
     private String languageCode;
     private CourseLevel level;
-
+    private Double price;
+    private String promoVideoName;
+    private String promoVideoURL;
+    private String tags;
+    private String thumbnailName;
+    private String thumbnailURL;
+    private String title;
     private String welcomeMessage;
-    private String congratulationsMessage;
 
     private Long viewCount;
     private LocalDateTime uploadDate;
-
-    private String currency = "USD";// TODO: remove hardcode
-    private Double price;
-    private Double discount;
     private Long enrolledStudents;
     private Long rating;
-    private String tags;
-
-    private CourseStatus courseStatus;
 
     @ManyToOne(targetEntity = CourseCategory.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_category_id", referencedColumnName = "id")
@@ -81,5 +79,5 @@ public class Course extends ParentModel {
             targetEntity = CourseSection.class
     )
     @JoinColumn(name="course_id")
-    private List<CourseSection> courseSections;
+    private List<CourseSection> sections;
 }

@@ -38,7 +38,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.time.ZoneId;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,13 +71,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         defaultUser.setEmail(null);
 
         defaultUser.setRoles(roleRepository.findBySearchKey("ROLE_USER"));
-
-        // Linked Models
-        defaultUser.setUserStatistics(new UserStatistics());
-        defaultUser.setUserNotifications(new UserNotifications());
-        defaultUser.setUserPrivacy(new UserPrivacy());
-        defaultUser.setUserProfile(new UserProfile());
-        defaultUser.setUserSocialProfiles(new UserSocialProfiles());
 
         // Misc
         defaultUser.setAccountEnabled(true);
@@ -133,19 +129,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     public IndoorResponse saveUser(User user) {
         try {
             userRepository.save(user);
-            saveUserStatistics(user.getUserStatistics());
-            saveUserNotificationSettings(user.getUserNotifications());
-            saveUserPrivacySettings(user.getUserPrivacy());
-            saveUserProfileSettings(user.getUserProfile());
-            saveUserSocialProfilesSettings(user.getUserSocialProfiles());
         } catch (Exception ignored) {
             return IndoorResponse.FAIL;
         }
-
         return IndoorResponse.SUCCESS;
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         User user = null;
         try {
             user = getUserByUsername(authenticationFacade.getAuthentication().getName());
@@ -155,8 +145,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return user;
     }
 
-    public Boolean compareUsers(User user, User toCompare){
-        if(user == null || toCompare == null)return false;
+    public Boolean compareUsers(User user, User toCompare) {
+        if (user == null || toCompare == null) return false;
         return user.getUsername().equals(toCompare.getUsername());
     }
 
@@ -170,28 +160,25 @@ public class CustomUserDetailsService implements UserDetailsService {
         long currentTimeInMillis = System.currentTimeMillis();
         long otpRequestedTimeInMillis = loginRequest.getOtpRequestedTime()
                 .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-        if (otpRequestedTimeInMillis + OTP_VALID_DURATION < currentTimeInMillis) {
-            // OTP expires
-            return false;
-        }
-        return true;
+        // OTP expires
+        return otpRequestedTimeInMillis + OTP_VALID_DURATION >= currentTimeInMillis;
     }
 
-    public List<User> getUserFollowers(User user){
+    public List<User> getUserFollowers(User user) {
         return userFollowersRepository.findAll().stream()
-                .filter(e-> e.getTo().getUsername().equals(user.getUsername()))
+                .filter(e -> e.getTo().getUsername().equals(user.getUsername()))
                 .map(UserFollowers::getFrom).collect(Collectors.toList());
     }
 
-    public List<User> getUserFollowings(User user){
+    public List<User> getUserFollowings(User user) {
         return userFollowersRepository.findAll().stream()
-                .filter(e-> e.getFrom().getUsername().equals(user.getUsername()))
+                .filter(e -> e.getFrom().getUsername().equals(user.getUsername()))
                 .map(UserFollowers::getTo).collect(Collectors.toList());
     }
 
-    public boolean addUserFollower(User userFrom, User userTo){
+    public boolean addUserFollower(User userFrom, User userTo) {
         try {
-            if(userFrom == null || userTo == null)
+            if (userFrom == null || userTo == null)
                 throw new RuntimeException();
 
             final String userFromUsername = userFrom.getUsername();
@@ -210,15 +197,15 @@ public class CustomUserDetailsService implements UserDetailsService {
             userFollowers.setFrom(userFrom);
             userFollowers.setTo(userTo);// userFrom wants to follow userTo
             userFollowersRepository.save(userFollowers);
-        }catch(RuntimeException ignore){
+        } catch (RuntimeException ignore) {
             return false;
         }
         return true;
     }
 
-    public boolean removeUserFollower(User userFrom, User userTo){
+    public boolean removeUserFollower(User userFrom, User userTo) {
         try {
-            if(userFrom == null || userTo == null)
+            if (userFrom == null || userTo == null)
                 throw new RuntimeException();
 
             final String userFromUsername = userFrom.getUsername();
@@ -228,21 +215,21 @@ public class CustomUserDetailsService implements UserDetailsService {
             getUserByUsername(userFromUsername);
             getUserByUsername(userToUsername);
 
-            UserFollowers unfollow =  userFollowersRepository.findAll().stream().filter(e -> e.getFrom().getUsername().equals(userFromUsername) &&
+            UserFollowers unfollow = userFollowersRepository.findAll().stream().filter(e -> e.getFrom().getUsername().equals(userFromUsername) &&
                     e.getTo().getUsername().equals(userToUsername)).findFirst().orElse(null);
 
-            if(unfollow == null) throw new RuntimeException();
+            if (unfollow == null) throw new RuntimeException();
 
             userFollowersRepository.delete(unfollow);
-        }catch(RuntimeException ignore){
+        } catch (RuntimeException ignore) {
             return false;
         }
         return true;
     }
 
-    public boolean isUserFollowedBy(User userFrom, User userTo){
+    public boolean isUserFollowedBy(User userFrom, User userTo) {
         try {
-            if(userFrom == null || userTo == null) throw new RuntimeException();
+            if (userFrom == null || userTo == null) throw new RuntimeException();
 
             final String userFromUsername = userFrom.getUsername();
             final String userToUsername = userTo.getUsername();
@@ -251,52 +238,56 @@ public class CustomUserDetailsService implements UserDetailsService {
             getUserByUsername(userFromUsername);
             getUserByUsername(userToUsername);
 
-            if(userFollowersRepository.findAll().stream().filter(e -> e.getFrom().getUsername().equals(userFromUsername) &&
-                            e.getTo().getUsername().equals(userToUsername)).findFirst().orElse(null)
+            if (userFollowersRepository.findAll().stream().filter(e -> e.getFrom().getUsername().equals(userFromUsername) &&
+                    e.getTo().getUsername().equals(userToUsername)).findFirst().orElse(null)
                     == null) throw new RuntimeException();
-        }catch(RuntimeException ignore){
+        } catch (RuntimeException ignore) {
             return false;
         }
         return true;
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    // --> User related data (Misc)
-    public UserStatistics getUserStatisticsById(int id){
-        return userStatisticsRepository.findById(id).orElse(null);
-    }
-    public void saveUserStatistics(UserStatistics userStatistics){
-        userStatisticsRepository.save(userStatistics);
+    // UserStatistics
+    public void saveUserStatistics(UserStatistics userStatistics) {
+
     }
 
-    public UserNotifications getUserNotificationSettingsById(int id){
-        return userNotificationSettingsRepository.findById(id).orElse(null);
-    }
-    public void saveUserNotificationSettings(UserNotifications userNotifications){
-        userNotificationSettingsRepository.save(userNotifications);
+    public UserStatistics getUserStatistics(User user) {
+        List<UserStatistics> userStatistics = userStatisticsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
+        if (userStatistics.isEmpty()) {
+            return new UserStatistics();
+        }
+
+        return userStatistics.get(0);
     }
 
-    public UserPrivacy getUserPrivacySettingsById(int id){
-        return userPrivacySettingsRepository.findById(id).orElse(null);
+    // -> User Notifications
+    public UserNotifications getUserNotifications(User user) {
+        List<UserNotifications> userNotifications = userNotificationSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
+        if(userNotifications.isEmpty())
+            return new UserNotifications();
+        return userNotifications.get(0);
     }
 
-    public void saveUserPrivacySettings(UserPrivacy userPrivacy){
-        userPrivacySettingsRepository.save(userPrivacy);
+    public UserPrivacy getUserPrivacy(User user){
+        List<UserPrivacy> userPrivacies = userPrivacySettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
+        if(userPrivacies.isEmpty())
+            return new UserPrivacy();
+        return userPrivacies.get(0);
     }
 
-    public UserProfile getUserProfileSettingsById(int id){
-        return userProfileSettingsRepository.findById(id).orElse(null);
+    // -> User Profile
+    public UserProfile getUserProfile(User user) {
+        List<UserProfile> userProfiles = userProfileSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
+        if(userProfiles.isEmpty())
+            return new UserProfile();
+        return userProfiles.get(0);
     }
 
-    public void saveUserProfileSettings(UserProfile userProfile){
-        userProfileSettingsRepository.save(userProfile);
-    }
-
-    public UserSocialProfiles getUserSocialProfilesSettingsById(int id){
-        return userSocialProfilesSettingsRepository.findById(id).orElse(null);
-    }
-
-    public void saveUserSocialProfilesSettings(UserSocialProfiles userSocialProfiles){
-        userSocialProfilesSettingsRepository.save(userSocialProfiles);
+    public UserSocialProfiles getUserSocialProfiles(User user) {
+        List<UserSocialProfiles> userSocialProfiles = userSocialProfilesSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
+        if(userSocialProfiles.isEmpty())
+            return new UserSocialProfiles();
+        return userSocialProfiles.get(0);
     }
 }

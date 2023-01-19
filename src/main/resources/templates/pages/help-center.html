@@ -33,8 +33,6 @@
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
 
     <title>Help Center | Stoody </title>
-
-
 </head>
 
 <body class="bg-white">
@@ -44,12 +42,15 @@
         <div class="row align-items-center">
             <div class="col-md-11 col-10">
                 <div class="py-4">
-                    <form class="d-flex align-items-center">
+                    <div id="helpCenterGlobalSearchBarForm" class="d-flex align-items-center">
                         <span class="position-absolute ps-3">
               <i class="fe fe-search text-muted"></i>
             </span>
-                        <input type="search" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
-                    </form>
+                        <input type="search" id="helpCenterGlobalSearchBarInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                        <button id="helpCenterGlobalSearchBarButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-1 col-2">
@@ -62,9 +63,9 @@
 <nav class="navbar navbar-expand navbar-transparent ">
     <div class="container px-0">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand me-2" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
+            <a class="navbar-brand me-2" href="../index.html" th:href="@{/}"><img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
 
-            <ul class="list-unstyled mb-0">
+            <!-- <ul class="list-unstyled mb-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
             Help Center
@@ -98,21 +99,20 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
 
         <div class="ms-auto d-flex align-items-center">
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
             </a>
             <div class=" d-flex align-items-center">
                 <a href="#" class="ms-2 me-md-4 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fe fe-search fs-3"></i>
 
                 </a>
-                <a href="../pages/help-center-support.html" class="btn btn-primary d-lg-block d-none">
+                <a href="../pages/help-center-support.html" th:href="@{/help/support}" class="btn btn-primary d-lg-block d-none">
         Submit Ticket
 
       </a>
@@ -135,20 +135,23 @@
                         <p class="mb-5 text-dark ">Have questions? Search through our Help Center</p>
                         <div class="pe-md-6">
                             <!-- input  -->
-                            <form class="d-flex align-items-center">
+                            <div id="helpCenterLandingSearchForm" class="d-flex align-items-center">
                                 <span class="position-absolute ps-3">
                 <i class="fe fe-search text-muted"></i>
               </span>
                                 <!-- input  -->
-                                <input type="search" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
-                            </form>
+                                <input type="search" id="helpCenterLandingSearchFormInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                                <button id="helpCenterLandingSearchFormButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                                    <i class="bi-search"></i>
+                                </button>
+                            </div>
                         </div>
                         <span class=" mt-2 d-block">... or choose a category to quickly find the help you need</span>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="d-flex align-items-center justify-content-end">
                             <!-- img  -->
-                            <img src="../../static/assets/images/svg/3d-girl-seeting.svg" alt="" class="text-center img-fluid">
+                            <img th:src="@{/assets/images/svg/3d-girl-seeting.svg}" src="../../static/assets/images/svg/3d-girl-seeting.svg" alt="" class="text-center img-fluid">
                         </div>
                     </div>
                 </div>
@@ -172,12 +175,12 @@
                   </svg>
                                     </div>
                                     <!-- heading  -->
-                                    <h3 class="fw-semi-bold"><a href="help-center-faq.html" class="text-inherit">FAQs</a></h3>
+                                    <h3 class="fw-semi-bold">
+                                        <a href="help-center-faq.html" th:href="@{/help/faq}" class="text-inherit">FAQs</a>
+                                    </h3>
                                     <!-- para  -->
-                                    <p>FAQ, short for frequently asked questions, is a list of commonly asked questions and answers about a specific topic.</p>
-                                    <!-- button  -->
-                                    <a href="help-center-faq.html" class="link-primary fw-semi-bold">View FAQ<i
-                    class="mdi mdi-arrow-right ms-1"></i></a>
+                                    <p>Our help center covers FAQ, short for frequently asked questions. You can find a list of commonly asked questions and answers about a specific topic.</p>
+                                    <a href=""></a>
                                 </div>
                             </div>
                         </div>
@@ -192,13 +195,10 @@
                   </svg>
                                     </div>
                                     <!-- heading  -->
-                                    <h3 class="fw-semi-bold"><a href="help-center-guide.html" class="text-inherit">Guides & Resources</a>
+                                    <h3 class="fw-semi-bold"><a href="help-center-guide.html" th:href="@{/help/guides}" class="text-inherit">Guides & Resources</a>
                                     </h3>
                                     <!-- para  -->
-                                    <p>UI Style Guides are a design & development tool that brings cohesion to a digital product user interface & experience</p>
-                                    <!-- button  -->
-                                    <a href="help-center-guide.html" class="link-primary fw-semi-bold">Browse Guides<i
-                    class="mdi mdi-arrow-right ms-1"></i></a>
+                                    <p>Stoody Help Center also contains guides & resources for most of Stoody functionalities.</p>
                                 </div>
                             </div>
                         </div>
@@ -218,11 +218,11 @@
                   </svg>
                                     </div>
                                     <!-- heading  -->
-                                    <h3 class="fw-semi-bold"><a href="help-center-support.html" class="text-inherit">Support</a></h3>
+                                    <h3 class="fw-semi-bold"><a href="help-center-support.html" th:href="@{/help/support}" class="text-inherit">Support</a></h3>
                                     <!-- para  -->
                                     <p>The good news is that youre not alone, and youre in the right place. Contact us for more detailed support.</p>
                                     <!-- button  -->
-                                    <a href="help-center-support.html" class="link-primary fw-semi-bold">Submit a Request<i
+                                    <a href="help-center-support.html" th:href="@{/help/support}" class="link-primary fw-semi-bold">Submit a Request<i
                     class="mdi mdi-arrow-right ms-1"></i></a>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
             </div>
         </section>
         <!-- container  -->
-        <section class="py-lg-16 py-10">
+        <section class="py-lg-16 py-10" th:if="${not #lists.isEmpty(getHelpCenterServiceLayer.getAllHelpCenterArticle())}">
             <div class="container">
                 <div class="row">
                     <div class="offset-lg-2 col-lg-6  col-12">
@@ -247,149 +247,26 @@
                 <div class="row">
                     <div class="offset-lg-2 col-lg-8 col-12">
                         <!-- accordions  -->
-                        <div class="accordion accordion-flush" id="accordionExample">
-                            <div class="border p-3 rounded-3 mb-2" id="headingOne">
+                        <div class="accordion accordion-flush" id="accordionExample" th:each="helpCenterArticle : ${getHelpCenterServiceLayer.getNHelpCenterArticle(5)}" th:id="${'article'+helpCenterArticle.getId()}">
+                            <div class="border p-3 rounded-3 mb-2" id="headingOne" th:id="${'heading'+helpCenterArticle.getId()}">
                                 <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <span class="me-auto">
-                    Is there a 14-days trial?
-                  </span>
+                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" th:attr="data-bs-target=${'#collapseTarget'+helpCenterArticle.getId()},aria-controls=${'collapseTarget'+helpCenterArticle.getId()}">
+                                        <span class="me-auto" th:text="${helpCenterArticle.getName()}">Is there a 14-days trial?</span>
                                         <span class="collapse-toggle ms-4">
                     <i class="fe fe-chevron-down text-muted "></i>
                   </span>
                                     </a>
                                 </h3>
                                 <!-- collapse  -->
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="pt-2">
+                                <div id="collapseOne" th:id="${'collapseTarget'+helpCenterArticle.getId()}" th:attr="data-bs-parent='#'+${'article'+helpCenterArticle.getId()},aria-labelledby=${'heading'+helpCenterArticle.getId()}" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="pt-2" th:text="${helpCenterArticle.getShortContent()}">
                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga aperiam velit possimus! Voluptatum aliquid minima dolorum, enim perspiciatis sit. Distinctio quidem perferendis reprehenderit quisquam cum natus id, iusto, aut, quasi modi nihil veritatis!
                                         Possimus eum beatae dolor rem quidem libero sit odio quia eius ullam.
                                     </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingTwo">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <span class="me-auto">
-                    What’s the benefits of the Premium Membership?
-                  </span>
-                                        <span class="collapse-toggle ms-4">
-                    <i class="fe fe-chevron-down text-muted"></i>
-                  </span>
-                                    </a>
-                                </h3>
-                                <!-- collapse  -->
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Velit nisi libero modi, repellat quo ducimus eos saepe totam architecto doloremque earum commodi. Porro labore, accusantium totam eius unde quam obcaecati cum ut animi voluptatum iste sit veritatis minima reiciendis aliquid reprehenderit praesentium autem
-                                        ipsa molestias quod dolores.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2 " id="headingThree">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <span class="me-auto">
-                    How much time I will need to learn this app?
-                  </span>
-                                        <span class="collapse-toggle ms-4">
-                    <i class="fe fe-chevron-down text-muted"></i>
-                  </span>
-                                    </a>
-                                </h3>
-                                <!-- collapse  -->
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Necessitatibus alias at labore explicabo totam illum saepe error delectus excepturi. Dolorem vitae eaque magnam quidem optio explicabo ipsa quae in nisi aut voluptates ratione cumque dignissimos non at voluptatum quis soluta, modi dolorum nesciunt porro
-                                        praesentium corporis commodi doloremque.<br><br> Architecto eaque vitae quaerat quo in, voluptas earum hic repudiandae assumenda, incidunt, mollitia numquam illo saepe impedit!
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2 " id="headingFour">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        <span class="me-auto">
-                    Are there any free tutorials available?
-                  </span>
-                                        <span class="collapse-toggle ms-4">
-                    <i class="fe fe-chevron-down text-muted"></i>
-                  </span>
-                                    </a>
-                                </h3>
-                                <!-- collapse  -->
-                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Tenetur rem error, voluptatem fugit iusto laudantium laborum at molestias dolorum sint facilis voluptas alias soluta consequuntur. Id saepe officiis voluptates sit fuga repellat facilis tempore vel explicabo unde, dicta, natus, amet repellendus ea reprehenderit!
-                                        Perspiciatis non modi beatae vel est. Nisi?
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border p-3 rounded-3 mb-2 " id="headingFive">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        <span class="me-auto">
-                    Is there a month-to-month payment option?
-                  </span>
-                                        <span class="collapse-toggle ms-4">
-                    <i class="fe fe-chevron-down text-muted"></i>
-                  </span>
-                                    </a>
-                                </h3>
-                                <!-- collapse  -->
-                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="border p-3 rounded-3 mb-2 " id="headingSix">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                        <span class="me-auto">
-                    How do I take a Stoody course?
-                  </span>
-                                        <span class="collapse-toggle ms-4">
-                    <i class="fe fe-chevron-down text-muted"></i>
-                  </span>
-                                    </a>
-                                </h3>
-                                <!-- collpase  -->
-                                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <!-- collapse  -->
-                            <div class="border p-3 rounded-3 mb-2 " id="headingSeven">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                        <span class="me-auto">
-                    How Does Stoody Courses Work?
-                  </span>
-                                        <span class="collapse-toggle ms-4">
-                    <i class="fe fe-chevron-down text-muted"></i>
-                  </span>
-                                    </a>
-                                </h3>
-                                <!-- collapse  -->
-                                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
+                                    <a class="btn btn-primary mt-2" th:href="'/help/'+${helpCenterArticle.getCategory().getName()}+'/'+${helpCenterArticle.getUrlKey()}">Detailed</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -423,7 +300,7 @@
                                         <h3 class="mb-2 fw-semi-bold">Contact us</h3>
                                         <p>Stoody is here to help. We can provide you with the support you need. Just contact us and our team will reply quick to you.</p>
                                         <!-- btn  -->
-                                        <a href="#" class="btn btn-primary btn-sm">Contact us</a>
+                                        <a href="#" th:href="@{/contact}" class="btn btn-primary btn-sm">Contact us</a>
                                     </div>
                                 </div>
                             </div>
@@ -445,10 +322,10 @@
                                         </div>
                                         <!-- para  -->
                                         <h3 class="mb-2 fw-semi-bold">Support</h3>
-                                        <p>The good news is that you’re not alone, and you’re in the right place. Contact us for more detailed support.
+                                        <p>The good news is that you’re not alone, and you’re in the right place. If you encounter any issue on our platform, contact us here.
                                         </p>
                                         <!-- btn  -->
-                                        <a href="help-center-support.html" class="btn btn-outline-secondary btn-sm">Submit a Ticket</a>
+                                        <a href="help-center-support.html" th:href="@{/help/support}" class="btn btn-outline-secondary btn-sm">Submit a Ticket</a>
                                     </div>
                                 </div>
                             </div>
@@ -466,7 +343,7 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
                     <div class="mt-4">
                         <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
                         <!-- social media -->

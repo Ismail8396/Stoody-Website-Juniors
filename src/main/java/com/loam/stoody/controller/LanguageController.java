@@ -1,30 +1,21 @@
 package com.loam.stoody.controller;
 
 import com.loam.stoody.components.IAuthenticationFacade;
-import com.loam.stoody.dto.api.response.OutdoorResponse;
-import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.global.logger.ConsoleColors;
 import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.i18n.LanguageModel;
 import com.loam.stoody.model.user.User;
-import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @AllArgsConstructor
@@ -35,7 +26,7 @@ public class LanguageController {
     private final UserDTS userDTS;
 
     @ModelAttribute("getUserDTS")
-    public UserDTS getUserDTS(){
+    public UserDTS getUserDTS() {
         return userDTS;
     }
 
@@ -43,6 +34,7 @@ public class LanguageController {
     public LanguageService getLanguageServiceLayer() {
         return languageService;
     }
+    //--------------------------------------------------------------------------
 
     @GetMapping("/stoody/authorized/tables/internationalization")
     public String getLanguagesPage(Model model) {
@@ -62,7 +54,7 @@ public class LanguageController {
     }
 
     @PostMapping("/stoody/authorized/tables/internationalization/post")
-    public String postLanguagesPage(@ModelAttribute("languageModel")LanguageModel languageModel) {
+    public String postLanguagesPage(@ModelAttribute("languageModel") LanguageModel languageModel) {
         // TODO: Use a shortcut class for these kinds of stuffs.
         User user = null;
         try {
@@ -75,11 +67,11 @@ public class LanguageController {
 
         languageService.addLanguageModel(languageModel);
 
-        return "redirect:"+"/stoody/authorized/tables/internationalization";
+        return "redirect:" + "/stoody/authorized/tables/internationalization";
     }
 
     @PostMapping("/stoody/authorized/tables/internationalization/delete/{id}")
-    public String deleteLanguageModelById(@PathVariable("id")Integer id) {
+    public String deleteLanguageModelById(@PathVariable("id") Integer id) {
         // TODO: Use a shortcut class for these kinds of stuffs.
         User user = null;
         try {
@@ -92,6 +84,6 @@ public class LanguageController {
 
         languageService.removeLanguageModelById(id);
 
-        return "redirect:"+"/stoody/authorized/tables/internationalization";
+        return "redirect:" + "/stoody/authorized/tables/internationalization";
     }
 }

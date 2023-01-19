@@ -60,6 +60,7 @@ class UserController {
             StoodyLogger.DebugLog(ConsoleColors.RED, "User was null!");
             return "redirect:" + PRL.error404URL;
         }
+        model.addAttribute("mainPreviewUserInfo",user);
         model.addAttribute("userObject", user);
         model.addAttribute("countries", MiscConstants.countries);
         model.addAttribute("states", MiscConstants.states);
@@ -80,13 +81,13 @@ class UserController {
             return "redirect:" + PRL.error404URL;
         }
 
-        user.getUserProfile().setFirstName(userDTO.getUserProfile().getFirstName());
-        user.getUserProfile().setLastName(userDTO.getUserProfile().getLastName());
-        user.getUserProfile().setDateOfBirth(userDTO.getUserProfile().getDateOfBirth());
-        user.getUserProfile().setAddressLine(userDTO.getUserProfile().getAddressLine());
-        user.getUserProfile().setAddressLineAddition(userDTO.getUserProfile().getAddressLineAddition());
-        user.getUserProfile().setState(userDTO.getUserProfile().getState());
-        user.getUserProfile().setCountry(userDTO.getUserProfile().getCountry());
+//        user.getUserProfile().setFirstName(userDTO.getUserProfile().getFirstName());
+//        user.getUserProfile().setLastName(userDTO.getUserProfile().getLastName());
+//        user.getUserProfile().setDateOfBirth(userDTO.getUserProfile().getDateOfBirth());
+//        user.getUserProfile().setAddressLine(userDTO.getUserProfile().getAddressLine());
+//        user.getUserProfile().setAddressLineAddition(userDTO.getUserProfile().getAddressLineAddition());
+//        user.getUserProfile().setState(userDTO.getUserProfile().getState());
+//        user.getUserProfile().setCountry(userDTO.getUserProfile().getCountry());
 
         customUserDetailsService.saveUser(user);
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
-<head>  <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -32,7 +32,7 @@
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
 
-  <title>Help Center Guide | Stoody </title>
+    <title>Help Center Guide | Stoody </title>
 
 
 </head>
@@ -44,12 +44,15 @@
         <div class="row align-items-center">
             <div class="col-md-11 col-10">
                 <div class="py-4">
-                    <form class="d-flex align-items-center">
+                    <div id="helpCenterGlobalSearchBarForm" class="d-flex align-items-center">
                         <span class="position-absolute ps-3">
               <i class="fe fe-search text-muted"></i>
             </span>
-                        <input type="search" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
-                    </form>
+                        <input type="search" id="helpCenterGlobalSearchBarInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                        <button id="helpCenterGlobalSearchBarButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-1 col-2">
@@ -62,9 +65,9 @@
 <nav class="navbar navbar-expand navbar-default ">
     <div class="container px-0">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand me-2" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
+            <a class="navbar-brand me-2" href="../index.html" th:href="@{/}"><img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
 
-            <ul class="list-unstyled mb-0">
+            <!-- <ul class="list-unstyled mb-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
             Help Center
@@ -98,21 +101,20 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
 
         <div class="ms-auto d-flex align-items-center">
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
             </a>
             <div class=" d-flex align-items-center">
                 <a href="#" class="ms-2 me-md-4 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fe fe-search fs-3"></i>
 
                 </a>
-                <a href="../pages/help-center-support.html" class="btn btn-primary d-lg-block d-none">
+                <a href="../pages/help-center-support.html" th:href="@{/help/support}" class="btn btn-primary d-lg-block d-none">
         Submit Ticket
 
       </a>
@@ -123,258 +125,86 @@
 
 
 </nav>
-  <!-- Page Content -->
-  <main>
-  <section class="py-8 bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="offset-md-2 col-md-8 col-12 ">
-          <!-- caption-->
-          <h1 class="fw-bold mb-0 display-4 lh-1">Guides & Resources</h1>
-        </div>
-      </div>
-    </div>
-  </section>
-   <!-- container  -->
-  <section class="pt-3">
-      <div class="container">
-          <div class="row">
-              <div class="offset-md-2 col-md-8 col-12">
-                  <div>
-                     <!-- breadcrumb  -->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="help-center.html">Help Center</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Guides & Resources</li>
-                        </ol>
-                      </nav>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </section>
- <!-- container  -->
-<section class="py-10">
-  <div class="container">
-     <div class="row ">
-      <div class="offset-md-2 col-md-8 col-12">
-          <div class="row">
-              <div class="col-lg-6 col-12">
-                 <!-- card  -->
-                  <div class="card border mb-4">
-                     <!-- card body  -->
-                      <div class="card-body p-5">
-                          <div class="mb-5">
-                          <h2 class="fw-semi-bold">Getting Started</h2>
-                          <p>Get your Help Stoody account set up in just 6 simple steps.</p>
+    <!-- Page Content -->
+    <main>
+        <section class="py-8 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-2 col-md-8 col-12 ">
+                        <!-- caption-->
+                        <h1 class="fw-bold mb-0 display-4 lh-1">Guides & Resources</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- container  -->
+        <section class="pt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <div>
+                            <!-- breadcrumb  -->
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="help-center.html" th:href="@{/help}">Help Center</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Guides & Resources</li>
+                                </ol>
+                            </nav>
                         </div>
-                         <!-- list  -->
-                          <ul class="list-unstyled">
-                              <li class="mb-2">
-                                  <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>What is this Stoody app?</a>
-                              </li>
-                                <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Start using the Stoody app?</a>
-                            </li>
-                              <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Signing in to the dashboard</a>
-                            </li>
-                              <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Navigating within the Stoody app</a>
-                            </li>
-                            <li>
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Affiliate with Stoody app</a>
-                            </li>
-                          </ul>
-                      </div>
-                       <!-- card footer  -->
-                      <div class="card-footer">
-                          <a href="#" class="link-primary">31 articles <i class="mdi mdi-arrow-right"></i></a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-6 col-12">
-                 <!-- card  -->
-                <div class="card border mb-4">
-                   <!-- card body  -->
-                    <div class="card-body p-5">
-                        <div class="mb-5">
-                        <h2 class="fw-semi-bold">Account Management</h2>
-                        <p>Managing your account, creating new Users, pricing details, exporting data</p>
-                      </div>
-                      <!-- list  -->
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Billing and Plans Guide</a>
-                            </li>
-                              <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Manage Your User Profile</a>
-                          </li>
-                            <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Signing in to the dashboard</a>
-                          </li>
-                            <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>What's New With Annual Payments</a>
-                          </li>
-                          <li>
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>User Roles and Permissions</a>
-                          </li>
-                        </ul>
-                    </div>
-                     <!-- card footer  -->
-                    <div class="card-footer">
-                        <a href="#" class="link-primary">12 articles <i class="mdi mdi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-12">
-               <!-- card  -->
-              <div class="card border mb-4">
-                 <!-- card body  -->
-                  <div class="card-body p-5">
-                      <div class="mb-5">
-                      <h2 class="fw-semi-bold">Your Account</h2>
-                      <p>Managing your account, creating new Users, pricing details, exporting data</p>
-                    </div>
-                     <!-- list  -->
-                      <ul class="list-unstyled">
-                          <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Changing your username</a>
-                          </li>
-                            <li class="mb-2">
-                            <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Changing your email</a>
-                        </li>
-                          <li class="mb-2">
-                            <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Changing your password</a>
-                        </li>
-                          <li class="mb-2">
-                            <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Account limits</a>
-                        </li>
-                        <li>
-                            <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Two factor authentication</a>
-                        </li>
-                      </ul>
-                  </div>
-                   <!-- card footer  -->
-                  <div class="card-footer">
-                      <a href="#" class="link-primary">8 articles <i class="mdi mdi-arrow-right"></i></a>
-                  </div>
-              </div>
-          </div>
-            <div class="col-lg-6 col-12">
-               <!-- card  -->
-                <div class="card border mb-4">
-                    <div class="card-body p-5">
-                        <div class="mb-5">
-                        <h2 class="fw-semi-bold">General Settings</h2>
-                        <p>Get your Help Stoody account set up in just 6 simple steps.</p>
-                      </div>
-                       <!-- list  -->
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>General settings</a>
-                            </li>
-                              <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>API settings</a>
-                          </li>
-                            <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Site settings</a>
-                          </li>
-                            <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>SMTP settings</a>
-                          </li>
-                          <li>
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Analytics settings</a>
-                          </li>
-                        </ul>
-                    </div>
-                     <!-- card footer  -->
-                    <div class="card-footer">
-                        <a href="#" class="link-primary">6 articles <i class="mdi mdi-arrow-right"></i></a>
+        </section>
+        <!-- container  -->
+        <section class="py-10">
+            <div class="container">
+                <div class="row ">
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-12" th:each="currentCategory : ${getHelpCenterServiceLayer.getAllHelpCenterCategory()}">
+                                <!-- card  -->
+                                <div class="card border mb-4">
+                                    <!-- card body  -->
+                                    <div class="card-body p-5">
+                                        <div class="mb-5">
+                                            <h2 class="fw-semi-bold" th:text="${currentCategory.getName()}">Getting Started</h2>
+                                            <p th:text="${currentCategory.getDescription()}">Get your Help Stoody account set up in just 6 simple steps.</p>
+                                        </div>
+                                        <!-- list  -->
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2" th:each="currentArticle : ${getHelpCenterServiceLayer.getAllHelpCenterArticleByCategoryIdLimited(currentCategory.getId(),5)}">
+                                                <a href="help-center-guide-single.html" class="text-body" th:href="'/help/'+${currentArticle.getCategory().getName()}+'/'+${currentArticle.getUrlKey()}">
+                                                    <i class="mdi mdi-arrow-right me-1 text-muted"></i>
+                                                    <span th:text="${currentArticle.getName()}">What is this Stoody?</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- card footer  -->
+                                    <div class="card-footer">
+                                        <a href="#" class="link-primary" th:href="'/help/search/'+${currentCategory.getName()}">
+                                            <span th:text="${#lists.size(getHelpCenterServiceLayer.getAllHelpCenterArticleByCategoryId(currentCategory.getId()))}">1</span> articles
+                                            <i class="mdi mdi-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-6 col-12">
-               <!-- card  -->
-                <div class="card border mb-4">
-                   <!-- card body  -->
-                    <div class="card-body p-5">
-                        <div class="mb-5">
-                        <h2 class="fw-semi-bold">Payments</h2>
-                        <p>Get your Help Stoody account set up in just 6 simple steps.</p>
-                      </div>
-                       <!-- list  -->
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Subscriptions</a>
-                            </li>
-                              <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Payment methods</a>
-                          </li>
-                            <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Cancel payments</a>
-                          </li>
-
-                        </ul>
-                    </div>
-                     <!-- card footer  -->
-                    <div class="card-footer">
-                        <a href="#" class="link-primary">5 articles <i class="mdi mdi-arrow-right"></i></a>
-                    </div>
-                </div>
             </div>
-            <div class="col-lg-6 col-12">
-               <!-- card  -->
-                <div class="card border mb-4">
-                   <!-- card body  -->
-                    <div class="card-body p-5">
-                        <div class="mb-5">
-                        <h2 class="fw-semi-bold">Working with Docs</h2>
-                        <p>Setting up collections and categories, creating new articles, and using Docs search</p>
-                      </div>
-                       <!-- list  -->
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Learn about Stoody Docs</a>
-                            </li>
-                              <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Manage collections and categories</a>
-                          </li>
-                            <li class="mb-2">
-                              <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Homepage layout options</a>
-                          </li>
-                          <li class="mb-2">
-                            <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Docs Style Guide</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="help-center-guide-single.html" class="text-body"><i class="mdi mdi-arrow-right me-1 text-muted"></i>Two factor authentication</a>
-                        </li>
-
-                        </ul>
-                    </div>
-                     <!-- card footer  -->
-                    <div class="card-footer">
-                        <a href="#" class="link-primary">8 articles <i class="mdi mdi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-</main>
-  <!-- footer -->
-  <!-- footer -->
+        </section>
+    </main>
+    <!-- footer -->
+    <!-- footer -->
 <footer class="pt-lg-10 pt-5 footer bg-white">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
                     <div class="mt-4">
                         <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
                         <!-- social media -->
@@ -443,8 +273,8 @@
     </div>
 </footer>
 
-  <!-- Scripts -->
-  <!-- Libs JS -->
+    <!-- Scripts -->
+    <!-- Libs JS -->
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
 <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script th:src="@{/assets/libs/simplebar/dist/simplebar.min.js}" src="../../static/assets/libs/simplebar/dist/simplebar.min.js"></script>

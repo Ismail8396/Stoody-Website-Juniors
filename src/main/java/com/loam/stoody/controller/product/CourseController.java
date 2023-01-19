@@ -1,25 +1,66 @@
 package com.loam.stoody.controller.product;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
+import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.model.product.course.Course;
+import com.loam.stoody.service.i18n.LanguageService;
+import com.loam.stoody.service.product.CategoryService;
 import com.loam.stoody.service.product.CourseService;
+import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/course")
 @AllArgsConstructor
 public class CourseController {
-
     private final CourseService courseService;
+    private final CategoryService categoryService;
+    private final LanguageService languageService;
+    private final UserDTS userDTS;
 
-    @GetMapping("/test-course")
-    public String testCourse() {
-        return "testing";
+    @ModelAttribute("getUserDTS")
+    public UserDTS getUserDTS(){
+        return userDTS;
     }
+
+    @ModelAttribute("languageServiceLayer")
+    public LanguageService getLanguageServiceLayer() {
+        return languageService;
+    }
+
+    @UnderDevelopment
+    @GetMapping("/stoody/course/{id}/editor")
+    public String getCourseEditorPage(@PathVariable("id") Long id, Model model){
+        CourseResponseDTO courseResponseDTO = courseService.getCourseById(id);
+        String courseId = "empty";
+        if(courseResponseDTO != null)
+            courseId = String.valueOf(id);
+
+        model.addAttribute("courseDTO", new CourseResponseDTO());
+        model.addAttribute("courseIdParam",courseId);
+        model.addAttribute("subCategoryElements", categoryService.getAllCategories());
+        return "pages/add-course";
+    }
+
+
+    @UnderDevelopment
+    @Deprecated
+    @GetMapping("/stoody/authorized/tables/course/management")
+    public String getAdminCourseOverviewPage(Model model){
+        model.addAttribute("allCourses", courseService.getAllCourses());
+        return "pages/dashboard/admin-course-overview";
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     @GetMapping("/findAllByCategoryId/{categoryId}")
     @ResponseBody
@@ -57,7 +98,7 @@ public class CourseController {
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.findLecturesBySectionId(sectionId));
     }
 
-    @PostMapping("/save")
+    @PostMapping("/save/entity")
     @ResponseBody
     public OutdoorResponse<?> save(@RequestBody Course course) {
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));

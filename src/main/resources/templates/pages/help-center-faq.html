@@ -44,12 +44,15 @@
         <div class="row align-items-center">
             <div class="col-md-11 col-10">
                 <div class="py-4">
-                    <form class="d-flex align-items-center">
+                    <div id="helpCenterGlobalSearchBarForm" class="d-flex align-items-center">
                         <span class="position-absolute ps-3">
               <i class="fe fe-search text-muted"></i>
             </span>
-                        <input type="search" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
-                    </form>
+                        <input type="search" id="helpCenterGlobalSearchBarInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                        <button id="helpCenterGlobalSearchBarButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                            <i class="bi-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-1 col-2">
@@ -62,9 +65,9 @@
 <nav class="navbar navbar-expand navbar-default ">
     <div class="container px-0">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand me-2" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
+            <a class="navbar-brand me-2" href="../index.html" th:href="@{/}"><img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""></a>
 
-            <ul class="list-unstyled mb-0">
+            <!-- <ul class="list-unstyled mb-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
             Help Center
@@ -98,21 +101,20 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
 
         <div class="ms-auto d-flex align-items-center">
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
             </a>
             <div class=" d-flex align-items-center">
                 <a href="#" class="ms-2 me-md-4 text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fe fe-search fs-3"></i>
 
                 </a>
-                <a href="../pages/help-center-support.html" class="btn btn-primary d-lg-block d-none">
+                <a href="../pages/help-center-support.html" th:href="@{/help/support}" class="btn btn-primary d-lg-block d-none">
         Submit Ticket
 
       </a>
@@ -144,7 +146,7 @@
                             <!-- breadcrumb  -->
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="help-center.html">Help
+                                    <li class="breadcrumb-item"><a href="help-center.html" th:href="@{/help}">Help
                       Center</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Faq</li>
                                 </ol>
@@ -157,16 +159,16 @@
         <section class="py-10">
             <div class="container">
                 <div class="row">
-                    <div class="offset-md-2 col-md-8 col-12">
+                    <div class="offset-md-2 col-md-8 col-12" th:each="currentCategory : ${getHelpCenterServiceLayer.getAllHelpCenterCategory()}">
                         <div class="mb-4">
-                            <h2 class="mb-0 fw-semi-bold">Most asked</h2>
+                            <h2 class="mb-0 fw-semi-bold" th:text="${currentCategory.getName()}">Most asked</h2>
                         </div>
-                        <div class="accordion accordion-flush" id="accordionExample">
-                            <div class="border p-3 rounded-3 mb-2" id="headingOne">
+                        <div class="accordion accordion-flush" id="accordionExample" th:id="'accordion'+${currentCategory.getId()}">
+                            <div class="border p-3 rounded-3 mb-2" id="headingOne" th:each="currentArticle : ${getHelpCenterServiceLayer.getAllHelpCenterArticleByCategoryIdLimited(currentCategory.getId(),10)}" th:id="'heading'+${currentArticle.getName()}+${currentCategory.getId()}">
                                 <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <span class="me-auto">
+                                    <a class="d-flex align-items-center text-inherit
+                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" th:attr="data-bs-target='#collapseElement'+${currentArticle.getName()}+${currentCategory.getId()},aria-controls='collapseElement'+${currentArticle.getName()}+${currentCategory.getId()}">
+                                        <span class="me-auto user-select-none" th:text="${currentArticle.getName()}">
                       Is there a 14-days trial?
                     </span>
                                         <span class="collapse-toggle ms-4">
@@ -175,314 +177,9 @@
                                     </a>
                                 </h3>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="pt-2">
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" th:id="'collapseElement'+${currentArticle.getName()}+${currentCategory.getId()}" th:attr="data-bs-parent='#accordion'+${currentCategory.getId()},aria-labelledby='heading'+${currentArticle.getName()}+${currentCategory.getId()}">
+                                    <div class="pt-2" th:text="${currentArticle.getShortContent()}">
                                         Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. In eu tellus quis urna vestibulum pulvinar.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingTwo">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <span class="me-auto">
-                      What’s the benefits of the Premium Membership?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                        <br>
-                                        <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur sit quos facere? Eum praesentium aut voluptatem, ullam, quia tempora quam non, beatae repudiandae esse excepturi sapiente tempore illo nobis
-                                        fugiat nulla. Obcaecati voluptatum quos a vero minus dicta veniam illo cupiditate. Ipsam, fuga!
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingThree">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <span class="me-auto">
-                      How much time I will need to learn this app?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingFour">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        <span class="me-auto">
-                      Are there any free tutorials available?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-
-                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="border p-3 rounded-3 mb-2" id="headingFive">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        <span class="me-auto">
-                      Is there a month-to-month payment option?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-
-                                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="border p-3 rounded-3 mb-2" id="headingSix">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                        <span class="me-auto">
-                      How do I take a Stoody course?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-
-                                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="border p-3 rounded-3 mb-2" id="headingSeven">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                        <span class="me-auto">
-                      How Does Stoody Courses Work?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-
-                                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="offset-md-2 col-md-8 col-12">
-                        <div class="mb-4 mt-6">
-                            <h2 class="mb-0 fw-semi-bold">General inquiries</h2>
-                        </div>
-                        <!-- accordion  -->
-                        <div class="accordion accordion-flush" id="accordionExample2">
-                            <div class="border p-3 rounded-3 mb-2" id="headingEight">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                        <span class="me-auto">
-                      Is there a 14-days trial?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample2">
-                                    <div class="pt-2">
-                                        Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. In eu tellus quis urna vestibulum pulvinar.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingNine">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                                        <span class="me-auto">
-                      What’s the benefits of the Premium Membership?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample2">
-                                    <div class="pt-3">
-                                        Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingTen">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                                        <span class="me-auto">
-                      How much time I will need to learn this app?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample2">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingEleven">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                                        <span class="me-auto">
-                      Are there any free tutorials available?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionExample2">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="offset-md-2 col-md-8 col-12">
-                        <div class="mb-4 mt-6">
-                            <h2 class="mb-0 fw-semi-bold">Support</h2>
-                        </div>
-                        <div class="accordion accordion-flush" id="accordionExample3">
-                            <div class="border p-3 rounded-3 mb-2" id="headingTwelve">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                                        <span class="me-auto">
-                      Are there any free tutorials available?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-bs-parent="#accordionExample3">
-                                    <div class="pt-2">
-                                        Vestibulum nec porta tortor. Phasellus metus quam, semper ut tincidunt sit amet, viverra quis neque. Nullam mattis mollis massa nec pulvinar. In eu tellus quis urna vestibulum pulvinar.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingThirteen">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
-                                        <span class="me-auto">
-                      Is there a month-to-month payment option?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-bs-parent="#accordionExample3">
-                                    <div class="pt-3">
-                                        Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingFourteen">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
-                                        <span class="me-auto">
-                      How do I take a Stoody course?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-bs-parent="#accordionExample3">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card  -->
-                            <!-- Card header  -->
-                            <div class="border p-3 rounded-3 mb-2" id="headingFifteen">
-                                <h3 class="mb-0 fs-4">
-                                    <a href="#" class="d-flex align-items-center text-inherit
-                    text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
-                                        <span class="me-auto">
-                      How Does Stoody Courses Work?
-                    </span>
-                                        <span class="collapse-toggle ms-4">
-                      <i class="fe fe-chevron-down text-muted"></i>
-                    </span>
-                                    </a>
-                                </h3>
-                                <div id="collapseFifteen" class="collapse" aria-labelledby="headingFifteen" data-bs-parent="#accordionExample3">
-                                    <div class="pt-3">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
                                     </div>
                                 </div>
                             </div>
@@ -500,7 +197,7 @@
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- about company -->
                 <div class="mb-4">
-                    <img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
+                    <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse ">
                     <div class="mt-4">
                         <p>Stoody is an online learning and sharing platform where you can obtain professional guidance from professionals and find low-cost or free courses.</p>
                         <!-- social media -->
