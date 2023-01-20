@@ -5,7 +5,6 @@ import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.global.constants.IndoorResponse;
-import com.loam.stoody.model.product.course.Course;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.product.CategoryService;
 import com.loam.stoody.service.product.CourseService;
@@ -96,24 +95,16 @@ public class CourseController {
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.findLecturesBySectionId(sectionId));
     }
 
-    @PostMapping("/save/entity")
-    @ResponseBody
-    public OutdoorResponse<?> save(@RequestBody Course course) {
-        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
-    }
+//    @PostMapping("/save/entity")
+//    @ResponseBody
+//    public OutdoorResponse<?> save(@RequestBody Course course) {
+//        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
+//    }
 
     @PostMapping("/save")
     @ResponseBody
     public OutdoorResponse<?> saveCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
-        System.out.println("-------------------------------------------------------------------------------------------\nCourseRequestDTO");
-        System.out.println(courseRequestDTO);
-        System.out.println("-------------------------------------------------------------------------------------------");
-        System.out.println("\n------------------------------------------------------------------------------------------");
-        System.out.println("Course Request Entity\n\n");
-        Course course = courseService.dtoToCourseModel(courseRequestDTO);
-        System.out.println(course);
-        System.out.println("\n\n\n");
-        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(courseRequestDTO));
     }
 
     @PostMapping("/add-comment")

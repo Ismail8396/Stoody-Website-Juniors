@@ -17,15 +17,14 @@ public class CourseSection {
     private Long id;
     private String title;
 
-    @ManyToOne(targetEntity = Course.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(targetEntity = Course.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     private Course course;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            targetEntity = CourseLecture.class
-    )
-    @JoinColumn(name = "course_section_id")
-    private List<CourseLecture> lectures;
+//    @OneToMany(
+//            cascade = CascadeType.ALL,
+//            targetEntity = CourseLecture.class
+//    )
+//    @JoinColumn(name = "course_section_id")
+//    private List<CourseLecture> lectures;
 }

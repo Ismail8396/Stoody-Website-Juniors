@@ -73,11 +73,10 @@ public class Course extends ParentModel {
     @JoinColumn(name="COMMENTS_ID")
     private Set<Comment> comments;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            targetEntity = CourseSection.class
-    )
-    @JoinColumn(name="course_id")
-    private List<CourseSection> sections;
+//    @OneToMany(
+//            cascade = CascadeType.ALL,
+//            targetEntity = CourseSection.class
+//    )
+//    @JoinColumn(name="course_id")
+//    private List<CourseSection> sections;
 }

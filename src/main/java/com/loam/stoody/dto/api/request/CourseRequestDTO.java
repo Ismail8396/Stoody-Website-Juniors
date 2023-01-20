@@ -2,23 +2,16 @@ package com.loam.stoody.dto.api.request;
 
 import com.loam.stoody.enums.CourseLevel;
 import com.loam.stoody.enums.CourseStatus;
-import com.loam.stoody.model.product.course.Course;
-import com.loam.stoody.model.product.course.CourseCategory;
-import com.loam.stoody.model.product.course.CourseLecture;
-import com.loam.stoody.model.product.course.CourseSection;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 public class CourseRequestDTO {
-    private Long courseId;
+    private Long id;
     private String congratulationsMessage;
     private String contextTags;
     private Integer courseCategoryId;
