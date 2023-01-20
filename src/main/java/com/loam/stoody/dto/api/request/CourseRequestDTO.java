@@ -2,7 +2,7 @@ package com.loam.stoody.dto.api.request;
 
 import com.loam.stoody.enums.CourseLevel;
 import com.loam.stoody.enums.CourseStatus;
-import com.loam.stoody.model.product.course.Course;``
+import com.loam.stoody.model.product.course.Course;
 import com.loam.stoody.model.product.course.CourseCategory;
 import com.loam.stoody.model.product.course.CourseLecture;
 import com.loam.stoody.model.product.course.CourseSection;
