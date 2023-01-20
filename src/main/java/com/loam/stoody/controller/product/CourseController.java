@@ -1,7 +1,6 @@
 package com.loam.stoody.controller.product;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.loam.stoody.dto.api.request.CourseRequestDTO;
 import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.global.annotations.UnderDevelopment;
@@ -12,7 +11,6 @@ import com.loam.stoody.service.product.CategoryService;
 import com.loam.stoody.service.product.CourseService;
 import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +26,7 @@ public class CourseController {
     private final UserDTS userDTS;
 
     @ModelAttribute("getUserDTS")
-    public UserDTS getUserDTS(){
+    public UserDTS getUserDTS() {
         return userDTS;
     }
 
@@ -39,14 +37,14 @@ public class CourseController {
 
     @UnderDevelopment
     @GetMapping("/stoody/course/{id}/editor")
-    public String getCourseEditorPage(@PathVariable("id") Long id, Model model){
+    public String getCourseEditorPage(@PathVariable("id") Long id, Model model) {
         CourseResponseDTO courseResponseDTO = courseService.getCourseById(id);
         String courseId = "empty";
-        if(courseResponseDTO != null)
+        if (courseResponseDTO != null)
             courseId = String.valueOf(id);
 
         model.addAttribute("courseDTO", new CourseResponseDTO());
-        model.addAttribute("courseIdParam",courseId);
+        model.addAttribute("courseIdParam", courseId);
         model.addAttribute("subCategoryElements", categoryService.getAllCategories());
         return "pages/add-course";
     }
@@ -55,7 +53,7 @@ public class CourseController {
     @UnderDevelopment
     @Deprecated
     @GetMapping("/stoody/authorized/tables/course/management")
-    public String getAdminCourseOverviewPage(Model model){
+    public String getAdminCourseOverviewPage(Model model) {
         model.addAttribute("allCourses", courseService.getAllCourses());
         return "pages/dashboard/admin-course-overview";
     }
@@ -101,6 +99,20 @@ public class CourseController {
     @PostMapping("/save/entity")
     @ResponseBody
     public OutdoorResponse<?> save(@RequestBody Course course) {
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
+    }
+
+    @PostMapping("/save")
+    @ResponseBody
+    public OutdoorResponse<?> saveCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
+        System.out.println("-------------------------------------------------------------------------------------------\nCourseRequestDTO");
+        System.out.println(courseRequestDTO);
+        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println("\n------------------------------------------------------------------------------------------");
+        System.out.println("Course Request Entity\n\n");
+        Course course = courseService.dtoToCourseModel(courseRequestDTO);
+        System.out.println(course);
+        System.out.println("\n\n\n");
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
     }
 

@@ -37,3 +37,31 @@ Api =localhost:8080/course/delete
 Method = Delete
 Form Data
 courseId = 252
+
+********************
+Api = localhost:8080/course/save
+Method = Post
+Payload =
+
+{
+    "title": "netwoking1133344",
+    "price": 200.00,
+    "level": "Beginners",
+    "description": "this is course description",
+    "thumbnailURL": "this is thumbnail url",
+    "promoVideoURL": "this is promo video url",
+    "tags": "tag1, tag2, tag3, tag4",
+    "courseCategoryId": 1,
+    "sections": [
+        {
+            "title": "Introduction to Java11",
+            "lectures": [
+                {
+                    "title": "Introduction11",
+                    "article": "article 1",
+                    "description": "This is javascript introduction description"
+                }
+            ]
+        }
+    ]
+}

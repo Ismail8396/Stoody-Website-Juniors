@@ -12,6 +12,8 @@ public class CourseLectureResponseDTO {
     private String articleName;
     private String description;
     private String imageUrl;// TODO: What is this?
+    private Boolean locked;
+    private Boolean uiCollapsed;
     public CourseLectureResponseDTO(CourseLecture courseLecture) {
         BeanUtils.copyProperties(courseLecture, this);
     }

@@ -6,6 +6,7 @@ import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.global.logger.ConsoleColors;
 import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.user.User;
+import com.loam.stoody.model.user.UserProfile;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import com.loam.stoody.service.user.UserDTS;
@@ -61,15 +62,15 @@ class UserController {
             return "redirect:" + PRL.error404URL;
         }
         model.addAttribute("mainPreviewUserInfo",user);
-        model.addAttribute("userObject", user);
+        model.addAttribute("userProfileObject", new UserProfile());
         model.addAttribute("countries", MiscConstants.countries);
         model.addAttribute("states", MiscConstants.states);
         return "pages/profile-edit";
     }
 
     @PostMapping("/user/dashboard/standard/profile/edit")
-    public String postUserProfileEditPage(@ModelAttribute("userObject") User userDTO) {
-        if (userDTO == null) {
+    public String postUserProfileEditPage(@ModelAttribute("userProfileObject") UserProfile userProfileObject) {
+        if (userProfileObject == null) {
             StoodyLogger.DebugLog(ConsoleColors.RED, "User was null!");
             return "redirect:" + PRL.error404URL;
         }
@@ -81,15 +82,7 @@ class UserController {
             return "redirect:" + PRL.error404URL;
         }
 
-//        user.getUserProfile().setFirstName(userDTO.getUserProfile().getFirstName());
-//        user.getUserProfile().setLastName(userDTO.getUserProfile().getLastName());
-//        user.getUserProfile().setDateOfBirth(userDTO.getUserProfile().getDateOfBirth());
-//        user.getUserProfile().setAddressLine(userDTO.getUserProfile().getAddressLine());
-//        user.getUserProfile().setAddressLineAddition(userDTO.getUserProfile().getAddressLineAddition());
-//        user.getUserProfile().setState(userDTO.getUserProfile().getState());
-//        user.getUserProfile().setCountry(userDTO.getUserProfile().getCountry());
-
-        customUserDetailsService.saveUser(user);
+        customUserDetailsService.saveUserProfile(userProfileObject);
 
         return "redirect:" + "/user/dashboard/standard/profile/edit";
     }

@@ -8,6 +8,8 @@ import java.util.Objects;
 
 @ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserSocialProfiles {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

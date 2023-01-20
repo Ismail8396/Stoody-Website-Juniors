@@ -17,13 +17,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,34 +48,9 @@ public class UserProfile {
 
     private UserStatus userStatus = UserStatus.Online;
 
-    public String userStatusCSSClass(){
-        if(userStatus.equals(UserStatus.Online)){
-            return "avatar-indicators avatar-online";
-        }
-        else if(userStatus.equals(UserStatus.Offline)){
-            return "avatar-indicators avatar-offline";
-        }
-        else if(userStatus.equals(UserStatus.Away)){
-            return "avatar-indicators avatar-away";
-        }
-        else if(userStatus.equals(UserStatus.Busy)){
-            return "avatar-indicators avatar-busy";
-        }else{
-            return "avatar-indicators avatar-offline";
-        }
-    }
-
     @Transient
-    public String getUserDisplayName(){
-        if(firstName != null && lastName != null)
-            if(!firstName.isBlank() && !lastName.isBlank())
-                return firstName+" "+lastName;
-        return user.getUsername();
-    }
-
-    @Transient
-    public String getUserStatus(){
-        if(userStatus != null)
+    public String getUserStatus() {
+        if (userStatus != null)
             return userStatus.toString();
         return "Offline";
     }
