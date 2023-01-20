@@ -1,5 +1,6 @@
 package com.loam.stoody.service.product;
 
+import com.loam.stoody.dto.api.request.CourseRequestDTO;
 import com.loam.stoody.dto.api.response.CourseLectureResponseDTO;
 import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.CourseSectionResponseDTO;
@@ -11,8 +12,10 @@ import com.loam.stoody.model.product.course.*;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.courses.PurchasedCourse;
 import com.loam.stoody.repository.product.*;
+import com.loam.stoody.service.user.CustomUserDetailsService;
 import com.loam.stoody.service.utils.aws.S3Service;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -25,6 +28,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class CourseService {
+    private final CustomUserDetailsService customUserDetailsService;
     private final CourseRepository courseRepository;
     private final CourseSectionRepository courseSectionRepository;
     private final CourseLectureRepository courseLectureRepository;
@@ -59,6 +63,13 @@ public class CourseService {
 
     @Transactional
     public Course save(Course course) {
+        // TODO: Find better hack for orphan Courses
+        if(course.getAuthor() == null) {
+            User user = customUserDetailsService.getUserByUsername("Stoody");
+            if(user != null)
+                course.setAuthor(user);
+        }
+
         course.setCourseStatus(CourseStatus.Draft);
         course.setIsDeleted(false);
         return courseRepository.save(course);
@@ -156,5 +167,29 @@ public class CourseService {
                     -> new CourseLectureResponseDTO(courseLecture)).collect(Collectors.toList());
         }
         return lectureResponseDTOS;
+    }
+
+    public Course dtoToCourseModel(CourseRequestDTO courseRequestDTO) {
+        Course course = new Course();
+        CourseCategory courseCategory = new CourseCategory();
+        courseCategory.setId(courseRequestDTO.getCourseCategoryId());
+        course.setCourseCategory(courseCategory);
+        BeanUtils.copyProperties(courseRequestDTO, course);
+        if (!CollectionUtils.isEmpty(courseRequestDTO.getSections())) {
+            course.setSections(courseRequestDTO.getSections().stream().map(sectionRequestDTO -> {
+                CourseSection courseSection = new CourseSection();
+                BeanUtils.copyProperties(sectionRequestDTO, courseSection);
+
+                if (!CollectionUtils.isEmpty(sectionRequestDTO.getLectures())) {
+                    courseSection.setLectures(sectionRequestDTO.getLectures().stream().map(courseLectureRequestDTO -> {
+                        CourseLecture courseLecture = new CourseLecture();
+                        BeanUtils.copyProperties(courseLectureRequestDTO, courseLecture);
+                        return courseLecture;
+                    }).collect(Collectors.toList()));
+                }
+                return courseSection;
+            }).collect(Collectors.toList()));
+        }
+        return course;
     }
 }

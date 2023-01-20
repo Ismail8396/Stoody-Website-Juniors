@@ -22,6 +22,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserPrivacy {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

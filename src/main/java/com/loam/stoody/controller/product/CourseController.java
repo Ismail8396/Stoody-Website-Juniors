@@ -105,7 +105,14 @@ public class CourseController {
     @PostMapping("/save")
     @ResponseBody
     public OutdoorResponse<?> saveCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
-        Course course = CourseRequestDTO.dtoToCourseModel(courseRequestDTO);
+        System.out.println("-------------------------------------------------------------------------------------------\nCourseRequestDTO");
+        System.out.println(courseRequestDTO);
+        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println("\n------------------------------------------------------------------------------------------");
+        System.out.println("Course Request Entity\n\n");
+        Course course = courseService.dtoToCourseModel(courseRequestDTO);
+        System.out.println(course);
+        System.out.println("\n\n\n");
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
     }
 

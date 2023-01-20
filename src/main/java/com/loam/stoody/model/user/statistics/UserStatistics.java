@@ -11,6 +11,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserStatistics {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

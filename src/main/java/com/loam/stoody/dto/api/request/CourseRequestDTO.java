@@ -42,29 +42,4 @@ public class CourseRequestDTO {
     private LocalDateTime uploadDate;
     private Long enrolledStudents;
     private Long rating;
-
-
-    public static Course dtoToCourseModel(CourseRequestDTO courseRequestDTO) {
-        Course course = new Course();
-        CourseCategory courseCategory = new CourseCategory();
-        courseCategory.setId(courseRequestDTO.getCourseCategoryId());
-        course.setCourseCategory(courseCategory);
-        BeanUtils.copyProperties(courseRequestDTO, course);
-        if (!CollectionUtils.isEmpty(courseRequestDTO.getSections())) {
-            course.setSections(courseRequestDTO.getSections().stream().map(sectionRequestDTO -> {
-                CourseSection courseSection = new CourseSection();
-                BeanUtils.copyProperties(sectionRequestDTO, courseSection);
-
-                if (!CollectionUtils.isEmpty(sectionRequestDTO.getLectures())) {
-                    courseSection.setLectures(sectionRequestDTO.getLectures().stream().map(courseLectureRequestDTO -> {
-                        CourseLecture courseLecture = new CourseLecture();
-                        BeanUtils.copyProperties(courseLectureRequestDTO, courseLecture);
-                        return courseLecture;
-                    }).collect(Collectors.toList()));
-                }
-                return courseSection;
-            }).collect(Collectors.toList()));
-        }
-        return course;
-    }
 }

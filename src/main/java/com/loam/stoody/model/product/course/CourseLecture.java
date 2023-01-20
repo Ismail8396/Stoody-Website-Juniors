@@ -27,6 +27,9 @@ public class CourseLecture {
     private Set<Video> videos;
     private String imageUrl;
 
+    private Boolean locked;
+    private Boolean uiCollapsed;
+
     @ManyToOne(targetEntity = CourseSection.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_section_id", referencedColumnName = "id")
     CourseSection courseSection;
