@@ -19,13 +19,16 @@ public class CourseLecture {
     private String article;
     private String articleName;
     private String description;
-    @OneToMany(
-            mappedBy = "courseLecture",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<Video> videos;
+//    @OneToMany(
+//            mappedBy = "courseLecture",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private Set<Video> videos;
     private String imageUrl;
+
+    private Boolean locked;
+    private Boolean uiCollapsed;
 
     @ManyToOne(targetEntity = CourseSection.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_section_id", referencedColumnName = "id")

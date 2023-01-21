@@ -22,6 +22,7 @@ import com.loam.stoody.components.IAuthenticationFacade;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.model.user.*;
 import com.loam.stoody.model.user.misc.Role;
+import com.loam.stoody.model.user.misc.UserStatus;
 import com.loam.stoody.model.user.requests.LoginRequest;
 import com.loam.stoody.model.user.statistics.UserStatistics;
 import com.loam.stoody.repository.user.LoginRequestRepository;
@@ -29,6 +30,7 @@ import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.repository.user.attributes.*;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -249,7 +251,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     // UserStatistics
     public void saveUserStatistics(UserStatistics userStatistics) {
-
+        userStatisticsRepository.save(userStatistics);
     }
 
     public UserStatistics getUserStatistics(User user) {
@@ -262,11 +264,20 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     // -> User Notifications
+    public void saveUserNotifications(UserNotifications userNotifications){
+        userNotificationSettingsRepository.save(userNotifications);
+    }
+
     public UserNotifications getUserNotifications(User user) {
         List<UserNotifications> userNotifications = userNotificationSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
         if(userNotifications.isEmpty())
             return new UserNotifications();
         return userNotifications.get(0);
+    }
+
+    // -> User Privacy
+    public void saveUserPrivacy(UserPrivacy userPrivacy){
+        userPrivacySettingsRepository.save(userPrivacy);
     }
 
     public UserPrivacy getUserPrivacy(User user){
@@ -277,17 +288,27 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     // -> User Profile
+    public void saveUserProfile(UserProfile userProfile){
+        userProfileSettingsRepository.save(userProfile);
+    }
+
     public UserProfile getUserProfile(User user) {
         List<UserProfile> userProfiles = userProfileSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
         if(userProfiles.isEmpty())
-            return new UserProfile();
+            return new UserProfile(null,user,null,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY, UserStatus.Online);
         return userProfiles.get(0);
+    }
+
+    // -> User Social Profiles
+    public void saveUserSocialProfiles(UserSocialProfiles userSocialProfiles){
+        userSocialProfilesSettingsRepository.save(userSocialProfiles);
     }
 
     public UserSocialProfiles getUserSocialProfiles(User user) {
         List<UserSocialProfiles> userSocialProfiles = userSocialProfilesSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
-        if(userSocialProfiles.isEmpty())
-            return new UserSocialProfiles();
+        if(userSocialProfiles.isEmpty()) {
+            return new UserSocialProfiles(null,user, Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY);
+        }
         return userSocialProfiles.get(0);
     }
 }

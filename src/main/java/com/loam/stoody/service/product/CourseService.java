@@ -1,18 +1,21 @@
 package com.loam.stoody.service.product;
 
+import com.loam.stoody.dto.api.request.CourseLectureRequestDTO;
+import com.loam.stoody.dto.api.request.CourseRequestDTO;
+import com.loam.stoody.dto.api.request.CourseSectionRequestDTO;
 import com.loam.stoody.dto.api.response.CourseLectureResponseDTO;
 import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.CourseSectionResponseDTO;
 import com.loam.stoody.enums.CourseStatus;
-import com.loam.stoody.global.logger.ConsoleColors;
-import com.loam.stoody.global.logger.StoodyLogger;
 import com.loam.stoody.model.communication.misc.Comment;
 import com.loam.stoody.model.product.course.*;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.courses.PurchasedCourse;
 import com.loam.stoody.repository.product.*;
-import com.loam.stoody.service.utils.aws.S3Service;
+import com.loam.stoody.service.user.CustomUserDetailsService;
+import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -25,12 +28,14 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class CourseService {
+    private final CustomUserDetailsService customUserDetailsService;
     private final CourseRepository courseRepository;
     private final CourseSectionRepository courseSectionRepository;
     private final CourseLectureRepository courseLectureRepository;
     private final CommentRepository commentRepository;
     private final CourseRatingRepository courseRatingRepository;
     private final PurchasedCourseRepository purchasedCourseRepository;
+    private final UserDTS userDTS;
 
     public List<CourseResponseDTO> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
@@ -41,9 +46,9 @@ public class CourseService {
         return courseResponseDTOS;
     }
 
-    public CourseResponseDTO getCourseById(Long id){
+    public CourseResponseDTO getCourseById(Long id) {
         Course course = courseRepository.findById(id).orElse(null);
-        if(course != null)
+        if (course != null)
             return new CourseResponseDTO(course, true);
         return null;
     }
@@ -58,10 +63,9 @@ public class CourseService {
     }
 
     @Transactional
-    public Course save(Course course) {
-        course.setCourseStatus(CourseStatus.Draft);
-        course.setIsDeleted(false);
-        return courseRepository.save(course);
+    public Long save(CourseRequestDTO courseRequestDTO) {
+        Course course = saveCourse(courseRequestDTO);
+        return course.getId();
     }
 
     @Transactional
@@ -121,6 +125,7 @@ public class CourseService {
 
     @Transactional
     public void deleteSection(long id) {
+        courseLectureRepository.deleteByIdSectionId(id);
         courseSectionRepository.deleteById(id);
     }
 
@@ -136,7 +141,22 @@ public class CourseService {
 
     public Optional<CourseResponseDTO> getCourseWithDetails(long id) {
         Course course = courseRepository.findById(id).orElseThrow(RuntimeException::new);
-        return Optional.ofNullable(new CourseResponseDTO(course, true));
+        CourseResponseDTO courseResponseDTO = new CourseResponseDTO(course, true);
+        List<CourseSection> courseSections = courseSectionRepository.findAllByCourse_Id(id);
+        if(!CollectionUtils.isEmpty(courseSections)) {
+            courseResponseDTO.setSections(courseSections.stream().map(courseSection -> {
+                CourseSectionResponseDTO courseSectionResponseDTO = new CourseSectionResponseDTO(courseSection);
+                List<CourseLecture> courseLectures = courseLectureRepository.findAllByCourseSection_Id(courseSection.getId());
+                if(!CollectionUtils.isEmpty(courseLectures)) {
+                    courseSectionResponseDTO.setLectures(courseLectures.stream().map(courseLecture -> {
+                        CourseLectureResponseDTO courseLectureResponseDTO = new CourseLectureResponseDTO(courseLecture);
+                        return courseLectureResponseDTO;
+                    }).collect(Collectors.toList()));
+                }
+                return courseSectionResponseDTO;
+            }).collect(Collectors.toList()));
+        }
+        return Optional.ofNullable(courseResponseDTO);
     }
 
     public List<CourseSectionResponseDTO> getSectionsByCourseId(long courseId) {
@@ -157,4 +177,56 @@ public class CourseService {
         }
         return lectureResponseDTOS;
     }
+
+
+    public Course saveCourse(CourseRequestDTO courseRequestDTO) {
+        Course course = new Course();
+        //adding properties for ignoring while update the course
+        String ignoreProps[] = new String[]{"viewCount","uploadDate","enrolledStudents","rating"};
+        if(null != courseRequestDTO.getId()) {
+            course = courseRepository.findById(courseRequestDTO.getId()).orElse(new Course());
+        } else {
+            ignoreProps = null;
+        }
+        //seeting course category
+        CourseCategory courseCategory = new CourseCategory();
+        courseCategory.setId(courseRequestDTO.getCourseCategoryId());
+        course.setCourseCategory(courseCategory);
+        BeanUtils.copyProperties(courseRequestDTO, course, ignoreProps);
+        course.setCourseStatus(CourseStatus.Draft);
+        course.setIsDeleted(false);
+        //getting current login user
+        User user = userDTS.getCurrentUser();
+        if (null == user)
+            user = customUserDetailsService.getUserByUsername("Stoody");
+        if (null != user)
+            course.setAuthor(user);
+        courseRepository.save(course);
+        //save course sections
+        saveSections(courseRequestDTO.getSections(), course);
+        return course;
+    }
+
+    public void saveSections(List<CourseSectionRequestDTO> courseSectionRequestDTOS, Course course) {
+        if (CollectionUtils.isEmpty(courseSectionRequestDTOS)) return;
+        courseSectionRequestDTOS.stream().forEach(sectionRequestDTO -> {
+            CourseSection courseSection = new CourseSection();
+            BeanUtils.copyProperties(sectionRequestDTO, courseSection);
+            courseSection.setCourse(course);
+            courseSectionRepository.save(courseSection);
+            //saving course lectures
+            saveLectures(sectionRequestDTO.getLectures(), courseSection);
+        });
+    }
+
+    public void saveLectures(List<CourseLectureRequestDTO> courseLectureRequestDTOS, CourseSection courseSection) {
+        if (CollectionUtils.isEmpty(courseLectureRequestDTOS)) return;
+        courseLectureRequestDTOS.stream().forEach(lectureRequestDTO -> {
+            CourseLecture courseLecture = new CourseLecture();
+            BeanUtils.copyProperties(lectureRequestDTO, courseLecture);
+            courseLecture.setCourseSection(courseSection);
+            courseLectureRepository.save(courseLecture);
+        });
+    }
+
 }

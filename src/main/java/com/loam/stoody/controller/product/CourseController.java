@@ -5,7 +5,6 @@ import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.global.constants.IndoorResponse;
-import com.loam.stoody.model.product.course.Course;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.product.CategoryService;
 import com.loam.stoody.service.product.CourseService;
@@ -96,17 +95,16 @@ public class CourseController {
         return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.findLecturesBySectionId(sectionId));
     }
 
-    @PostMapping("/save/entity")
-    @ResponseBody
-    public OutdoorResponse<?> save(@RequestBody Course course) {
-        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
-    }
+//    @PostMapping("/save/entity")
+//    @ResponseBody
+//    public OutdoorResponse<?> save(@RequestBody Course course) {
+//        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
+//    }
 
     @PostMapping("/save")
     @ResponseBody
     public OutdoorResponse<?> saveCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
-        Course course = CourseRequestDTO.dtoToCourseModel(courseRequestDTO);
-        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(course));
+        return new OutdoorResponse(IndoorResponse.SUCCESS, courseService.save(courseRequestDTO));
     }
 
     @PostMapping("/add-comment")

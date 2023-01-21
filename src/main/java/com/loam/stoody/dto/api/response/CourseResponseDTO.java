@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 public class CourseResponseDTO {
-    private Long courseId;
+    private Long id;
     private String congratulationsMessage;
     private String contextTags;
     private Integer courseCategoryId;
@@ -44,14 +44,6 @@ public class CourseResponseDTO {
 
     public CourseResponseDTO(Course course, boolean courseWithDetails) {
         BeanUtils.copyProperties(course, this);
-        if(courseWithDetails) {
-            if (!CollectionUtils.isEmpty(course.getSections())) {
-                this.setSections(course.getSections().stream().map(courseSection -> {
-                    CourseSectionResponseDTO courseSectionResponseDTO = new CourseSectionResponseDTO(courseSection);
-                    return courseSectionResponseDTO;
-                }).collect(Collectors.toList()));
-            }
-        }
         if (!ObjectUtils.isEmpty(course.getCourseCategory()))
             this.courseCategoryId = course.getCourseCategory().getId();
     }
