@@ -55,8 +55,7 @@ public class LoginController {
     @PostMapping(PRL.apiLoginPrefixURL+PRL.signInURL+PRL.apiVerifySuffixURL)
     @ResponseBody
     public  OutdoorResponse<?> validateOTP(@RequestParam(name = "token") String token,
-                                           @RequestParam(name = "username") String username
-                                           ,HttpServletRequest request) {
+                                           @RequestParam(name = "username") String username) {
         return loginServiceProxy.verifyOTP(token, username);
     }
 

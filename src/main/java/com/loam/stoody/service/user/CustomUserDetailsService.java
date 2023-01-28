@@ -38,6 +38,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
+    // -> Services
+    private final UserRoleService userRoleService;
     // -> Repositories
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -166,6 +169,42 @@ public class CustomUserDetailsService implements UserDetailsService {
         return otpRequestedTimeInMillis + OTP_VALID_DURATION >= currentTimeInMillis;
     }
 
+    // -> Roles
+    public boolean hasRole(String username, String role){
+        try{
+            User user = getUserByUsername(username);
+            if(!role.contains("ROLE_"))
+                role = "ROLE_"+role;
+
+            String finalRole = role;
+            return user.getRoles().stream().anyMatch(e->e.getName().equals(finalRole));
+
+        }catch(UsernameNotFoundException ignore){}
+        return false;
+    }
+
+    public boolean addRole(String username, String role){
+        if(hasRole(username,role))
+            return false;
+
+        if(!role.contains("ROLE_"))
+            role = "ROLE_"+role;
+
+        String finalRole = role;
+        if(roleRepository.findAll().stream().noneMatch(e->e.getName().equals(finalRole)))
+            return false;
+
+        try{
+            User user = getUserByUsername(username);
+            user.getRoles().add(roleRepository.findAll().stream().filter(e->e.getName().equals(finalRole)).toList().get(0));
+            saveUser(user);
+            return true;
+        }catch(UsernameNotFoundException ignore){}
+
+        return false;
+    }
+
+    // -> Followers
     public List<User> getUserFollowers(User user) {
         return userFollowersRepository.findAll().stream()
                 .filter(e -> e.getTo().getUsername().equals(user.getUsername()))
@@ -249,7 +288,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         return true;
     }
 
-    // UserStatistics
+    // -> User Security
+    public boolean isPhoneNumberInUse(String phoneNumber) {
+        return userRepository.findAll().stream().anyMatch(e-> e.getPhoneNumber() != null && e.getPhoneNumber().equals(phoneNumber));
+    }
+
+    public boolean isEmailInUse(String email) {
+        return userRepository.findAll().stream().anyMatch(e-> e.getEmail() != null && e.getEmail().equals(email));
+    }
+
+    // -> User Statistics
     public void saveUserStatistics(UserStatistics userStatistics) {
         userStatisticsRepository.save(userStatistics);
     }
@@ -263,15 +311,21 @@ public class CustomUserDetailsService implements UserDetailsService {
         return userStatistics.get(0);
     }
 
+    public String getUserRoleBadgeName(String username){
+        return userRoleService.getUserMostPrioritizedRole(getUserByUsername(username)).toString().replace("ROLE_","");
+    }
+
     // -> User Notifications
     public void saveUserNotifications(UserNotifications userNotifications){
         userNotificationSettingsRepository.save(userNotifications);
     }
 
     public UserNotifications getUserNotifications(User user) {
-        List<UserNotifications> userNotifications = userNotificationSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
-        if(userNotifications.isEmpty())
-            return new UserNotifications();
+        if(userNotificationSettingsRepository.findAll().stream().noneMatch(e->e.getUser().getUsername().equals(user.getUsername()))) {
+            UserNotifications userNotifications = new UserNotifications(null,user,true,true,true,true,true,true,false,true,false,true,false,false);
+            saveUserNotifications(userNotifications);
+        }
+        List<UserNotifications> userNotifications = userNotificationSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).toList();
         return userNotifications.get(0);
     }
 
@@ -281,9 +335,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public UserPrivacy getUserPrivacy(User user){
-        List<UserPrivacy> userPrivacies = userPrivacySettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
-        if(userPrivacies.isEmpty())
-            return new UserPrivacy();
+        // If it does not exist, create one for the user.
+        if(userPrivacySettingsRepository.findAll().stream().noneMatch(e->e.getUser().getUsername().equals(user.getUsername()))) {
+            UserPrivacy userPrivacy = new UserPrivacy(null,user,true,false,true,true,true);
+            saveUserPrivacy(userPrivacy);
+        }
+        List<UserPrivacy> userPrivacies = userPrivacySettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).toList();
         return userPrivacies.get(0);
     }
 
@@ -292,10 +349,16 @@ public class CustomUserDetailsService implements UserDetailsService {
         userProfileSettingsRepository.save(userProfile);
     }
 
+    // TODO: Create this logic for all of separated user models
     public UserProfile getUserProfile(User user) {
-        List<UserProfile> userProfiles = userProfileSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
-        if(userProfiles.isEmpty())
-            return new UserProfile(null,user,null,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY, UserStatus.Online);
+        // If it does not exist, create one for the user.
+        if(userProfileSettingsRepository.findAll().stream().noneMatch(e->e.getUser().getUsername().equals(user.getUsername()))) {
+            UserProfile userProfile = new UserProfile(null,user,null,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY, UserStatus.Online);
+            saveUserProfile(userProfile);
+        }
+
+        List<UserProfile> userProfiles = userProfileSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).toList();
+
         return userProfiles.get(0);
     }
 
@@ -305,10 +368,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public UserSocialProfiles getUserSocialProfiles(User user) {
-        List<UserSocialProfiles> userSocialProfiles = userSocialProfilesSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
-        if(userSocialProfiles.isEmpty()) {
-            return new UserSocialProfiles(null,user, Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY);
+        // If it does not exist, create one for the user.
+        if(userSocialProfilesSettingsRepository.findAll().stream().noneMatch(e->e.getUser().getUsername().equals(user.getUsername()))) {
+            UserSocialProfiles userSocialProfiles = new UserSocialProfiles(null,user,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY,Strings.EMPTY);
+            saveUserSocialProfiles(userSocialProfiles);
         }
+
+        List<UserSocialProfiles> userSocialProfiles = userSocialProfilesSettingsRepository.findAll().stream().filter(e -> e.getUser().getUsername().equals(user.getUsername())).toList();
+
         return userSocialProfiles.get(0);
     }
 }

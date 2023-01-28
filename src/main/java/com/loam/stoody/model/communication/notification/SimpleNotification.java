@@ -1,5 +1,6 @@
 package com.loam.stoody.model.communication.notification;
 
+import com.loam.stoody.enums.SimpleNotificationBadge;
 import com.loam.stoody.model.ParentModel;
 import com.loam.stoody.model.user.User;
 import jakarta.persistence.*;
@@ -28,10 +29,9 @@ public class SimpleNotification extends ParentModel {
     @JoinColumn(name="receiver_fk")
     private User receiver;
 
-    private String title;
     private String content;
-    private Boolean read = false;
     private SimpleNotificationBadge badge = SimpleNotificationBadge.SNB_INFO;
+    private boolean read = false;
 
     @Override
     public boolean equals(Object o) {

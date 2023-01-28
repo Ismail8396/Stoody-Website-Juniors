@@ -1,6 +1,7 @@
-package com.loam.stoody.controller.rest_controllers;
+package com.loam.stoody.controller.development;
 
 import com.loam.stoody.dto.api.response.OutdoorResponse;
+import com.loam.stoody.global.annotations.UnderDevelopment;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.utils.aws.S3BucketDetails;
@@ -48,6 +49,17 @@ public class FileUploadAPI {
         try{
             return new OutdoorResponse<>(IndoorResponse.SUCCESS,
                     s3Service.putObject(S3BucketDetails.S3BucketNameStoodyStandardImages, multipartFile));
+        }catch (Exception ignore){}
+        return new OutdoorResponse<>(IndoorResponse.FAIL, "FAILED");
+    }
+
+    @PostMapping(PRL.apiPrefix+"/upload/put/large")
+    // TODO: Configure CORS!
+    @CrossOrigin(origins = "http://localhost:3000")
+    public OutdoorResponse<?> putCourseFilesToBucket(@RequestParam("file") MultipartFile multipartFile){
+        try{
+            return new OutdoorResponse<>(IndoorResponse.SUCCESS,
+                    s3Service.putObject(S3BucketDetails.S3BucketNameCourseContents, multipartFile));
         }catch (Exception ignore){}
         return new OutdoorResponse<>(IndoorResponse.FAIL, "FAILED");
     }

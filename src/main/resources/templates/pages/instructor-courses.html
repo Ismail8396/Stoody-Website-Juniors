@@ -23,9 +23,6 @@
 <link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
 <link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
-
-
-
 <!-- Theme CSS -->
 <!-- build:css ../assets/css/theme.min.css -->
 <link rel="stylesheet" href="../../static/assets/css/theme.css">
@@ -40,223 +37,36 @@
     <!-- Page content -->
     <nav class="navbar navbar-expand-lg navbar-default" id="standard_navbar_code_a">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="../index.html">
-            <img th:src="@{/assets/images/brand/logo/logo.png}" th:href="@{/}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+        <a class="navbar-brand" th:href="@{/}" href="../index.html">
+            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
+
+        <!-- Mobile Notifications-->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
-            <li class="dropdown stopevent">
-                <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#" role="button" data-bs-toggle="dropdown">
+            <li class="dropdown d-inline-block stopevent">
+                <a class="btn btn-light btn-icon rounded-circle text-muted" href="#" role="button" id="dropdownNotificationSecondMobile" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fe fe-bell"> </i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end shadow">
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="dropdownNotificationSecond">
                     <div>
                         <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
                             <span class="h5 mb-0">Notifications</span>
-                            <a href="# " class="text-muted"><span class="align-middle"><i
-										class="fe fe-settings me-1"></i></span></a>
+                            <a href="#" th:href="@{/user/dashboard/standard/profile/notifications}" class="text-muted"><span class="align-middle"><i
+                                    class="fe fe-settings me-1"></i></span></a>
                         </div>
-                        <ul class="list-group list-group-flush " style="height: 300px;" data-simplebar>
-                            <li class="list-group-item bg-light">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Kristin Watson:</h5>
-                                                    <p class="mb-3 text-body">
-                                                        Krisitn Watsan like your comment on course Javascript Introduction!
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-thumbs-up text-success me-1"></span>2 hours ago,</span>
-                                                    <span class="ms-1">2:19 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as read">
-                                        </a>
-                                        <div>
-                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove">
-                                                <i class="fe fe-x text-muted"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
-                                                    <p class="mb-3 text-body">
-                                                        Just launched a new Courses React for Beginner.
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-thumbs-up text-success me-1"></span>Oct 9,
-                                                    </span>
-                                                    <span class="ms-1">1:20 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Jenny Wilson</h5>
-                                                    <p class="mb-3 text-body">
-                                                        Krisitn Watsan like your comment on course Javascript Introduction!
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-thumbs-up text-info me-1"></span>Oct 9,
-                                                    </span>
-                                                    <span class="ms-1">1:56 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-4.jpg}" src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Sina Ray</h5>
-                                                    <p class="mb-3 text-body">
-                                                        You earn new certificate for complete the Javascript Beginner course.
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-award text-warning me-1"></span>Oct 9,
-                                                    </span>
-                                                    <span class="ms-1">1:56 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
+
+                        <ul id="notificationBoxListGroupMobile" class="list-group list-group-flush" style="overflow:auto; max-height: 300px;">
                         </ul>
-                        <div class="border-top px-3 pt-3 pb-0">
-                            <a href="../pages/notification-history.html" class="text-link fw-semi-bold">See all
-								Notifications</a>
+
+                        <div id="notificationBoxSeeAllButtonMobile" class="border-top px-3 pt-3 pb-0">
+                            <a href="" th:href="@{/user/dashboard/standard/profile/notifications/all}" class="text-link fw-semi-bold">See all Notifications</a>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li class="dropdown ms-2">
-                <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserStatusCSSClass(getUserDTS.getCurrentUser().getUsername())}">
-                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg"
-                            id="img-uploaded" alt="avatar" class="rounded-circle">
-
-                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
-                            class="rounded-circle">O</div>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end shadow">
-                    <div class="dropdown-item">
-                        <div class="d-flex">
-                            <!-- Avatar -->
-                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserStatusCSSClass(getUserDTS.getCurrentUser().getUsername())}">
-                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg"
-                                    id="img-uploaded" alt="avatar" class="rounded-circle">
-
-                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
-                                    class="rounded-circle">O</div>
-                            </div>
-
-                            <div class="ms-3 lh-1">
-                                <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
-                                <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <ul class="list-unstyled">
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
-                                <i class="fe fe-circle me-2"></i>Status
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_online">
-                                        <span class="badge-dot bg-success me-2"></span>Online
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_offline">
-                                        <span class="badge-dot bg-secondary me-2"></span>Offline
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_away">
-                                        <span class="badge-dot bg-warning me-2"></span>Away
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_busy">
-                                        <span class="badge-dot bg-danger me-2"></span>Busy
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
-                                <i class="fe fe-user me-2"></i>Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
-                                <i class="fe fe-star me-2"></i>Subscription
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
-                                <i class="fe fe-settings me-2"></i>Security
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="dropdown-divider"></div>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
-                                <i class="fe fe-power me-2"></i>Sign Out
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </li>
         </ul>
+
+
         <!-- Button -->
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="icon-bar top-bar mt-0"></span>
@@ -991,133 +801,22 @@
                 </a>
                 <ul class="navbar-nav navbar-right-wrap ms-2 d-none d-lg-block">
                     <li class="dropdown d-inline-block stopevent">
-                        <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-light btn-icon rounded-circle text-muted" href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fe fe-bell"> </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="dropdownNotificationSecond">
                             <div>
                                 <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
                                     <span class="h5 mb-0">Notifications</span>
-                                    <a href="# " class="text-muted"><span class="align-middle"><i
+                                    <a href="#" th:href="@{/user/dashboard/standard/profile/notifications}" class="text-muted"><span class="align-middle"><i
 											class="fe fe-settings me-1"></i></span></a>
                                 </div>
-                                <ul class="list-group list-group-flush  " style="height: 300px;" data-simplebar>
-                                    <li class="list-group-item bg-light">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Kristin Watson:</h5>
-                                                            <p class="mb-3 text-body">
-                                                                Krisitn Watsan like your comment on course Javascript Introduction!
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span
-																	class="fe fe-thumbs-up text-success me-1"></span>2 hours ago,</span>
-                                                            <span class="ms-1">2:19 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
 
-                                                <a href="#" class="badge-dot bg-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as read">
-                                                </a>
-                                                <div>
-                                                    <a href="#" class="bg-transparent" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove">
-                                                        <i class="fe fe-x text-muted"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
-                                                            <p class="mb-3 text-body">
-                                                                Just launched a new Courses React for Beginner.
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span
-																	class="fe fe-thumbs-up text-success me-1"></span>Oct 9,
-                                                            </span>
-                                                            <span class="ms-1">1:20 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
-                                                <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Jenny Wilson</h5>
-                                                            <p class="mb-3 text-body">
-                                                                Krisitn Watsan like your comment on course Javascript Introduction!
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span
-																	class="fe fe-thumbs-up text-info me-1"></span>Oct 9,
-                                                            </span>
-                                                            <span class="ms-1">1:56 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
-                                                <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-4.jpg}" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Sina Ray</h5>
-                                                            <p class="mb-3 text-body">
-                                                                You earn new certificate for complete the Javascript Beginner course.
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span class="fe fe-award text-warning me-1"></span>Oct 9,
-                                                            </span>
-                                                            <span class="ms-1">1:56 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
-                                                <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul id="notificationBoxListGroup" class="list-group list-group-flush" style="overflow:auto; max-height: 300px;">
                                 </ul>
-                                <div class="border-top px-3 pt-3 pb-0">
-                                    <a href="../pages/notification-history.html" class="text-link fw-semi-bold">See
-									all Notifications</a>
+
+                                <div id="notificationBoxSeeAllButton" class="border-top px-3 pt-3 pb-0">
+                                    <a href="" th:href="@{/user/dashboard/standard/profile/notifications/all}" class="text-link fw-semi-bold">See all Notifications</a>
                                 </div>
                             </div>
                         </div>
@@ -1249,7 +948,7 @@
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
                                     <h3 class="mb-0 fw-bold me-2" th:text="${getUserDTS.getUserDisplayNameByUsername(getUserDTS.getCurrentUser().getUsername())}">Orkhan Aliyev</h3>
-                                    <span class="badge bg-primary-soft me-2" th:text="${getUserDTS.getUserStatistics(getUserDTS.getCurrentUser().getUsername()).getRoleDisplayLabel()}">Instructor</span>
+                                    <span class="badge bg-primary-soft me-2" th:text="${getUserDTS.getUserRoleBadgeName(getUserDTS.getCurrentUser().getUsername())}">Instructor</span>
                                     <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" th:title="${getUserDTS.getUserStatistics(getUserDTS.getCurrentUser().getUsername()).getUserLevelString()}" title="Beginner">
 
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1261,7 +960,7 @@
                                     </a>
                                 </div>
                                 <a th:href="@{/users/{username}(username = ${getUserDTS.getCurrentUser().getUsername()})}" href="../pages/instructor-profile.html" class=" mb-0" th:text="'@'+${getUserDTS.getCurrentUser().getUsername()}">@orkhanaliyevm</a>
-                                <span class="fs-6" th:if="${getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills != null}" th:text="${#strings.length(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills) > 100
+                                <span class="fs-6" th:if="${getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills)}" th:text="${#strings.length(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills) > 100
                                  ? #strings.substring(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills,0,100)+'...'
                                  : getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills}">Front-end Developer, Designer, Teacher</span>
                             </div>
@@ -1269,11 +968,16 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="fs-4 mt-4 mt-lg-0 pb-2 pb-lg-0 d-flex justify-content-end">
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL()}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL()}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL()}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL()}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL()}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL()}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL()}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL()}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL()}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL()}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
                         </div>
                     </div>
                 </div>
@@ -1299,7 +1003,7 @@
         <!-- Collapse navbar -->
         <div class="collapse navbar-collapse" id="sidenav">
             <div class="navbar-nav flex-column">
-                <div id="user_profile_navbar_teacher_special_div" th:if="${#authorization.expression('hasRole(''INSTRUCTOR'')')}">
+                <div id="user_profile_navbar_teacher_special_div" th:if="${getUserDTS.hasRole(getUserDTS.getCurrentUser().getUsername(),'ROLE_INSTRUCTOR')}">
                     <!-- Instructor navbar items-->
 
                     <!-- Navbar header -->
@@ -1312,7 +1016,7 @@
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
-                            <a class="nav-link" id="user_profile_navbar_button_2" th:href="@{/user/dashboard/instructor/courses}" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
+                            <a class="nav-link" id="user_profile_navbar_button_2" th:href="@{/user/dashboard/instructor/courses/search}" href="instructor-courses.html"><i class="fe fe-book nav-icon"></i>My Courses</a>
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
@@ -1414,10 +1118,10 @@
                         Profile</a>
                     </li>
                     <!-- Nav item -->
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="user_profile_navbar_button_21" th:href="@{/user/dashboard/standard/profile/accounts}" href="linked-accounts.html"><i
                             class="fe fe-user nav-icon"></i>Linked Accounts</a>
-                    </li>
+                    </li> -->
                     <!-- Nav item -->
                     <li class="nav-item">
                         <a class="nav-link" id="user_profile_navbar_button_22" th:href="@{/logout}" href="../index.html"><i
@@ -1439,30 +1143,22 @@
 								insight.</span>
 
                                 <div>
-                                    <a href="add-course.html" class="btn btn-primary mt-2">Create New
+                                    <a th:href="@{/stoody/api/v1/course/create/new}" href="add-course.html" class="btn btn-primary mt-2">Create New
 										Course</a>
                                 </div>
                             </div>
                             <!-- Card body -->
                             <div class="card-body">
                                 <!-- Form -->
-                                <form class="row">
+                                <form th:object="${searchFilterDTO}" th:action="@{/user/dashboard/instructor/courses/search}" class="row">
                                     <div class="col-lg-9 col-md-7 col-12 mb-lg-0 mb-2">
-                                        <input type="search" class="form-control" placeholder="Search Your Courses">
-                                    </div>
-                                    <div class="col-lg-3 col-md-5 col-12">
-                                        <select class="selectpicker" data-width="100%">
-										<option value="">Date Created</option>
-										<option value="Newest">Newest</option>
-										<option value="High Rated">High Rated</option>
-										<option value="Law Rated">Law Rated</option>
-										<option value="High Earned">High Earned</option>
-									</select>
+                                        <input th:field="*{searchKey}" type="search" class="form-control" placeholder="Search Your Courses">
                                     </div>
                                 </form>
                             </div>
+
                             <!-- Table -->
-                            <div class="table-responsive overflow-y-hidden">
+                            <div class="table-responsive overflow-y-hidden" th:unless="${#lists.isEmpty(createdCourses)}">
                                 <table class="table mb-0 text-nowrap table-hover table-centered">
                                     <thead class="table-light">
                                         <tr>
@@ -1474,303 +1170,103 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr th:each="createdCourse : ${createdCourses}">
                                             <td>
                                                 <div class="d-lg-flex align-items-center">
                                                     <div>
                                                         <a href="#">
-                                                            <img src="../../static/assets/images/course/course-wordpress.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                            <img style="width:75px;" th:unless="${createdCourse.getThumbnailURL() == null or #strings.isEmpty(createdCourse.getThumbnailURL())}" th:src="${createdCourse.getThumbnailURL()}" src="../../../static/static/assets/images/course/course-wordpress.jpg" alt="" class="rounded img-4by3-lg">
+                                                            <i th:if="${createdCourse.getThumbnailURL() == null or #strings.isEmpty(createdCourse.getThumbnailURL())}" class="bi-card-image text-muted fs-1"></i>
+
+                                                        </a>
                                                     </div>
                                                     <div class="ms-lg-3 mt-2 mt-lg-0">
                                                         <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit">
+                                                            <a href="#" class="text-inherit" th:text="${createdCourse.getTitle()}">
 															Create a Website with WordPress
-														</a>
+														    </a>
                                                         </h4>
                                                         <ul class="list-inline fs-6 mb-0">
                                                             <li class="list-inline-item">
-                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h 30m
+                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>
+                                                                <span th:text="${courseService.getCourseCreationDateString(createdCourse.getId())}">2022-01-28 06:42</span>
                                                             </li>
                                                             <li class="list-inline-item">
-                                                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-																<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-																<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-															</svg>Beginner
+                                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect x="3" y="8" width="2" height="6" rx="1" th:attr="fill=${createdCourse.getLevel().ordinal() > 0}? '#754FFE' : '#DBD8E9'" fill="#754FFE"></rect>
+                                                                    <rect x="7" y="5" width="2" height="9" rx="1" th:attr="fill=${createdCourse.getLevel().ordinal() > 1}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                                                                    <rect x="11" y="2" width="2" height="12" rx="1" th:attr="fill=${createdCourse.getLevel().ordinal() > 2}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                                                                </svg>
+                                                                <span th:text="${createdCourse.getLevel()}">Beginner</span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>11,200</td>
+                                            <td th:text="${createdCourse.getEnrolledStudents() == null ? 0 : createdCourse.getEnrolledStudents()}">11,200</td>
                                             <td>
-                                                <span class="text-warning">4.5<i class="mdi mdi-star"></i></span>(3,250)
+                                                <span class="text-warning">
+                                                    <span th:text="${createdCourse.getRating() == null ? 0 : createdCourse.getRating()}">4.5</span>
+                                                <i class="mdi mdi-star"></i>
+                                                </span>
+                                                <span th:text="'('+${createdCourse.getRating() == null ? 0 : createdCourse.getRating()} +')'">(3,250)</span>
                                             </td>
                                             <td>
-                                                <span class="badge bg-success">Live</span>
+                                                <th:block th:switch="${createdCourse.getCourseStatus().toString()}">
+                                                    <div th:case="'Draft'">
+                                                        <span class="badge bg-warning" th:text="${createdCourse.getCourseStatus()}">Draft</span>
+                                                    </div>
+                                                    <div th:case="'Pending'">
+                                                        <span class="badge bg-info" th:text="${createdCourse.getCourseStatus()}">Pending</span>
+                                                    </div>
+                                                    <div th:case="'Live'">
+                                                        <span class="badge bg-success" th:text="${createdCourse.getCourseStatus()}">Live</span>
+                                                    </div>
+                                                    <div th:case="'Deleted'">
+                                                        <span class="badge bg-danger" th:text="${createdCourse.getCourseStatus()}">Deleted</span>
+                                                    </div>
+                                                    <div th:case="*">
+                                                        <span class="badge bg-warning" th:text="${createdCourse.getCourseStatus()}">Draft</span>
+                                                    </div>
+                                                </th:block>
                                             </td>
                                             <td>
-                                                <span class="dropdown dropstart">
+                                                <th:block th:switch="${createdCourse.getCourseStatus().toString()}">
+                                                    <div th:case="'Draft'">
+                                                        <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle " href="#" role="button" id="courseDropdown"
 													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
 													<i class="fe fe-more-vertical"></i>
 												</a>
 												<span class="dropdown-menu" aria-labelledby="courseDropdown">
 													<span class="dropdown-header">Setting </span>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                </span>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-lg-flex align-items-center">
-                                                    <div>
-                                                        <a href="#">
-                                                            <img src="../../static/assets/images/course/course-node.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                        <a class="dropdown-item" th:href="'/stoody/api/v1/course/stoody/course/'+${createdCourse.getId()}+'/editor'" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/tag/deleted/'+${createdCourse.getId()}" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                        </span>
+                                                        </span>
                                                     </div>
-                                                    <div class="ms-lg-3 mt-2 mt-lg-0">
-                                                        <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit">
-															Learn Node.js - Tutorials Courses
-														</a>
-                                                        </h4>
-                                                        <ul class="list-inline fs-6 mb-0">
-                                                            <li class="list-inline-item">
-                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 40m
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-																<rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE"></rect>
-																<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-															</svg> Intermediate
-                                                            </li>
-                                                        </ul>
-                                                        <div class="progress mt-2" style="height: 3px">
-                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
+                                                    <div th:case="*">
+                                                        <span>No action</span>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>0</td>
-                                            <td>
-                                                <span class="text-warning">4.5<i class="mdi mdi-star"></i></span>(5,300)
-                                            </td>
-                                            <td><span class="badge bg-info">Darft</span></td>
-                                            <td>
-                                                <span class="dropdown dropstart">
-												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="courseDropdown1"
-													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
-													<i class="fe fe-more-vertical"></i>
-												</a>
-												<span class="dropdown-menu" aria-labelledby="courseDropdown1">
-													<span class="dropdown-header">Setting </span>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                </span>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-lg-flex align-items-center">
-                                                    <div>
-                                                        <a href="#">
-                                                            <img src="../../static/assets/images/course/course-laravel.jpg" alt="" class="rounded img-4by3-lg"></a>
-                                                    </div>
-                                                    <div class="ms-lg-3 mt-2 mt-lg-0">
-                                                        <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit">
-															The Ultimate Advanced Laravel..
-														</a>
-                                                        </h4>
-                                                        <ul class="list-inline fs-6 mb-0">
-                                                            <li class="list-inline-item">
-                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 40m
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-																<rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE"></rect>
-																<rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE"></rect>
-															</svg> Advance
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>3200</td>
-                                            <td>
-                                                <span class="text-warning">4.5<i class="mdi mdi-star"></i></span>(6,380)
-                                            </td>
-                                            <td>
-                                                <span class="badge bg-success">Live</span>
-                                            </td>
-                                            <td>
-                                                <span class="dropdown dropstart">
-												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="courseDropdown2"
-													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
-													<i class="fe fe-more-vertical"></i>
-												</a>
-
-												<span class="dropdown-menu" aria-labelledby="courseDropdown2">
-													<span class="dropdown-header">Setting </span>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                </span>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-lg-flex align-items-center">
-                                                    <div>
-                                                        <a href="#">
-                                                            <img src="../../static/assets/images/course/course-gatsby.jpg" alt="" class="rounded img-4by3-lg"></a>
-                                                    </div>
-                                                    <div class="ms-lg-3 mt-2 mt-lg-0">
-                                                        <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit">
-															Gatsby Tutorial - Fast Website...
-														</a>
-                                                        </h4>
-                                                        <ul class="list-inline fs-6 mb-0">
-                                                            <li class="list-inline-item">
-                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>4h 10m
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-																<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-																<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-															</svg>Beginner
-                                                            </li>
-                                                        </ul>
-                                                        <div class="progress mt-2" style="height: 3px">
-                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>0</td>
-                                            <td>
-                                                <span class="text-warning">4.5<i class="mdi mdi-star"></i></span>(5,400)
-                                            </td>
-                                            <td><span class="badge bg-info">Darft</span></td>
-                                            <td>
-                                                <span class="dropdown dropstart">
-												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="courseDropdown3"
-													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
-													<i class="fe fe-more-vertical"></i>
-												</a>
-												<span class="dropdown-menu" aria-labelledby="courseDropdown3">
-													<span class="dropdown-header">Setting </span>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                </span>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-lg-flex align-items-center">
-                                                    <div>
-                                                        <a href="#"><img src="../../static/assets/images/course/course-sass.jpg" alt="" class="rounded img-4by3-lg"></a>
-                                                    </div>
-                                                    <div class="ms-lg-3 mt-2 mt-lg-0">
-                                                        <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit">
-															Learn SCSS-Lang Courses - Basic
-														</a>
-                                                        </h4>
-                                                        <ul class="list-inline fs-6 mb-0">
-                                                            <li class="list-inline-item">
-                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h 59m
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-																<rect x="7" y="5" width="2" height="9" rx="1" fill="#754FFE"></rect>
-																<rect x="11" y="2" width="2" height="12" rx="1" fill="#754FFE"></rect>
-															</svg> Advance
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>0</td>
-                                            <td>
-                                                <span class="text-warning">4.5<i class="mdi mdi-star"></i></span>(7,800)
-                                            </td>
-                                            <td>
-                                                <span class="badge bg-warning">Pending</span>
-                                            </td>
-                                            <td>
-                                                <span class="dropdown dropstart">
-												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="courseDropdown4"
-													data-bs-toggle="dropdown"  data-bs-offset="-20,20" aria-expanded="false">
-													<i class="fe fe-more-vertical"></i>
-												</a>
-												<span class="dropdown-menu" aria-labelledby="courseDropdown4">
-													<span class="dropdown-header">Setting </span>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                </span>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-lg-flex align-items-center">
-                                                    <div>
-                                                        <a href="#"><img src="../../static/assets/images/course/course-gatsby.jpg" alt="" class="rounded img-4by3-lg"></a>
-                                                    </div>
-                                                    <div class="ms-lg-3 mt-2 mt-lg-0">
-                                                        <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit">
-															Gatsby Tutorial - Fast Website
-														</a>
-                                                        </h4>
-                                                        <ul class="list-inline fs-6 mb-0">
-                                                            <li class="list-inline-item">
-                                                                <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>4h 10m
-                                                            </li>
-                                                            <li class="list-inline-item">
-                                                                <svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE"></rect>
-																<rect x="7" y="5" width="2" height="9" rx="1" fill="#DBD8E9"></rect>
-																<rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
-															</svg>Beginner
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>23</td>
-                                            <td>
-                                                <span class="text-warning">4.5<i class="mdi mdi-star"></i></span>(9,200)
-                                            </td>
-                                            <td>
-                                                <span class="badge bg-danger">Deleted</span>
-                                            </td>
-                                            <td>
-                                                <span class="dropdown dropstart">
-												<a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" id="courseDropdown5" data-bs-toggle="dropdown"
-													 data-bs-offset="-20,20" aria-expanded="false">
-													<i class="fe fe-more-vertical"></i>
-												</a>
-												<span class="dropdown-menu" aria-labelledby="courseDropdown5">
-													<span class="dropdown-header">Setting </span>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                </span>
-                                                </span>
+                                                </th:block>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <!--No item to show-->
+                            <div class="px-4" th:if="${#lists.isEmpty(createdCourses)}">
+                                <div class="alert bg-gray-100 text-dark-warning d-flex justify-content-center">
+                                    <p class="mb-0">
+                                        No item to show
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Card Footer -->
+                            <div class="card-footer">
+
                             </div>
                         </div>
                     </div>
@@ -1800,6 +1296,12 @@
     </div>
 </footer>
     <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Libs JS -->
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
 <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -1815,7 +1317,7 @@
 
 <!--This should be merged with the one above-->
 <script th:src="@{/assets/js/theme.min.js}"></script>
-    <script src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script th:src="@{/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js}" src="../../static/assets/libs/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>

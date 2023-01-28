@@ -70,9 +70,19 @@ public class SecurityConfig {
                         apiRegistrationPrefixURL+"/**", apiLoginPrefixURL+"/**",
                         apiRegistrationPrefixURL+"/*", apiLoginPrefixURL+"/*",
                         PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**",
-                        PRL.verifyPasswordPageURL+"/**","/course/**",
+                        PRL.verifyPasswordPageURL+"/**",
                         PRL.error404URL,
-                        PRL.apiPrefix+"/upload/put/small").permitAll()
+                        PRL.apiPrefix+"/upload/put/small",
+                        "/ws/**",
+
+                        /*Remove Later*/
+                        PRL.apiPrefix+PRL.apiCourseSuffixURL+"/**",
+                        "/user/profile/security/phone/change/request",
+                        "/user/profile/security/phone/verify",
+                        "/user/profile/security/password/change",
+                        "/sendNotificationToAll/**",
+                        "/stoody/api/v1/user/notifications/simple/get/all*",
+                        "/stoody/api/v1/user/notifications/simple/post*").permitAll()
 
                 // Only for authorized users
                 .requestMatchers(PRL.userHomeURL/* PAGES SPECIAL FOR AUTHENTICATED USERS */)

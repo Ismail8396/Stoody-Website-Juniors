@@ -5,5 +5,5 @@ import lombok.Getter;
 
 @Getter
 public enum CourseStatus {
-    Pending,Live,Draft,Deleted
+    Draft,Pending,Live,Deleted
 }

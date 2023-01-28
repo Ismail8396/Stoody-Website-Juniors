@@ -1,6 +1,5 @@
 package com.loam.stoody.components;
 
-import com.loam.stoody.components.UrlLocaleInterceptor;
 import com.loam.stoody.global.annotations.UnderDevelopment;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.util.WebUtils;
 
 // The LocaleResolver helps to identify which locale is being used.
 // Temporarily, we will use CookieLocaleResolver.
@@ -25,6 +23,7 @@ public class WebMVCConfigurer implements WebMvcConfigurer {
     public LocaleResolver localeResolver() {
         return new CookieLocaleResolver();
     }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(urlInterceptor);

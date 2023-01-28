@@ -1,7 +1,5 @@
 package com.loam.stoody.global.annotations;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
+// Methods, fields or any entity tagged with this annotation means it needs improvement.
 public @interface UnderDevelopment {
 }

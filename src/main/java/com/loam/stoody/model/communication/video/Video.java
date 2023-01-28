@@ -23,10 +23,8 @@ public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String title;
-    private String description;
-    private String videoUrl;
     private String thumbnailUrl;
+    private String thumbnailSpriteUrl;
     private String subtitlesURL;
     private Long durationInMinutes;
 

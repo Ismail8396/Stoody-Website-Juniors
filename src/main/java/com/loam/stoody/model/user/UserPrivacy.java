@@ -36,7 +36,6 @@ public class UserPrivacy {
     // Privacy
     private Boolean showProfileOnSearchEngines = true;
     private Boolean showCoursesBought = false;
-    private Boolean showProfilePublic = true;
     private Boolean showCurrentlyLearning = true;
     private Boolean showCompletedCourses = true;
     private Boolean showInterests = true;

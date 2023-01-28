@@ -13,23 +13,23 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository){
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<CourseCategory> getAllCategories(){
+    public List<CourseCategory> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    public void addCategory(CourseCategory category){
+    public void addCategory(CourseCategory category) {
         categoryRepository.save(category);
     }
 
-    public void removeCategoryById(int id){
+    public void removeCategoryById(int id) {
         categoryRepository.deleteById(id);
     }
 
-    public Optional<CourseCategory> getCategoryById(int id){
+    public Optional<CourseCategory> getCategoryById(int id) {
         return categoryRepository.findById(id);
     }
 }

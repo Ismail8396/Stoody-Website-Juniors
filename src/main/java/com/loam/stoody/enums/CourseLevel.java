@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public enum CourseLevel {
-    Beginners, Intermediate, Advance;
+    Beginners, Intermediate, Advance, ZeroToHero;
 }

@@ -13,6 +13,11 @@
 
 package com.loam.stoody;
 
+import com.loam.stoody.global.annotations.UnderDevelopment;
+import com.loam.stoody.global.constants.ProjectConfigurationVariables;
+import com.loam.stoody.global.logger.ConsoleColors;
+import com.loam.stoody.global.logger.StoodyLogger;
+import com.loam.stoody.global.managers.ClassScanner;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.UserFollowers;
 import com.loam.stoody.model.user.misc.Role;
@@ -27,6 +32,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.*")
@@ -44,6 +53,15 @@ public class Stoody {
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
+        // Only for development
+        if(ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)) {
+            Class<?>[] classes = ClassScanner
+                    .findAllAnnotatedClassesInPackage("com.loam.stoody", UnderDevelopment.class);
+            StringBuilder classesList = new StringBuilder();
+            Arrays.stream(classes).forEach(e -> classesList.append("Package------>").append(e.getPackage()).append(":\nClass name------>").append(e.getSimpleName()).append("\n--------------------------------\n"));
+            StoodyLogger.DebugLog(ConsoleColors.YELLOW, "Found " + classes.length + " @UnderDevelopment annotated entities:\n" + classesList);
+        }
+
         //--------------------------------
         // TODO: REMOVE LATER
         try {
@@ -53,7 +71,11 @@ public class Stoody {
                 roleRepository.save(testRole);
                 Role testRole1 = new Role();
                 testRole1.setName("ROLE_ADMIN");
-                roleRepository.save(testRole);
+                roleRepository.save(testRole1);
+
+                Role testRole2 = new Role();
+                testRole2.setName("ROLE_INSTRUCTOR");
+                roleRepository.save(testRole2);
             }
             System.out.println(roleRepository.findAll());
             //--------------------------------
@@ -62,12 +84,19 @@ public class Stoody {
             user.setEmail("stoody.org@gmail.com");
             user.setUsername("Stoody");
             user.setPassword(bCryptPasswordEncoder.encode("123"));
+
+            user.setRoles(roleRepository.findAll().stream()
+                    .filter(e->e.getName().equals("ROLE_ADMIN")).toList());
+
+            System.out.println("Stoody Roles: "+user.getRoles());
             customUserDetailsService.saveUser(user);
 
             User user2 = customUserDetailsService.getDefaultUser();
             user2.setEmail("orxan.eliyev.orxan@gmail.com");
             user2.setUsername("OrkhanGG");
             user2.setPassword(bCryptPasswordEncoder.encode("123"));
+            user2.setRoles(roleRepository.findAll().stream()
+                    .filter(e->e.getName().equals("ROLE_INSTRUCTOR")).toList());
             customUserDetailsService.saveUser(user2);
 
             UserFollowers userFollowers = new UserFollowers();

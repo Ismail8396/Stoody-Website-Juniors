@@ -38,6 +38,8 @@ public interface PRL {
     String apiRegistrationPrefixURL = apiPrefix + "/registration";
     String apiLoginPrefixURL = apiPrefix + "/user";
     String apiVerifySuffixURL = "/verify";
+    // Course
+    String apiCourseSuffixURL = "/course";
 
     // HTML NAMES ------------------------------------------------------------------------------------------------------
     // Public Pages

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class VerifyPasswordController {
     private final LanguageService languageService;
 
-
     @ModelAttribute("languageServiceLayer")
     public LanguageService getLanguageServiceLayer() {
         return languageService;

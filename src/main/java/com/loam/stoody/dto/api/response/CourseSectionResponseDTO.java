@@ -15,5 +15,4 @@ public class CourseSectionResponseDTO {
     public CourseSectionResponseDTO(CourseSection courseSection) {
         BeanUtils.copyProperties(courseSection, this);
     }
-
 }

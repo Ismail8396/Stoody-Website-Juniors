@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class RegistrationController {
     private final RegistrationService registrationService;
     private final LanguageService languageService;
-    private final UserDTS userDTS;
 
     @ModelAttribute("languageServiceLayer")
     public LanguageService getLanguageServiceLayer() {

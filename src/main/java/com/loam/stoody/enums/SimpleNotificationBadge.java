@@ -1,4 +1,4 @@
-package com.loam.stoody.model.communication.notification;
+package com.loam.stoody.enums;
 
 import com.loam.stoody.global.annotations.UnderDevelopment;
 

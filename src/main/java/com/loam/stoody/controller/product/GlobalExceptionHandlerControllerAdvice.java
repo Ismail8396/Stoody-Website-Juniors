@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartException;
 
 // Move this to a corresponding package
 @ControllerAdvice
+@Deprecated
 public class GlobalExceptionHandlerControllerAdvice {
 
     @ExceptionHandler(MultipartException.class)

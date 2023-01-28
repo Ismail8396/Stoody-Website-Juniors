@@ -20,6 +20,7 @@ import com.loam.stoody.model.user.User;
 import com.loam.stoody.service.i18n.LanguageService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import com.loam.stoody.service.user.UserDTS;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

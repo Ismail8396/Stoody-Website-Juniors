@@ -2,6 +2,7 @@ package com.loam.stoody.service.user;
 
 import com.loam.stoody.dto.api.request.RegistrationRequestDTO;
 import com.loam.stoody.global.annotations.UnderDevelopment;
+import com.loam.stoody.global.constants.MiscConstants;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
@@ -76,16 +77,17 @@ public class RegistrationService {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11, new SecureRandom());
             newRequest.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             // Create Unique Key
-            newRequest.setKey(createUniqueRegisterKey());
+            newRequest.setKey(createUniqueRegisterKeyUrlSuffix());
             // Set createdAt time
             newRequest.setCreatedAt(LocalDateTime.now());
             // Set expiration date
-            newRequest.setExpiresAt(LocalDateTime.now().plusMinutes(1));
+            final LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(MiscConstants.verificationTimeoutMinute);
+            newRequest.setExpiresAt(expirationDate);
             // Save registration request
             pendingRegistrationRequests.save(newRequest);
-
+            // Date time formatter
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
+            // Send the email
             emailSenderService.sendEmail(registrationRequest.getEmail(),
                     "Stoody Account Verification",
                     "Hi! Someone with the username "+registrationRequest.getUsername()+
@@ -99,11 +101,12 @@ public class RegistrationService {
         return response;
     }
 
-    private String createUniqueRegisterKey(){
+    private String createUniqueRegisterKeyUrlSuffix(){
         return UUID.randomUUID().toString().replace("-", "");
     }
 
     // Cleans all expired register requests
+    @UnderDevelopment
     private void cleanExpiredRegisterRequests(){
         List<RegistrationRequest> requestsToDelete = new ArrayList<>();
         for(var i : pendingRegistrationRequests.findAll())

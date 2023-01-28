@@ -18,6 +18,4 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     @Modifying
     @Query(value = "update Course SET isDeleted=true where id =: courseId")
     void deleteCourse(@Param("courseId") Long courseId);
-
-
 }

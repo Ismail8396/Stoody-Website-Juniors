@@ -5,6 +5,8 @@ import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.model.user.User;
+import com.loam.stoody.model.user.UserProfile;
+import com.loam.stoody.model.user.UserSocialProfiles;
 import com.loam.stoody.model.user.misc.UserStatus;
 import com.loam.stoody.repository.user.attributes.UserFollowersRepository;
 import com.loam.stoody.service.user.CustomUserDetailsService;
@@ -19,40 +21,48 @@ public class UserControllerAPI {
     private final CustomUserDetailsService customUserDetailsService;
     private final IAuthenticationFacade authenticationFacade;
 
-    /* User Status */
+    // -> User Status API
     @PostMapping("/user/status/{status}")
     public OutdoorResponse<?> postUpdateUserStatus(@PathVariable("status") String status) {
         User user = null;
         try {
-//            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-//            if (status.equals("setmeonline") && !user.getUserProfile().getUserStatus().equals(UserStatus.Online)) {
-//                user.getUserProfile().setUserStatus(UserStatus.Online);
-//                customUserDetailsService.saveUser(user);
-//            } else if (status.equals("setmeoffline") && !user.getUserProfile().getUserStatus().equals(UserStatus.Offline)) {
-//                user.getUserProfile().setUserStatus(UserStatus.Offline);
-//                customUserDetailsService.saveUser(user);
-//            } else if (status.equals("setmeaway") && !user.getUserProfile().getUserStatus().equals(UserStatus.Away)) {
-//                user.getUserProfile().setUserStatus(UserStatus.Away);
-//                customUserDetailsService.saveUser(user);
-//            } else if (status.equals("setmebusy") && !user.getUserProfile().getUserStatus().equals(UserStatus.Busy)) {
-//                user.getUserProfile().setUserStatus(UserStatus.Busy);
-//                customUserDetailsService.saveUser(user);
-//            } else {
-//                return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, "BAD REQUEST");
-//            }
+            user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
+
+            UserProfile userProfile = customUserDetailsService.getUserProfile(user);
+            if (status.equals("setmeonline") &&
+                    !userProfile.getUserStatus().equals(UserStatus.Online.toString())) {
+                userProfile.setUserStatus(UserStatus.Online);
+            } else if (status.equals("setmeoffline") &&
+                    !userProfile.getUserStatus().equals(UserStatus.Offline.toString())) {
+                userProfile.setUserStatus(UserStatus.Offline);
+            } else if (status.equals("setmeaway") &&
+                    !userProfile.getUserStatus().equals(UserStatus.Away.toString())) {
+                userProfile.setUserStatus(UserStatus.Away);
+            } else if (status.equals("setmebusy") &&
+                    !userProfile.getUserStatus().equals(UserStatus.Busy.toString())) {
+                userProfile.setUserStatus(UserStatus.Busy);
+            } else {
+                throw new RuntimeException();
+            }
+
+            customUserDetailsService.saveUserProfile(userProfile);
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
+        }catch(RuntimeException ignore){
+            return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, "BAD REQUEST");
         }
         return new OutdoorResponse<>(IndoorResponse.SUCCESS, "SUCCESS");
     }
 
+    // -> User Profile API
     @PostMapping(PRL.apiPrefix + "/user/update/picture")
     public OutdoorResponse<?> postUpdatePicture(@RequestParam("pictureURL") String pictureURL) {
         User user = null;
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-//            user.getUserProfile().setProfilePictureURL(pictureURL);
-            customUserDetailsService.saveUser(user);
+            UserProfile userProfile = customUserDetailsService.getUserProfile(customUserDetailsService.getUserByUsername(user.getUsername()));
+            userProfile.setProfilePictureURL(pictureURL);
+            customUserDetailsService.saveUserProfile(userProfile);
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
         }
@@ -64,8 +74,9 @@ public class UserControllerAPI {
         User user = null;
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
-//            user.getUserProfile().setProfilePictureURL(null);
-            customUserDetailsService.saveUser(user);
+            UserProfile userProfile = customUserDetailsService.getUserProfile(customUserDetailsService.getUserByUsername(user.getUsername()));
+            userProfile.setProfilePictureURL(null);
+            customUserDetailsService.saveUserProfile(userProfile);
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
         }
@@ -73,7 +84,7 @@ public class UserControllerAPI {
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    //--> Social Profiles
+    //-> Social Profiles API
     @PostMapping(PRL.apiPrefix + "/user/social/profiles/update")
     public OutdoorResponse<?> postSocialProfiles(@RequestParam("twitterURL") String twitterURL,
                                                  @RequestParam("facebookURL") String facebookURL,
@@ -87,16 +98,18 @@ public class UserControllerAPI {
         try {
             user = customUserDetailsService.getUserByUsername(authenticationFacade.getAuthentication().getName());
 
-//            user.getUserSocialProfiles().setTwitterURL(twitterURL);
-//            user.getUserSocialProfiles().setFacebookURL(facebookURL);
-//            user.getUserSocialProfiles().setGithubURL(githubURL);
-//            user.getUserSocialProfiles().setInstagramURL(instagramURL);
-//            user.getUserSocialProfiles().setLinkedInURL(linkedinURL);
-//            user.getUserSocialProfiles().setYoutubeURL(youtubeURL);
-//            user.getUserSocialProfiles().setSkills(skills);
-//            user.getUserSocialProfiles().setAboutUser(aboutUser);
+            UserSocialProfiles userSocialProfiles = customUserDetailsService.getUserSocialProfiles(user);
+            userSocialProfiles.setTwitterURL(twitterURL);
+            userSocialProfiles.setFacebookURL(facebookURL);
+            userSocialProfiles.setGithubURL(githubURL);
+            userSocialProfiles.setInstagramURL(instagramURL);
+            userSocialProfiles.setLinkedInURL(linkedinURL);
+            userSocialProfiles.setYoutubeURL(youtubeURL);
+            userSocialProfiles.setSkills(skills);
+            userSocialProfiles.setAboutUser(aboutUser);
 
-            customUserDetailsService.saveUser(user);
+            // Save changes
+            customUserDetailsService.saveUserSocialProfiles(userSocialProfiles);
         } catch (UsernameNotFoundException ignore) {
             return new OutdoorResponse<>(IndoorResponse.FAIL, "FAIL");
         }
@@ -104,7 +117,7 @@ public class UserControllerAPI {
         return new OutdoorResponse<>(IndoorResponse.SUCCESS, "SUCCESS");
     }
 
-    // Follower
+    // -> Follower API
     @PostMapping(PRL.apiPrefix + "/user/follow/add")
     public OutdoorResponse<?> postUserFollow(@RequestParam("userFrom")String userFrom,
                                              @RequestParam("userTo")String userTo) {

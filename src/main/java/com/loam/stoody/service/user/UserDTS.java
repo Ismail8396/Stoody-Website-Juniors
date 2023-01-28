@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 // Data Transfer Service
 @Service
@@ -26,49 +25,49 @@ public class UserDTS {
         return customUserDetailsService.getCurrentUser();
     }
 
-    public User getUserByUsername(String username) {
-        User user = null;
-        try {
-            user = customUserDetailsService.getUserByUsername(username);
-        } catch (UsernameNotFoundException ignore) {
-            return null;
-        }
-        return user;
+    public User getUserByUsername(String username) throws UsernameNotFoundException {
+        return customUserDetailsService.getUserByUsername(username);
     }
 
     public String getUserDisplayNameByUsername(String username) {
         UserProfile userProfile = getUserProfile(username);
-        if (userProfile == null)
-            if (userProfile.getFirstName() != null && userProfile.getLastName() != null)
-                if (!userProfile.getFirstName().isBlank() && !userProfile.getLastName().isBlank())
-                    return userProfile.getFirstName() + " " + userProfile.getLastName();
-        User user = getUserByUsername(username);
-        if (user != null)
-            return user.getUsername();
+        if (userProfile != null) if (userProfile.getFirstName() != null && userProfile.getLastName() != null)
+            if (!userProfile.getFirstName().isBlank() && !userProfile.getLastName().isBlank())
+                return userProfile.getFirstName() + " " + userProfile.getLastName();
+
+        try {
+            User user = getUserByUsername(username);
+            if (user != null) return user.getUsername();
+        } catch (UsernameNotFoundException ignore) {}
         return "NULL";
     }
 
     public String getUserStatusCSSClass(String username) {
-        User user = getUserByUsername(username);
-        if(user == null)
-            return "avatar-indicators avatar-offline";
-        List<UserProfile> userProfiles = userProfileSettingsRepository.findAll().stream().filter(e->e.getUser().getUsername().equals(user.getUsername())).collect(Collectors.toList());
-        if(userProfiles.isEmpty())
-            return "avatar-indicators avatar-offline";
-
-        String userStatus = userProfiles.get(0).getUserStatus();
-
-        if (userStatus.equals(UserStatus.Online)) {
-            return "avatar-indicators avatar-online";
-        } else if (userStatus.equals(UserStatus.Offline)) {
-            return "avatar-indicators avatar-offline";
-        } else if (userStatus.equals(UserStatus.Away)) {
-            return "avatar-indicators avatar-away";
-        } else if (userStatus.equals(UserStatus.Busy)) {
-            return "avatar-indicators avatar-busy";
-        } else {
+        try {
+            String userStatus = customUserDetailsService.getUserProfile(getUserByUsername(username)).getUserStatus();
+            if (userStatus.equals(UserStatus.Online.toString())) {
+                return "avatar-indicators avatar-online";
+            } else if (userStatus.equals(UserStatus.Offline.toString())) {
+                return "avatar-indicators avatar-offline";
+            } else if (userStatus.equals(UserStatus.Away.toString())) {
+                return "avatar-indicators avatar-away";
+            } else if (userStatus.equals(UserStatus.Busy.toString())) {
+                return "avatar-indicators avatar-busy";
+            } else {
+                return "avatar-indicators avatar-offline";
+            }
+        } catch (UsernameNotFoundException ignore) {
             return "avatar-indicators avatar-offline";
         }
+    }
+
+    // -> Roles
+    public boolean hasRole(String username, String role){
+        return customUserDetailsService.hasRole(username,role);
+    }
+
+    public boolean addRole(String username, String role){
+        return customUserDetailsService.addRole(username,role);
     }
 
     // -> Followers / Following
@@ -80,10 +79,8 @@ public class UserDTS {
         return customUserDetailsService.getUserFollowings(customUserDetailsService.getUserByUsername(username));
     }
 
-    public Boolean isUserFollowedByMe(String userFrom,
-                                      String userTo) {
-        return customUserDetailsService.isUserFollowedBy(customUserDetailsService.getUserByUsername(userFrom),
-                customUserDetailsService.getUserByUsername(userTo));
+    public Boolean isUserFollowedByMe(String userFrom, String userTo) {
+        return customUserDetailsService.isUserFollowedBy(customUserDetailsService.getUserByUsername(userFrom), customUserDetailsService.getUserByUsername(userTo));
     }
 
     // -> Report User
@@ -94,6 +91,10 @@ public class UserDTS {
     // -> User Statistics
     public UserStatistics getUserStatistics(String username) {
         return customUserDetailsService.getUserStatistics(customUserDetailsService.getUserByUsername(username));
+    }
+
+    public String getUserRoleBadgeName(String username) {
+        return customUserDetailsService.getUserRoleBadgeName(username);
     }
 
     // -> User Notifications

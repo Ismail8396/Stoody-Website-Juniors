@@ -23,9 +23,6 @@
 <link th:href="@{/assets/libs/@mdi/font/css/materialdesignicons.min.css}" href="../../static/assets/libs/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
 <link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
-
-
-
 <!-- Theme CSS -->
 <!-- build:css ../assets/css/theme.min.css -->
 <link rel="stylesheet" href="../../static/assets/css/theme.css">
@@ -39,223 +36,36 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-default" id="standard_navbar_code_a">
     <div class="container-fluid px-0">
-        <a class="navbar-brand" href="../index.html">
-            <img th:src="@{/assets/images/brand/logo/logo.png}" th:href="@{/}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
+        <a class="navbar-brand" th:href="@{/}" href="../index.html">
+            <img th:src="@{/assets/images/brand/logo/logo.png}" src="../../static/assets/images/brand/logo/logo.png" width="40px" alt="" class=""></a>
         <!-- Mobile view nav wrap -->
+
+        <!-- Mobile Notifications-->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-lg-none d-flex nav-top-wrap">
-            <li class="dropdown stopevent">
-                <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#" role="button" data-bs-toggle="dropdown">
+            <li class="dropdown d-inline-block stopevent">
+                <a class="btn btn-light btn-icon rounded-circle text-muted" href="#" role="button" id="dropdownNotificationSecondMobile" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fe fe-bell"> </i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end shadow">
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="dropdownNotificationSecond">
                     <div>
                         <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
                             <span class="h5 mb-0">Notifications</span>
-                            <a href="# " class="text-muted"><span class="align-middle"><i
-										class="fe fe-settings me-1"></i></span></a>
+                            <a href="#" th:href="@{/user/dashboard/standard/profile/notifications}" class="text-muted"><span class="align-middle"><i
+                                    class="fe fe-settings me-1"></i></span></a>
                         </div>
-                        <ul class="list-group list-group-flush " style="height: 300px;" data-simplebar>
-                            <li class="list-group-item bg-light">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Kristin Watson:</h5>
-                                                    <p class="mb-3 text-body">
-                                                        Krisitn Watsan like your comment on course Javascript Introduction!
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-thumbs-up text-success me-1"></span>2 hours ago,</span>
-                                                    <span class="ms-1">2:19 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as read">
-                                        </a>
-                                        <div>
-                                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove">
-                                                <i class="fe fe-x text-muted"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
-                                                    <p class="mb-3 text-body">
-                                                        Just launched a new Courses React for Beginner.
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-thumbs-up text-success me-1"></span>Oct 9,
-                                                    </span>
-                                                    <span class="ms-1">1:20 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Jenny Wilson</h5>
-                                                    <p class="mb-3 text-body">
-                                                        Krisitn Watsan like your comment on course Javascript Introduction!
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-thumbs-up text-info me-1"></span>Oct 9,
-                                                    </span>
-                                                    <span class="ms-1">1:56 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="#" class="text-body">
-                                            <div class="d-flex">
-                                                <img th:src="@{/assets/images/avatar/avatar-4.jpg}" src="../../static/assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
-                                                <div class="ms-3">
-                                                    <h5 class="fw-bold mb-1">Sina Ray</h5>
-                                                    <p class="mb-3 text-body">
-                                                        You earn new certificate for complete the Javascript Beginner course.
-                                                    </p>
-                                                    <span class="fs-6 text-muted">
-														<span><span class="fe fe-award text-warning me-1"></span>Oct 9,
-                                                    </span>
-                                                    <span class="ms-1">1:56 PM</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto text-center me-2">
-                                        <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
+
+                        <ul id="notificationBoxListGroupMobile" class="list-group list-group-flush" style="overflow:auto; max-height: 300px;">
                         </ul>
-                        <div class="border-top px-3 pt-3 pb-0">
-                            <a href="../pages/notification-history.html" class="text-link fw-semi-bold">See all
-								Notifications</a>
+
+                        <div id="notificationBoxSeeAllButtonMobile" class="border-top px-3 pt-3 pb-0">
+                            <a href="" th:href="@{/user/dashboard/standard/profile/notifications/all}" class="text-link fw-semi-bold">See all Notifications</a>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li class="dropdown ms-2">
-                <a class="rounded-circle" href="#" role="button" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserStatusCSSClass(getUserDTS.getCurrentUser().getUsername())}">
-                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg"
-                            id="img-uploaded" alt="avatar" class="rounded-circle">
-
-                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
-                            class="rounded-circle">O</div>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end shadow">
-                    <div class="dropdown-item">
-                        <div class="d-flex">
-                            <!-- Avatar -->
-                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserStatusCSSClass(getUserDTS.getCurrentUser().getUsername())}">
-                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL}" src="../../static/assets/images/avatar/avatar-3.jpg"
-                                    id="img-uploaded" alt="avatar" class="rounded-circle">
-
-                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
-                                    class="rounded-circle">O</div>
-                            </div>
-
-                            <div class="ms-3 lh-1">
-                                <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
-                                <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <ul class="list-unstyled">
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
-                                <i class="fe fe-circle me-2"></i>Status
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_online">
-                                        <span class="badge-dot bg-success me-2"></span>Online
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_offline">
-                                        <span class="badge-dot bg-secondary me-2"></span>Offline
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_away">
-                                        <span class="badge-dot bg-warning me-2"></span>Away
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" id="standard_navbar_mobile_version_user_status_busy">
-                                        <span class="badge-dot bg-danger me-2"></span>Busy
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
-                                <i class="fe fe-user me-2"></i>Profile
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
-                                <i class="fe fe-star me-2"></i>Subscription
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
-                                <i class="fe fe-settings me-2"></i>Security
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="dropdown-divider"></div>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
-                                <i class="fe fe-power me-2"></i>Sign Out
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </li>
         </ul>
+
+
         <!-- Button -->
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="icon-bar top-bar mt-0"></span>
@@ -990,133 +800,22 @@
                 </a>
                 <ul class="navbar-nav navbar-right-wrap ms-2 d-none d-lg-block">
                     <li class="dropdown d-inline-block stopevent">
-                        <a class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary" href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-light btn-icon rounded-circle text-muted" href="#" role="button" id="dropdownNotificationSecond" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fe fe-bell"> </i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="dropdownNotificationSecond">
                             <div>
                                 <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
                                     <span class="h5 mb-0">Notifications</span>
-                                    <a href="# " class="text-muted"><span class="align-middle"><i
+                                    <a href="#" th:href="@{/user/dashboard/standard/profile/notifications}" class="text-muted"><span class="align-middle"><i
 											class="fe fe-settings me-1"></i></span></a>
                                 </div>
-                                <ul class="list-group list-group-flush  " style="height: 300px;" data-simplebar>
-                                    <li class="list-group-item bg-light">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-1.jpg}" src="../../static/assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Kristin Watson:</h5>
-                                                            <p class="mb-3 text-body">
-                                                                Krisitn Watsan like your comment on course Javascript Introduction!
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span
-																	class="fe fe-thumbs-up text-success me-1"></span>2 hours ago,</span>
-                                                            <span class="ms-1">2:19 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
 
-                                                <a href="#" class="badge-dot bg-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as read">
-                                                </a>
-                                                <div>
-                                                    <a href="#" class="bg-transparent" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove">
-                                                        <i class="fe fe-x text-muted"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-2.jpg}" src="../../static/assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
-                                                            <p class="mb-3 text-body">
-                                                                Just launched a new Courses React for Beginner.
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span
-																	class="fe fe-thumbs-up text-success me-1"></span>Oct 9,
-                                                            </span>
-                                                            <span class="ms-1">1:20 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
-                                                <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-3.jpg}" src="../../static/assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Jenny Wilson</h5>
-                                                            <p class="mb-3 text-body">
-                                                                Krisitn Watsan like your comment on course Javascript Introduction!
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span
-																	class="fe fe-thumbs-up text-info me-1"></span>Oct 9,
-                                                            </span>
-                                                            <span class="ms-1">1:56 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
-                                                <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a class="text-body" href="#">
-                                                    <div class="d-flex">
-                                                        <img th:src="@{/assets/images/avatar/avatar-4.jpg}" alt="" class="avatar-md rounded-circle">
-                                                        <div class="ms-3">
-                                                            <h5 class="fw-bold mb-1">Sina Ray</h5>
-                                                            <p class="mb-3 text-body">
-                                                                You earn new certificate for complete the Javascript Beginner course.
-                                                            </p>
-                                                            <span class="fs-6 text-muted">
-															<span><span class="fe fe-award text-warning me-1"></span>Oct 9,
-                                                            </span>
-                                                            <span class="ms-1">1:56 PM</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-auto text-center me-2">
-                                                <a href="#" class="badge-dot bg-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark as unread">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul id="notificationBoxListGroup" class="list-group list-group-flush" style="overflow:auto; max-height: 300px;">
                                 </ul>
-                                <div class="border-top px-3 pt-3 pb-0">
-                                    <a href="../pages/notification-history.html" class="text-link fw-semi-bold">See
-									all Notifications</a>
+
+                                <div id="notificationBoxSeeAllButton" class="border-top px-3 pt-3 pb-0">
+                                    <a href="" th:href="@{/user/dashboard/standard/profile/notifications/all}" class="text-link fw-semi-bold">See all Notifications</a>
                                 </div>
                             </div>
                         </div>
@@ -1249,7 +948,7 @@
                             <div class="ms-3">
                                 <div class="d-flex align-items-center">
                                     <h3 class="mb-0 fw-bold me-2" th:text="${getUserDTS.getUserDisplayNameByUsername(getUserDTS.getCurrentUser().getUsername())}">Orkhan Aliyev</h3>
-                                    <span class="badge bg-primary-soft me-2" th:text="${getUserDTS.getUserStatistics(getUserDTS.getCurrentUser().getUsername()).getRoleDisplayLabel()}">Instructor</span>
+                                    <span class="badge bg-primary-soft me-2" th:text="${getUserDTS.getUserRoleBadgeName(getUserDTS.getCurrentUser().getUsername())}">Instructor</span>
                                     <a href="#" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top" th:title="${getUserDTS.getUserStatistics(getUserDTS.getCurrentUser().getUsername()).getUserLevelString()}" title="Beginner">
 
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1261,7 +960,7 @@
                                     </a>
                                 </div>
                                 <a th:href="@{/users/{username}(username = ${getUserDTS.getCurrentUser().getUsername()})}" href="../pages/instructor-profile.html" class=" mb-0" th:text="'@'+${getUserDTS.getCurrentUser().getUsername()}">@orkhanaliyevm</a>
-                                <span class="fs-6" th:if="${getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills != null}" th:text="${#strings.length(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills) > 100
+                                <span class="fs-6" th:if="${getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills)}" th:text="${#strings.length(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills) > 100
                                  ? #strings.substring(getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills,0,100)+'...'
                                  : getUserDTS.getUserSocialProfiles(mainPreviewUserInfo.getUsername()).skills}">Front-end Developer, Designer, Teacher</span>
                             </div>
@@ -1269,11 +968,16 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="fs-4 mt-4 mt-lg-0 pb-2 pb-lg-0 d-flex justify-content-end">
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL()}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL()}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL()}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL()}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
-                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL() != null}" th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL()}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getYoutubeURL()}" href="#" class="mdi mdi-youtube text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getLinkedInURL()}" href="#" class="mdi mdi-linkedin text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getInstagramURL()}" href="#" class="mdi mdi-instagram text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getFacebookURL()}" href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
+                            <a th:if="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL() != null and not #strings.isEmpty(getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL())}" th:target="_blank"
+                                th:href="${getUserDTS.getUserSocialProfiles(getUserDTS.getCurrentUser().getUsername()).getTwitterURL()}" href="#" class="mdi mdi-twitter text-muted me-2"></a>
                         </div>
                     </div>
                 </div>
@@ -2049,6 +1753,12 @@
 </footer>
 
     <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Libs JS -->
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
 <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}" src="../../static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -31,9 +31,6 @@ public class UserStatistics {
     public Integer getUserLevelNumber(){
         return userLevel.ordinal();
     }
-    public String getRoleDisplayLabel(){
-        return "Instructor";
-    }
 
     @Override
     public boolean equals(Object o) {
