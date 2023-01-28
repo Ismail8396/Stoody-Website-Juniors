@@ -1,12 +1,8 @@
 /*
 @fileName:  Course
-
 @aka:       Course Model
-
 @purpose:   Contains the data (that's either transient or non-transient) of a course.
-
 @author:    OrkhanGG
-
 @created:   16.12.2022
 */
 
@@ -21,6 +17,7 @@ import com.loam.stoody.model.user.User;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import org.apache.logging.log4j.util.Strings;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
@@ -38,28 +35,28 @@ import java.util.Set;
 @DynamicInsert
 @Where(clause = "is_deleted='false'")
 public class Course extends ParentModel {
-    private String congratulationsMessage;
-    private String contextTags;
-    private CourseStatus courseStatus;
+    private String congratulationsMessage = Strings.EMPTY;
+    private String contextTags = Strings.EMPTY;
+    private CourseStatus courseStatus = CourseStatus.Draft;
     private String currency = "USD";// TODO: remove hardcode
-    @Lob
-    private String description;
-    private Double discount;
-    private String languageCode;
-    private CourseLevel level;
-    private Double price;
-    private String promoVideoName;
-    private String promoVideoURL;
-    private String tags;
-    private String thumbnailName;
-    private String thumbnailURL;
-    private String title;
-    private String welcomeMessage;
+    @Column(columnDefinition = "TEXT", length = 100000)
+    private String description = Strings.EMPTY;
+    private Double discount = 0D;
+    private String languageCode = "EN";
+    private CourseLevel level = CourseLevel.Beginners;
+    private Double price = 0D;
+    private String promoVideoName = Strings.EMPTY;
+    private String promoVideoURL = Strings.EMPTY;
+    private String tags = Strings.EMPTY;
+    private String thumbnailName = Strings.EMPTY;
+    private String thumbnailURL = Strings.EMPTY;
+    private String title = Strings.EMPTY;
+    private String welcomeMessage = Strings.EMPTY;
 
-    private Long viewCount;
-    private LocalDateTime uploadDate;
-    private Long enrolledStudents;
-    private Long rating;
+    private Long viewCount = 0L;
+    private LocalDateTime uploadDate;// Remove
+    private Long enrolledStudents = 0L;//?
+    private Long rating = 0L;//?
 
     @ManyToOne(targetEntity = CourseCategory.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_category_id", referencedColumnName = "id")
@@ -72,11 +69,4 @@ public class Course extends ParentModel {
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="COMMENTS_ID")
     private Set<Comment> comments;
-
-//    @OneToMany(
-//            cascade = CascadeType.ALL,
-//            targetEntity = CourseSection.class
-//    )
-//    @JoinColumn(name="course_id")
-//    private List<CourseSection> sections;
 }

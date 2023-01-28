@@ -19,7 +19,7 @@ public class CourseLecture {
     private String article;
     private String articleName;
     private String description;
-//    @OneToMany(
+    //    @OneToMany(
 //            mappedBy = "courseLecture",
 //            cascade = CascadeType.ALL,
 //            orphanRemoval = true
