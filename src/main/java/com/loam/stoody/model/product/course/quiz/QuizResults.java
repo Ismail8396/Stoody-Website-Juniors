@@ -1,12 +1,10 @@
-package com.loam.stoody.model.communication.quiz;
+package com.loam.stoody.model.product.course.quiz;
 
 import com.loam.stoody.model.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
-import java.util.List;
 
 @Entity
 @Data

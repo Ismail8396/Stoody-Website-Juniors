@@ -7,12 +7,14 @@ import com.loam.stoody.dto.api.request.CourseSectionRequestDTO;
 import com.loam.stoody.dto.api.response.CourseLectureResponseDTO;
 import com.loam.stoody.dto.api.response.CourseResponseDTO;
 import com.loam.stoody.dto.api.response.CourseSectionResponseDTO;
+import com.loam.stoody.dto.api.response.QuizResponseDTO;
 import com.loam.stoody.enums.CourseStatus;
 import com.loam.stoody.model.communication.misc.Comment;
 import com.loam.stoody.model.product.course.*;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.courses.PurchasedCourse;
 import com.loam.stoody.repository.product.*;
+import com.loam.stoody.service.product.quiz.QuizService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
@@ -40,6 +42,7 @@ public class CourseService {
     private final CourseRatingRepository courseRatingRepository;
     private final PurchasedCourseRepository purchasedCourseRepository;
     private final UserDTS userDTS;
+    private final QuizService quizService;
 
     public List<CourseResponseDTO> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
@@ -182,6 +185,8 @@ public class CourseService {
                 if (!CollectionUtils.isEmpty(courseLectures)) {
                     courseSectionResponseDTO.setLectures(courseLectures.stream().map(courseLecture -> {
                         CourseLectureResponseDTO courseLectureResponseDTO = new CourseLectureResponseDTO(courseLecture);
+                        //find all quiz per lecture
+                        quizService.findAllQuizDetails(courseLecture.getId(), courseLectureResponseDTO);
                         return courseLectureResponseDTO;
                     }).collect(Collectors.toList()));
                 }
@@ -241,6 +246,8 @@ public class CourseService {
     }
 
     public void saveSections(List<CourseSectionRequestDTO> courseSectionRequestDTOS, Course course) {
+        List<CourseLecture> courseLectures = courseLectureRepository.findAllByCourseSection_Course_Id(course.getId());
+        quizService.deleteAllQuiz(courseLectures);
         courseLectureRepository.deleteAllLectureByCourseId(course.getId());
         courseSectionRepository.deleteAllByCourse_Id(course.getId());
         if (CollectionUtils.isEmpty(courseSectionRequestDTOS)) return;
@@ -261,6 +268,8 @@ public class CourseService {
             BeanUtils.copyProperties(lectureRequestDTO, courseLecture);
             courseLecture.setCourseSection(courseSection);
             courseLectureRepository.save(courseLecture);
+            //save lecture quiz
+            quizService.save(lectureRequestDTO.getQuiz(), courseLecture);
         });
     }
 

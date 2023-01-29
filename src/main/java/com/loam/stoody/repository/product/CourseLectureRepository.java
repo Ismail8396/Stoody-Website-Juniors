@@ -14,6 +14,8 @@ import java.util.List;
 public interface CourseLectureRepository extends JpaRepository<CourseLecture, Long> {
     List<CourseLecture> findAllByCourseSection_Id(Long sectionId);
 
+    List<CourseLecture> findAllByCourseSection_Course_Id(Long courseId);
+
     @Modifying
     @Query(value = "delete from CourseLecture where courseSection.id = :sectionId")
     void deleteByIdSectionId(@Param("sectionId") Long sectionId);

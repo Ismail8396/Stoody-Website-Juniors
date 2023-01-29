@@ -1,6 +1,5 @@
-package com.loam.stoody.model.communication.quiz;
+package com.loam.stoody.model.product.course.quiz;
 
-import com.loam.stoody.model.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
@@ -14,9 +13,9 @@ public class QuizQuestionAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-//    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "quiz_question_id", referencedColumnName = "id")
-//    private QuizQuestion question;
+    @ManyToOne(targetEntity = QuizQuestion.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "quiz_question_id", referencedColumnName = "id")
+    private QuizQuestion question;
     private String answer;
     private Boolean isTrue;
 }
