@@ -13,4 +13,6 @@ import java.util.List;
 @Repository
 public interface CourseSectionRepository extends JpaRepository<CourseSection, Long> {
     List<CourseSection> findAllByCourse_Id(Long courseId);
+
+    void deleteAllByCourse_Id(Long courseId);
 }

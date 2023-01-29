@@ -241,6 +241,8 @@ public class CourseService {
     }
 
     public void saveSections(List<CourseSectionRequestDTO> courseSectionRequestDTOS, Course course) {
+        courseLectureRepository.deleteAllLectureByCourseId(course.getId());
+        courseSectionRepository.deleteAllByCourse_Id(course.getId());
         if (CollectionUtils.isEmpty(courseSectionRequestDTOS)) return;
         courseSectionRequestDTOS.stream().forEach(sectionRequestDTO -> {
             CourseSection courseSection = new CourseSection();

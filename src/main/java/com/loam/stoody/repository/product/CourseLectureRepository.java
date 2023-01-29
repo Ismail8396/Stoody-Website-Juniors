@@ -18,4 +18,8 @@ public interface CourseLectureRepository extends JpaRepository<CourseLecture, Lo
     @Query(value = "delete from CourseLecture where courseSection.id = :sectionId")
     void deleteByIdSectionId(@Param("sectionId") Long sectionId);
 
+
+    @Modifying
+    @Query(nativeQuery = true, value = "delete from course_lecture cl where cl.course_section_id IN (select id from course_section cs where cs.course_id = :courseId)")
+    void deleteAllLectureByCourseId(@Param("courseId") Long courseId);
 }
