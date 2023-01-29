@@ -9,5 +9,5 @@ public class QuizQuestionRequestDTO {
     private Long id;
     private String question;
     private Long quizId;
-    private List<QuizQuestionAnswerRequestDTO> quizQuestionAnswers;
+    private List<QuizQuestionAnswerRequestDTO> answers;
 }

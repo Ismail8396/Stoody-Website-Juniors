@@ -8,5 +8,5 @@ import java.util.List;
 public class QuizRequestDTO {
 
     private Long id;
-    private List<QuizQuestionRequestDTO> quizQuestions;
+    private List<QuizQuestionRequestDTO> questions;
 }

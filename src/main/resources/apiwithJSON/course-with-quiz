@@ -24,10 +24,10 @@
                     "locked": true,
                     "uiCollapsed": false,
                     "quiz" :{
-                        "quizQuestions":[
+                        "questions":[
                             {
                                 "question" : "question 1",
-                                "quizQuestionAnswers":[
+                                "answers":[
                                     {
                                         "answer" : "answer 1",
                                         "isTrue" : false

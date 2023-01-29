@@ -49,7 +49,7 @@ public class QuizService {
             findAllQuestionAnswers(question.getId(), quizQuestionResponseDTO);
             questionResponseDTOS.add(quizQuestionResponseDTO);
         });
-        quizResponseDTO.setQuizQuestions(questionResponseDTOS);
+        quizResponseDTO.setQuestions(questionResponseDTOS);
         courseLectureResponseDTO.setQuiz(quizResponseDTO);
     }
 
@@ -65,7 +65,7 @@ public class QuizService {
             responseDTO.setIsTrue(answer.getIsTrue());
             quizQuestionAnswersDtos.add(responseDTO);
         });
-        quizQuestionResponseDTO.setQuizQuestionAnswers(quizQuestionAnswersDtos);
+        quizQuestionResponseDTO.setAnswers(quizQuestionAnswersDtos);
     }
 
     public void save(QuizRequestDTO quizDTO, CourseLecture courseLecture) {
@@ -80,15 +80,15 @@ public class QuizService {
         quiz.setCourseLecture(courseLecture);
         quizRepository.save(quiz);
         //save quiz questions
-        if (!CollectionUtils.isEmpty(quizDTO.getQuizQuestions())) {
-            quizDTO.getQuizQuestions().forEach(quizQuestionDTO -> {
+        if (!CollectionUtils.isEmpty(quizDTO.getQuestions())) {
+            quizDTO.getQuestions().forEach(quizQuestionDTO -> {
                 QuizQuestion question = new QuizQuestion();
                 question.setId(quizQuestionDTO.getId());
                 question.setQuestion(quizQuestionDTO.getQuestion());
                 question.setQuiz(quiz);
                 quizQuestionRepository.save(question);
                 //save question answers
-                saveQuizAnswers(question, quizQuestionDTO.getQuizQuestionAnswers());
+                saveQuizAnswers(question, quizQuestionDTO.getAnswers());
             });
         }
 
