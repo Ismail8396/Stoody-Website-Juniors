@@ -12,4 +12,5 @@ public class CourseLectureRequestDTO {
     private String imageUrl;// TODO: What is this?
     private Boolean locked;
     private Boolean uiCollapsed;
+    private QuizRequestDTO quiz;
 }

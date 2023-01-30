@@ -1,0 +1,62 @@
+{
+    "id" : 2,
+    "congratulationsMessage": "Congs",
+    "contextTags": "What they'll learn",
+    "courseCategoryId": 1,
+    "courseStatus": 0,
+    "currency": "",
+    "description": "<p>Course desc</p>",
+    "discount": "15",
+    "languageCode": "",
+    "level": 0,
+    "price": "5",
+    "promoVideoName": "Loam_intro_downgraded.avi",
+    "promoVideoURL": "https://stoody-standard-images.s3.amazonaws.com/12ace603-51d8-472a-af92-0d8637240c1e.avi",
+    "sections": [
+        {
+            "title": "Introduction",
+            "lectures": [
+                {
+                    "title": "Best",
+                    "article": "https://stoody-standard-images.s3.amazonaws.com/53dac301-3fe8-48f2-aa6c-42603e59d167.png",
+                    "articleName": "You_Tube_Ideal_Thumbnail_in_2021.png",
+                    "description": "Desc",
+                    "locked": true,
+                    "uiCollapsed": false,
+                    "quiz" :{
+                        "questions":[
+                            {
+                                "question" : "question 1",
+                                "answers":[
+                                    {
+                                        "answer" : "answer 1",
+                                        "isTrue" : false
+                                    },
+                                    {
+                                        "answer" : "answer 2",
+                                        "isTrue" : false
+                                    },
+                                    {
+                                        "answer" : "answer 3",
+                                        "isTrue" : true
+                                    },
+                                    {
+                                        "answer" : "answer 4",
+                                        "isTrue" : false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "tags": "Tags",
+    "thumbnailName": "You_Tube_Ideal_Thumbnail_in_2021.png",
+    "thumbnailURL": "https://stoody-standard-images.s3.amazonaws.com/986e664c-e050-4fb0-86f5-bd70fcd500d2.png",
+    "title": "777777777777777777ddd",
+    "welcomeMessage": "Welcome222",
+    "enrolledStudents" : 444,
+    "viewCount" : 10
+}
