@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.List;
+
 @Entity
 @Data
 @DynamicUpdate
@@ -15,10 +17,8 @@ public class QuizQuestion {
     private Long id;
     private String question;
 
+    private Long timeoutInSeconds;
     @ManyToOne(targetEntity = Quiz.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id", referencedColumnName = "id")
     private Quiz quiz;
-//    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name="quiz_question_id")
-//    private List<QuizQuestionAnswer> answers;
 }

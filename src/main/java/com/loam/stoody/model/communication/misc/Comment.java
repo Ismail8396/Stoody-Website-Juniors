@@ -12,7 +12,7 @@
 
 package com.loam.stoody.model.communication.misc;
 
-import com.loam.stoody.model.product.course.Course;
+import com.loam.stoody.model.product.course.pending.PendingCourse;
 import com.loam.stoody.model.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -40,7 +40,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
-    private Course course;
+    private PendingCourse pendingCourse;
 
     @ManyToOne
     @JoinColumn(name = "author_id")

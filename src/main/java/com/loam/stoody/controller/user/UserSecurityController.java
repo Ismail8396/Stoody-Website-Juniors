@@ -1,7 +1,7 @@
 package com.loam.stoody.controller.user;
 
 import com.loam.stoody.dto.api.response.OutdoorResponse;
-import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.service.communication.email.EmailSenderService;
 import com.loam.stoody.service.communication.sms.SmsSenderService;

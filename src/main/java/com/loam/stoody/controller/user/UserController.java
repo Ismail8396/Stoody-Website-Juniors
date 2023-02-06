@@ -1,23 +1,22 @@
 package com.loam.stoody.controller.user;
 
 import com.loam.stoody.components.IAuthenticationFacade;
-import com.loam.stoody.controller.product.CourseController;
 import com.loam.stoody.dto.api.request.SearchFilterDTO;
-import com.loam.stoody.dto.api.response.OutdoorResponse;
+import com.loam.stoody.dto.api.request.course.pending.PendingCourseDTO;
 import com.loam.stoody.enums.CourseStatus;
-import com.loam.stoody.global.constants.IndoorResponse;
 import com.loam.stoody.global.constants.MiscConstants;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.global.logger.ConsoleColors;
 import com.loam.stoody.global.logger.StoodyLogger;
-import com.loam.stoody.model.product.course.Course;
+import com.loam.stoody.model.product.course.pending.PendingCourse;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.UserNotifications;
 import com.loam.stoody.model.user.UserPrivacy;
 import com.loam.stoody.model.user.UserProfile;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.i18n.LanguageService;
-import com.loam.stoody.service.product.CourseService;
+import com.loam.stoody.service.product.CategoryService;
+import com.loam.stoody.service.product.PendingCourseService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import com.loam.stoody.service.user.UserDTS;
 import lombok.AllArgsConstructor;
@@ -25,15 +24,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
 class UserController {
-    private final CustomUserDetailsService customUserDetailsService;
     private final IAuthenticationFacade authenticationFacade;
+    private final CustomUserDetailsService customUserDetailsService;
+    private final CategoryService categoryService;
     private final LanguageService languageService;
     private final UserDTS userDTS;
-    private final CourseService courseService;
+    private final PendingCourseService pendingCourseService;
     private final UserRepository userRepository;
 
     @ModelAttribute("getUserDTS")
@@ -41,9 +42,9 @@ class UserController {
         return userDTS;
     }
 
-    @ModelAttribute("courseService")
-    public CourseService getCourseService() {
-        return courseService;
+    @ModelAttribute("pendingCourseService")
+    public PendingCourseService getPendingCourseService() {
+        return pendingCourseService;
     }
 
     @ModelAttribute("languageServiceLayer")
@@ -73,6 +74,42 @@ class UserController {
  +-+-+-+-+-+-+-+-+-+-+
 */
     // -> Courses
+    @GetMapping("/user/dashboard/instructor/courses/create/new")
+    public String getNewCourseRequest(){
+        User user = customUserDetailsService.getCurrentUser();
+        if(user == null)
+            return "redirect:"+PRL.error404URL;
+
+        PendingCourse pendingCourse = new PendingCourse();
+        pendingCourse = pendingCourseService.savePendingCourse(pendingCourse);
+
+        return "redirect:/user/dashboard/instructor/courses/course/"+ pendingCourse.getId() +"/editor";
+    }
+
+    @GetMapping("/user/dashboard/instructor/courses/course/{id}/editor")
+    public String getCourseEditorPage(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+        PendingCourse pendingCourse = pendingCourseService.getPendingCourseById(id, PendingCourse.class);
+        if (pendingCourse != null) {
+            if(!customUserDetailsService.compareUsers(pendingCourse.getAuthor(),customUserDetailsService.getCurrentUser()))
+                return "redirect:"+PRL.error404URL;
+
+            if(pendingCourse.getCourseStatus() != null){
+                if(!pendingCourse.getCourseStatus().equals(CourseStatus.Draft)) {
+                    redirectAttributes.addAttribute("header", languageService.getContent("global.you_cannot_edit_pending_course"));
+                    redirectAttributes.addAttribute("message", languageService.getContent("global.course_pending_cannot_be_edited"));
+                    redirectAttributes.addAttribute("openCode", PRL.openCode);
+                    return "redirect:"+PRL.redirectPageURL;
+                }
+            }
+
+            model.addAttribute("courseDTO", pendingCourseService.mapCourseEntityToRequest(pendingCourse));
+            model.addAttribute("subCategoryElements", categoryService.getAllCategories());
+            return "pages/add-course";
+        }
+
+        return "redirect:"+PRL.error404URL;
+    }
+
     @GetMapping("/user/dashboard/instructor/courses/search")
     public String getInstructorCreatedCoursesPage(@ModelAttribute("searchFilterDTO")SearchFilterDTO searchFilterDTO,Model model){
         // Find only instructor's courses.
@@ -83,18 +120,18 @@ class UserController {
 
         model.addAttribute("mainPreviewUserInfo", userDTS.getCurrentUser());
 
-        model.addAttribute("createdCourses",courseService.getAllCourses());
+        model.addAttribute("currentUserCourses", pendingCourseService.getCurrentUserPendingCourses(PendingCourseDTO.class));
         return "pages/instructor-courses";
     }
 
     @GetMapping("/user/dashboard/instructor/courses/tag/deleted/{id}")
     public String postInstructorTagCourseDeleted(@PathVariable("id")Long id){
-        Course course = courseService.getCourseEntityById(id);
-        if(course != null && course.getAuthor() != null && customUserDetailsService.compareUsers(course.getAuthor(),customUserDetailsService.getCurrentUser()) ) {
-            course.setCourseStatus(CourseStatus.Deleted);
-            courseService.saveEntity(course);
-            return "redirect:/user/dashboard/instructor/courses/search";
-        }
+//        PendingCourse pendingCourse = courseService.getCourseEntityById(id);
+//        if(pendingCourse != null && pendingCourse.getAuthor() != null && customUserDetailsService.compareUsers(pendingCourse.getAuthor(),customUserDetailsService.getCurrentUser()) ) {
+//            pendingCourse.setCourseStatus(CourseStatus.Deleted);
+//            courseService.saveEntity(pendingCourse);
+//            return "redirect:/user/dashboard/instructor/courses/search";
+//        }
         return "redirect:"+PRL.error404URL;
     }
     // -> Courses End

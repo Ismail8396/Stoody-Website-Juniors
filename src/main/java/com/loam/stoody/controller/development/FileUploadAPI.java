@@ -1,30 +1,16 @@
 package com.loam.stoody.controller.development;
 
-import com.loam.stoody.dto.api.response.OutdoorResponse;
-import com.loam.stoody.global.annotations.UnderDevelopment;
-import com.loam.stoody.global.constants.IndoorResponse;
-import com.loam.stoody.global.constants.PRL;
-import com.loam.stoody.service.utils.aws.S3BucketDetails;
-import com.loam.stoody.service.utils.aws.S3Service;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@Deprecated
 // TODO: Configure CORS!
-@CrossOrigin(origins = "http://localhost:3000")
 public class FileUploadAPI {
     private static final String FILE_NAME = "fileName";
 
-    private final S3Service s3Service;
+
 //
 //    // Presigned URL----------------------------------------------------------------------------------------------------
 //    @GetMapping("/api/uploader/generate_key")
@@ -41,26 +27,5 @@ public class FileUploadAPI {
 //    }
 //    // Presigned URL End------------------------------------------------------------------------------------------------
 //
-    // Put Object Upload
-    @PostMapping(PRL.apiPrefix+"/upload/put/small")
-    // TODO: Configure CORS!
-    @CrossOrigin(origins = "http://localhost:3000")
-    public OutdoorResponse<?> putObjectToBucket(@RequestParam("file") MultipartFile multipartFile){
-        try{
-            return new OutdoorResponse<>(IndoorResponse.SUCCESS,
-                    s3Service.putObject(S3BucketDetails.S3BucketNameStoodyStandardImages, multipartFile));
-        }catch (Exception ignore){}
-        return new OutdoorResponse<>(IndoorResponse.FAIL, "FAILED");
-    }
 
-    @PostMapping(PRL.apiPrefix+"/upload/put/large")
-    // TODO: Configure CORS!
-    @CrossOrigin(origins = "http://localhost:3000")
-    public OutdoorResponse<?> putCourseFilesToBucket(@RequestParam("file") MultipartFile multipartFile){
-        try{
-            return new OutdoorResponse<>(IndoorResponse.SUCCESS,
-                    s3Service.putObject(S3BucketDetails.S3BucketNameCourseContents, multipartFile));
-        }catch (Exception ignore){}
-        return new OutdoorResponse<>(IndoorResponse.FAIL, "FAILED");
-    }
 }

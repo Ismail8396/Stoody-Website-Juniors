@@ -1,6 +1,6 @@
 package com.loam.stoody.controller.product;
 
-import com.loam.stoody.dto.api.response.CourseCategoryResponseDTO;
+import com.loam.stoody.dto.api.response.course.CourseCategoryResponseDTO;
 import com.loam.stoody.model.product.course.CourseCategory;
 import com.loam.stoody.service.product.CategoryService;
 import com.loam.stoody.service.user.UserDTS;

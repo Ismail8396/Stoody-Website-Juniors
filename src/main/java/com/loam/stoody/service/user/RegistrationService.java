@@ -6,7 +6,7 @@ import com.loam.stoody.global.constants.MiscConstants;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.requests.RegistrationRequest;
-import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.repository.user.PendingRegistrationRequests;
 import com.loam.stoody.repository.user.RoleRepository;
 import com.loam.stoody.repository.user.UserRepository;

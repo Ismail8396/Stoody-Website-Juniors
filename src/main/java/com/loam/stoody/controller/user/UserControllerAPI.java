@@ -2,16 +2,14 @@ package com.loam.stoody.controller.user;
 
 import com.loam.stoody.components.IAuthenticationFacade;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
-import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.model.user.UserProfile;
 import com.loam.stoody.model.user.UserSocialProfiles;
 import com.loam.stoody.model.user.misc.UserStatus;
-import com.loam.stoody.repository.user.attributes.UserFollowersRepository;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 

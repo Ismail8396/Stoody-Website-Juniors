@@ -32,13 +32,15 @@ public interface PRL {
     String redirectPageURL = "/redirect-page";
     String verifyPasswordPageURL = "/verify-password";
 
+    String userRegisterRequestURL = "/user/register/request";
+
     // API (Rest Controller)
     // Prefixes
     String apiPrefix = "/" + About.AppNameLC + "/api/" + About.AppVersion;
     String apiRegistrationPrefixURL = apiPrefix + "/registration";
     String apiLoginPrefixURL = apiPrefix + "/user";
     String apiVerifySuffixURL = "/verify";
-    // Course
+    // PendingCourse
     String apiCourseSuffixURL = "/course";
 
     // HTML NAMES ------------------------------------------------------------------------------------------------------

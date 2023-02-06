@@ -19,7 +19,7 @@
 package com.loam.stoody.service.user;
 
 import com.loam.stoody.components.IAuthenticationFacade;
-import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.model.user.*;
 import com.loam.stoody.model.user.misc.Role;
 import com.loam.stoody.model.user.misc.UserStatus;
@@ -38,7 +38,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.ObjectUtils;
 
 import java.time.ZoneId;
 import java.util.ArrayList;

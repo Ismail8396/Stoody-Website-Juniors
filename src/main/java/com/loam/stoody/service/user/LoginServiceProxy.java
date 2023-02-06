@@ -2,7 +2,7 @@ package com.loam.stoody.service.user;
 
 import com.loam.stoody.components.jwt.JWTUtility;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
-import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.model.user.User;
 import com.loam.stoody.service.communication.sms.SmsSenderService;
 import jakarta.servlet.http.HttpServletRequest;

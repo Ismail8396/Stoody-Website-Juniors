@@ -1,7 +1,7 @@
 package com.loam.stoody.controller.communication;
 
 import com.loam.stoody.dto.api.response.OutdoorResponse;
-import com.loam.stoody.global.constants.IndoorResponse;
+import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.global.logger.ConsoleColors;
 import com.loam.stoody.global.logger.StoodyLogger;

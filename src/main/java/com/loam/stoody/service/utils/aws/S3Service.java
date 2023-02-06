@@ -1,13 +1,8 @@
 package com.loam.stoody.service.utils.aws;
 
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -16,8 +11,6 @@ import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -35,28 +28,6 @@ public class S3Service {
     // PRE-SIGNED URL METHOD--------------------------------------------------------------------------------------------
     private static final Logger LOG = LoggerFactory.getLogger(S3Service.class);
     private final AmazonS3 amazonS3;
-
-    private String generateUrl(String fileName, HttpMethod httpMethod) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        calendar.add(Calendar.DATE, 1); // Generated URL will be valid for 24 hours
-        return amazonS3.generatePresignedUrl(S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo, fileName, calendar.getTime(), httpMethod).toString();
-    }
-
-    @Async
-    public String findByName(String fileName) {
-        if (!amazonS3.doesObjectExist(S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo, fileName))
-            return "File does not exist";
-        LOG.info("Generating signed URL for file name {}", fileName);
-        return generateUrl(fileName, HttpMethod.GET);
-    }
-
-    @Async
-    public String save(String extension) {
-        String fileName = UUID.randomUUID() + extension;
-        return generateUrl(fileName, HttpMethod.PUT);
-    }
-    // END OF PRE-SIGNED URL METHOD-------------------------------------------------------------------------------------
 
     // Uploads a (multipart)file to Amazon S3 Bucket and returns URL
     public String putObject(String bucketName, MultipartFile file) throws SdkClientException,
@@ -90,7 +61,28 @@ public class S3Service {
         return amazonS3.getUrl(bucketName, key).toString();
     }
 }
-
+//
+//    private String generateUrl(S3BucketNames bucketName, String fileName, HttpMethod httpMethod) {
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(new Date());
+//        calendar.add(Calendar.DATE, 1); // Generated URL will be valid for 24 hours
+//        return amazonS3.generatePresignedUrl(bucketName.toString(), fileName, calendar.getTime(), httpMethod).toString();
+//    }
+//
+//    @Async
+//    public String findByName(S3BucketNames bucketName, String fileName) {
+//        if (!amazonS3.doesObjectExist(bucketName.toString(), fileName))
+//            return "File does not exist";
+//        LOG.info("Generating signed URL for file name {}", fileName);
+//        return generateUrl(bucketName, fileName, HttpMethod.GET);
+//    }
+//
+//    @Async
+//    public String save(S3BucketNames bucketName, String extension) {
+//        String fileName = UUID.randomUUID() + extension;
+//        return generateUrl(bucketName, fileName, HttpMethod.PUT);
+//    }
+//// END OF PRE-SIGNED URL METHOD-------------------------------------------------------------------------------------
 
 //    // TODO: Test comprehensively with all the devices that app supports.
 //    private File convertMultipartFileToFile(MultipartFile multipartFile){
@@ -163,11 +155,11 @@ public class S3Service {
 //        metadata.setContentType(file.getContentType());
 //
 //        try {
-//            awsS3Client.putObject(S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo, key, file.getInputStream(), metadata);
+//            awsS3Client.putObject(S3BucketNames.S3BucketNameStoodyTeacherCourseVideo, key, file.getInputStream(), metadata);
 //        }catch(IOException e){
 //            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
 //                    "An exception occured while uploading a file into Amazon S3 Bucket named:"
-//                            + S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo);
+//                            + S3BucketNames.S3BucketNameStoodyTeacherCourseVideo);
 //        }
  */
 
@@ -182,14 +174,14 @@ public class S3Service {
 // EXAMPLE OF SETTING BUCKET OBJECT PUBLIC
 /*
 
-        awsS3Client.setObjectAcl(S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo,key,
+        awsS3Client.setObjectAcl(S3BucketNames.S3BucketNameStoodyTeacherCourseVideo,key,
                 CannedAccessControlList.PublicRead);
  */
 
 // EXAMPLE OF GETTING BUCKET OBJECT URL
 /*
         // File URL
-        return awsS3Client.getResourceUrl(S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo,key);
+        return awsS3Client.getResourceUrl(S3BucketNames.S3BucketNameStoodyTeacherCourseVideo,key);
  */
 // EXAMPLE OF WAITING THE UPLOADED DATA TO BE AT LEAST 20 BYTES
 /*
@@ -242,7 +234,7 @@ Upload upload = tm.upload(request);
 
         PutObjectRequest request = null;
         try {
-            request = new PutObjectRequest(S3BucketDetails.S3BucketNameStoodyTeacherCourseVideo, key, file.getInputStream(),metadata);
+            request = new PutObjectRequest(S3BucketNames.S3BucketNameStoodyTeacherCourseVideo, key, file.getInputStream(),metadata);
 
             // Listener
             ProgressListener progressListener = (progressEvent) -> {
