@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+
+    <title>Help Center Support | Stoody </title>
+
+
+</head>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    <!-- Navbar -->
+    @@include("../partials/navbar-help-center.html", { "classList": "navbar-default", "textColor": "text-dark", "searchColor": "text-dark" })
+    <!-- Page Content -->
+    <main>
+        <section class="py-8 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-2 col-md-8 col-12 ">
+                        <!-- caption-->
+                        <h1 class="fw-bold mb-0 display-4 lh-1">Support</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- container  -->
+        <section class="pt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <div>
+                            <!-- breadcrumb  -->
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="help-center.html" th:href="@{/help}">Help Center</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Support</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- container  -->
+        <section class="py-10">
+            <div class="container">
+                <div class="row ">
+                    <div class="offset-md-2 col-md-8 col-12">
+                        <div class="mb-3">
+                            <!-- lead  -->
+                            <p class="lead mb-8">Can’t find the answer you’re looking for? Don't worry! Get in touch with the Docs Support team, we will be glad to assist you.
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <span>Contact Information</span>
+                                <div class="text-end">
+                                    <span>(+994) 50 477 26 22</span>
+                                    <a href="#">contact@stoody.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- card -->
+                            <div class="card border">
+                                <!-- card body  -->
+                                <div class="card-body p-5">
+                                    <h2 class="mb-4 fw-semi-bold">Submit a Request</h2>
+                                    <!-- form  -->
+                                    <form th:action="@{/help/support}" method="post" th:object="${supportTicket}">
+                                        <!-- input  -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="name">Your Name</label>
+                                            <input class="form-control" th:field="*{fullName}" type="text" placeholder="Your name" id="name" required>
+                                        </div>
+                                        <!-- input  -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="email">Email Address <span class="text-danger">*</span></label>
+                                            <input class="form-control" th:field="*{email}" type="text" placeholder="Email address here" id="email" required>
+                                        </div>
+                                        <!-- input  -->
+                                        <div class="mb-3">
+                                            <label class="form-label" for="subject">Subject</label>
+                                            <input class="form-control" type="text" th:field="*{subject}" placeholder="Subject" id="subject">
+                                        </div>
+                                        <div class="mb-3">
+                                            <!-- input  -->
+                                            <label class="form-label" for="description">Description</label>
+                                            <textarea placeholder="Write down here" th:field="*{description}" id="description" rows="2" class="form-control"></textarea>
+                                        </div>
+                                        <!-- button  -->
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    @@include("../partials/footer-simple.html")
+
+    <!-- Scripts -->
+    @@include("../partials/scripts.html")
+
+
+</body>
+
+</html>

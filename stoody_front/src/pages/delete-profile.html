@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title data-th-text="#{global.delete_profile_page_title}">Delete Profile | Stoody </title>
+</head>
+
+<body>
+    <!-- Page content -->
+    @@include("../partials/navbar.html",{ "classList": "navbar-default" })
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- Page header -->
+                @@include("../partials/user-info-fragment.html")
+
+                <!-- Content -->
+
+                <div class="row mt-0 mt-md-4">
+                    <!-- This id is required to select the corresponding button -->
+                    <div id="user_profile_navbar_button_20_page"></div>
+                    @@include("../partials/user-profile-navbar.html")
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card">
+                            <!-- Card header -->
+                            <div class="card-header">
+                                <h3 class="mb-0">Delete your account</h3>
+                                <p class="mb-0">Delete or Close your account permanently.</p>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body p-4">
+                                <span class="text-danger h4">Warning</span>
+                                <p>
+                                    <span>Consider your options before cancelling your account. If you close your account, you will no longer be able to access it. All of your data, including courses and quizzes, will be erased.</span>
+                                    <br>
+                                    <span class="text-warning">Even Stoody is unable to restore deleted accounts.</span>
+                                    <hr>
+                                    <span>If you truly want your account terminated, click the button at the bottom and do not check in for 24 hours. Stoody will cease removing your account if you check in while it is being removed.</span>
+                                </p>
+                                <form th:action="@{/c/l/o/s/e/m/y/a/c/c/o/u/n/t/p/l/e/a/s/e}" method="post">
+                                    <!-- Button -->
+                                    <button class="btn btn-danger" type="submit">Close My Account</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    @@include("../partials/footer.html")
+    <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @@include("../partials/scripts.html")
+</body>
+
+</html>

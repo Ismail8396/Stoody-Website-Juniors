@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+
+    <title>Help Center | Stoody </title>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    @@include("../partials/navbar-help-center.html", { "classList": "navbar-transparent", "brandClass": "navbar-brand", "textColor": "text-dark", "searchColor": "text-dark" })
+    <main>
+        <!-- Page Content -->
+        <section class="py-lg-15 py-10 bg-light">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-6  col-12 ">
+                        <!-- caption-->
+                        <h1 class="fw-bold mb-1 display-3">How can we help you?</h1>
+                        <!-- para -->
+                        <p class="mb-5 text-dark ">Have questions? Search through our Help Center</p>
+                        <div class="pe-md-6">
+                            <!-- input  -->
+                            <div id="helpCenterLandingSearchForm" class="d-flex align-items-center">
+                                <span class="position-absolute ps-3">
+                <i class="fe fe-search text-muted"></i>
+              </span>
+                                <!-- input  -->
+                                <input type="search" id="helpCenterLandingSearchFormInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                                <button id="helpCenterLandingSearchFormButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                                    <i class="bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <span class=" mt-2 d-block">... or choose a category to quickly find the help you need</span>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <!-- img  -->
+                            <img th:src="@{/assets/images/svg/3d-girl-seeting.svg}" src="../assets/images/svg/3d-girl-seeting.svg" alt="" class="text-center img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="mt-n8">
+            <!-- container  -->
+            <div class="container">
+                <div class="card rounded-3 shadow-sm">
+                    <div class="row">
+                        <div class="col-md-4  col-12 border-end-md ">
+                            <!-- features  -->
+                            <div class=" border-bottom border-bottom-md-0 mb-3 mb-lg-0">
+                                <div class="p-5">
+                                    <div class="mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle text-primary">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                                    </div>
+                                    <!-- heading  -->
+                                    <h3 class="fw-semi-bold">
+                                        <a href="help-center-faq.html" th:href="@{/help/faq}" class="text-inherit">FAQs</a>
+                                    </h3>
+                                    <!-- para  -->
+                                    <p>Our help center covers FAQ, short for frequently asked questions. You can find a list of commonly asked questions and answers about a specific topic.</p>
+                                    <a href=""></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4  col-12  border-end-md">
+                            <!-- features  -->
+                            <div class="border-bottom border-bottom-md-0 mb-3 mb-lg-0">
+                                <div class="p-5">
+                                    <div class="mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book text-primary">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                                    </div>
+                                    <!-- heading  -->
+                                    <h3 class="fw-semi-bold"><a href="help-center-guide.html" th:href="@{/help/guides}" class="text-inherit">Guides & Resources</a>
+                                    </h3>
+                                    <!-- para  -->
+                                    <p>Stoody Help Center also contains guides & resources for most of Stoody functionalities.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4  col-12">
+                            <div>
+                                <div class="p-5">
+                                    <div class="mb-4">
+                                        <!-- features  -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#754ffe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-life-buoy text-primary">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+                    <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+                    <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+                    <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
+                    <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+                  </svg>
+                                    </div>
+                                    <!-- heading  -->
+                                    <h3 class="fw-semi-bold"><a href="help-center-support.html" th:href="@{/help/support}" class="text-inherit">Support</a></h3>
+                                    <!-- para  -->
+                                    <p>The good news is that youre not alone, and youre in the right place. Contact us for more detailed support.</p>
+                                    <!-- button  -->
+                                    <a href="help-center-support.html" th:href="@{/help/support}" class="link-primary fw-semi-bold">Submit a Request<i
+                    class="mdi mdi-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- container  -->
+        <section class="py-lg-16 py-10" th:if="${not #lists.isEmpty(getHelpCenterServiceLayer.getAllHelpCenterArticle())}">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-6  col-12">
+                        <div class="mb-8 pe-lg-14">
+                            <!-- heading  -->
+                            <h2 class="pe-lg-12 mb-4 h1 fw-semi-bold">Most frequently asked questions
+                            </h2>
+                            <p class="lead">Here are the most frequently asked questions you may check before getting started</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8 col-12">
+                        <!-- accordions  -->
+                        <div class="accordion accordion-flush" id="accordionExample" th:each="helpCenterArticle : ${getHelpCenterServiceLayer.getNHelpCenterArticle(5)}" th:id="${'article'+helpCenterArticle.getId()}">
+                            <div class="border p-3 rounded-3 mb-2" id="headingOne" th:id="${'heading'+helpCenterArticle.getId()}">
+                                <h3 class="mb-0 fs-4">
+                                    <a href="#" class="d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" th:attr="data-bs-target=${'#collapseTarget'+helpCenterArticle.getId()},aria-controls=${'collapseTarget'+helpCenterArticle.getId()}">
+                                        <span class="me-auto" th:text="${helpCenterArticle.getName()}">Is there a 14-days trial?</span>
+                                        <span class="collapse-toggle ms-4">
+                    <i class="fe fe-chevron-down text-muted "></i>
+                  </span>
+                                    </a>
+                                </h3>
+                                <!-- collapse  -->
+                                <div id="collapseOne" th:id="${'collapseTarget'+helpCenterArticle.getId()}" th:attr="data-bs-parent='#'+${'article'+helpCenterArticle.getId()},aria-labelledby=${'heading'+helpCenterArticle.getId()}" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="pt-2" th:text="${helpCenterArticle.getShortContent()}">
+                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga aperiam velit possimus! Voluptatum aliquid minima dolorum, enim perspiciatis sit. Distinctio quidem perferendis reprehenderit quisquam cum natus id, iusto, aut, quasi modi nihil veritatis!
+                                        Possimus eum beatae dolor rem quidem libero sit odio quia eius ullam.
+                                    </div>
+                                    <a class="btn btn-primary mt-2" th:href="'/help/'+${helpCenterArticle.getCategory().getName()}+'/'+${helpCenterArticle.getUrlKey()}">Detailed</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- container  -->
+        <section class="pb-lg-16 pb-10">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-4  col-12">
+                        <div class="mb-8">
+                            <h2 class="mb-0 h1 fw-semi-bold">Can't find what you're looking for?</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-lg-2 col-lg-8  col-12">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <!-- card  -->
+                                <div class="card border mb-md-0 mb-4">
+                                    <!-- card body  -->
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle text-primary">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                                        </div>
+                                        <!-- para  -->
+                                        <h3 class="mb-2 fw-semi-bold">Contact us</h3>
+                                        <p>Stoody is here to help. We can provide you with the support you need. Just contact us and our team will reply quick to you.</p>
+                                        <!-- btn  -->
+                                        <a href="#" th:href="@{/contact}" class="btn btn-primary btn-sm">Contact us</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <!-- card  -->
+                                <div class="card border">
+                                    <!-- card body  -->
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#754ffe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-life-buoy text-primary">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <circle cx="12" cy="12" r="4"></circle>
+                      <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+                      <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+                      <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+                      <line x1="14.83" y1="9.17" x2="18.36" y2="5.64"></line>
+                      <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+                    </svg>
+                                        </div>
+                                        <!-- para  -->
+                                        <h3 class="mb-2 fw-semi-bold">Support</h3>
+                                        <p>The good news is that you’re not alone, and you’re in the right place. If you encounter any issue on our platform, contact us here.
+                                        </p>
+                                        <!-- btn  -->
+                                        <a href="help-center-support.html" th:href="@{/help/support}" class="btn btn-outline-secondary btn-sm">Submit a Ticket</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- footer -->
+    @@include("../partials/footer-simple.html")
+
+    <!-- Scripts -->
+    @@include("../partials/scripts.html")
+
+
+</body>
+
+</html>

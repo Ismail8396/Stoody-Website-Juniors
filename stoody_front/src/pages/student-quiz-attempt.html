@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title>Quiz | Stoody</title>
+</head>
+
+<body>
+    @@include("../partials/navbar.html",{ "classList": "navbar-default" })
+    <!-- Page Content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- User info -->
+                @@include("../partials/user-info-fragment.html")
+
+                <!-- Content -->
+
+                <div class="row mt-0 mt-md-4">
+                    @@include("../partials/user-profile-navbar.html")
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="card">
+                            <!-- Card header -->
+                            <div class="card-header">
+                                <div class="mb-3 mb-lg-0">
+                                    <h3 class="mb-1">My Quiz Attempt</h3>
+                                    <p class="mb-0">You can find all of your order Invoices.</p>
+                                </div>
+
+                            </div>
+                            <!-- table -->
+                            <div class="table-responsive">
+                                <table class="table text-nowrap text-lg-wrap table-hover table-centered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Quiz Info</th>
+                                            <th>Questions</th>
+                                            <th>Correct</th>
+                                            <th>Incorrect</th>
+                                            <th>Marks</th>
+                                            <th>Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <a href="#">
+                                                        <h5 class="mb-1">How to easily create a website with React</h5>
+                                                    </a>
+                                                    <small>20 June, 2022, 12:49 pm</small>
+                                                </div>
+                                            </td>
+                                            <td>25</td>
+                                            <td>9</td>
+                                            <td>16</td>
+                                            <td>18(39%)</td>
+                                            <td><span class="badge bg-danger-soft">Fail</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <a href="#">
+                                                        <h5 class="mb-1">The Python Course: build web application</h5>
+                                                    </a>
+                                                    <small>10 June, 2022, 12:49 pm</small>
+                                                </div>
+                                            </td>
+                                            <td>40</td>
+                                            <td>20</td>
+                                            <td>20</td>
+                                            <td>50(50%)</td>
+                                            <td><span class="badge bg-warning-soft">Pending</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <a href="#">
+                                                        <h5 class="mb-1">Angular - the complete guide for beginner</h5>
+                                                    </a>
+                                                    <small>08 June, 2022, 12:49 pm</small>
+                                                </div>
+                                            </td>
+                                            <td>20</td>
+                                            <td>20</td>
+                                            <td>0</td>
+                                            <td>11(100%)</td>
+                                            <td><span class="badge bg-success-soft">Pass</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <a href="#">
+                                                        <h5 class="mb-1">Wordpress: complete WordPress theme & plugin development
+                                                        </h5>
+                                                    </a>
+                                                    <small>5 June, 2022, 12:49 pm</small>
+                                                </div>
+                                            </td>
+                                            <td>25</td>
+                                            <td>9</td>
+                                            <td>16</td>
+                                            <td>18(39%)</td>
+                                            <td><span class="badge bg-danger-soft">Fail</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <a href="#">
+                                                        <h5 class="mb-1">CSS: ultimate CSS course from beginner to advanced
+                                                        </h5>
+                                                    </a>
+                                                    <small>4 June, 2022, 12:49 pm</small>
+                                                </div>
+                                            </td>
+                                            <td>25</td>
+                                            <td>9</td>
+                                            <td>16</td>
+                                            <td>18(39%)</td>
+                                            <td><span class="badge bg-danger-soft">Fail</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    @@include("../partials/footer.html")
+
+    <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @@include("../partials/scripts.html")
+</body>
+
+</html>
