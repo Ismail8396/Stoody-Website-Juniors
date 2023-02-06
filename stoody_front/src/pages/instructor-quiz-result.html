@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title>Quiz | Stoody</title>
+</head>
+
+<body>
+    @@include("../partials/navbar.html",{ "classList": "navbar-default" })
+    <!-- Page content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- User info -->
+                @@include("../partials/user-info-fragment.html")
+
+                <!-- Content -->
+                <div class="row mt-0 mt-md-4">
+                    <!-- This id is required to select the corresponding button -->
+                    <div id="user_profile_navbar_button_9_page"></div>
+                    @@include("../partials/user-profile-navbar.html")
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card mb-4">
+
+                            <!-- Card body -->
+                            <div class="card-header">
+                                <h3 class="mb-0">Result - React Basic Quiz </h3>
+
+
+
+                            </div>
+                            <!-- card -->
+                            <div class="card-body border-bottom">
+                                <!-- row -->
+                                <div class="row row-cols-lg-3 row-cols-1">
+                                    <div class="col">
+                                        <!-- card -->
+                                        <div class="card bg-gray-100 shadow-none mb-3 mb-lg-0">
+                                            <!-- card body -->
+                                            <div class="card-body">
+                                                <h4 class="mb-0">Participate</h4>
+                                                <div class="mt-5 d-flex justify-content-between align-items-center lh-1">
+                                                    <div>
+                                                        <span class="fs-3 text-dark fw-semi-bold">27</span>
+                                                    </div>
+                                                    <div class="align-middle">
+                                                        <i class="fe fe-users h2 text-danger"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- col -->
+                                    <div class="col">
+                                        <!-- card -->
+                                        <div class="card bg-gray-100 shadow-none mb-3 mb-lg-0">
+                                            <!-- card body -->
+                                            <div class="card-body">
+                                                <h4 class="mb-0">Scores</h4>
+                                                <div class="mt-5 d-flex justify-content-between align-items-center lh-1">
+                                                    <div>
+                                                        <span class="fs-3 text-dark fw-semi-bold">82</span>
+                                                    </div>
+                                                    <div class="align-middle">
+                                                        <i class="fe fe-clipboard h2 text-primary"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col">
+                                        <!-- card -->
+                                        <div class="card bg-gray-100 shadow-none mb-3 mb-lg-0">
+                                            <!-- card body -->
+                                            <div class="card-body">
+                                                <h4 class="mb-0">Average Time</h4>
+                                                <div class="mt-5 d-flex justify-content-between align-items-center lh-1">
+                                                    <div>
+                                                        <span class="fs-3 text-dark fw-semi-bold">00:00:42</span>
+                                                    </div>
+                                                    <div class="align-middle">
+                                                        <i class="fe fe-clock h2 text-success"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body border-bottom">
+                                <form class="row">
+                                    <div class="col-lg-9 col-md-7 col-12 mb-lg-0 mb-2">
+                                        <input type="search" class="form-control" placeholder="Search">
+                                    </div>
+                                    <div class="col-lg-3 col-md-5 col-12">
+                                        <!-- select -->
+                                        <select class="selectpicker" data-width="100%">
+                    <option value="">Sort by</option>
+                    <option value="Free">Free</option>
+                    <option value="Newest">Newest</option>
+                    <option value="Oldest">Oldest</option>
+
+                  </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover table-centered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Students</th>
+                                            <th>Score</th>
+                                            <th>Attempt</th>
+                                            <th>Finishing time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-3.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Dianna Smiley</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>75</td>
+                                            <td>3 attempts</td>
+                                            <td>20 July, 9:39am</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-4.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Wade Warren</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>42</td>
+                                            <td>3 attempts</td>
+                                            <td>20 July, 10:39am</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-5.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Esther Howard</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>74</td>
+                                            <td>5 attempts</td>
+                                            <td>20 July, 11:39am</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-6.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Kristin Watson</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>32</td>
+                                            <td>3 attempts</td>
+                                            <td>20 July, 09:39am</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-7.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Margare McGrath</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>98</td>
+                                            <td>3 attempts</td>
+                                            <td>19 July, 04:00am</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-8.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Carlos Rhodes</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>100</td>
+                                            <td>3 attempts</td>
+                                            <td>19 July, 06:00am</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="../assets/images/avatar/avatar-9.jpg" alt="" class="rounded-circle avatar-sm me-2">
+                                                        <h5 class="mb-0">Alice Marshall</h5>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>35</td>
+                                            <td>2 attempts</td>
+                                            <td>19 July, 12:00pm</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <div class="card-footer">
+                                <!-- Pagination -->
+                                <div class="d-flex align-items-center w-100 justify-content-between">
+                                    <span>Showing 1 to 8 of
+                  20 entries</span>
+                                    <nav>
+                                        <ul class="pagination mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link mx-1 rounded" href="#" tabindex="-1"><i
+                          class="mdi mdi-chevron-left"></i></a>
+                                            </li>
+                                            <li class="page-item active">
+                                                <a class="page-link mx-1 rounded" href="#">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link mx-1 rounded" href="#">2</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link mx-1 rounded" href="#">3</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link mx-1 rounded" href="#"><i class="mdi mdi-chevron-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade " id="addQuizQuestionModal" tabindex="-1" aria-labelledby="addQuizQuestionModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="modal-title" id="addQuizQuestionModalLabel">Add Quiz Question</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div>
+                                    <form>
+                                        <div class="mb-5">
+                                            <h4 class="mb-3">General</h4>
+                                            <div class="mb-3">
+                                                <label class="form-label">Write your question</label>
+                                                <input type="text" class="form-control" placeholder="Quiz title">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Question Type</label>
+
+
+                                                <select class="selectpicker" data-width="100%">
+                        <option value="">Select Question Type</option>
+                        <option value="Newest">Newest</option>
+                        <option value="High Rated">High Rated</option>
+                        <option value="Law Rated">Law Rated</option>
+                        <option value="High Earned">High Earned</option>
+                      </select>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <h4 class="mb-3">Answer</h4>
+                                            <div class="mb-2">
+                                                <div class="mb-2 d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h5 class="mb-0 fw-normal">Choice 1</h5>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="d-flex align-items-center lh-1"><span>Correct
+                              answer</span>
+                                                            <div class="form-check form-switch ms-2">
+
+                                                                <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
+                                                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <input type="text" placeholder="Write the answer" class="form-control">
+                                            </div>
+                                            <div class="mb-2">
+                                                <div class="mb-2 d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h5 class="mb-0 fw-normal">Choice 2</h5>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="d-flex align-items-center lh-1"><span>Correct
+                              answer</span>
+                                                            <div class="form-check form-switch ms-2">
+
+                                                                <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultTwo">
+                                                                <label class="form-check-label" for="flexSwitchCheckDefaultTwo"></label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <input type="text" placeholder="Write the answer" class="form-control">
+                                            </div>
+                                            <div class="mb-2">
+                                                <div class="mb-2 d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h5 class="mb-0 fw-normal">Choice 3</h5>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="d-flex align-items-center lh-1"><span>Correct
+                              answer</span>
+                                                            <div class="form-check form-switch ms-2">
+
+                                                                <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultThree">
+                                                                <label class="form-check-label" for="flexSwitchCheckDefaultThree"></label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <input type="text" placeholder="Write the answer" class="form-control">
+                                            </div>
+                                            <div class="mb-2">
+                                                <div class="mb-2 d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h5 class="mb-0 fw-normal">Choice 4</h5>
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="d-flex align-items-center lh-1"><span>Correct
+                              answer</span>
+                                                            <div class="form-check form-switch ms-2">
+
+                                                                <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultFour">
+                                                                <label class="form-check-label" for="flexSwitchCheckDefaultFour"></label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <input type="text" placeholder="Write the answer" class="form-control ">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-label">Point for this answer</label>
+                                                <textarea class="form-control " placeholder="Give point to the answer" rows="3"></textarea>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary ms-2">Add Quiz</button>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade " id="addQuizQuestionModal" tabindex="-1" aria-labelledby="addQuizQuestionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- modal body -->
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="modal-title" id="addQuizQuestionModalLabel">Add Quiz Question</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div>
+                        <!-- form -->
+                        <form>
+                            <div class="mb-5">
+                                <h4 class="mb-3">General</h4>
+                                <div class="mb-3">
+                                    <label class="form-label">Write your question</label>
+                                    <input type="text" class="form-control" placeholder="Quiz title">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Question Type</label>
+                                    <select class="selectpicker" data-width="100%">
+                      <option value="">Select Question Type</option>
+                      <option value="Newest">Newest</option>
+                      <option value="High Rated">High Rated</option>
+                      <option value="Law Rated">Law Rated</option>
+                      <option value="High Earned">High Earned</option>
+                    </select>
+                                </div>
+                            </div>
+                            <div class="">
+                                <h4 class="mb-3">Answer</h4>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 1</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control">
+                                </div>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 2</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultTwo">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefaultTwo"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control">
+                                </div>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 3</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultThree">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefaultThree"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control">
+                                </div>
+                                <div class="mb-2">
+                                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0 fw-normal">Choice 4</h5>
+                                        </div>
+                                        <div class="">
+                                            <div class="d-flex align-items-center lh-1"><span>Correct answer</span>
+                                                <div class="form-check form-switch ms-2">
+
+                                                    <input class="form-check-input me-0" type="checkbox" role="switch" id="flexSwitchCheckDefaultFour">
+                                                    <label class="form-check-label" for="flexSwitchCheckDefaultFour"></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <input type="text" placeholder="Write the answer" class="form-control ">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Point for this answer</label>
+                                    <textarea class="form-control " placeholder="Give point to the answer" rows="3"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary ms-2">Add Quiz</button>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    @@include("../partials/footer.html")
+
+    <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @@include("../partials/scripts.html")
+    <script src="@@webRoot/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+</body>
+
+</html>

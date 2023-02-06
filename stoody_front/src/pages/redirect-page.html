@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title data-th-text="#{global.redirect_title}">Redirect | Stoody </title>
+</head>
+
+<body class="bg-white">
+    <!-- Page Content -->
+    <main>
+        <section class="container d-flex flex-column">
+            <div class="row">
+                <div class="offset-xl-1 col-xl-2 col-lg-12 col-md-12 col-12">
+                    <div class="mt-4">
+                        <a th:href="@{/}" href="../index.html"><img th:src="@{/assets/images/brand/logo/logo.png}" src="../assets/images/brand/logo/logo.png" width="40px" alt="" class="logo-inverse"></a>
+                        <!-- theme switch -->
+                        <div class="form-check form-switch theme-switch d-none ">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center g-0 py-lg-22 py-10">
+                <!-- Docs -->
+                <div class="offset-xl-1 col-12 text-center text-lg-start">
+                    <h1 th:text="${header}" class="display-1 mb-3">Success!</h1>
+
+                    <p th:text="${message}" class="mb-5 lead">We've sent an email to test@gmail.com. Please, go and check your email. Find the message came from us and click the link to verify your account.</p>
+
+                    <div class="row">
+                        <a th:each="button: ${buttons}" th:href="${button.href}" th:text="${button.label}" href="../pages/contact.html" class="btn btn-primary col-sm-12 col-lg-2 mb-2 mb-lg-0 mx-2 mx-lg-0 me-lg-2">Contact us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-12">
+                    <div class="row align-items-center mt-6">
+                        <div class="col-md-6 col-8">
+                            <p data-th-text="#{global.copyright_warner}" class="mb-0">© 2022 Stoody. All Rights Reserved</p>
+                        </div>
+                        <div class="col-md-6 col-4 d-flex justify-content-end">
+                            <a th:href="@{/}" href="#" class="text-muted text-primary-hover me-3  "><i class="mdi mdi-facebook mdi-24px"></i></a>
+                            <a th:href="@{/}" href="#" class="text-muted text-primary-hover me-3  "><i class="mdi mdi-twitter mdi-24px"></i></a>
+                            <a th:href="@{/}" href="#" class="text-muted text-primary-hover"><i class="mdi mdi-github mdi-24px"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Scripts -->
+    @@include("../partials/scripts.html")
+
+</body>
+
+</html>

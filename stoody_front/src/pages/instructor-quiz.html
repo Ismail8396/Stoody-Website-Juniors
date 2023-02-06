@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title>Quiz | Stoody</title>
+</head>
+
+<body>
+    @@include("../partials/navbar.html",{ "classList": "navbar-default" })
+    <!-- Page content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- User info -->
+                @@include("../partials/user-info-fragment.html")
+
+                <!-- Content -->
+
+                <div class="row mt-0 mt-md-4">
+                    <!-- This id is required to select the corresponding button -->
+                    <div id="user_profile_navbar_button_8_page"></div>
+                    @@include("../partials/user-profile-navbar.html")
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card mb-4">
+                            <!-- Card header -->
+                            <div class="card-header d-flex align-items-center justify-content-between">
+                                <div class="">
+                                    <h3 class="mb-0">Quiz</h3>
+                                </div>
+                                <div>
+                                    <a href="#" class="btn btn-primary btn-sm">Add New Quiz</a>
+                                </div>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-centered">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- quiz img -->
+                                                        <a href="#"> <img src="../assets/images/course/course-javascript.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                        <!-- quiz content -->
+                                                        <div class="ms-3">
+                                                            <h4 class="mb-2"><a href="instructor-quiz-details.html" class="text-inherit">Javascript
+                                Basic Quiz</a></h4>
+                                                            <div>
+                                                                <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>15 Questions
+                                                                </span>
+                                                                <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>30 Minutes
+                                                                </span>
+                                                                <a href="instructor-quiz-result.html" class="ms-2 text-body"><span
+                                  class="me-2 align-middle"><i class="fe fe-file-text"></i></span>Result</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <!-- icon -->
+                                                    <div>
+                                                        <a href="#" class="text-inherit"><i class="fe fe-settings"></i></a>
+                                                        <a href="#" class="ms-2 link-danger"><i class="fe fe-trash-2"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- quiz img -->
+                                                        <a href="#"> <img src="../assets/images/course/course-react.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                        <!-- quiz content -->
+                                                        <div class="ms-3">
+                                                            <h4 class="mb-2"><a href="instructor-quiz-details.html" class="text-inherit">React Basic
+                                Quiz </a></h4>
+                                                            <div>
+
+                                                                <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>20 Questions
+                                                                </span>
+                                                                <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>18 Minutes
+                                                                </span>
+                                                                <a href="instructor-quiz-result.html" class="ms-2 text-body"><span
+                                  class="me-2 align-middle"><i class="fe fe-file-text"></i></span>Result</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <!-- icon -->
+                                                    <div>
+                                                        <a href="#" class="text-inherit"><i class="fe fe-settings"></i></a>
+                                                        <a href="#" class="ms-2 link-danger"><i class="fe fe-trash-2"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- quiz img -->
+                                                        <a href="#"> <img src="../assets/images/course/course-css.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                        <!-- quiz content -->
+                                                        <div class="ms-3">
+                                                            <h4 class="mb-2"><a href="instructor-quiz-details.html" class="text-inherit">CSS Beginner
+                                Quiz </a></h4>
+                                                            <div>
+                                                                <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>18 Questions
+                                                                </span>
+                                                                <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>15 Minutes
+                                                                </span>
+                                                                <a href="instructor-quiz-result.html" class="ms-2 text-body"><span
+                                  class="me-2 align-middle"><i class="fe fe-file-text"></i></span>Result</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <!-- icon -->
+                                                <td>
+                                                    <div>
+                                                        <a href="#" class="text-inherit"><i class="fe fe-settings"></i></a>
+                                                        <a href="#" class="ms-2 link-danger"><i class="fe fe-trash-2"></i></a>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- quiz img -->
+                                                        <a href="#"> <img src="../assets/images/course/course-vue.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                        <!-- quiz content -->
+                                                        <div class="ms-3">
+                                                            <h4 class="mb-2"><a href="instructor-quiz-details.html" class="text-inherit">Vue.js Basic
+                                Quiz </a></h4>
+                                                            <div>
+                                                                <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>26 Questions
+                                                                </span>
+                                                                <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>35 Minutes
+                                                                </span>
+                                                                <a href="instructor-quiz-result.html" class="ms-2 text-body"><span
+                                  class="me-2 align-middle"><i class="fe fe-file-text"></i></span>Result</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <!-- icon -->
+                                                    <div>
+                                                        <a href="#" class="text-inherit"><i class="fe fe-settings"></i></a>
+                                                        <a href="#" class="ms-2 link-danger"><i class="fe fe-trash-2"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- quiz img -->
+                                                        <a href="#"> <img src="../assets/images/course/course-html.jpg" alt="" class="rounded img-4by3-lg"></a>
+                                                        <!-- quiz content -->
+                                                        <div class="ms-3">
+                                                            <h4 class="mb-2"><a href="instructor-quiz-details.html" class="text-inherit">HTML 5 Basic
+                                Quiz </a></h4>
+                                                            <div>
+                                                                <span><span class="me-2 align-middle"><i class="fe fe-list"></i></span>15 Questions
+                                                                </span>
+                                                                <span class="ms-2"><span class="me-2 align-middle"><i class="fe fe-clock"></i></span>30 Minutes
+                                                                </span>
+                                                                <a href="instructor-quiz-result.html" class="ms-2 text-body"><span
+                                  class="me-2 align-middle"><i class="fe fe-file-text"></i></span>Result</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <!-- icon -->
+                                                    <div>
+                                                        <a href="#" class="text-inherit"><i class="fe fe-settings"></i></a>
+                                                        <a href="#" class="ms-2 link-danger"><i class="fe fe-trash-2"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- Footer -->
+    @@include("../partials/footer.html")
+
+    <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @@include("../partials/scripts.html")
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title data-th-text="#{global.profile_privacy_page_title}">Profile Privacy | Stoody </title>
+</head>
+
+<body>
+    @@include("../partials/navbar.html",{ "classList": "navbar-default" })
+    <!-- Page Content -->
+    <main>
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <!-- User info -->
+                @@include("../partials/user-info-fragment.html")
+
+                <!-- Content -->
+
+                <div class="row mt-0 mt-md-4">
+                    <!-- This id is required to select the corresponding button -->
+                    <div id="user_profile_navbar_button_19_page"></div>
+                    @@include("../partials/user-profile-navbar.html")
+                    <!-- Content -->
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <!-- Card -->
+                        <div class="card">
+                            <!-- Card header -->
+                            <div class="card-header">
+                                <h3 class="mb-0">Profile Privacy Settings</h3>
+                                <p class="mb-0">
+                                    Making your profile public allow other users to see what you have been learning on Stoody.
+                                </p>
+                            </div>
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <form th:action="@{/user/dashboard/standard/profile/privacy}" method="post" th:object="${profilePrivacyObject}">
+                                    <input type="hidden" th:field="*{id}" hidden>
+
+                                    <h4 class="mb-0">Profile settings</h4>
+                                    <p class="mb-5">
+                                        These controls give you the ability to customize what areas of your profile others are able to see.
+                                    </p>
+                                    <!-- List group -->
+                                    <ul class="list-group list-group-flush">
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Show your profile on search engines</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="swicthOne" th:field="*{showProfileOnSearchEngines}">
+                                                    <label class="form-check-label" for="swicthOne"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Show courses you're taking on your profile page</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchTwo" th:field="*{showCoursesBought}">
+                                                    <label class="form-check-label" for="switchTwo"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Currently learning</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchFour" th:field="*{showCurrentlyLearning}">
+                                                    <label class="form-check-label" for="switchFour"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Completed courses</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchFive" th:field="*{showCompletedCourses}">
+                                                    <label class="form-check-label" for="switchFive"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- List group item -->
+                                        <li class="list-group-item d-flex align-items-center justify-content-between px-0 py-2">
+                                            <div>Your Interests</div>
+                                            <div>
+                                                <div class="form-check form-switch">
+                                                    <input type="checkbox" class="form-check-input" id="switchSix" th:field="*{showInterests}">
+                                                    <label class="form-check-label" for="switchSix"></label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Button -->
+                                    <button class="btn btn-primary mt-5" type="submit">Update Profile</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    @@include("../partials/footer.html")
+
+    <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @@include("../partials/scripts.html")
+</body>
+
+</html>

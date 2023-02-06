@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head> @@include("../partials/head.html")
+    <title data-th-text="#{global.sign_up_title}">Sign up | Stoody </title>
+</head>
+
+<body>
+    <!-- Page content -->
+    <main>
+        <section class="container d-flex flex-column">
+            <div class="row align-items-center justify-content-center g-0 min-vh-100">
+                <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+                    <!-- Card -->
+                    <div class="card shadow">
+                        <!-- Card body -->
+                        <div class="card-body p-6">
+                            <div class="mb-4">
+                                <a th:href="@{/}" href="../index.html">
+                                    <img th:src="@{/assets/images/brand/logo/logo-icon.png}" src="../assets/images/brand/logo/logo-icon.png" class="mb-4" alt=""></a>
+                                <h1 class="mb-1 fw-bold" data-th-text="#{global.sign_up}">Sign up</h1>
+
+                                <span> 
+                                    <span data-th-text="#{global.already_have_an_account_qm}">Already have an account?</span>
+                                <a th:href="@{/sign-in}" href="../pages/sign-in.html" class="ms-1" data-th-text="#{global.sign_in}">Sign in</a>
+                                </span>
+                            </div>
+                            <!-- Form -->
+                            <form th:action="@{/sign-up}" th:object="${user}" method="post">
+                                <!-- Username -->
+                                <div class="mb-3">
+                                    <label for="username" class="form-label" data-th-text="#{global.username}">User Name</label>
+                                    <input type="text" id="username" class="form-control" name="username" th:attr="placeholder=#{global.username_placeholder}" placeholder="User Name" required>
+                                </div>
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label" data-th-text="#{global.email}">Email</label>
+                                    <input type="email" id="email" class="form-control" name="email" th:attr="placeholder=#{global.email_placeholder}" placeholder="Email address here" required>
+                                </div>
+                                <!-- Password -->
+                                <div class="mb-3">
+                                    <label for="password" class="form-label" data-th-text="#{global.password}">Password</label>
+                                    <input type="password" id="password" class="form-control" name="password" th:attr="placeholder=#{global.password_placeholder}" placeholder="Password here" required>
+                                </div>
+                                <!-- Terms & Conditions -->
+                                <div class="mb-3">
+                                    <span> <span data-th-text="#{global.i_agree_your_terms}">By creating account, I accept your terms:</span>
+                                    <br>
+                                    <a th:href="@{/terms_and_conditions}" href="terms-condition-page.html" data-th-text="#{global.terms_of_service}">Terms of Service </a> &
+                                    <a th:href="@{/privacy_policy}" href="terms-condition-page.html" data-th-text="#{global.privacy_policy}">Privacy Policy.</a></span>
+                                </div>
+                                <div>
+                                    <!-- Button -->
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary" onclick="elementVisibility('create_free_account_button_spinner',true)">
+									        <!-- Loading spinner(hidden by default) -->
+                                            <span id="create_free_account_button_spinner" style="display:none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            <span data-th-text="#{global.create_free_account}">Create free account</span>
+								        </button>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                                <div class="mt-4 text-center">
+                                    <!--Facebook-->
+                                    <a th:href="@{/}" href="#" class="btn-social btn-social-outline btn-facebook">
+                                        <i class="mdi mdi-facebook fs-4"></i>
+                                    </a>
+                                    <!--Twitter-->
+                                    <a th:href="@{/}" href="#" class="btn-social btn-social-outline btn-twitter">
+                                        <i class="mdi mdi-twitter fs-4"></i>
+                                    </a>
+                                    <!--LinkedIn-->
+                                    <a th:href="@{/}" href="#" class="btn-social btn-social-outline btn-linkedin">
+                                        <i class="mdi mdi-linkedin"></i>
+                                    </a>
+                                    <!--GitHub-->
+                                    <a th:href="@{/}" href="#" class="btn-social btn-social-outline btn-github">
+                                        <i class="mdi mdi-github"></i>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Scripts -->
+    @@include("../partials/scripts.html")
+</body>
+
+</html>
