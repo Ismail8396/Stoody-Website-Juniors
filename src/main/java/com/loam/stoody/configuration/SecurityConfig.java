@@ -72,10 +72,14 @@ public class SecurityConfig {
                         PRL.homeURL, PRL.signUpURL+"/**", PRL.redirectPageURL+"/**",
                         PRL.verifyPasswordPageURL+"/**",
                         PRL.error404URL,
-                        PRL.apiPrefix+"/upload/put/small",
                         "/ws/**",
 
+                        // Be careful with these
+                        PRL.apiPrefix+"/upload/**",
+
                         /*Remove Later*/
+                        "/stoody/api/v1/quizzes",
+                        "/stoody/courses/**",
                         PRL.apiPrefix+PRL.apiCourseSuffixURL+"/**",
                         "/user/profile/security/phone/change/request",
                         "/user/profile/security/phone/verify",

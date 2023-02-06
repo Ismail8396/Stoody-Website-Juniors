@@ -33,9 +33,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.*")
@@ -109,8 +107,7 @@ public class Stoody {
             userFollowers1.setTo(user2);
             userFollowersRepository.save(userFollowers1);
         } catch (Exception ex) {
-            System.out.println("ERRROR while insert user details in db");
+            System.out.println("ERROR while insert user details in db");
         }
-
     }
 }

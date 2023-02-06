@@ -1,10 +1,10 @@
 /*
 @fileName:  BookmarkedCourse
 
-@aka:       Bookmarked Course Model
+@aka:       Bookmarked PendingCourse Model
 
-@purpose:   Contains the data (that's either transient or non-transient) of a bookmarked course.
-            Bookmarked Course will be linked to User model.
+@purpose:   Contains the data (that's either transient or non-transient) of a bookmarked pendingCourse.
+            Bookmarked PendingCourse will be linked to User model.
 
 @author:    aleemkhowaja
 
@@ -13,7 +13,7 @@
 
 package com.loam.stoody.model.user.courses;
 
-import com.loam.stoody.model.product.course.Course;
+import com.loam.stoody.model.product.course.pending.PendingCourse;
 import com.loam.stoody.model.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,11 +29,9 @@ public class BookmarkedCourse {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    // TODO: aleemkhowaja, Course should be a collection since BookmarkedCourse is not going to contain only one course.
-    @ManyToOne(targetEntity = Course.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = PendingCourse.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
-    private Course course;
+    private PendingCourse pendingCourse;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

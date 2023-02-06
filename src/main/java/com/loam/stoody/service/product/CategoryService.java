@@ -1,7 +1,7 @@
 package com.loam.stoody.service.product;
 
 import com.loam.stoody.model.product.course.CourseCategory;
-import com.loam.stoody.repository.product.CategoryRepository;
+import com.loam.stoody.repository.product.CourseCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.Optional;
 
 @Service
 public class CategoryService {
-    private final CategoryRepository categoryRepository;
+    private final CourseCategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CourseCategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
