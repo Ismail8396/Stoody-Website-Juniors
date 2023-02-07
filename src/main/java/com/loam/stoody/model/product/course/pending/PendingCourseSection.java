@@ -10,4 +10,8 @@ import lombok.Data;
         @Index(name = "courseSectIndex_id", columnList = "id", unique = true)
 })
 public class PendingCourseSection extends SectionCore {
+
+    @ManyToOne(targetEntity = PendingCourse.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private PendingCourse pendingCourse;
 }

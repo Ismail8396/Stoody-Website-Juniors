@@ -6,8 +6,9 @@ import java.util.Set;
 
 @Data
 public class VideoRequestDTO {
-    Long id;
-    Long userFileId;
-    Long videoDuration;
+    private Long id;
+    private String name;
+    private String url;
+    private Long videoDuration;
     private Set<SubtitleRequestDTO> subtitles;
 }

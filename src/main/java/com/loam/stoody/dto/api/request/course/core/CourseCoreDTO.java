@@ -23,7 +23,6 @@ public class CourseCoreDTO {
     private CourseLevel level;
     private Double price;
     private VideoRequestDTO promoVideo;// Video class
-    private List<PendingCourseSectionDTO> sections;
     private String tags;
     private UserFileRequestDTO thumbnail;// UserFile class
     private String title;

@@ -26,7 +26,4 @@ import org.hibernate.annotations.Where;
 @DynamicInsert
 @Where(clause = "is_deleted='false'")
 public class PendingCourse extends CourseCore {
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "approved_course_id")
-    private ApprovedCourse approvedCourse;
 }

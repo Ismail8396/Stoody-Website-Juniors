@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 public class CourseCoreSectionDTO {
     private String title;
-    private List<PendingCourseLectureDTO> lectures;
+
 }

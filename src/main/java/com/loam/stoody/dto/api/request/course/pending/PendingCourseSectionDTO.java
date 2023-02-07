@@ -7,4 +7,6 @@ import java.util.List;
 
 @Data
 public class PendingCourseSectionDTO extends CourseCoreSectionDTO {
+
+    private List<PendingCourseLectureDTO> lectures;
 }

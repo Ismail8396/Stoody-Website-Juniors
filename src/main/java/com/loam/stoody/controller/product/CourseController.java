@@ -1,5 +1,6 @@
 package com.loam.stoody.controller.product;
 
+import com.loam.stoody.dto.api.request.course.approved.ApprovedCourseDTO;
 import com.loam.stoody.dto.api.request.course.pending.PendingCourseDTO;
 import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.enums.IndoorResponse;
@@ -34,10 +35,10 @@ public class CourseController {
         final PendingCourse pendingCourse = pendingCourseService.getPendingCourseById(id, PendingCourse.class);
         if(pendingCourse == null)
             return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, IndoorResponse.BAD_REQUEST);
-        ApprovedCourse approvedCourse = approvedCourseService.submitPendingCourse(pendingCourse);
-        if(approvedCourse == null)
+        ApprovedCourseDTO approvedCourseDTO = approvedCourseService.submitPendingCourse(pendingCourse);
+        if(approvedCourseDTO == null)
             return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, IndoorResponse.BAD_REQUEST);
-        return new OutdoorResponse<>(IndoorResponse.SUCCESS, approvedCourse);
+        return new OutdoorResponse<>(IndoorResponse.SUCCESS, approvedCourseDTO);
     }
 
 //-> Pending Course

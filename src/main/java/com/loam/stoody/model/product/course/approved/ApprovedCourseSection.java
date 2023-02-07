@@ -2,9 +2,8 @@ package com.loam.stoody.model.product.course.approved;
 
 
 import com.loam.stoody.model.product.course.core.SectionCore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
+import com.loam.stoody.model.product.course.pending.PendingCourse;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -13,4 +12,8 @@ import lombok.Data;
         @Index(name = "courseSectIndex_id", columnList = "id", unique = true)
 })
 public class ApprovedCourseSection extends SectionCore {
+
+    @ManyToOne(targetEntity = ApprovedCourse.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private ApprovedCourse approvedCourse;
 }
