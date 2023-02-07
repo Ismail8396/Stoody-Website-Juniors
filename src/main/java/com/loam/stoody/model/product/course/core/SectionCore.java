@@ -12,8 +12,4 @@ public abstract class SectionCore extends ParentModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-
-    @ManyToOne(targetEntity = PendingCourse.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
-    private PendingCourse pendingCourse;
 }

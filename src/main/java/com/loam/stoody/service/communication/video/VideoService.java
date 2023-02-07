@@ -89,24 +89,13 @@ public class VideoService {
         if (video == null) {
             throw new InvalidClassException("");
         }
-        if (video.getUserFileId() == null || video.getUserFileId() < 0 || video.getVideoDuration() == null || video.getVideoDuration() < 0) {
+        if (video.getVideoDuration() == null || video.getVideoDuration() < 0) {
             throw new IllegalArgumentException();
         }
-        final OutdoorResponse userFileResponse = userFileService.findUserFileById(video.getUserFileId());
-        if (!userFileResponse.getResponseStatus().equals(IndoorResponse.SUCCESS.toString())) {
-            throw new IllegalArgumentException();
-        }
-
-        Video videoEntity;
-        if(video.getId() != null && video.getId() > 0){
-            videoEntity = videoRepository.findById(video.getId()).orElse(null);
-            if(videoEntity == null)
-                videoEntity = new Video();
-        }else{
-            videoEntity = new Video();
-        }
-
-        videoEntity.setUserFile((UserFile) userFileResponse.getResponse());
+        Video videoEntity = new Video();
+        videoEntity.setId(video.getId());
+        videoEntity.setName(video.getName());
+        videoEntity.setUrl(video.getUrl());
         videoEntity.setVideoDuration(video.getVideoDuration());
         if (ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)) {
             if (customUserDetailsService.getCurrentUser() != null)
@@ -137,7 +126,9 @@ public class VideoService {
             if (!subtitleRequestDTOS.isEmpty()) videoRequestDTO.setSubtitles(subtitleRequestDTOS);
         }
         videoRequestDTO.setVideoDuration(video.getVideoDuration());
-        videoRequestDTO.setUserFileId(video.getUserFile().getId());
+        videoRequestDTO.setId(video.getId());
+        videoRequestDTO.setName(video.getName());
+        videoRequestDTO.setUrl(video.getUrl());
         return videoRequestDTO;
     }
 
@@ -176,8 +167,9 @@ public class VideoService {
     }
 
     public List<Video> getUserVideos() {
-        if (customUserDetailsService.getCurrentUser() == null && ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode))
-            return videoRepository.findAll();
-        return videoRepository.findAll().stream().filter(e -> customUserDetailsService.compareUsers(customUserDetailsService.getCurrentUser(), e.getUserFile().getOwner())).toList();
+//        if (customUserDetailsService.getCurrentUser() == null && ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode))
+//            return videoRepository.findAll();
+//        return videoRepository.findAll().stream().filter(e -> e.).toList();
+        return Collections.emptyList();
     }
 }

@@ -12,9 +12,6 @@ import lombok.Data;
 @Data
 @MappedSuperclass
 public abstract class LectureCore extends ParentModel {
-    @ManyToOne(targetEntity = PendingCourseSection.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_section_id", referencedColumnName = "id")
-    PendingCourseSection pendingCourseSection;
 
     @ManyToOne(targetEntity = UserFile.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_file_id", referencedColumnName = "id")

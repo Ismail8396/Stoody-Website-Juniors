@@ -8,9 +8,11 @@ import com.loam.stoody.dto.api.request.file.UserFileRequestDTO;
 import com.loam.stoody.global.constants.MiscConstants;
 import com.loam.stoody.global.constants.ProjectConfigurationVariables;
 import com.loam.stoody.model.communication.file.UserFile;
+import com.loam.stoody.model.communication.video.Video;
 import com.loam.stoody.model.product.course.pending.PendingCourse;
 import com.loam.stoody.model.product.course.pending.PendingCourseLecture;
 import com.loam.stoody.model.product.course.pending.PendingCourseSection;
+import com.loam.stoody.model.product.course.quiz.Quiz;
 import com.loam.stoody.repository.product.*;
 import com.loam.stoody.repository.product.approved.ApprovedCourseRepository;
 import com.loam.stoody.repository.product.pending.PendingCourseLectureRepository;
@@ -19,6 +21,7 @@ import com.loam.stoody.repository.product.pending.PendingCourseSectionRepository
 import com.loam.stoody.service.communication.file.UserFileService;
 import com.loam.stoody.service.communication.video.VideoService;
 //import com.loam.stoody.service.product.quiz.QuizService;
+import com.loam.stoody.service.product.quiz.QuizService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -28,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,16 +40,12 @@ public class PendingCourseService extends CourseCoreService {
     private final CustomUserDetailsService customUserDetailsService;
     private final UserFileService userFileService;
     private final VideoService videoService;
-
     private final CourseCategoryRepository categoryRepository;
-
     private final ApprovedCourseRepository approvedCourseRepository;
-
     private final PendingCourseRepository pendingCourseRepository;
     private final PendingCourseLectureRepository courseLectureRepository;
     private final PendingCourseSectionRepository courseSectionRepository;
-
-    //private final QuizService quizService;
+    private final QuizService quizService;
 
     public PendingCourseLectureDTO mapCourseLectureEntityToRequest(PendingCourseLecture pendingCourseLecture) {
         try {
@@ -57,6 +57,8 @@ public class PendingCourseService extends CourseCoreService {
                 pendingCourseLectureDTO.setVideo(videoService.mapVideoEntityToRequest(pendingCourseLecture.getVideo()));
             if (pendingCourseLecture.getUserFile() != null)
                 pendingCourseLectureDTO.setUserFile(userFileService.mapUserFileEntityToRequest(pendingCourseLecture.getUserFile()));
+            if(pendingCourseLecture.getQuiz() != null)
+                pendingCourseLectureDTO.setQuiz(quizService.mapQuizToRequest(pendingCourseLecture.getQuiz()));
             return pendingCourseLectureDTO;
         } catch (Exception ignore) {
         }
@@ -107,7 +109,9 @@ public class PendingCourseService extends CourseCoreService {
             pendingCourseSectionDTO = convertShallow(pendingCourseSection, PendingCourseSectionDTO.class, courseSectionEntityToRequestIgnoreProps);
 
             // Find the linked lectures and map them to CourseLectureRequest
-            List<PendingCourseLectureDTO> sectionLectures = courseLectureRepository.findAll().stream().filter(i -> i.getPendingCourseSection() != null && i.getPendingCourseSection().getId().equals(pendingCourseSection.getId())).map(this::mapCourseLectureEntityToRequest).collect(Collectors.toList());
+            List<PendingCourseLectureDTO> sectionLectures = courseLectureRepository
+                    .findAllByPendingCourseSection_Id(pendingCourseSection.getId())
+                    .stream().map(this::mapCourseLectureEntityToRequest).collect(Collectors.toList());
             if (!sectionLectures.isEmpty()) pendingCourseSectionDTO.setLectures(sectionLectures);
         }catch(ReflectiveOperationException ignore){}
 
@@ -135,7 +139,7 @@ public class PendingCourseService extends CourseCoreService {
         final Long approvedCourseId = courseRequest.getApprovedCourseId();
         if(approvedCourseId != null){
             if(approvedCourseId > 0){
-                approvedCourseRepository.findById(approvedCourseId).ifPresent(courseEntity::setApprovedCourse);
+               // approvedCourseRepository.findById(approvedCourseId).ifPresent(courseEntity::setApprovedCourse);
             }
         }
 
@@ -171,11 +175,11 @@ public class PendingCourseService extends CourseCoreService {
             pendingCourseDTO = convertShallow(pendingCourse, PendingCourseDTO.class, courseEntityToRequestIgnoreProps);
 
             // Map ignored properties manually
-            if (pendingCourse.getApprovedCourse() != null) {
-                if (pendingCourse.getApprovedCourse().getId() > 0) {
-                    pendingCourseDTO.setApprovedCourseId(pendingCourse.getApprovedCourse().getId());
-                }
-            }
+//            if (pendingCourse.getApprovedCourse() != null) {
+//                if (pendingCourse.getApprovedCourse().getId() > 0) {
+//                    pendingCourseDTO.setApprovedCourseId(pendingCourse.getApprovedCourse().getId());
+//                }
+//            }
 
             if (pendingCourse.getCourseCategory() != null) {
                 if (pendingCourse.getCourseCategory().getId() > 0) {
@@ -200,7 +204,7 @@ public class PendingCourseService extends CourseCoreService {
                 pendingCourseDTO.setThumbnail(null);
             }
 
-            List<PendingCourseSection> courseSections = courseSectionRepository.findAll().stream().filter(e -> e.getPendingCourse().getId().equals(pendingCourse.getId())).toList();
+            List<PendingCourseSection> courseSections = courseSectionRepository.findAllByPendingCourse_Id(pendingCourse.getId());
             if (!courseSections.isEmpty()) {
                 List<PendingCourseSectionDTO> pendingCourseSectionDTOS = courseSections.stream().map(this::mapCourseSectionEntityToRequest).collect(Collectors.toList());
                 pendingCourseDTO.setSections(pendingCourseSectionDTOS);
@@ -271,6 +275,7 @@ public class PendingCourseService extends CourseCoreService {
                     if (i.getLectures() != null) {
                         for (var j : i.getLectures()) {
                             PendingCourseLecture pendingCourseLecture = mapCourseLectureRequestToEntity(j, pendingCourseSection);
+                            saveLectureDetails(j, pendingCourseLecture);
                             if (pendingCourseLecture != null) {
                                 courseLectureRepository.save(pendingCourseLecture);
                             }
@@ -281,6 +286,33 @@ public class PendingCourseService extends CourseCoreService {
         }
 
         return mapCourseEntityToRequest(courseEntity);
+    }
+
+    private void saveLectureDetails(PendingCourseLectureDTO j, PendingCourseLecture pendingCourseLecture) {
+        if(!Objects.isNull(j.getQuiz())) {
+            Quiz quiz = new Quiz();
+            quiz.setId(j.getQuiz().getId());
+            quiz.setName(j.getQuiz().getName());
+            quiz.setThumbnailUrl(j.getQuiz().getThumbnailUrl());
+            pendingCourseLecture.setQuiz(quiz);
+            pendingCourseLecture.setVideo(null);
+            pendingCourseLecture.setUserFile(null);
+            pendingCourseLecture.setDescription(null);
+        } else if(!Objects.isNull(j.getVideo())) {
+            Video video = new Video();
+            video.setId(j.getVideo().getId());
+            pendingCourseLecture.setVideo(video);
+            pendingCourseLecture.setQuiz(null);
+            pendingCourseLecture.setUserFile(null);
+            pendingCourseLecture.setDescription(null);
+        } else if(!Objects.isNull(j.getUserFile())) {
+            UserFile userFile = new UserFile();
+            userFile.setId(j.getUserFile().getId());
+            pendingCourseLecture.setUserFile(userFile);
+            pendingCourseLecture.setQuiz(null);
+            pendingCourseLecture.setVideo(null);
+            pendingCourseLecture.setDescription(null);
+        }
     }
 
     public List<PendingCourseDTO> getAllPendingCourses() {

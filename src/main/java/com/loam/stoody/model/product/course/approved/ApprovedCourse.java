@@ -19,6 +19,7 @@ import java.util.List;
 @DynamicInsert
 @Where(clause = "is_deleted='false'")
 public class ApprovedCourse extends CourseCore {
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "approvedCourse", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = PendingCourse.class)
+    @JoinColumn(referencedColumnName = "id", columnDefinition = "pending_course_id")
     private PendingCourse pendingCourse;
 }

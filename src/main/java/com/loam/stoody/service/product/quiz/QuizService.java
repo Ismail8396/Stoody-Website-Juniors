@@ -1,9 +1,11 @@
 package com.loam.stoody.service.product.quiz;
 
+import com.loam.stoody.dto.api.request.file.UserFileRequestDTO;
 import com.loam.stoody.dto.api.request.quiz.QuizQuestionAnswerRequestDTO;
 import com.loam.stoody.dto.api.request.quiz.QuizQuestionRequestDTO;
 import com.loam.stoody.dto.api.request.quiz.QuizRequestDTO;
 import com.loam.stoody.global.constants.ProjectConfigurationVariables;
+import com.loam.stoody.model.communication.file.UserFile;
 import com.loam.stoody.model.product.course.quiz.Quiz;
 import com.loam.stoody.model.product.course.quiz.QuizQuestion;
 import com.loam.stoody.model.product.course.quiz.QuizQuestionAnswer;
@@ -158,6 +160,14 @@ public class QuizService {
         );
 
         return quizRepository.save(quiz);
+    }
+
+    public QuizRequestDTO mapQuizToRequest(Quiz quiz) {
+        QuizRequestDTO quizRequestDTO = new QuizRequestDTO();
+        quizRequestDTO.setId(quiz.getId());
+        quizRequestDTO.setName(quiz.getName());
+        quizRequestDTO.setThumbnailUrl(quiz.getThumbnailUrl());
+        return quizRequestDTO;
     }
 
 }
