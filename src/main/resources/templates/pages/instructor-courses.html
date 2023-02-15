@@ -1143,7 +1143,7 @@
 								insight.</span>
 
                                 <div>
-                                    <a th:href="@{/stoody/api/v1/course/create/new}" href="add-course.html" class="btn btn-primary mt-2">Create New
+                                    <a th:href="@{/user/dashboard/instructor/courses/course/0/editor}" href="add-course.html" class="btn btn-primary mt-2">Create New
 										Course</a>
                                 </div>
                             </div>
@@ -1151,14 +1151,14 @@
                             <div class="card-body">
                                 <!-- Form -->
                                 <form th:object="${searchFilterDTO}" th:action="@{/user/dashboard/instructor/courses/search}" class="row">
-                                    <div class="col-lg-9 col-md-7 col-12 mb-lg-0 mb-2">
+                                    <div class="col-12 mb-lg-0 mb-2">
                                         <input th:field="*{searchKey}" type="search" class="form-control" placeholder="Search Your Courses">
                                     </div>
                                 </form>
                             </div>
 
                             <!-- Table -->
-                            <div class="table-responsive overflow-y-hidden" th:unless="${#lists.isEmpty(createdCourses)}">
+                            <div class="table-responsive overflow-y-hidden" th:unless="${#lists.isEmpty(currentUserCourses)}">
                                 <table class="table mb-0 text-nowrap table-hover table-centered">
                                     <thead class="table-light">
                                         <tr>
@@ -1170,68 +1170,70 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="createdCourse : ${createdCourses}">
+                                        <tr th:each="createdCourse : ${currentUserCourses}">
                                             <td>
                                                 <div class="d-lg-flex align-items-center">
                                                     <div>
                                                         <a href="#">
-                                                            <img style="width:75px;" th:unless="${createdCourse.getThumbnailURL() == null or #strings.isEmpty(createdCourse.getThumbnailURL())}" th:src="${createdCourse.getThumbnailURL()}" src="../../../static/static/assets/images/course/course-wordpress.jpg" alt="" class="rounded img-4by3-lg">
-                                                            <i th:if="${createdCourse.getThumbnailURL() == null or #strings.isEmpty(createdCourse.getThumbnailURL())}" class="bi-card-image text-muted fs-1"></i>
+                                                            <img style="width:75px;" th:unless="${createdCourse.thumbnail == null or #strings.isEmpty(createdCourse.thumbnail.url)}" th:src="${createdCourse.thumbnail.url}" src="../../../static/static/assets/images/course/course-wordpress.jpg" alt="" class="rounded img-4by3-lg">
+                                                            <i th:if="${createdCourse.thumbnail == null or #strings.isEmpty(createdCourse.thumbnail.url)}" class="bi-card-image text-muted fs-1"></i>
 
                                                         </a>
                                                     </div>
                                                     <div class="ms-lg-3 mt-2 mt-lg-0">
                                                         <h4 class="mb-1 h5">
-                                                            <a href="#" class="text-inherit" th:text="${createdCourse.getTitle()}">
+                                                            <a href="#" class="text-inherit" th:text="${createdCourse.title}">
 															Create a Website with WordPress
 														    </a>
                                                         </h4>
                                                         <ul class="list-inline fs-6 mb-0">
                                                             <li class="list-inline-item">
                                                                 <i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>
-                                                                <span th:text="${courseService.getCourseCreationDateString(createdCourse.getId())}">2022-01-28 06:42</span>
+                                                                <span th:text="${pendingCourseService.getCourseCreationDateByIdFormatted(createdCourse.id)}">2022-01-28 06:42</span>
                                                             </li>
                                                             <li class="list-inline-item">
                                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <rect x="3" y="8" width="2" height="6" rx="1" th:attr="fill=${createdCourse.getLevel().ordinal() > 0}? '#754FFE' : '#DBD8E9'" fill="#754FFE"></rect>
-                                                                    <rect x="7" y="5" width="2" height="9" rx="1" th:attr="fill=${createdCourse.getLevel().ordinal() > 1}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
-                                                                    <rect x="11" y="2" width="2" height="12" rx="1" th:attr="fill=${createdCourse.getLevel().ordinal() > 2}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                                                                    <rect x="3" y="8" width="2" height="6" rx="1" th:attr="fill=${createdCourse.level.ordinal() > 0}? '#754FFE' : '#DBD8E9'" fill="#754FFE"></rect>
+                                                                    <rect x="7" y="5" width="2" height="9" rx="1" th:attr="fill=${createdCourse.level.ordinal() > 1}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
+                                                                    <rect x="11" y="2" width="2" height="12" rx="1" th:attr="fill=${createdCourse.level.ordinal() > 2}? '#754FFE' : '#DBD8E9'" fill="#DBD8E9"></rect>
                                                                 </svg>
-                                                                <span th:text="${createdCourse.getLevel()}">Beginner</span>
+                                                                <span th:text="${createdCourse.level}">Beginner</span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td th:text="${createdCourse.getEnrolledStudents() == null ? 0 : createdCourse.getEnrolledStudents()}">11,200</td>
+
+                                            <td th:text="${pendingCourseService.getEnrollmentCount(createdCourse.id) == null ? 0 : pendingCourseService.getEnrollmentCount(createdCourse.id)}">11,200</td>
                                             <td>
                                                 <span class="text-warning">
-                                                    <span th:text="${createdCourse.getRating() == null ? 0 : createdCourse.getRating()}">4.5</span>
+                                                    <span th:text="${pendingCourseService.getPendingCourseRating(createdCourse.id) == null ? 0 : pendingCourseService.getPendingCourseRating(createdCourse.id)}">4.5</span>
                                                 <i class="mdi mdi-star"></i>
                                                 </span>
-                                                <span th:text="'('+${createdCourse.getRating() == null ? 0 : createdCourse.getRating()} +')'">(3,250)</span>
+                                                <span th:text="'('+${pendingCourseService.getPendingCourseRating(createdCourse.id) == null ? 0 : pendingCourseService.getPendingCourseRating(createdCourse.id)} +')'">(3,250)</span>
                                             </td>
+
                                             <td>
-                                                <th:block th:switch="${createdCourse.getCourseStatus().toString()}">
+                                                <th:block th:switch="${createdCourse.courseStatus.toString()}">
                                                     <div th:case="'Draft'">
-                                                        <span class="badge bg-warning" th:text="${createdCourse.getCourseStatus()}">Draft</span>
+                                                        <span class="badge bg-warning" th:text="${createdCourse.courseStatus}">Draft</span>
                                                     </div>
                                                     <div th:case="'Pending'">
-                                                        <span class="badge bg-info" th:text="${createdCourse.getCourseStatus()}">Pending</span>
+                                                        <span class="badge bg-info" th:text="${createdCourse.courseStatus}">Pending</span>
                                                     </div>
                                                     <div th:case="'Live'">
-                                                        <span class="badge bg-success" th:text="${createdCourse.getCourseStatus()}">Live</span>
+                                                        <span class="badge bg-success" th:text="${createdCourse.courseStatus}">Live</span>
                                                     </div>
                                                     <div th:case="'Deleted'">
-                                                        <span class="badge bg-danger" th:text="${createdCourse.getCourseStatus()}">Deleted</span>
+                                                        <span class="badge bg-danger" th:text="${createdCourse.courseStatus}">Deleted</span>
                                                     </div>
                                                     <div th:case="*">
-                                                        <span class="badge bg-warning" th:text="${createdCourse.getCourseStatus()}">Draft</span>
+                                                        <span class="badge bg-warning" th:text="${createdCourse.courseStatus}">Draft</span>
                                                     </div>
                                                 </th:block>
                                             </td>
                                             <td>
-                                                <th:block th:switch="${createdCourse.getCourseStatus().toString()}">
+                                                <th:block th:switch="${createdCourse.courseStatus.toString()}">
                                                     <div th:case="'Draft'">
                                                         <span class="dropdown dropstart">
 												<a class="btn-icon btn btn-ghost btn-sm rounded-circle " href="#" role="button" id="courseDropdown"
@@ -1240,8 +1242,8 @@
 												</a>
 												<span class="dropdown-menu" aria-labelledby="courseDropdown">
 													<span class="dropdown-header">Setting </span>
-                                                        <a class="dropdown-item" th:href="'/stoody/api/v1/course/stoody/course/'+${createdCourse.getId()}+'/editor'" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/tag/deleted/'+${createdCourse.getId()}" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/course/'+${createdCourse.id}+'/editor'" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/course/delete/'+${createdCourse.id}" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
                                                         </span>
                                                         </span>
                                                     </div>
@@ -1256,7 +1258,7 @@
                             </div>
 
                             <!--No item to show-->
-                            <div class="px-4" th:if="${#lists.isEmpty(createdCourses)}">
+                            <div class="px-4" th:if="${#lists.isEmpty(currentUserCourses)}">
                                 <div class="alert bg-gray-100 text-dark-warning d-flex justify-content-center">
                                     <p class="mb-0">
                                         No item to show

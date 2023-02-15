@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,6 +75,8 @@ public class QuizService {
     public QuizRequestDTO fromEntity(Quiz quizEntity) {
         QuizRequestDTO quizRequestDTO = new QuizRequestDTO();
         quizRequestDTO.setId(quizEntity.getId());
+        quizRequestDTO.setName(quizEntity.getName());
+        quizRequestDTO.setThumbnailUrl(quizEntity.getThumbnailUrl());
 
         List<QuizQuestionRequestDTO> quizQuestionDTOs = quizQuestionRepository
                 .findAll()
@@ -120,7 +123,7 @@ public class QuizService {
         quizRepository.deleteById(id);
     }
 
-    public Quiz save(QuizRequestDTO dto){
+    public QuizRequestDTO save(QuizRequestDTO dto){
         boolean validId = dto.getId() != null && dto.getId() > 0;
         Quiz quiz;
         if(validId){
@@ -142,6 +145,9 @@ public class QuizService {
         }else{
             quiz = new Quiz();
         }
+        quiz.setId(dto.getId());
+        quiz.setName(dto.getName());
+        quiz.setThumbnailUrl(dto.getThumbnailUrl());
 
         Quiz finalQuiz = quizRepository.save(quiz);
 
@@ -159,15 +165,27 @@ public class QuizService {
         }
         );
 
-        return quizRepository.save(quiz);
+        return fromEntity(quizRepository.save(quiz));
     }
 
-    public QuizRequestDTO mapQuizToRequest(Quiz quiz) {
-        QuizRequestDTO quizRequestDTO = new QuizRequestDTO();
-        quizRequestDTO.setId(quiz.getId());
-        quizRequestDTO.setName(quiz.getName());
-        quizRequestDTO.setThumbnailUrl(quiz.getThumbnailUrl());
-        return quizRequestDTO;
+    public List<QuizRequestDTO> getAll(boolean currentUser) {
+        if(!currentUser)
+        return quizRepository.findAll().stream().map(this::fromEntity).toList();
+        else{
+            if(ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)){
+                if(customUserDetailsService.getCurrentUser() == null)
+                    return quizRepository.findAll().stream().map(this::fromEntity).toList();
+                else
+                    return quizRepository.findAll().stream().filter(
+                            e-> customUserDetailsService.compareUsers(e.getAuthor(),customUserDetailsService.getCurrentUser()))
+                            .map(this::fromEntity).toList();
+            }else {
+                if(customUserDetailsService.getCurrentUser() != null)
+                return quizRepository.findAll().stream().filter(
+                                e-> customUserDetailsService.compareUsers(e.getAuthor(),customUserDetailsService.getCurrentUser()))
+                        .map(this::fromEntity).toList();
+            }
+        }
+        return new ArrayList<>();
     }
-
 }

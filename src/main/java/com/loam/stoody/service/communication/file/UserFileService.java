@@ -5,6 +5,7 @@ import com.loam.stoody.dto.api.response.OutdoorResponse;
 import com.loam.stoody.enums.IndoorResponse;
 import com.loam.stoody.global.constants.ProjectConfigurationVariables;
 import com.loam.stoody.model.communication.file.UserFile;
+import com.loam.stoody.model.user.User;
 import com.loam.stoody.repository.communication.file.UserFileRepository;
 import com.loam.stoody.repository.user.UserRepository;
 import com.loam.stoody.service.user.CustomUserDetailsService;
@@ -27,11 +28,13 @@ public class UserFileService {
     private final UserRepository userRepository;
 
     @Transactional
+    // Return DTO!
     public OutdoorResponse<?> saveUserFile(UserFile userFile) {
         userFileRepository.save(userFile);
         return new OutdoorResponse<>(IndoorResponse.SUCCESS, IndoorResponse.SUCCESS.toString());
     }
 
+    // Return DTO!
     public OutdoorResponse<?> findUserFileById(Long id) {
         final UserFile userFile = userFileRepository.findById(id).orElse(null);
         if (userFile != null) return new OutdoorResponse<>(IndoorResponse.SUCCESS, userFile);
@@ -47,6 +50,7 @@ public class UserFileService {
         return new OutdoorResponse<>(IndoorResponse.BAD_REQUEST, null);
     }
 
+    @Transactional
     public OutdoorResponse<?> uploadObject(MultipartFile multipartFile) {
         try {
             long fileSizeInBytes = multipartFile.getSize();
@@ -81,61 +85,21 @@ public class UserFileService {
     }
 
     public UserFile mapUserFileRequestToEntity(UserFileRequestDTO userFileRequestDTO) {
-        try {
-            if (userFileRequestDTO == null) throw new RuntimeException();
-
-            UserFile userFile;
-            try {
-                if (userFileRequestDTO.getId() == null && userFileRequestDTO.getId() < 1) throw new RuntimeException();
-
-                OutdoorResponse<?> outdoorResponse = findUserFileById(userFileRequestDTO.getId());
-                if(outdoorResponse == null)throw new RuntimeException();
-                if(outdoorResponse.getResponse() == null) throw new RuntimeException();
-                if (!outdoorResponse.getResponseStatus().equals(IndoorResponse.SUCCESS.toString()))
-                    throw new RuntimeException();
-
-                userFile = (UserFile) outdoorResponse.getResponse();
-            } catch (Exception ignore) {
-                userFile = new UserFile();
-                try{
-                 if(userFileRequestDTO.getName() == null || userFileRequestDTO.getUrl() == null)
-                     throw new RuntimeException();
-                    if(userFileRequestDTO.getName().isBlank() || userFileRequestDTO.getUrl().isBlank())
-                        throw new RuntimeException();
-                }catch(RuntimeException ignore2){
-                    userFileRequestDTO.setName("Blank");
-                    userFileRequestDTO.setUrl("Blank");
-                }
-            }
-
-            if (ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)) {
-                if (customUserDetailsService.getCurrentUser() != null) {
-                    userFile.setOwner(customUserDetailsService.getCurrentUser());
-                }
-            } else {
-                if (customUserDetailsService.getCurrentUser() == null) throw new RuntimeException();
-                userFile.setOwner(customUserDetailsService.getCurrentUser());
-            }
-
-            userFile.setName(userFileRequestDTO.getName());
-            userFile.setUrl(userFileRequestDTO.getUrl());
-
-            return userFile;
-        } catch (Exception ignore) {
-            return null;
-        }
+        UserFile userFile = new UserFile();
+        userFile.setId(userFileRequestDTO.getId());
+        userFile.setName(userFileRequestDTO.getName());
+        userFile.setUrl(userFileRequestDTO.getUrl());
+        final User currentUser = customUserDetailsService.getCurrentUser();
+        if(currentUser != null)
+            userFile.setOwner(currentUser);
+        return userFile;
     }
 
     public UserFileRequestDTO mapUserFileEntityToRequest(UserFile userFile) {
-        if (userFile == null) return null;
-        UserFileRequestDTO userFileRequestDTO = new UserFileRequestDTO();
-
-        userFileRequestDTO.setId(userFile.getId());
-        if (userFile.getName() == null || userFile.getName().isBlank()) return null;
-        userFileRequestDTO.setName(userFile.getName());
-        if (userFile.getUrl() == null || userFile.getUrl().isBlank()) return null;
-        userFileRequestDTO.setUrl(userFile.getUrl());
-
-        return userFileRequestDTO;
+        UserFileRequestDTO dto = new UserFileRequestDTO();
+        dto.setId(userFile.getId());
+        dto.setName(userFile.getName());
+        dto.setUrl(userFile.getUrl());
+        return dto;
     }
 }

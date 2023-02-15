@@ -10,4 +10,7 @@ public class CourseOverviewRequestDTO {
     private String courseThumbnail;
     private String status;
     private String createdAt;
+
+    private Long approvedCourseId;
+    private Long pendingCourseId;
 }

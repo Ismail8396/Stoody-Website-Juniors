@@ -15,7 +15,7 @@ import java.util.Set;
 })
 public class Video extends FileEntity {
 
-    private Long videoDuration;
+    private Double videoDuration;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "video")
     private Set<Subtitle> subtitles = new HashSet<>();

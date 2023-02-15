@@ -9,6 +9,6 @@ public class VideoRequestDTO {
     private Long id;
     private String name;
     private String url;
-    private Long videoDuration;
+    private Double videoDuration;
     private Set<SubtitleRequestDTO> subtitles;
 }

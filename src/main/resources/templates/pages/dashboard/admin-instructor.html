@@ -24,7 +24,9 @@
 <link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 <!-- Theme CSS -->
-<link rel="stylesheet" href="../../../static/assets/css/theme.min.css">
+<!-- build:css ../../assets/css/theme.min.css -->
+<link rel="stylesheet" href="../../../static/assets/css/theme.css">
+<!-- endbuild -->
 
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
@@ -1566,7 +1568,10 @@
 
 
 <!-- Theme JS -->
-<script src="../../../static/assets/js/theme.min.js"></script>
+<!-- build:js ../../assets/js/theme.min.js -->
+<script src="../../../static/assets/js/main.js"></script>
+<script src="../../../static/assets/js/darkMode.js"></script>
+<!-- endbuild -->
 
 
 <!--This should be merged with the one above-->

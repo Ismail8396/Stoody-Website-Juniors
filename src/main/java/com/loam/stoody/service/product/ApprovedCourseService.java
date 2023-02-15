@@ -5,9 +5,8 @@ import com.loam.stoody.dto.api.request.course.approved.ApprovedCourseDTO;
 import com.loam.stoody.dto.api.request.course.approved.ApprovedCourseLectureDTO;
 import com.loam.stoody.dto.api.request.course.approved.ApprovedCourseSectionDTO;
 import com.loam.stoody.dto.api.request.course.pending.PendingCourseDTO;
-import com.loam.stoody.dto.api.request.course.pending.PendingCourseLectureDTO;
-import com.loam.stoody.dto.api.request.course.pending.PendingCourseSectionDTO;
 import com.loam.stoody.dto.api.request.file.UserFileRequestDTO;
+import com.loam.stoody.enums.CourseStatus;
 import com.loam.stoody.model.product.course.approved.ApprovedCourse;
 import com.loam.stoody.model.product.course.approved.ApprovedCourseLecture;
 import com.loam.stoody.model.product.course.approved.ApprovedCourseSection;
@@ -31,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +41,7 @@ public class ApprovedCourseService extends CourseCoreService {
     //private final CourseRatingRepository courseRatingRepository;
     //private final PurchasedCourseRepository purchasedCourseRepository;
 
+    private final PendingCourseService pendingCourseService;
     private final PendingCourseRepository pendingCourseRepository;
     private final PendingCourseLectureRepository pendingCourseLectureRepository;
     private final PendingCourseSectionRepository pendingCourseSectionRepository;
@@ -52,9 +53,18 @@ public class ApprovedCourseService extends CourseCoreService {
     private final UserFileService userFileService;
     private final QuizService quizService;
 
-    public List<ApprovedCourseDTO> getAllApprovedCourses() {
-        return approvedCourseRepository.findAll().stream().map(this::mapCourseEntityToRequest).collect(Collectors.toList());
+    public <R> List<R> getAllApprovedCourses(Class<R> responseType) {
+        if (responseType.equals(ApprovedCourseDTO.class)) {
+            return approvedCourseRepository.findAll().stream()
+                    .map(this::mapCourseEntityToRequest)
+                    .map(responseType::cast)
+                    .collect(Collectors.toList());
+        } else if (responseType.equals(ApprovedCourse.class)) {
+            return (List<R>) approvedCourseRepository.findAll();
+        }
+        return Collections.emptyList();
     }
+
 
     // Pending course should be in database inherited by an Author!
     @Transactional
@@ -65,7 +75,13 @@ public class ApprovedCourseService extends CourseCoreService {
             approvedCourse.setPendingCourse(pendingCourse);
             approvedCourse.setCourseCategory(pendingCourse.getCourseCategory());
             approvedCourse = approvedCourseRepository.saveAndFlush(approvedCourse);
+            approvedCourse.setCourseStatus(CourseStatus.Live);
 
+            // Set Pending course live too
+            pendingCourse.setCourseStatus(CourseStatus.Live);
+            pendingCourseService.savePendingCourse(pendingCourse);
+
+            // Handle sections and lectures
             List<ApprovedCourseSection> approvedCourseSections = new ArrayList<>();
             List<ApprovedCourseLecture> approvedCourseLectures = new ArrayList<>();
 
@@ -131,7 +147,7 @@ public class ApprovedCourseService extends CourseCoreService {
 
             try {
                 if (approvedCourse.getPromoVideo() == null) throw new RuntimeException();
-                VideoRequestDTO video = videoService.mapVideoEntityToRequest(approvedCourse.getPromoVideo());
+                VideoRequestDTO video = videoService.mapVideoEntityToDto(approvedCourse.getPromoVideo());
                 approvedCourseDTO.setPromoVideo(video);
             } catch (Exception ignore) {
                 approvedCourseDTO.setPromoVideo(null);
@@ -152,7 +168,8 @@ public class ApprovedCourseService extends CourseCoreService {
                         .map(this::mapCourseSectionEntityToRequest).collect(Collectors.toList());
                 approvedCourseDTO.setSections(approvedCourseSectionDTOS);
             }
-        }catch(ReflectiveOperationException ignore){}
+        } catch (ReflectiveOperationException ignore) {
+        }
         return approvedCourseDTO;
     }
 
@@ -166,7 +183,8 @@ public class ApprovedCourseService extends CourseCoreService {
                     findAllByApprovedCourseSection_Id(approvedCourseSection.getId())
                     .stream().map(this::mapCourseLectureEntityToRequest).collect(Collectors.toList());
             if (!approvedCourseLectureDTOS.isEmpty()) approvedCourseSectionDTO.setLectures(approvedCourseLectureDTOS);
-        }catch(ReflectiveOperationException ignore){}
+        } catch (ReflectiveOperationException ignore) {
+        }
 
         return approvedCourseSectionDTO;
     }
@@ -180,11 +198,11 @@ public class ApprovedCourseService extends CourseCoreService {
                     courseLectureEntityToRequestIgnoreProps);
             // Map ignored properties manually
             if (approvedCourseLecture.getVideo() != null)
-                approvedCourseLectureDTO.setVideo(videoService.mapVideoEntityToRequest(approvedCourseLecture.getVideo()));
+                approvedCourseLectureDTO.setVideo(videoService.mapVideoEntityToDto(approvedCourseLecture.getVideo()));
             if (approvedCourseLecture.getUserFile() != null)
                 approvedCourseLectureDTO.setUserFile(userFileService.mapUserFileEntityToRequest(approvedCourseLecture.getUserFile()));
-            if(approvedCourseLecture.getQuiz() != null)
-                approvedCourseLectureDTO.setQuiz(quizService.mapQuizToRequest(approvedCourseLecture.getQuiz()));
+            if (approvedCourseLecture.getQuiz() != null)
+                approvedCourseLectureDTO.setQuiz(quizService.fromEntity(approvedCourseLecture.getQuiz()));
             return approvedCourseLectureDTO;
         } catch (Exception ignore) {
         }
@@ -226,5 +244,40 @@ public class ApprovedCourseService extends CourseCoreService {
 
         approvedCourseDTO.setSections(approvedCourseSectionDTOS);
         return approvedCourseDTO;
+    }
+
+    public <R> R getApprovedCourseById(Long id, Class<R> responseType) {
+        ApprovedCourse approvedCourse = approvedCourseRepository.findById(id).orElse(null);
+        if (responseType.equals(ApprovedCourseDTO.class)) {
+            if (approvedCourse == null)
+                return null;
+            return responseType.cast(mapCourseEntityToRequest(approvedCourse));
+        } else if (responseType.equals(ApprovedCourse.class)) {
+            return responseType.cast(approvedCourse);
+        }
+        return null;
+    }
+
+    public void save(ApprovedCourse entity) {
+        approvedCourseRepository.save(entity);
+    }
+
+    public void setStatus(Long id, CourseStatus status) {
+        ApprovedCourse entity = getApprovedCourseById(id, ApprovedCourse.class);
+        if (entity == null) return;
+        PendingCourse pendingCourse = entity.getPendingCourse();
+        if(pendingCourse == null)return;
+
+        // Approved Course Status
+        setStatus(entity, status);
+        save(entity);
+
+        // Pending Course Status
+        pendingCourse.setCourseStatus(status);
+        pendingCourseService.savePendingCourse(pendingCourse);
+    }
+
+    public void delete(Long id) {
+        approvedCourseRepository.deleteById(id);
     }
 }
