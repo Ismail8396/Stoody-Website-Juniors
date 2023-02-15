@@ -66,6 +66,90 @@
                     </div>
                 </div>
             </li>
+            
+            <!-- Profile Button -->
+            <li class="dropdown ms-2 d-inline-block">
+                <a class="rounded-circle" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserStatusCSSClass(getUserDTS.getCurrentUser().getUsername())}">
+                        <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL}" src="../assets/images/avatar/avatar-3.jpg"
+                            id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                        <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                            class="rounded-circle">O</div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <div class="dropdown-item">
+                        <div class="d-flex">
+                            <!-- Avatar -->
+                            <div class="avatar avatar-md" th:classappend="${getUserDTS.getUserStatusCSSClass(getUserDTS.getCurrentUser().getUsername())}">
+                                <img th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL != null}" th:src="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL}" src="../assets/images/avatar/avatar-3.jpg"
+                                    id="img-uploaded" alt="avatar" class="rounded-circle">
+
+                                <div th:if="${getUserDTS.getUserProfile(getUserDTS.getCurrentUser().getUsername()).profilePictureURL == null}" th:text="${#strings.substring(getUserDTS.getCurrentUser().getUsername(),0,1)}" style="background-color:rgb(67, 194, 194);color: white;font-size:14px;display: flex; align-items: center; justify-content:center;"
+                                    class="rounded-circle">O</div>
+                            </div>
+                            <div class="ms-3 lh-1">
+                                <h5 class="mb-1" th:text="${getUserDTS.getCurrentUser().getUsername()}">Annette Black</h5>
+                                <p class="mb-0 text-muted" th:text="${getUserDTS.getCurrentUser().getEmail()}">annette@stoody.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <ul class="list-unstyled">
+                        <li class="dropdown-submenu dropstart-lg">
+                            <a class="dropdown-item dropdown-list-group-item dropdown-toggle" href="#">
+                                <i class="fe fe-circle me-2"></i>Status
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#" id="standard_navbar_user_status_online">
+                                        <span class="badge-dot bg-success me-2"></span>Online
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" id="standard_navbar_user_status_offline">
+                                        <span class="badge-dot bg-secondary me-2"></span>Offline
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" id="standard_navbar_user_status_away">
+                                        <span class="badge-dot bg-warning me-2"></span>Away
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" id="standard_navbar_user_status_busy">
+                                        <span class="badge-dot bg-danger me-2"></span>Busy
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/edit}" href="../pages/profile-edit.html">
+                                <i class="fe fe-user me-2"></i>Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/subscriptions}" href="../pages/student-subscriptions.html">
+                                <i class="fe fe-star me-2"></i>Subscription
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/user/dashboard/standard/profile/security}" href="../pages/security.html">
+                                <i class="fe fe-settings me-2"></i>Security
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="dropdown-divider"></div>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="dropdown-item" th:href="@{/logout}" href="../index.html">
+                                <i class="fe fe-power me-2"></i>Sign Out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
 
 

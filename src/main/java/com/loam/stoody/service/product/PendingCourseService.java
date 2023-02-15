@@ -1,26 +1,24 @@
 package com.loam.stoody.service.product;
 
-import com.loam.stoody.dto.api.request.course.*;
 import com.loam.stoody.dto.api.request.course.pending.PendingCourseDTO;
 import com.loam.stoody.dto.api.request.course.pending.PendingCourseLectureDTO;
 import com.loam.stoody.dto.api.request.course.pending.PendingCourseSectionDTO;
-import com.loam.stoody.dto.api.request.file.UserFileRequestDTO;
+import com.loam.stoody.enums.CourseStatus;
 import com.loam.stoody.global.constants.MiscConstants;
-import com.loam.stoody.global.constants.ProjectConfigurationVariables;
 import com.loam.stoody.model.communication.file.UserFile;
 import com.loam.stoody.model.communication.video.Video;
+import com.loam.stoody.model.product.course.approved.ApprovedCourse;
 import com.loam.stoody.model.product.course.pending.PendingCourse;
 import com.loam.stoody.model.product.course.pending.PendingCourseLecture;
 import com.loam.stoody.model.product.course.pending.PendingCourseSection;
 import com.loam.stoody.model.product.course.quiz.Quiz;
-import com.loam.stoody.repository.product.*;
+import com.loam.stoody.repository.product.CourseCategoryRepository;
 import com.loam.stoody.repository.product.approved.ApprovedCourseRepository;
 import com.loam.stoody.repository.product.pending.PendingCourseLectureRepository;
 import com.loam.stoody.repository.product.pending.PendingCourseRepository;
 import com.loam.stoody.repository.product.pending.PendingCourseSectionRepository;
 import com.loam.stoody.service.communication.file.UserFileService;
 import com.loam.stoody.service.communication.video.VideoService;
-//import com.loam.stoody.service.product.quiz.QuizService;
 import com.loam.stoody.service.product.quiz.QuizService;
 import com.loam.stoody.service.user.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
@@ -54,11 +52,11 @@ public class PendingCourseService extends CourseCoreService {
             PendingCourseLectureDTO pendingCourseLectureDTO = convertShallow(pendingCourseLecture, PendingCourseLectureDTO.class, courseLectureEntityToRequestIgnoreProps);
             // Map ignored properties manually
             if (pendingCourseLecture.getVideo() != null)
-                pendingCourseLectureDTO.setVideo(videoService.mapVideoEntityToRequest(pendingCourseLecture.getVideo()));
+                pendingCourseLectureDTO.setVideo(videoService.mapVideoEntityToDto(pendingCourseLecture.getVideo()));
             if (pendingCourseLecture.getUserFile() != null)
                 pendingCourseLectureDTO.setUserFile(userFileService.mapUserFileEntityToRequest(pendingCourseLecture.getUserFile()));
-            if(pendingCourseLecture.getQuiz() != null)
-                pendingCourseLectureDTO.setQuiz(quizService.mapQuizToRequest(pendingCourseLecture.getQuiz()));
+            if (pendingCourseLecture.getQuiz() != null)
+                pendingCourseLectureDTO.setQuiz(quizService.fromEntity(pendingCourseLecture.getQuiz()));
             return pendingCourseLectureDTO;
         } catch (Exception ignore) {
         }
@@ -78,7 +76,7 @@ public class PendingCourseService extends CourseCoreService {
 
             if (pendingCourseLectureDTO.getVideo() != null) {
                 try {
-                    pendingCourseLecture.setVideo(videoService.mapVideoRequestToEntity(pendingCourseLectureDTO.getVideo()));
+                    pendingCourseLecture.setVideo(videoService.mapVideoDtoToEntity(pendingCourseLectureDTO.getVideo()));
                 } catch (Exception ignore) {
                 }
             }
@@ -89,7 +87,8 @@ public class PendingCourseService extends CourseCoreService {
                 } catch (Exception ignore) {
                 }
             }
-        }catch(ReflectiveOperationException ignore){}
+        } catch (ReflectiveOperationException ignore) {
+        }
         return pendingCourseLecture;
     }
 
@@ -98,7 +97,7 @@ public class PendingCourseService extends CourseCoreService {
         try {
             pendingCourseSection = convertShallow(pendingCourseSectionDTO, PendingCourseSection.class, courseSectionRequestToEntityIgnoreProps);
             pendingCourseSection.setPendingCourse(pendingCourseRepository.findById(pendingCourse.getId()).orElse(null));
-        }catch(ReflectiveOperationException ignore){
+        } catch (ReflectiveOperationException ignore) {
         }
         return pendingCourseSection;
     }
@@ -113,7 +112,8 @@ public class PendingCourseService extends CourseCoreService {
                     .findAllByPendingCourseSection_Id(pendingCourseSection.getId())
                     .stream().map(this::mapCourseLectureEntityToRequest).collect(Collectors.toList());
             if (!sectionLectures.isEmpty()) pendingCourseSectionDTO.setLectures(sectionLectures);
-        }catch(ReflectiveOperationException ignore){}
+        } catch (ReflectiveOperationException ignore) {
+        }
 
         return pendingCourseSectionDTO;
     }
@@ -136,27 +136,23 @@ public class PendingCourseService extends CourseCoreService {
 
         courseEntity.setIsDeleted(false);
 
-        final Long approvedCourseId = courseRequest.getApprovedCourseId();
-        if(approvedCourseId != null){
-            if(approvedCourseId > 0){
-               // approvedCourseRepository.findById(approvedCourseId).ifPresent(courseEntity::setApprovedCourse);
-            }
-        }
+//        final Long approvedCourseId = courseRequest.getApprovedCourseId();
+//        if(approvedCourseId != null){
+//            if(approvedCourseId > 0){
+//               // approvedCourseRepository.findById(approvedCourseId).ifPresent(courseEntity::setApprovedCourse);
+//            }
+//        }
 
         final Integer courseCategoryId = courseRequest.getCourseCategoryId();
-        if(courseCategoryId != null){
-            if(courseCategoryId > 0){
+        if (courseCategoryId != null) {
+            if (courseCategoryId > 0) {
                 categoryRepository.findById(courseCategoryId).ifPresent(courseEntity::setCourseCategory);
             }
         }
 
-        try {
-            courseEntity.setPromoVideo(videoService.mapVideoRequestToEntity(courseRequest.getPromoVideo()));
-        } catch (Exception ignore) {
-        }
+        courseEntity.setPromoVideo(courseRequest.getPromoVideo() == null ? null : videoService.mapVideoDtoToEntity(courseRequest.getPromoVideo()));
 
-        UserFile thumbnailFile = userFileService.mapUserFileRequestToEntity(courseRequest.getThumbnail());
-        courseEntity.setThumbnail(thumbnailFile);
+        courseEntity.setThumbnail(courseRequest.getThumbnail() == null ? null : userFileService.mapUserFileRequestToEntity(courseRequest.getThumbnail()));
 
         // Important note:
         // PendingCourse Sections and Lectures within them are separate entities.
@@ -187,35 +183,23 @@ public class PendingCourseService extends CourseCoreService {
                 }
             }
 
-            try {
-                if (pendingCourse.getPromoVideo() == null) throw new RuntimeException();
-                VideoRequestDTO video = videoService.mapVideoEntityToRequest(pendingCourse.getPromoVideo());
-                pendingCourseDTO.setPromoVideo(video);
-            } catch (Exception ignore) {
-                pendingCourseDTO.setPromoVideo(null);
-            }
+            pendingCourseDTO.setPromoVideo(pendingCourse.getPromoVideo() == null ? null : videoService.mapVideoEntityToDto(pendingCourse.getPromoVideo()));
 
-            try {
-                if (pendingCourse.getThumbnail() == null) throw new RuntimeException();
-                UserFileRequestDTO thumbnailFile = userFileService.mapUserFileEntityToRequest(pendingCourse.getThumbnail());
-                if (thumbnailFile == null) throw new RuntimeException();
-                pendingCourseDTO.setThumbnail(thumbnailFile);
-            } catch (Exception ignore) {
-                pendingCourseDTO.setThumbnail(null);
-            }
+            pendingCourseDTO.setThumbnail(pendingCourse.getThumbnail() == null ? null : userFileService.mapUserFileEntityToRequest(pendingCourse.getThumbnail()));
 
             List<PendingCourseSection> courseSections = courseSectionRepository.findAllByPendingCourse_Id(pendingCourse.getId());
             if (!courseSections.isEmpty()) {
                 List<PendingCourseSectionDTO> pendingCourseSectionDTOS = courseSections.stream().map(this::mapCourseSectionEntityToRequest).collect(Collectors.toList());
                 pendingCourseDTO.setSections(pendingCourseSectionDTOS);
             }
-        }catch(ReflectiveOperationException ignore){}
+        } catch (ReflectiveOperationException ignore) {
+        }
         return pendingCourseDTO;
     }
 
     @Transactional
-    public PendingCourse savePendingCourse(PendingCourse pendingCourse){
-        return pendingCourseRepository.save(pendingCourse);
+    public PendingCourse savePendingCourse(PendingCourse entity) {
+        return pendingCourseRepository.save(entity);
     }
 
     @Transactional
@@ -223,39 +207,80 @@ public class PendingCourseService extends CourseCoreService {
         PendingCourse courseEntity = mapCourseRequestToEntity(courseRequest);
 
         // Modified By/Date & Created By/Date
-        if(courseRequest.getId() != null && courseRequest.getId() > 0){
-            if(pendingCourseRepository.findById(courseRequest.getId()).isPresent()){
+        if (courseRequest.getId() != null && courseRequest.getId() > 0) {
+            if (pendingCourseRepository.findById(courseRequest.getId()).isPresent()) {
                 courseEntity.setModifiedDate(LocalDateTime.now());
-                if(ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)){
-                    if(customUserDetailsService.getCurrentUser() != null)
-                        courseEntity.setModifiedBy(customUserDetailsService.getCurrentUser().getId());
-                }else{
-                    if(customUserDetailsService.getCurrentUser() == null)
-                        return null;
+
+                if (customUserDetailsService.getCurrentUser() != null)
                     courseEntity.setModifiedBy(customUserDetailsService.getCurrentUser().getId());
-                }
             }
-        }else{
+        } else {
             courseEntity.setCreatedDate(LocalDateTime.now());
 
-            if(ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)){
-                if(customUserDetailsService.getCurrentUser() != null)
-                    courseEntity.setCreatedBy(customUserDetailsService.getCurrentUser().getId());
-            }else{
-                if(customUserDetailsService.getCurrentUser() == null)
-                    return null;
+            if (customUserDetailsService.getCurrentUser() != null)
                 courseEntity.setCreatedBy(customUserDetailsService.getCurrentUser().getId());
-            }
         }
 
         // Author
-        if(ProjectConfigurationVariables.stoodyEnvironment.equals(ProjectConfigurationVariables.developmentMode)){
-            courseEntity.setAuthor(customUserDetailsService.getUserByUsername("OrkhanGG"));
-        }else{
-            if(customUserDetailsService.getCurrentUser() == null)
-                return null;
+        if (customUserDetailsService.getCurrentUser() != null)
             courseEntity.setAuthor(customUserDetailsService.getCurrentUser());
+
+        // Save course and assign the saved entity object to the courseEntity instance
+        courseEntity = pendingCourseRepository.save(courseEntity);
+
+        // Remove all sections and lectures belong to this course if there's any
+        // PendingCourse Lectures should be deleted first!
+        courseLectureRepository.removeAllByCourseId(courseEntity.getId());
+        courseSectionRepository.removeAllByCourseId(courseEntity.getId());
+
+        // Add valid sections and lectures.
+        // TODO: Using stream() will be better.
+        if (courseRequest.getSections() != null) {
+            for (var i : courseRequest.getSections()) {
+                PendingCourseSection pendingCourseSection = mapCourseSectionRequestToEntity(i, courseEntity);
+                if (pendingCourseSection != null) {
+                    courseSectionRepository.save(pendingCourseSection);
+                    if (i.getLectures() != null) {
+                        for (var j : i.getLectures()) {
+                            PendingCourseLecture pendingCourseLecture = mapCourseLectureRequestToEntity(j, pendingCourseSection);
+                            saveLectureDetails(j, pendingCourseLecture);
+                            if (pendingCourseLecture != null) {
+                                courseLectureRepository.save(pendingCourseLecture);
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+        return mapCourseEntityToRequest(courseEntity);
+    }
+
+    @Transactional
+    public PendingCourseDTO submitPendingCourse(PendingCourseDTO courseRequest) {
+        PendingCourse courseEntity = mapCourseRequestToEntity(courseRequest);
+
+        // Modified By/Date & Created By/Date
+        if (courseRequest.getId() != null && courseRequest.getId() > 0) {
+            if (pendingCourseRepository.findById(courseRequest.getId()).isPresent()) {
+                courseEntity.setModifiedDate(LocalDateTime.now());
+
+                if (customUserDetailsService.getCurrentUser() != null)
+                    courseEntity.setModifiedBy(customUserDetailsService.getCurrentUser().getId());
+            }
+        } else {
+            courseEntity.setCreatedDate(LocalDateTime.now());
+
+            if (customUserDetailsService.getCurrentUser() != null)
+                courseEntity.setCreatedBy(customUserDetailsService.getCurrentUser().getId());
+        }
+
+        // Set Pending
+        courseEntity.setCourseStatus(CourseStatus.Pending);
+
+        // Author
+        if (customUserDetailsService.getCurrentUser() != null)
+            courseEntity.setAuthor(customUserDetailsService.getCurrentUser());
 
         // Save course and assign the saved entity object to the courseEntity instance
         courseEntity = pendingCourseRepository.save(courseEntity);
@@ -289,7 +314,7 @@ public class PendingCourseService extends CourseCoreService {
     }
 
     private void saveLectureDetails(PendingCourseLectureDTO j, PendingCourseLecture pendingCourseLecture) {
-        if(!Objects.isNull(j.getQuiz())) {
+        if (!Objects.isNull(j.getQuiz())) {
             Quiz quiz = new Quiz();
             quiz.setId(j.getQuiz().getId());
             quiz.setName(j.getQuiz().getName());
@@ -298,14 +323,14 @@ public class PendingCourseService extends CourseCoreService {
             pendingCourseLecture.setVideo(null);
             pendingCourseLecture.setUserFile(null);
             pendingCourseLecture.setDescription(null);
-        } else if(!Objects.isNull(j.getVideo())) {
+        } else if (!Objects.isNull(j.getVideo())) {
             Video video = new Video();
             video.setId(j.getVideo().getId());
             pendingCourseLecture.setVideo(video);
             pendingCourseLecture.setQuiz(null);
             pendingCourseLecture.setUserFile(null);
             pendingCourseLecture.setDescription(null);
-        } else if(!Objects.isNull(j.getUserFile())) {
+        } else if (!Objects.isNull(j.getUserFile())) {
             UserFile userFile = new UserFile();
             userFile.setId(j.getUserFile().getId());
             pendingCourseLecture.setUserFile(userFile);
@@ -315,17 +340,25 @@ public class PendingCourseService extends CourseCoreService {
         }
     }
 
-    public List<PendingCourseDTO> getAllPendingCourses() {
-        return pendingCourseRepository.findAll().stream().map(this::mapCourseEntityToRequest).collect(Collectors.toList());
+    public <R> List<R> getAllPendingCourses(Class<R> responseType) {
+        if (responseType.equals(PendingCourseDTO.class)) {
+            return pendingCourseRepository.findAll().stream()
+                    .map(this::mapCourseEntityToRequest)
+                    .map(responseType::cast)
+                    .collect(Collectors.toList());
+        } else if (responseType.equals(PendingCourse.class)) {
+            return (List<R>) pendingCourseRepository.findAll();
+        }
+        return Collections.emptyList();
     }
 
     public <R> R getPendingCourseById(Long id, Class<R> responseType) {
         PendingCourse pendingCourse = pendingCourseRepository.findById(id).orElse(null);
-        if(responseType.equals(PendingCourseDTO.class)) {
+        if (responseType.equals(PendingCourseDTO.class)) {
             if (pendingCourse == null)
                 return null;
             return responseType.cast(mapCourseEntityToRequest(pendingCourse));
-        } else if(responseType.equals(PendingCourse.class)) {
+        } else if (responseType.equals(PendingCourse.class)) {
             return responseType.cast(pendingCourse);
         }
         return null;
@@ -347,22 +380,40 @@ public class PendingCourseService extends CourseCoreService {
                 .collect(Collectors.toList());
     }
 
+    public ApprovedCourse findApprovedCourseOfPending(PendingCourse pendingCourse){
+        List<ApprovedCourse> approvedCourses = approvedCourseRepository.findAll().stream().filter(e->e.getPendingCourse().getId().equals(pendingCourse.getId())).toList();
+        if(!approvedCourses.isEmpty()){
+            return approvedCourses.get(0);
+        }
+        return null;
+    }
 
-    public String getCourseCreationDateByIdFormatted(Long id){
+    public String getCourseCreationDateByIdFormatted(Long id) {
         PendingCourse course = pendingCourseRepository.findById(id).orElse(null);
-        if(course == null)
+        if (course == null)
             return LocalDateTime.now().format(MiscConstants.standardDateTimeFormat);
-        if(course.getCreatedDate() == null)
+        if (course.getCreatedDate() == null)
             return null;
         return course.getCreatedDate().format(MiscConstants.standardDateTimeFormat);
     }
 
-    public Long getEnrollmentCount(Long id){
+    public Long getEnrollmentCount(Long id) {
         return 0L;
     }
 
-    public Double getPendingCourseRating(Long id){
+    public Double getPendingCourseRating(Long id) {
         return 0D;
+    }
+
+    public void setStatus(Long id, CourseStatus status) {
+        PendingCourse entity = getPendingCourseById(id, PendingCourse.class);
+        if (entity == null) return;
+        setStatus(entity, status);
+        savePendingCourse(entity);
+    }
+
+    public void delete(Long id) {
+        pendingCourseRepository.deleteById(id);
     }
 
 //    public List<CourseResponseDTO> getAllCourses() {

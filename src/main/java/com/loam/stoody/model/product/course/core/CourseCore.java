@@ -22,7 +22,6 @@ public abstract class CourseCore extends ParentModel {
     private String currency = "USD";
     @Column(columnDefinition = "TEXT", length = 100000)
     private String description;
-
     private Double discount;
     private String languageCode;
     private CourseLevel level;
@@ -33,10 +32,10 @@ public abstract class CourseCore extends ParentModel {
     private String title;
     private String welcomeMessage;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "video_id", referencedColumnName = "id")
     private Video promoVideo;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_file_id", referencedColumnName = "id")
     private UserFile thumbnail;
 

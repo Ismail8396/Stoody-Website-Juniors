@@ -74,21 +74,10 @@ class UserController {
  +-+-+-+-+-+-+-+-+-+-+
 */
     // -> Courses
-    @GetMapping("/user/dashboard/instructor/courses/create/new")
-    public String getNewCourseRequest(){
-        User user = customUserDetailsService.getCurrentUser();
-        if(user == null)
-            return "redirect:"+PRL.error404URL;
-
-        PendingCourse pendingCourse = new PendingCourse();
-        pendingCourse = pendingCourseService.savePendingCourse(pendingCourse);
-
-        return "redirect:/user/dashboard/instructor/courses/course/"+ pendingCourse.getId() +"/editor";
-    }
-
     @GetMapping("/user/dashboard/instructor/courses/course/{id}/editor")
     public String getCourseEditorPage(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
         PendingCourse pendingCourse = pendingCourseService.getPendingCourseById(id, PendingCourse.class);
+
         if (pendingCourse != null) {
             if(!customUserDetailsService.compareUsers(pendingCourse.getAuthor(),customUserDetailsService.getCurrentUser()))
                 return "redirect:"+PRL.error404URL;
@@ -101,15 +90,16 @@ class UserController {
                     return "redirect:"+PRL.redirectPageURL;
                 }
             }
-
-            model.addAttribute("courseDTO", pendingCourseService.mapCourseEntityToRequest(pendingCourse));
-            model.addAttribute("subCategoryElements", categoryService.getAllCategories());
-            return "pages/add-course";
+        }else {
+            pendingCourse = new PendingCourse();
         }
 
-        return "redirect:"+PRL.error404URL;
+        model.addAttribute("courseDTO", pendingCourseService.mapCourseEntityToRequest(pendingCourse));
+        model.addAttribute("subCategoryElements", categoryService.getPublishedCategories());
+        return "pages/add-course";
     }
 
+    // -> Created Courses (Search)
     @GetMapping("/user/dashboard/instructor/courses/search")
     public String getInstructorCreatedCoursesPage(@ModelAttribute("searchFilterDTO")SearchFilterDTO searchFilterDTO,Model model){
         // Find only instructor's courses.
@@ -119,19 +109,18 @@ class UserController {
             model.addAttribute("searchFilterDTO",searchFilterDTO);
 
         model.addAttribute("mainPreviewUserInfo", userDTS.getCurrentUser());
-
         model.addAttribute("currentUserCourses", pendingCourseService.getCurrentUserPendingCourses(PendingCourseDTO.class));
         return "pages/instructor-courses";
     }
 
-    @GetMapping("/user/dashboard/instructor/courses/tag/deleted/{id}")
+    @GetMapping("/user/dashboard/instructor/courses/course/delete/{id}")
     public String postInstructorTagCourseDeleted(@PathVariable("id")Long id){
-//        PendingCourse pendingCourse = courseService.getCourseEntityById(id);
-//        if(pendingCourse != null && pendingCourse.getAuthor() != null && customUserDetailsService.compareUsers(pendingCourse.getAuthor(),customUserDetailsService.getCurrentUser()) ) {
-//            pendingCourse.setCourseStatus(CourseStatus.Deleted);
-//            courseService.saveEntity(pendingCourse);
-//            return "redirect:/user/dashboard/instructor/courses/search";
-//        }
+        PendingCourse pendingCourse = pendingCourseService.getPendingCourseById(id, PendingCourse.class);
+        if(pendingCourse != null && pendingCourse.getAuthor() != null && customUserDetailsService.compareUsers(pendingCourse.getAuthor(),customUserDetailsService.getCurrentUser()) ) {
+            pendingCourse.setCourseStatus(CourseStatus.Deleted);
+            pendingCourseService.savePendingCourse(pendingCourse);
+            return "redirect:/user/dashboard/instructor/courses/search";
+        }
         return "redirect:"+PRL.error404URL;
     }
     // -> Courses End

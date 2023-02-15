@@ -78,12 +78,14 @@ public class SecurityConfig {
                         PRL.apiPrefix+"/upload/**",
 
                         /*Remove Later*/
-                        "/stoody/api/v1/quizzes",
+                        "/stoody/api/v1/quizzes**",
+                        "/stoody/api/v1/quizzes/**",
                         "/stoody/courses/**",
                         PRL.apiPrefix+PRL.apiCourseSuffixURL+"/**",
                         "/user/profile/security/phone/change/request",
                         "/user/profile/security/phone/verify",
                         "/user/profile/security/password/change",
+                        "/user/dashboard/instructor/courses/course/**",
                         "/sendNotificationToAll/**",
                         "/stoody/api/v1/user/notifications/simple/get/all*",
                         "/stoody/api/v1/user/notifications/simple/post*").permitAll()

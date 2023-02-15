@@ -21,6 +21,14 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public List<CourseCategory> getPublishedCategories() {
+        return categoryRepository.findAll().stream().filter(CourseCategory::getPublished).toList();
+    }
+
+    public List<CourseCategory> getDraftCategories() {
+        return categoryRepository.findAll().stream().filter(e->!e.getPublished()).toList();
+    }
+
     public void addCategory(CourseCategory category) {
         categoryRepository.save(category);
     }

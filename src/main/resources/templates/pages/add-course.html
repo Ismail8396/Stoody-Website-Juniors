@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <div id="course_configuration_page" th:attr="data-course-id=${courseIdParam}"></div>
+    <div id="course_configuration_page" th:attr="data-course-id=${courseDTO.id}"></div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-default" id="standard_navbar_code_a">
     <div class="container-fluid px-0">
@@ -922,20 +922,20 @@
     <!-- Page header-->
     </div>
     <main>
-        <section id="courseFormHeader" class="py-4 py-lg-6 bs-stepper-header shadow-sm my-2 px-5">
+        <section id="courseFormHeader" class="py-4 py-lg-6 bs-stepper-header shadow-sm my-2 px-5 bg-primary">
             <div class="container">
                 <div class="row">
                     <div class="offset-lg-1 col-lg-10 col-md-12 col-12">
                         <div class="d-lg-flex align-items-center justify-content-between">
                             <!-- Content -->
                             <div class="mb-4 mb-lg-0">
-                                <h1 class="text-primary border-bottom mb-1">Course editor</h1>
-                                <p class="mb-0 text-dark lead">
+                                <h1 class="text-white border-bottom mb-1">Course editor</h1>
+                                <p class="mb-0 text-white lead">
                                     Customize and submit the course.
                                 </p>
                             </div>
                             <div>
-                                <a id="save_course_as_draft" role="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">Save</a>
+                                <a id="save_course_as_draft" role="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#uploadModal">Save</a>
                             </div>
                         </div>
                     </div>
@@ -1080,7 +1080,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Courses category</label>
                                                     <select id="courseCategory" class="selectpicker" data-width="100%">
-                                                        <option th:each="category : ${subCategoryElements}" th:text="${category.name}" th:value="${category.id}">TestCategory</option>
+                                                        <option th:each="category : ${subCategoryElements}" th:text="${category.name}" th:value="${category.id}" value="1">1</option>
                                                     </select>
                                                     <small>Help people find your courses by choosing
                                           categories that represent your course.</small>
@@ -1140,7 +1140,7 @@
                                                 <h4 class="mb-0">Course Promo Video</h4>
                                                 <div class="my-3">
                                                     <!-- If input is not fullfilled -->
-                                                    <input id="course_promo_video_input_file" accept="video/mp4,video/avi,video/webm" type="file" class="form-control">
+                                                    <input id="course_promo_video_input_file" accept="video/mp4" type="file" class="form-control">
                                                     <!-- If input is fullfilled -->
                                                     <div class="d-flex">
                                                         <h4 style="display:none;" id="course_promo_video_input_name" class="ms-2 text-muted">Introduction.mp4</h4>
@@ -1174,6 +1174,7 @@
                                             <div class="card-body ">
                                                 <!-- Reference -->
                                                 <div style="display:none;" id="courseSectionElementReference" class="bg-light rounded p-2 mb-4">
+
                                                     <div class="d-flex border-bottom mb-3 align-items-center">
                                                         <i class="bi-diagram-3 text-muted me-2"></i>
                                                         <div class="w-25 py-1">
@@ -1181,22 +1182,36 @@
                                                         </div>
                                                         <a id="courseSectionElementRemoveButton" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
                                                     </div>
+
                                                     <!-- List group -->
                                                     <div class="list-group list-group-flush border-top-0" id="sectionLectureList">
                                                         <div style="display:none;" id="lectureDiv">
+
+
                                                             <div class="list-group-item rounded px-3 mb-1" id="courseListElement">
                                                                 <div class="d-flex align-items-center justify-content-between">
+
                                                                     <div class="d-flex align-items-center">
                                                                         <i class="bi-collection text-muted me-3"></i>
                                                                         <input id="lectureHeader" class="form-control" type="text" maxlength="254" />
                                                                     </div>
+
                                                                     <div>
-                                                                        <a id="lecture_remove" role="button" class="ms-2 me-1 text-danger"><i class="fe fe-trash-2 fs-6"></i></a>
-                                                                        <a id="lectureCollapseButton" href="#" class="text-inherit" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#lectureCollapseList" aria-controls="lectureCollapseList">
-                                                                            <span class="chevron-arrow"><i class="fe fe-chevron-down"></i></span>
+                                                                        <a id="lecture_remove" role="button" class="ms-2 me-1 text-danger">
+                                                                            <i class="fe fe-trash-2 fs-6"></i>
                                                                         </a>
+
+                                                                        <a id="lectureCollapseButton" href="#" class="text-inherit" aria-expanded="true" data-bs-toggle="collapse" data-bs-target="#lectureCollapseList" aria-controls="lectureCollapseList">
+                                                                            <span class="chevron-arrow">
+                                                                                <i class="fe fe-chevron-down"></i>
+                                                                            </span>
+                                                                        </a>
+
                                                                     </div>
+
                                                                 </div>
+
+
                                                                 <div id="lectureCollapseList" class="collapse" aria-labelledby="courseListElement" data-bs-parent="#sectionLectureList">
 
                                                                     <!-- Article Example-->
@@ -1233,6 +1248,8 @@
                                     Description +</a>
                                                                     </div>
                                                                 </div>
+
+
                                                             </div>
                                                         </div>
 
@@ -1247,7 +1264,7 @@
                                                         <div class="col-12 text-muted mt-3 d-flex justify-content-center align-items-center">Add articles such as videos and files with a description.</div>
                                                     </div>
 
-                                                    <a id="section_add_lecture_button" href="#" class="btn btn-outline-primary btn-sm mt-3" data-bs-toggle="modal" data-bs-target="#addLectureModal">Add Lecture +</a>
+                                                    <a id="section_add_lecture_button" role="button" class="btn btn-outline-primary btn-sm mt-3">Add Lecture +</a>
                                                 </div>
 
                                                 <div id="courseSectionContents">
@@ -1261,7 +1278,7 @@
                                                     <div class="col-12 text-muted my-3 d-flex justify-content-center align-items-center">Start building your course content here. Add videos, quiz and whatever you want your student should get.</div>
                                                 </div>
 
-                                                <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addSectionModal">Add Section</a>
+                                                <a role="button" class="btn btn-outline-primary btn-sm" id="course_configuration_page_add_section_button">Add Section</a>
                                             </div>
                                         </div>
 
@@ -1290,16 +1307,19 @@
                                                             <label class="form-label">Price</label>
                                                             <select id="coursePriceInput" class="selectpicker" data-width="100%">
                                                                                                             <option value="0">Free</option>
-                                                                                                            <option value="5">5 USD</option>
-                                                                                                            <option value="10">10 USD</option>
-                                                                                                            <option value="15">15 USD</option>
-                                                                                                            <option value="20">20 USD</option>
-                                                                                                            <option value="25">25 USD</option>
-                                                                                                            <option value="30">30 USD</option>
-                                                                                                            <option value="35">35 USD</option>
-                                                                                                            <option value="40">40 USD</option>
-                                                                                                            <option value="45">45 USD</option>
-                                                                                                            <option value="50">50 USD</option>
+                                                                                                            <option value="5.99">$5.99</option>
+                                                                                                            <option value="9.99">$9.99</option>
+                                                                                                            <option value="14.99">$14.99</option>
+                                                                                                            <option value="19.99">$19.99</option>
+                                                                                                            <option value="24.99">$24.99</option>
+                                                                                                            <option value="29.99">$29.99</option>
+                                                                                                            <option value="39.99">$39.99</option>
+                                                                                                            <option value="49.99">$49.99</option>
+                                                                                                            <option value="59.99">$59.99</option>
+                                                                                                            <option value="69.99">$69.99</option>
+                                                                                                            <option value="79.99">$79.99</option>
+                                                                                                            <option value="89.99">$89.99</option>
+                                                                                                            <option value="99.99">$99.99</option>
                                                                                                         </select>
                                                         </div>
                                                         <div class="ms-2">
@@ -1410,11 +1430,11 @@
                                 <!-- Buttons -->
                                 <button style="display:none;" id="uploadFormReloadPageButton" class="btn btn-primary" type="button">
                                     <span id="uploadFormReloadPageButtonSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    Previous
+                                    Go to your courses
                                   </button>
                                 <button id="uploadFormNextButton" class="btn btn-primary" type="button">
                                     <span id="uploadFormCompleteButtonSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    Next
+                                    Go to Learn & Share
                                   </button>
                             </div>
                         </div>
@@ -1444,6 +1464,36 @@
         </div>
     </div>
 </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="quizModalLabel">
+                        Quizzes
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                      </button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="quizModalContents" class="d-flex justify-content-center align-items-center w-100">
+                        <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
+                        </div>
+                    </div>
+
+                    <div>
+                        <hr>
+                        <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
+                      Close
+                      </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -1505,83 +1555,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="addSectionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="addSectionModalLabel">
-                        Add New Section
-                    </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <input class="form-control mb-3" id="course_configuration_page_add_section_input" type="text" placeholder="Add new section" />
-                    <button class="btn btn-primary" id="course_configuration_page_add_section_button" type="Button">
-                  Add New Section
-                  </button>
-                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-                  Close
-                  </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="addLectureModal" tabindex="-1" role="dialog" aria-labelledby="addLectureModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="addLectureModalLabel">
-                        Add New Lecture
-                    </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-         <!-- Modal -->
-         <div class="modal fade" id="addLectureModal" tabindex="-1" role="dialog" aria-labelledby="addLectureModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <h4 class="modal-title" id="addLectureModalLabel">
-                        Add New Lecture
-                     </h4>
-      </button>
-                </div>
-                <div class="modal-body">
-                    <input id="course_configuration_page_curriculum_modal_input" class="form-control mb-3" type="text" placeholder="Add new lecture" />
-                    <button id="course_configuration_page_curriculum_modal_add_lecture_button" class="btn btn-primary" type="Button">
-      Add New Lecture
-      </button>
-                    <button class="btn btn-muted" data-bs-dismiss="modal" aria-label="Close">
-      Close
-      </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="addSectionModal" tabindex="-1" role="dialog" aria-labelledby="addSectionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="addSectionModalLabel">
-                        Add New Section
-                    </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <input class="form-control mb-3" type="text" placeholder="Add new section" />
-                    <button class="btn btn-primary" type="Button">
-                  Add New Section
-                  </button>
-                    <button class="btn btn-outline-white" data-bs-dismiss="modal" aria-label="Close">
-                  Close
-                  </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Scripts -->
 
     <!-- SockJS -->
