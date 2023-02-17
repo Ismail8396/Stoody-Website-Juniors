@@ -78,6 +78,7 @@ public class SecurityConfig {
                         PRL.apiPrefix+"/upload/**",
 
                         /*Remove Later*/
+                        "/stoody/api/v1/docs/**",
                         "/stoody/api/v1/quizzes**",
                         "/stoody/api/v1/quizzes/**",
                         "/stoody/courses/**",
