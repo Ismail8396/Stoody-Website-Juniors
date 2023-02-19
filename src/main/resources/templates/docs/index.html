@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>
-    <!-- Required meta tags -->
+<head> <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -25,21 +25,15 @@
 <link th:href="@{/assets/libs/simplebar/dist/simplebar.min.css}" href="../../static/assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet">
 
 <!-- Theme CSS -->
-<!-- build:css ../assets/css/theme.min.css -->
-<link rel="stylesheet" href="../../static/assets/css/theme.css">
-<!-- endbuild -->
+<link rel="stylesheet" href="../../static/assets/css/theme.min.css">
 
 <!--This should be merged with the one above-->
 <link rel="stylesheet" th:href="@{/assets/css/theme.min.css}">
-    <link href="../../static/assets/libs/prismjs/themes/prism-okaidia.min.css" rel="stylesheet">
-    <title>Introduction | Stoody</title>
-
+    <title>Course Path Single | Stoody</title>
 </head>
 
-<body class="bg-white">
-    <!-- Main wrapper -->
-    <div class="docs-main-wrapper">
-        <!-- Docs header -->
+<body>
+    <!-- Docs header -->
 <div class="docs-header">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top ms-0">
         <a class="navbar-brand" href="../index.html"><img src="../../static/assets/images/brand/logo/logo.png" width="40px" alt=""> </a>
@@ -47,464 +41,1128 @@
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
             </a>
-            <ul class="navbar-nav flex-row ms-3">
-                <li class="nav-item docs-header-btn">
-                    <a class="btn btn-primary me-2 me-lg-0" href="http://stoody.org/">Buy now</a>
-                </li>
-                <li class="nav-item d-md-none">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-             <span class="navbar-toggler-icon"></span>
-             </button>
-                </li>
-            </ul>
         </div>
     </nav>
 </div>
-        <!-- left sidebar -->
-        <!-- Nav Sidebar -->
-<aside class="docs-nav-sidebar">
-  <div class="py-5"></div>
-  <div class=" docs-nav " data-simplebar>
-    <nav class="navbar navbar-expand-md">
-      <div class="collapse navbar-collapse " id="navbarNav">
-        <ul class="navbar-nav flex-column" id="sidebarnav">
-          <li class="navbar-header">
-            <h5 class="heading">Getting Started</h5>
-          </li>
-          <li class="nav-item"><a href="index.html" class="nav-link">Introduction</a></li>
-          <li class="nav-item"><a href="environment-setup.html" class="nav-link">Environment setup</a></li>
-          <li class="nav-item"><a href="working-with-gulp.html" class="nav-link">Working with Gulp</a>
-          </li>
-          <li class="nav-item"><a href="compiled-files.html" class="nav-link">Compiled Files</a>
-          </li>
-          <li class="nav-item"><a href="file-structure.html" class="nav-link">File Structure</a></li>
-          <li class="nav-item"><a href="../resources-static/assets.html" class="nav-link">Resources & assets</a></li>
-          <li class="nav-item"><a href="changelog.html" class="nav-link">Changelog</a></li>
 
+    <!-- Page content -->
+    <main class="mt-6">
+        <!-- Page Content -->
+        <section class="py-lg-14 py-10 position-relative bg-cover" style="background-image:
+        url(../../assets/images/background/gradient-bg.png);">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-6  col-12 ">
+                        <!-- caption-->
+                        <h1 class="fw-bold mb-1 display-3">Stoody Documentation</h1>
+                        <!-- para -->
+                        <p class="mb-5 text-dark ">Have questions? Search through our Help Center</p>
+                        <ul class="list-unstyled fs-3 text-dark
+               mb-6 fw-medium">
+                            <li class="mb-1 d-flex"><i class="bi bi-rocket-takeoff text-success
+                  me-2"></i>Find what you need fast.</li>
+                            <li class="mb-1 d-flex"><i class="bi bi-fire text-success
+                  me-2"></i>Everything in one place.</li>
+                            <li class="mb-1 d-flex"><i class="bi bi-emoji-laughing text-success
+                  me-2"></i>Beautiful and functional.</li>
+                        </ul>
+                        <div class="pe-md-6">
+                            <!-- input  -->
+                            <div id="helpCenterLandingSearchForm" class="d-flex align-items-center">
+                                <span class="position-absolute ps-3">
+                <i class="fe fe-search text-muted"></i>
+              </span>
+                                <!-- input  -->
+                                <input type="search" id="helpCenterLandingSearchFormInput" class="form-control ps-6 border-0 py-3 smooth-shadow-md" placeholder="Enter a question, topic or keyword">
+                                <button id="helpCenterLandingSearchFormButton" role="button" class="btn btn-primary ms-1 font-weight-bold px-5 border-0 py-3 smooth-shadow-md d-flex align-items-center justify-content-center">
+                                    <i class="bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <span class=" mt-2 d-block">... or choose a category to quickly find the help you need</span>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex align-items-center justify-content-end">
+                            <!-- img  -->
+                            <img src="../../../static/assets/images/svg/featured-img-3.svg" class="text-center img-fluid">
+                        </div>
+                    </div>
+                </div>
 
-          <li>
-            <div class="navbar-border"></div>
-          </li>
-          <li class="navbar-header mt-0">
-            <h5 class="heading">Foundation</h5>
-          </li>
-          <li class="nav-item"><a href="typography.html" class="nav-link">Typography</a></li>
-          <li class="nav-item"><a href="colors.html" class="nav-link">Colors</a></li>
-          <li class="nav-item"><a href="shadows.html" class="nav-link">Shadows</a></li>
-          <li class="nav-item"><a href="icons.html" class="nav-link">Icons</a></li>
-
-
-
-          <li>
-            <div class="navbar-border"></div>
-          </li>
-         
-          <li class="navbar-header mt-0">
-            <h5 class="heading">Snippet</h5>
-          </li>
-          <li class="nav-item">
-            <a href="accordions-snippet.html" class="nav-link">
-              Accordions
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="card-snippet.html" class="nav-link">
-              Card
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="chart.html" class="nav-link">
-              Chart
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="client-snippet.html" class="nav-link">
-              Clients
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="cta-snippet.html" class="nav-link">
-              CTA
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="features-snippet.html" class="nav-link">
-              Features
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="hero-snippet.html" class="nav-link">
-              Hero
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="image-snippet.html" class="nav-link">
-              Image
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="integration-snippet.html" class="nav-link">
-              Integrations
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pricing.html" class="nav-link">
-              Pricing
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="reviews.html" class="nav-link">
-              Reviews
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="slider-snippet.html" class="nav-link">
-              Slider
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="stats.html" class="nav-link">
-              Stats
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="tables-snippet.html" class="nav-link">
-              Tables
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="team-snippet.html" class="nav-link">
-              Team
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="testimonials-snippet.html" class="nav-link">
-              Testimonials
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="user-profile.html" class="nav-link">
-              User Profile
-            </a>
-          </li>
-          <li>
-            <div class="navbar-border"></div>
-          </li>
-          <li class="navbar-header mt-0">
-            <h5 class="heading">Components</h5>
-          </li>
-          <li class="nav-item">
-            <a href="accordions.html" class="nav-link">
-              Accordions
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="alerts.html" class="nav-link">
-              Alerts
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="avatar.html" class="nav-link">
-              Avatar
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="badge.html" class="nav-link">
-              Badge
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="breadcrumb.html" class="nav-link">
-              Breadcrumb
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="buttons.html" class="nav-link">
-              Buttons
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="button-group.html" class="nav-link">
-              Button group
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="card.html" class="nav-link">
-              Card
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="carousel.html" class="nav-link">
-              Carousel
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="close-button.html" class="nav-link">
-              Close Button
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="collapse.html" class="nav-link">
-              Collapse
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="dropdowns.html" class="nav-link">
-              Dropdowns
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="images.html" class="nav-link">
-              Images
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="list-group.html" class="nav-link">
-              List group
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="modal.html" class="nav-link">
-              Modal
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="navs-tabs.html" class="nav-link">
-              Navs and tabs
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="navbar.html" class="nav-link">
-              Navbar
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="offcanvas.html" class="nav-link">
-              Offcanvas
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pagination.html" class="nav-link">
-              Pagination
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="placeholders.html" class="nav-link">
-              Placeholders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="popovers.html" class="nav-link">
-              Popovers
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="progress.html" class="nav-link">
-              Progress
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="scrollspy.html" class="nav-link">
-              Scrollspy
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="spinners.html" class="nav-link">
-              Spinners
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="tables.html" class="nav-link">
-              Tables
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="toasts.html" class="nav-link">
-              Toasts
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="tooltips.html" class="nav-link">
-              Tooltips
-            </a>
-          </li>
-          <li>
-            <div class="navbar-border"></div>
-          </li>
-          <li class="navbar-header mt-0">
-            <h5 class="heading">Forms</h5>
-          </li>
-          <li class="nav-item">
-            <a href="forms.html" class="nav-link">
-              Basic Forms
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="advance-forms.html" class="nav-link">
-              Advance Forms
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="bootstrap-select.html" class="nav-link">
-              Bootstrap Select
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="dropzone.html" class="nav-link">
-              Dropzone
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="flatpickr.html" class="nav-link">
-              Datepicker
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="input-group.html" class="nav-link">
-              Input Group
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="inputmask.html" class="nav-link">
-              Inputmask
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="quill-editor.html" class="nav-link">
-              Quill Editor
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="tagify.html" class="nav-link">
-              Tagify
-            </a>
-          </li>
-        
-          <li>
-            <div class="navbar-border"></div>
-          </li>
-          <li class="navbar-header mt-0">
-            <h5 class="heading">Utilities</h5>
-          </li>
-          <li class="nav-item"><a href="background.html" class="nav-link">Background</a></li>
-          <li class="nav-item"><a href="borders.html" class="nav-link"> Borders </a></li>
-          <li class="nav-item"><a href="colored-links.html" class="nav-link"> Colored Links </a></li>
-          <li class="nav-item"><a href="opacity.html" class="nav-link"> Opacity </a></li>
-          <li class="nav-item"><a href="ratio.html" class="nav-link"> Ratio </a></li>
-          <li class="nav-item"><a href="stacks.html" class="nav-link"> Stacks </a></li>
-          <li class="nav-item"><a href="text-color.html" class="nav-link">Colors</a></li>
-          <li class="nav-item"><a href="text.html" class="nav-link"> Text </a></li>
-          <li class="nav-item"><a href="text-truncation.html" class="nav-link"> Text truncation </a></li>
-          <li class="nav-item"><a href="vertical-rule.html" class="nav-link"> Vertical rule </a></li>
-
-
-
-
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="nav-footer">
-    <p class="mb-0"> Developed by <a href="https://orkhanaliyev.com" target="_blank">Orkhan Aliyev</a></p>
-  </div>
-</aside>
-        <!-- Wrapper  -->
-        <main class="docs-wrapper">
-            <section class="container-fluid">
+            </div>
+        </section>
+        <!-- Content  -->
+        <section class="py-6">
+            <div class="container">
                 <div class="row">
-                    <div class="offset-xxl-2 col-xxl-6 offset-xl-1 col-xl-7 col-md-12 col-sm-12 col-12 ">
-                        <!-- Content -->
-                        <div class="docs-content mx-xxl-9">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="mb-8" id="intro">
-                                        <h1 class="mb-2 fw-bold display-3">Introduction</h1>
-                                        <p class="mb-6 lead text-muted">
-                                            Stoody UI is beautifully designed, expertly crafted components UI kit for building a high-quality website and web apps using web technologies — HTML, CSS, and JavaScript — with integrations of the world’s most popular framework
-                                            <a href="https://getbootstrap.com/" target="_blank" rel="nofollow">Bootstrap</a>.
-                                        </p>
+                    <div class="col-md-12">
+                        <!-- Tab content -->
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-course" role="tabpanel"
+                                aria-labelledby="pills-course-tab">
+                                <!-- Tab pane -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-5">
+                                            <h2 class="mb-1">Category</h2>
+                                            <p>Learn Bootstrap tutorial for beginners with there easy components and
+                                                utility.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">An Ultimate Guide for
+                                                        Beginners Bootstrap 5</a>
+                                                </h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h
+                                                        56m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Beginner </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(9,300)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-3.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Morris Mccoy</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">How to customize
+                                                        Bootstrap CSS for Beginner</a>
+                                                </h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3  list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h
+                                                        46m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Beginner </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(7,800)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-2.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Ted Hawkins</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Bootstrap 5 Grid
+                                                        System Introduction for
+                                                        Beginner</a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h
+                                                        30m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Beginner </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(8,245)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-4.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Juanita Bell</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Easy Way to Work with
+                                                        Bootstrap 5
+                                                        Components</a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h
+                                                        30m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Beginner </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(3,245)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-5.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Claire Robertson</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-5">
+                                <!-- Content -->
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-12">
+                                        <div class="mb-5">
+                                            <h2 class="mb-1">Intermediate</h2>
+                                            <p>Learn Bootstrap tutorial for Intermediat with node modules.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card  -->
+                                        <div class="card  mb-4 card-hover">
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Bootstrap Tutorial -
+                                                        How to Set Up and Use
+                                                        Bootstrap </a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h
+                                                        56m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Intermediate </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(5,300)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-5.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Morris Mccoy</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Bootstrap 5 Components
+                                                        Alerts Customization
+                                                    </a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h
+                                                        46m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Intermediate </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(9,300)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-6.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Ted Hawkins</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Customization
+                                                        Bootstrap 5 Components Accordion
+                                                        /Tab </a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h
+                                                        30m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Intermediate </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(5,568)</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-7.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Juanita Bell</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Preparing a site to go
+                                                        live with Gatsby
+                                                        Server</a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h
+                                                        30m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#DBD8E9">
+                                                            </rect>
+                                                        </svg>Intermediate </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(6,245)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-8.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Claire Robertson</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Content -->
+                                <hr class="my-5">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-12">
+                                        <div class="mb-5">
+                                            <h2 class="mb-1">Advance</h2>
+                                            <p>Learn Bootstrap tutorial for Advance with node modules and any CMS.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Bootstrap 5 tutorial -
+                                                        Learn Bootstrap by
+                                                        Building a page </a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h
+                                                        56m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                        </svg> Advance </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(5,300)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-5.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Morris Mccoy</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">How to Build Admin
+                                                        Dashboard Bootstrap 5 </a>
+                                                </h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h
+                                                        46m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                        </svg> Advance </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(9,300)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-6.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Ted Hawkins</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">Advance Bootstrap SCSS
+                                                        Theme Customization </a>
+                                                </h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>1h
+                                                        30m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                        </svg> Advance </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(5,568)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-7.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Juanita Bell</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 card-hover">
+                                            <!-- Card body -->
+                                            <a href="#" class="card-img-top"><img
+                                                    src="../../static/assets/images/course/course-bootstrap.jpg" alt=""
+                                                    class="card-img-top rounded-top-md"></a>
+                                            <div class="card-body">
+                                                <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#"
+                                                        class="text-inherit">How to Build Custom
+                                                        Bootstrap Theme</a></h3>
+                                                <!-- List inline -->
+                                                <ul class="mb-3 list-inline">
+                                                    <li class="list-inline-item"><i
+                                                            class="mdi mdi-clock-time-four-outline text-muted me-1"></i>2h
+                                                        30m
+                                                    </li>
+                                                    <li class="list-inline-item"><svg class="me-1 mt-n1" width="16"
+                                                            height="16" viewBox="0 0 16 16" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3" y="8" width="2" height="6" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="7" y="5" width="2" height="9" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                            <rect x="11" y="2" width="2" height="12" rx="1"
+                                                                fill="#754FFE">
+                                                            </rect>
+                                                        </svg> Advance </li>
+                                                </ul>
+                                                <div class="lh-1">
+                                                    <span>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning me-n1"></i>
+                                                        <i class="mdi mdi-star text-warning"></i>
+                                                    </span>
+                                                    <span class="text-warning">4.5</span>
+                                                    <span class="fs-6 text-muted">(6,245)</span>
+                                                </div>
+                                            </div>
+                                            <!-- Card footer -->
+                                            <div class="card-footer">
+                                                <div class="row align-items-center g-0">
+                                                    <div class="col-auto">
+                                                        <img src="../../static/assets/images/avatar/avatar-8.jpg"
+                                                            class="rounded-circle avatar-xs" alt="">
+                                                    </div>
+                                                    <div class="col ms-2">
+                                                        <span>Claire Robertson</span>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <a href="#" class="text-muted bookmark">
+                                                            <i class="fe fe-bookmark  "></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12 col-12">
-                                    <div class="mb-8">
-                                        <p class="fs-4 mb-0">Guide will help you get started with a Stoody Theme, including how to run, customize, update, and integrate your theme! </p>
-                                        <div class="my-6">Stoody
-                                            <div class="alert alert-info" role="alert">
-                                                Note: We highly recommend to check out The Guide an official Bootstrap Theme <a href="https://themes.getbootstrap.com/guide/" class="alert-link">guidelines</a> by Bootstrap core team.
+                            <div class="tab-pane fade" id="pills-about" role="tabpanel"
+                                aria-labelledby="pills-about-tab">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-12">
+                                        <!-- Card -->
+                                        <div class="card ">
+                                            <div class="card-header">
+                                                <h4 class="mb-0">About Path</h4>
                                             </div>
-
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <h2>Header Level 2</h2>
+                                                <p>Quickly design and customize responsive mobile-first sites with
+                                                    Bootstrap, the world’s most popular front-end open source toolkit,
+                                                    featuring Sass variables and mixins, responsive grid system,
+                                                    extensive prebuilt
+                                                    components, and powerful JavaScript plugins. Lorem ipsum dolor sit
+                                                    amet consectetur adipisicing elit. Possimus obcaecati sint dolore
+                                                    officiis unde veritatis dignissimos iusto fugit officia? Atque
+                                                    ullam,
+                                                    saepe tempora eum voluptates cum labore nisi mollitia quidem!</p>
+                                                <p class="mb-4">Vestibulum nec porta tortor. Phasellus metus quam,
+                                                    semper ut tincidunt sit amet, viverra quis neque. Nullam mattis
+                                                    mollis massa nec pulvinar. Vivamus ut velit orci. Aenean nec pretium
+                                                    augue. In eu tellus
+                                                    quis urna vestibulum pulvinar. Etiam in elementum lectus, id
+                                                    dignissim mauris. Quisque tempus posuere aliquet.</p>
+                                                <h3 class="mb-3">Header Level 3 </h3>
+                                                <!-- Img -->
+                                                <img src="../../static/assets/images/blog/blogpost-1.jpg" alt=""
+                                                    class="img-fluid mb-5 w-100">
+                                                <h4 class="mb-5">Header Level 4 </h4>
+                                                <!-- Blockquote -->
+                                                <blockquote class="blockquote-left ">
+                                                    <p class="mb-4 font-italic ms-4">Blockquote. Lorem ipsum dolor sit
+                                                        amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at
+                                                        felis aliquet congue. Ut a est eget ligula molestie gravida.
+                                                        Curabitur massa. Donec eleifend, libero
+                                                        at sagittis mollis, tellus est malesuada tellus, at luctus
+                                                        turpis elit sit amet quam. Vivamus pretium ornare est</p>
+                                                    <footer class="blockquote-footer ms-4">Andrew Watkins</footer>
+                                                </blockquote>
+                                                <ol>
+                                                    <li>Lorem ipsum dolor sit amet</li>
+                                                    <li>Consectetur adipiscing elit</li>
+                                                    <li>Integer molestie lorem at massa</li>
+                                                    <li>Facilisis in pretium nisl aliquet</li>
+                                                </ol>
+                                                <h5 class="mb-3 mt-4">Header Level 5 </h5>
+                                                <ul>
+                                                    <li>Phasellus iaculis neque</li>
+                                                    <li>Purus sodales ultricies</li>
+                                                    <li>Vestibulum laoreet porttitor sem</li>
+                                                    <li>Ac tristique libero volutpat at</li>
+                                                </ul>
+                                                <h6 class="mb-3 mt-4">Header Level 6 </h6>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident,
+                                                    maiores laboriosam necessitatibus eveniet suscipit ad accusamus nisi
+                                                    dolores dolorum deserunt atque dicta libero doloribus veritatis enim
+                                                    tempora! Laboriosam quasi quod sint incidunt neque? Perferendis
+                                                    tempore neque molestias reiciendis consequuntur hic explicabo
+                                                    exercitationem ipsum a esse? Sit soluta reiciendis sint molestiae!
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mb-8" id="setting-up">
-                                        <h2 class="fw-semi-bold">Setting up local development</h2>
-                                        <p class="mb-0">Stoody is built using modern development toolset. Setting up local development Like Gulp, Node js, SASS & Bootstrap SCSS. <a href="environment-setup.html">Read More</a></p>
-                                    </div>
-                                    <dStoodyass="mb-8" id="customize-theme">
-                                        <div class="mb-4">
-                                            <h2 class="fw-semi-bold">Customize your theme</h2>
-                                            <p class="mb-0">Now that you’ve got your theme running and understand the compiling process, let’s discuss the proper ways to edit and customize your theme. There are two primary strategies for working with your theme.</p>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-12">
-                                                <div class="card border shadow-none mb-4 mb-lg-0">
-                                                    <div class="card-body">
-                                                        <div class=" mb-4">
-                                                            <img src="../../static/assets/images/path/path-gulp.svg" alt="" class="avatar-lg">
-
-                                                        </div>
-                                                        <h3 class="fw-semi-bold">Working with Gulp</h3>
-                                                        <p>Working with source files showcases how powerful Bootstrap themes can be and the underlying design systems.</p>
-                                                        <a href="#" class="btn-link">Start with Gulp</a>
+                                </div>
+                            </div>
+                            <!-- Tab Pane -->
+                            <div class="tab-pane fade" id="pills-author" role="tabpanel"
+                                aria-labelledby="pills-author-tab">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 ">
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <div class="d-lg-flex">
+                                                    <div class="position-relative">
+                                                        <img src="../../static/assets/images/avatar/avatar-1.jpg" alt=""
+                                                            class="rounded-circle avatar-xl mb-3 mb-lg-0 ">
+                                                        <a href="#" class="position-absolute mt-2 ms-n3"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Verifed">
+                                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt=""
+                                                                height="30" width="30">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-lg-4">
+                                                        <h4 class="mb-0">Jenny Wilson</h4>
+                                                        <p class="mb-0 fs-6">Front-end Developer, Designer</p>
+                                                        <p class="fs-6 mb-1 text-warning"><span>4.5</span><span
+                                                                class="mdi mdi-star text-warning me-2"></span>Instructor
+                                                            Rating</p>
+                                                        <p class="fs-6 text-muted"><span class="me-2"><span
+                                                                    class="text-dark fw-medium">42</span> Courses
+                                                            </span><span class="ms-2"><span
+                                                                    class="text-dark fw-medium">1,10,124
+                                                                </span> Students
+                                                            </span>
+                                                        </p>
+                                                        <p>I start my development and digital career studying digital
+                                                            design. After taking a couple of programming classes I
+                                                            realize that code is what I wanted to be doing. </p>
+                                                        <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                            View Details
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-12">
-                                                <div class="card border shadow-none mb-4 mb-lg-0">
-                                                    <div class="card-body">
-                                                        <div class=" mb-4">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" fill="currentColor" class="bi bi-folder-fill text-warning" viewBox="0 0 16 16">
-                                  <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
-                                </svg>
-                                                        </div>
-                                                        <h3 class="fw-semi-bold">Working with compiled files
-                                                        </h3>
-                                                        <p>Simply attach the compiled CSS and JS files to an HTML page, or use an HTML page already provided in your theme.</p>
-                                                        <a href="#" class="btn-link">Start with compiled HTML files</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 ">
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <div class="d-lg-flex">
+                                                    <div class="position-relative">
+                                                        <img src="../../static/assets/images/avatar/avatar-2.jpg" alt=""
+                                                            class="rounded-circle avatar-xl mb-3 mb-lg-0">
+                                                        <a href="#" class="position-absolute mt-2 ms-n3"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Verifed">
+                                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt=""
+                                                                height="30" width="30">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-lg-4">
+                                                        <h4 class="mb-0">Paulina Rush</h4>
+                                                        <p class="mb-0 fs-6">Front-end Developer, Designer</p>
+                                                        <p class="fs-6 mb-1 text-warning"><span>4.5</span><span
+                                                                class="mdi mdi-star text-warning me-2"></span>Instructor
+                                                            Rating</p>
+                                                        <p class="fs-6 text-muted"><span class="me-2"><span
+                                                                    class="text-dark fw-medium">8</span> Courses
+                                                            </span><span class="ms-2"><span
+                                                                    class="text-dark fw-medium">12,124 </span> Students
+                                                            </span>
+                                                        </p>
+                                                        <p>Writing JS, CSS, and HTML professionally since 2004. Open
+                                                            source contributor to projects like jQuery, jQueryUI,
+                                                            ESLint, Webpack, npm, JSCS, Esprima and more.</p>
+                                                        <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                            View Details
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  mb-4 ">
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <div class="d-lg-flex">
+                                                    <div class="position-relative">
+                                                        <img src="../../static/assets/images/avatar/avatar-3.jpg" alt=""
+                                                            class="rounded-circle avatar-xl mb-3 mb-lg-0">
+                                                        <a href="#" class="position-absolute mt-2 ms-n3"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Verifed">
+                                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt=""
+                                                                height="30" width="30">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-lg-4">
+                                                        <h4 class="mb-0">Avneet Brooks</h4>
+                                                        <p class="mb-0 fs-6">Front-end Developer, Designer</p>
+                                                        <p class="fs-6 mb-1 text-warning"><span>4.5</span>
+                                                            <span
+                                                                class="mdi mdi-star text-warning me-2"></span>Instructor
+                                                            Rating</p>
+                                                        <p class="fs-6 text-muted"><span class="me-2"><span
+                                                                    class="text-dark fw-medium">23</span> Courses
+                                                            </span><span class="ms-2"><span
+                                                                    class="text-dark fw-medium">23,000 </span> Students
+                                                            </span>
+                                                        </p>
+                                                        <p>Software developer and active open sorcerer. She speaks
+                                                            multiple languages and is often overheard saying "Bonjour"
+                                                            in HTML.</p>
+                                                        <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                            View Details
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <!-- Card -->
+                                        <div class="card  ">
+                                            <!-- Card body -->
+                                            <div class="card-body">
+                                                <div class="d-lg-flex">
+                                                    <div class="position-relative">
+                                                        <img src="../../static/assets/images/avatar/avatar-5.jpg" alt=""
+                                                            class="rounded-circle avatar-xl mb-3 mb-lg-0">
+                                                        <a href="#" class="position-absolute mt-2 ms-n3"
+                                                            data-bs-toggle="tooltip" data-placement="top"
+                                                            title="Verifed">
+                                                            <img src="../../static/assets/images/svg/checked-mark.svg" alt=""
+                                                                height="30" width="30">
+                                                        </a>
+                                                    </div>
+                                                    <div class="ms-lg-4">
+                                                        <h4 class="mb-0">Bree Head</h4>
+                                                        <p class="mb-0 fs-6">Front-end Developer, Designer</p>
+                                                        <p class="fs-6 mb-1 text-warning"><span>4.5</span>
+                                                            <span
+                                                                class="mdi mdi-star text-warning me-2"></span>Instructor
+                                                            Rating</p>
+                                                        <p class="fs-6 text-muted"><span class="me-2"><span
+                                                                    class="text-dark fw-medium">22</span> Courses
+                                                            </span><span class="ms-2"><span
+                                                                    class="text-dark fw-medium">40,224 </span> Students
+                                                            </span>
+                                                        </p>
+                                                        <p>Bree Head developer, architect, occasional designer, and
+                                                            frequent speaker. He’s passionate about building tools,
+                                                            systems, and create high-performance teams and apps.
+                                                        </p>
+                                                        <a href="#" class="btn btn-outline-secondary btn-sm">
+                                                            View Details
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12  d-none d-xl-block position-fixed end-0">
-                    <!-- Sidebar nav fixed -->
-                    <div class="sidebar-nav-fixed">
-                        <span class="px-4 mb-2 d-block text-uppercase ls-md fw-semi-bold fs-6">Contents</span>
-                        <ul class="list-unstyled">
-                            <li><a href="#intro" class="active">Introduction</a></li>
-                            <li><a href="#setting-up">Setting Up</a>
-                                <li><a href="#customize-theme">Customize Theme</a></li>
-                        </ul>
-                    </div>
-                </div>
-    </div>
-    </section>
+            </div>
+        </section>
     </main>
+    <!-- Footer -->
+    <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center g-0 border-top py-2">
+            <!-- Desc -->
+            <div class="col-md-6 col-12 text-center text-md-start">
+                <span data-th-text="#{global.copyright_warner}">© 2022 Stoody. All Rights Reserved.</span>
+            </div>
+            <!-- Links -->
+            <div class="col-12 col-md-6">
+                <nav class="nav nav-footer justify-content-center justify-content-md-end">
+                    <a class="nav-link active ps-0" href="#" data-th-text="#{global.privacy}">Privacy</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.terms}">Terms </a>
+                    <a class="nav-link" href="#" data-th-text="#{global.feedback}">Feedback</a>
+                    <a class="nav-link" href="#" data-th-text="#{global.support}">Support</a>
+                </nav>
+            </div>
+        </div>
     </div>
+</footer>
 
     <!-- Scripts -->
+
+    <!-- SockJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <!-- Stomp -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+        integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Libs JS -->
 <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}" src="../../static/assets/libs/jquery/dist/jquery.min.js"></script>
@@ -513,19 +1171,16 @@
 
 
 <!-- Theme JS -->
-<!-- build:js ../assets/js/theme.min.js -->
-<script src="../../static/assets/js/main.js"></script>
-<script src="../../static/assets/js/darkMode.js"></script>
-<!-- endbuild -->
+<script src="../../static/assets/js/theme.min.js"></script>
 
 
 <!--This should be merged with the one above-->
 <script th:src="@{/assets/js/theme.min.js}"></script>
-    <script src="../../static/assets/js/sidebarMenu.js"></script>
-    <script src="../../static/assets/libs/prismjs/prism.js"></script>
-    <script src="../../static/assets/libs/prismjs/components/prism-scss.min.js"></script>
-    <script src="../../static/assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
-    <script src="../../static/assets/libs/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <script src="../../static/assets/libs/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="../../static/assets/libs/tippy.js/dist/tippy-bundle.umd.min.js"></script>
+
+    <script src="../../static/assets/js/vendors/tooltip.js"></script>
 </body>
 
 </html>

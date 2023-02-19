@@ -1143,7 +1143,7 @@
 								insight.</span>
 
                                 <div>
-                                    <a th:href="@{/user/dashboard/instructor/courses/course/0/editor}" href="add-course.html" class="btn btn-primary mt-2">Create New
+                                    <a th:href="@{/user/dashboard/instructor/courses/create/new}" href="add-course.html" class="btn btn-primary mt-2">Create New
 										Course</a>
                                 </div>
                             </div>
@@ -1242,8 +1242,8 @@
 												</a>
 												<span class="dropdown-menu" aria-labelledby="courseDropdown">
 													<span class="dropdown-header">Setting </span>
-                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/course/'+${createdCourse.id}+'/editor'" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/course/delete/'+${createdCourse.id}" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
+                                                        <a class="dropdown-item" th:href="'/stoody/api/v1/course/stoody/course/'+${createdCourse.id}+'/editor'" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
+                                                        <a class="dropdown-item" th:href="'/user/dashboard/instructor/courses/tag/deleted/'+${createdCourse.id}" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
                                                         </span>
                                                         </span>
                                                     </div>

@@ -9,6 +9,7 @@ import com.loam.stoody.global.constants.PRL;
 import com.loam.stoody.service.documentation.DocumentationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,45 @@ public class DocumentationController {
     @GetMapping("/docs")
     public String getDocumentationLanding() {
         return null;
+    }
+
+    @GetMapping("/stoody/authorized/docs/category")
+    public String getAdminDocsCategory(Model model) {
+        model.addAttribute("documentationCategoriesDTO", documentationService.getDocumentationCategoryAll());
+        model.addAttribute("documentationCategoryDTO", new DocumentationCategoryDTO());
+        return "pages/dashboard/admin-docs-category";
+    }
+
+    @PostMapping("/stoody/authorized/docs/category")
+    public String postAdminDocsCategory(@ModelAttribute("documentationCategoryDTO") DocumentationCategoryDTO documentationCategoryDTO) {
+        documentationService.saveDocumentationCategory(documentationCategoryDTO);
+        return "redirect:/stoody/authorized/docs/category";
+    }
+
+    @PostMapping("/stoody/authorized/docs/category/{id}")
+    public String adminDocsCategoryDelete(@PathVariable("id") Long id) {
+        documentationService.deleteDocumentationCategoryById(id);
+        return "redirect:/stoody/authorized/docs/category";
+    }
+
+    @GetMapping("/stoody/authorized/docs/section")
+    public String getAdminDocsSection(Model model) {
+        model.addAttribute("documentationSectionsDTO", documentationService.getDocumentationSectionAll());
+        model.addAttribute("documentationSectionDTO", new DocumentationSectionDTO());
+        model.addAttribute("documentationCategoriesDTO", documentationService.getDocumentationCategoryAll());
+        return "pages/dashboard/admin-docs-section";
+    }
+
+    @PostMapping("/stoody/authorized/docs/section")
+    public String postAdminDocsSection(@ModelAttribute("documentationSectionDTO") DocumentationSectionDTO documentationSectionDTO) {
+        documentationService.saveDocumentationSection(documentationSectionDTO);
+        return "redirect:/stoody/authorized/docs/section";
+    }
+
+    @PostMapping("/stoody/authorized/docs/section/delete/{id}")
+    public String adminDocsSectionDelete(@PathVariable("id") Long id) {
+        documentationService.deleteDocumentationSectionById(id);
+        return "redirect:/stoody/authorized/docs/section";
     }
 
     // ->  DocumentationCategory RestController
