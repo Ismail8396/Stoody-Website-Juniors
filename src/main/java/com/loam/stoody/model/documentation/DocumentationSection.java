@@ -14,6 +14,7 @@ public class DocumentationSection extends ParentModel {
     @Column(nullable = false)
     private String name;
     private String description;
+    private String text;
     private String thumbnailUrl;
 
     private Long visitCount;
