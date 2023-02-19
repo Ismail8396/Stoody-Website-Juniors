@@ -114,7 +114,9 @@ public class DocumentationService {
         dto.setDescription(entity.getDescription());
         dto.setName(entity.getName());
         dto.setSectionId(entity.getSection().getId());
-
+        dto.setMetaDescription(entity.getMetaDescription());
+        dto.setMetaKeywords(entity.getMetaKeywords());
+        dto.setMetaAuthor(entity.getMetaAuthor());
         return dto;
     }
     public DocumentationLecture mapDocumentationLectureDTOToEntity(DocumentationLectureDTO dto) {
@@ -123,6 +125,9 @@ public class DocumentationService {
         entity.setContent(dto.getContent());
         entity.setDescription(dto.getDescription());
         entity.setName(dto.getName());
+        entity.setMetaKeywords(dto.getMetaKeywords());
+        entity.setMetaDescription(dto.getMetaDescription());
+        entity.setMetaAuthor(dto.getMetaAuthor());
         entity.setSection(dto.getSectionId() == null ? null : documentationSectionRepository.findById(dto.getSectionId()).orElse(null));
 
         return entity;

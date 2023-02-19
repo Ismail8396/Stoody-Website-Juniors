@@ -7,6 +7,10 @@ public class DocumentationLectureDTO {
     private Long id;
     private String name;
 
+    private String metaDescription;
+    private String metaKeywords;
+    private String metaAuthor;
+
     private String description;
     private String content;
     private Long sectionId;
