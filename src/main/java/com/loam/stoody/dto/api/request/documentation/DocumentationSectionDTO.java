@@ -9,7 +9,7 @@ public class DocumentationSectionDTO {
     private String description;
     private String thumbnailUrl;
 
-    private Long visitCount;
-    private Long categoryId;
+    private DocumentationCategoryDTO documentationCategory;
 
+    private Long visitCount;
 }

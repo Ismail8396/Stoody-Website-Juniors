@@ -70,8 +70,10 @@ public class DocumentationService {
         dto.setDescription(entity.getDescription());
         dto.setThumbnailUrl(entity.getThumbnailUrl());
         dto.setVisitCount(entity.getVisitCount());
-        if (entity.getCategory() != null)
-            dto.setCategoryId(entity.getCategory().getId());
+
+        if(entity.getCategory() != null){
+            dto.setDocumentationCategory(mapDocumentationCategoryEntityToDTO(entity.getCategory()));
+        }
         return dto;
     }
 
@@ -82,7 +84,9 @@ public class DocumentationService {
         entity.setDescription(dto.getDescription());
         entity.setThumbnailUrl(dto.getThumbnailUrl());
         entity.setVisitCount(dto.getVisitCount());
-        entity.setCategory(dto.getCategoryId() == null ? null : documentationCategoryRepository.findById(dto.getCategoryId()).orElse(null));
+        entity.setCategory(dto.getDocumentationCategory().getId() == null
+                ? null
+                : documentationCategoryRepository.findById(dto.getDocumentationCategory().getId()).orElse(null));
         return entity;
     }
 
@@ -117,6 +121,7 @@ public class DocumentationService {
         dto.setMetaDescription(entity.getMetaDescription());
         dto.setMetaKeywords(entity.getMetaKeywords());
         dto.setMetaAuthor(entity.getMetaAuthor());
+
         return dto;
     }
     public DocumentationLecture mapDocumentationLectureDTOToEntity(DocumentationLectureDTO dto) {
