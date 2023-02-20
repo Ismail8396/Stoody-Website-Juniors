@@ -70,6 +70,7 @@ public class DocumentationService {
         dto.setDescription(entity.getDescription());
         dto.setThumbnailUrl(entity.getThumbnailUrl());
         dto.setVisitCount(entity.getVisitCount());
+        dto.setText(entity.getText());
 
         if(entity.getCategory() != null){
             dto.setDocumentationCategory(mapDocumentationCategoryEntityToDTO(entity.getCategory()));
@@ -84,6 +85,7 @@ public class DocumentationService {
         entity.setDescription(dto.getDescription());
         entity.setThumbnailUrl(dto.getThumbnailUrl());
         entity.setVisitCount(dto.getVisitCount());
+        entity.setText(dto.getText());
         entity.setCategory(dto.getDocumentationCategory().getId() == null
                 ? null
                 : documentationCategoryRepository.findById(dto.getDocumentationCategory().getId()).orElse(null));
