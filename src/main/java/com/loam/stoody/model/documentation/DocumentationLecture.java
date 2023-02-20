@@ -12,11 +12,11 @@ public class DocumentationLecture extends ParentModel {
     private String metaDescription;
     private String metaKeywords;
     private String metaAuthor;
+    private String urlKey;
 
     @Column(nullable = false)
     private String name;
 
-    private String description;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 

@@ -115,12 +115,12 @@ public class DocumentationService {
         DocumentationLectureDTO dto = new DocumentationLectureDTO();
         dto.setId(entity.getId());
         dto.setContent(entity.getContent());
-        dto.setDescription(entity.getDescription());
         dto.setName(entity.getName());
         dto.setSectionId(entity.getSection().getId());
         dto.setMetaDescription(entity.getMetaDescription());
         dto.setMetaKeywords(entity.getMetaKeywords());
         dto.setMetaAuthor(entity.getMetaAuthor());
+        dto.setUrlKey(entity.getUrlKey());
 
         return dto;
     }
@@ -128,11 +128,11 @@ public class DocumentationService {
         DocumentationLecture entity = new DocumentationLecture();
         entity.setId(dto.getId());
         entity.setContent(dto.getContent());
-        entity.setDescription(dto.getDescription());
         entity.setName(dto.getName());
         entity.setMetaKeywords(dto.getMetaKeywords());
         entity.setMetaDescription(dto.getMetaDescription());
         entity.setMetaAuthor(dto.getMetaAuthor());
+        entity.setUrlKey(dto.getUrlKey());
         entity.setSection(dto.getSectionId() == null ? null : documentationSectionRepository.findById(dto.getSectionId()).orElse(null));
 
         return entity;

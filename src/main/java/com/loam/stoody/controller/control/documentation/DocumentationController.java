@@ -63,6 +63,30 @@ public class DocumentationController {
         return "redirect:/stoody/authorized/docs/section";
     }
 
+    // ->  DocumentationLecture
+    @GetMapping("/stoody/authorized/docs/lecture")
+    public String getAdminDocsLecture(Model model) {
+        model.addAttribute("documentationLecturesDTO", documentationService.getDocumentationLectureAll());
+        model.addAttribute("documentationLectureDTO", new DocumentationLectureDTO());
+        model.addAttribute("documentationSectionsDTO", documentationService.getDocumentationSectionAll());
+        return "pages/dashboard/admin-docs-lecture";
+    }
+
+    @PostMapping("/stoody/authorized/docs/lecture")
+    public String postAdminDocsLecture(@ModelAttribute("documentationLectureDTO") DocumentationLectureDTO documentationLectureDTO) {
+        documentationService.saveDocumentationLecture(documentationLectureDTO);
+        return "redirect:/stoody/authorized/docs/lecture";
+    }
+
+    @PostMapping("/stoody/authorized/docs/lecture/delete/{id}")
+    public String adminDocsLectureDelete(@PathVariable("id") Long id) {
+        documentationService.deleteDocumentationLectureById(id);
+        return "redirect:/stoody/authorized/docs/lecture";
+    }
+
+
+
+
     // ->  DocumentationCategory RestController
     @PostMapping(PRL.apiPrefix + "/docs/save/category")
     @ResponseBody

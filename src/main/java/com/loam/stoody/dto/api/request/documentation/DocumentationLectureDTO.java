@@ -1,5 +1,6 @@
 package com.loam.stoody.dto.api.request.documentation;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -11,8 +12,7 @@ public class DocumentationLectureDTO {
     private String metaKeywords;
     private String metaAuthor;
 
-    private String description;
+    private String urlKey;
     private String content;
     private Long sectionId;
-
 }
